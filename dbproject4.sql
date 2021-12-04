@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th10 30, 2021 lúc 07:23 AM
+-- Thời gian đã tạo: Th12 04, 2021 lúc 04:20 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -32,14 +32,25 @@ CREATE TABLE `account` (
   `role_id` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(250) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
+  `fullname` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `dob` date NOT NULL,
-  `addr` varchar(250) NOT NULL,
-  `gender` bit(2) NOT NULL,
-  `phone` char(20) NOT NULL,
+  `dob` date DEFAULT NULL,
+  `addr` varchar(250) DEFAULT NULL,
+  `gender` bit(2) DEFAULT NULL,
+  `phone` char(20) DEFAULT NULL,
   `avatar` text NOT NULL,
   `status` bit(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `account_role`
+--
+
+CREATE TABLE `account_role` (
+  `account_id` varchar(50) NOT NULL,
+  `role_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,6 +103,14 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
+('admin', 'ROLE_ADMIN', 'Can do everything', b'01'),
+('user', 'ROLE_USER', 'Having user\'s role', b'00');
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -101,6 +120,13 @@ CREATE TABLE `role` (
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`),
   ADD KEY `FK_account_role` (`role_id`);
+
+--
+-- Chỉ mục cho bảng `account_role`
+--
+ALTER TABLE `account_role`
+  ADD PRIMARY KEY (`account_id`,`role_id`),
+  ADD KEY `ac_role_pk_2` (`role_id`);
 
 --
 -- Chỉ mục cho bảng `mail`
@@ -142,10 +168,11 @@ ALTER TABLE `pay`
 --
 
 --
--- Các ràng buộc cho bảng `account`
+-- Các ràng buộc cho bảng `account_role`
 --
-ALTER TABLE `account`
-  ADD CONSTRAINT `FK_account_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
+ALTER TABLE `account_role`
+  ADD CONSTRAINT `ac_role_pk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
+  ADD CONSTRAINT `ac_role_pk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 
 --
 -- Các ràng buộc cho bảng `pay`
