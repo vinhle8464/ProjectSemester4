@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Nov 30, 2021, 1:28:51 PM by Hibernate Tools 5.1.10.Final
+// Generated Dec 3, 2021, 10:25:53 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,7 +24,7 @@ import javax.persistence.TemporalType;
 public class Account implements java.io.Serializable {
 
 	private String accountId;
-	private Role role;
+	private String roleId;
 	private String username;
 	private String password;
 	private String fullname;
@@ -34,15 +35,16 @@ public class Account implements java.io.Serializable {
 	private String phone;
 	private String avatar;
 	private boolean status;
+	private Set<Role> roles = new HashSet<Role>(0);
 	private Set<Pay> pays = new HashSet<Pay>(0);
 
 	public Account() {
 	}
 
-	public Account(String accountId, Role role, String username, String password, String fullname, String email,
+	public Account(String accountId, String roleId, String username, String password, String fullname, String email,
 			Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
 		this.accountId = accountId;
-		this.role = role;
+		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -55,10 +57,11 @@ public class Account implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Account(String accountId, Role role, String username, String password, String fullname, String email,
-			Date dob, String addr, boolean gender, String phone, String avatar, boolean status, Set<Pay> pays) {
+	public Account(String accountId, String roleId, String username, String password, String fullname, String email,
+			Date dob, String addr, boolean gender, String phone, String avatar, boolean status, Set<Role> roles,
+			Set<Pay> pays) {
 		this.accountId = accountId;
-		this.role = role;
+		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -69,6 +72,7 @@ public class Account implements java.io.Serializable {
 		this.phone = phone;
 		this.avatar = avatar;
 		this.status = status;
+		this.roles = roles;
 		this.pays = pays;
 	}
 
@@ -83,14 +87,13 @@ public class Account implements java.io.Serializable {
 		this.accountId = accountId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = false)
-	public Role getRole() {
-		return this.role;
+	@Column(name = "role_id", nullable = false, length = 50)
+	public String getRoleId() {
+		return this.roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 
 	@Column(name = "username", nullable = false, length = 50)
@@ -182,6 +185,18 @@ public class Account implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "account_role", catalog = "dbproject4", joinColumns = {
+			@JoinColumn(name = "account_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
+	public Set<Role> getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")

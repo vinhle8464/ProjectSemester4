@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Nov 30, 2021, 1:28:51 PM by Hibernate Tools 5.1.10.Final
+// Generated Dec 3, 2021, 10:25:53 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -79,7 +79,7 @@ public class Role implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
 	public Set<Account> getAccounts() {
 		return this.accounts;
 	}

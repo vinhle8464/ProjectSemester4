@@ -1,4 +1,4 @@
-package com.demo.controllers;
+package com.demo.controllers.admin;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
