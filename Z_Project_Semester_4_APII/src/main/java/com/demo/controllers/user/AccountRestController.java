@@ -3,6 +3,7 @@ package com.demo.controllers.user;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletConfig;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.models.AccountInfo;
 import com.demo.models.AccountInfoCreate;
+import com.demo.models.RoleInfo;
 import com.demo.services.AccountService;
 
 @RestController
@@ -31,6 +33,17 @@ public class AccountRestController {
 
 	@Autowired
 	private AccountService accountService;
+	
+	
+	@RequestMapping(value = "findall", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AccountInfo>> findall(){
+		try {
+			return new ResponseEntity<List<AccountInfo>>(accountService.findAllAccount(), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<List<AccountInfo>>( HttpStatus.BAD_REQUEST);
+			
+		}
+	}
 	
 	@RequestMapping(value = "findbyid/{username}", method = RequestMethod.GET,	
 			produces = MimeTypeUtils.APPLICATION_JSON_VALUE)

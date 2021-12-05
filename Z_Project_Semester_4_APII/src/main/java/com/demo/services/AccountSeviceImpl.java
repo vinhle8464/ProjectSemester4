@@ -29,7 +29,7 @@ public class AccountSeviceImpl implements AccountService{
 		return accountRepository.findById(id).get();
 	}
 	
-	// this method did not completed!
+	// this method was not be completed!
 	@Override
 	public AccountInfo create(AccountInfoCreate accountInfoCreate) {
 		Account account = new Account();
@@ -38,7 +38,7 @@ public class AccountSeviceImpl implements AccountService{
 		return new AccountInfo(accountRepository.save(account));
 	}
 	
-	// this method did not completed!
+	// this method was not be completed!
 	@Override
 	public AccountInfo update(int id, AccountInfo accountInfo) {
 		Account account = find(id);
@@ -49,6 +49,11 @@ public class AccountSeviceImpl implements AccountService{
 	@Override
 	public void delete(int id) {
 		accountRepository.deleteById(id);
+	}
+
+	@Override
+	public List<AccountInfo> findAllAccount() {
+		return accountRepository.findAllAccount();
 	}
 
 }

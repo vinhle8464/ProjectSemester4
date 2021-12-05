@@ -39,11 +39,9 @@ public class RoleRestController {
 			produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RoleInfo> findbyid(@PathVariable("roleId") String roleId){
 		try {
-		
 			return new ResponseEntity<RoleInfo>(roleService.find(roleId), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<RoleInfo>( HttpStatus.BAD_REQUEST);
-			
 		}
 	}
 
