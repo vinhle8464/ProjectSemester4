@@ -7,7 +7,6 @@ import java.util.Set;
 public class AccountInfo {
 
 	private String accountId;
-	private String roleId;
 	private String username;
 	private String password;
 	private String fullname;
@@ -18,15 +17,11 @@ public class AccountInfo {
 	private String phone;
 	private String avatar;
 	private boolean status;
+	private String roleId;
 	
 	public AccountInfo() {
 		super();
 	}
-
-
-	
-	
-
 
 
 	public AccountInfo(String accountId, String roleId, String username, String password, String fullname, String email,
@@ -47,10 +42,8 @@ public class AccountInfo {
 	}
 
 
-
 	public AccountInfo(Account account) {
 		this.accountId = account.getAccountId();
-		this.roleId = account.getRoleId();
 		this.username = account.getUsername();
 		this.password = account.getPassword();
 		this.fullname = account.getFullname();
@@ -81,7 +74,6 @@ public class AccountInfo {
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
-
 
 	public String getUsername() {
 		return username;
@@ -162,10 +154,6 @@ public class AccountInfo {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
-	
-	
-	
 
 	
 }

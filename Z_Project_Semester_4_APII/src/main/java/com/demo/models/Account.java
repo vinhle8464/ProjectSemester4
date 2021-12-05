@@ -24,7 +24,6 @@ import javax.persistence.TemporalType;
 public class Account implements java.io.Serializable {
 
 	private String accountId;
-	private String roleId;
 	private String username;
 	private String password;
 	private String fullname;
@@ -41,10 +40,8 @@ public class Account implements java.io.Serializable {
 	public Account() {
 	}
 
-	public Account(String accountId, String roleId, String username, String password, String fullname, String email,
-			Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
+	public Account(String accountId, String username, String password, String fullname, String email,Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
 		this.accountId = accountId;
-		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -61,7 +58,6 @@ public class Account implements java.io.Serializable {
 			Date dob, String addr, boolean gender, String phone, String avatar, boolean status, Set<Role> roles,
 			Set<Pay> pays) {
 		this.accountId = accountId;
-		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -87,14 +83,6 @@ public class Account implements java.io.Serializable {
 		this.accountId = accountId;
 	}
 
-	@Column(name = "role_id", nullable = false, length = 50)
-	public String getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
 
 	@Column(name = "username", nullable = false, length = 50)
 	public String getUsername() {
