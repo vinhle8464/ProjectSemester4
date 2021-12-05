@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 04, 2021 lúc 04:20 PM
+-- Thời gian đã tạo: Th12 05, 2021 lúc 07:52 AM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -41,6 +41,13 @@ CREATE TABLE `account` (
   `avatar` text NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `account`
+--
+
+INSERT INTO `account` (`account_id`, `role_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
+('acc1', 'admin', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, NULL, NULL, 'asdf', b'01');
 
 -- --------------------------------------------------------
 
