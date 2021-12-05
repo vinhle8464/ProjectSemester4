@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `account_id` varchar(50) NOT NULL,
-  `role_id` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(250) NOT NULL,
   `fullname` varchar(100) DEFAULT NULL,
@@ -46,8 +45,8 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`account_id`, `role_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-('acc1', 'admin', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, NULL, NULL, 'asdf', b'01');
+INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
+('acc1', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, NULL, NULL, 'asdf', b'01');
 
 -- --------------------------------------------------------
 
