@@ -20,7 +20,7 @@ public class RoleSeviceImpl implements RoleService{
 
 	@Override
 	public RoleInfo find(String roleId) {
-		return (RoleInfo) roleRepositoryUser.findById(roleId);
+		return roleRepositoryUser.findById(roleId);
 		
 	}
 

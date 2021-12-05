@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.demo.models.Account;
 import com.demo.models.AccountInfo;
 import com.demo.models.AccountInfoCreate;
 import com.demo.models.RoleInfo;
@@ -45,9 +46,9 @@ public class AccountRestController {
 		}
 	}
 	
-	@RequestMapping(value = "findbyid/{username}", method = RequestMethod.GET,	
+	@RequestMapping(value = "findbyusername/{username}", method = RequestMethod.GET,	
 			produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AccountInfo> findbyid(@PathVariable("username") String username){
+	public ResponseEntity<AccountInfo> findByUsername(@PathVariable("username") String username){
 		try {
 		
 			return new ResponseEntity<AccountInfo>(accountService.findByUsername(username), HttpStatus.OK);

@@ -18,7 +18,6 @@ public class AccountInfo {
 	private String phone;
 	private String avatar;
 	private boolean status;
-	private Set<Role> roles = new HashSet<Role>(0);
 	
 	public AccountInfo() {
 		super();
@@ -31,7 +30,7 @@ public class AccountInfo {
 
 
 	public AccountInfo(String accountId, String roleId, String username, String password, String fullname, String email,
-			Date dob, String addr, boolean gender, String phone, String avatar, boolean status, Set<Role> roles) {
+			Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
 		super();
 		this.accountId = accountId;
 		this.roleId = roleId;
@@ -45,7 +44,6 @@ public class AccountInfo {
 		this.phone = phone;
 		this.avatar = avatar;
 		this.status = status;
-		this.roles = roles;
 	}
 
 
@@ -165,13 +163,7 @@ public class AccountInfo {
 		this.status = status;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+	
 	
 	
 

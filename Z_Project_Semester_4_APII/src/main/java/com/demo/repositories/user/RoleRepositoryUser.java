@@ -18,7 +18,7 @@ public interface RoleRepositoryUser extends CrudRepository<Role, Integer> {
 	public List<RoleInfo> findAllRole();
 	
 	@Query("select new com.demo.models.RoleInfo(roleId, roleName, description, status) from Role where roleId = :roleId")
-	public List<RoleInfo> findById(@Param("roleId") String roleId);
+	public RoleInfo findById(@Param("roleId") String roleId);
 	
 	
 }
