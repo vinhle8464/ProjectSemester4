@@ -9,15 +9,18 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.models.Account;
 import com.demo.models.AccountInfo;
-import com.demo.models.RoleInfo;
+
+
 
 @Repository
 public interface AccountRepositoryUser extends CrudRepository<Account, Integer> {
 
-	@Query("select new com.demo.models.AccountInfo(accountId, roleId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account where username = :username")
+	@Query("select new com.demo.models.AccountInfo(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account where username = :username")
 	public AccountInfo findByUsername(@Param("username") String username);
 
-	@Query("select new com.demo.models.AccountInfo(accountId, roleId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account")
+	
+	@Query("select new com.demo.models.AccountInfo(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account")
 	public List<AccountInfo> findAllAccount();
 
+	
 }

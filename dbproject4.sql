@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 05, 2021 lúc 07:52 AM
+-- Thời gian đã tạo: Th12 06, 2021 lúc 04:38 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -46,7 +46,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-('acc1', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, NULL, NULL, 'asdf', b'01');
+('acc1', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, b'01', NULL, 'asdf', b'01');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,13 @@ CREATE TABLE `account_role` (
   `account_id` varchar(50) NOT NULL,
   `role_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `account_role`
+--
+
+INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
+('acc1', 'admin');
 
 -- --------------------------------------------------------
 
@@ -124,8 +131,7 @@ INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
 -- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`account_id`),
-  ADD KEY `FK_account_role` (`role_id`);
+  ADD PRIMARY KEY (`account_id`);
 
 --
 -- Chỉ mục cho bảng `account_role`

@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AccountInfo {
 
 	private String accountId;
@@ -11,24 +13,24 @@ public class AccountInfo {
 	private String password;
 	private String fullname;
 	private String email;
+	
+	@JsonFormat(pattern = "dd/MM/yyy")
 	private Date dob;
 	private String addr;
 	private boolean gender;
 	private String phone;
 	private String avatar;
 	private boolean status;
-	private String roleId;
 	
 	public AccountInfo() {
 		super();
 	}
 
 
-	public AccountInfo(String accountId, String roleId, String username, String password, String fullname, String email,
+	public AccountInfo(String accountId, String username, String password, String fullname, String email,
 			Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
 		super();
 		this.accountId = accountId;
-		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -65,15 +67,6 @@ public class AccountInfo {
 		this.accountId = accountId;
 	}
 
-
-	public String getRoleId() {
-		return roleId;
-	}
-
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
 
 	public String getUsername() {
 		return username;
