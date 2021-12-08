@@ -25,8 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.demo.models.AccountInfo;
 import com.demo.models.Role;
 import com.demo.models.RoleInfo;
-import com.demo.services.AccountService;
-import com.demo.services.RoleService;
+import com.demo.services.user.AccountService;
+import com.demo.services.user.RoleService;
 
 @RestController
 @RequestMapping("api/user/role")

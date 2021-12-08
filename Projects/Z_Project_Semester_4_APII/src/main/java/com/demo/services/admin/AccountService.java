@@ -1,4 +1,4 @@
-package com.demo.services;
+package com.demo.services.admin;
 
 import java.util.List;
 

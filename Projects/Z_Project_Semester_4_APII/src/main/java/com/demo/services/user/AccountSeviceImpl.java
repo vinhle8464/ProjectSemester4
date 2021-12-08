@@ -1,4 +1,4 @@
-package com.demo.services;
+package com.demo.services.user;
 
 import java.util.ArrayList;
 import java.util.List;

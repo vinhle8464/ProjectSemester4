@@ -1,4 +1,4 @@
-package com.demo.controllers.user;
+package com.demo.controllers.admin;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,8 +29,8 @@ import com.demo.models.RoleInfo;
 import com.demo.services.user.AccountService;
 
 @RestController
-@RequestMapping("api/user/account")
-public class AccountRestController {
+@RequestMapping("api/admin/email")
+public class EmailRestController {
 
 	@Autowired
 	private AccountService accountService;
