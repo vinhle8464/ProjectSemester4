@@ -22,23 +22,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 		
-		http.authorizeRequests()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.antMatchers("/user/**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER')")
-		.and()
-		.formLogin().loginPage("/user/account/login")
-		.loginProcessingUrl("/user/account/process-login")
-		.defaultSuccessUrl("/user/home/index")
-		.failureUrl("/user/account/login?error")
-		.usernameParameter("username")
-		.passwordParameter("password")	
-		.and()
-		.logout()
-		.logoutUrl("/user/account/logout")
-		.logoutSuccessUrl("/user/account/login?logout")
-		.and()
-		.exceptionHandling().accessDeniedPage("/user/account/accessDenied")
-		;
+//		http.authorizeRequests()
+//		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//		.antMatchers("/user/**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER')")
+//		.and()
+//		.formLogin().loginPage("/user/account/login")
+//		.loginProcessingUrl("/user/account/process-login")
+//		.defaultSuccessUrl("/user/home/index")
+//		.failureUrl("/user/account/login?error")
+//		.usernameParameter("username")
+//		.passwordParameter("password")	
+//		.and()
+//		.logout()
+//		.logoutUrl("/user/account/logout")
+//		.logoutSuccessUrl("/user/account/login?logout")
+//		.and()
+//		.exceptionHandling().accessDeniedPage("/user/account/accessDenied")
+//		;
 	}
 	
 	@Autowired
