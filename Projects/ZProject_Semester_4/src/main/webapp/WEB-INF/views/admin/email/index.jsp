@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:layout_admin title="Email">
+<mt:layout_admin title="Emails">
 
 	<jsp:attribute name="content">
 		   <!-- Content Header (Page header) -->
@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Email</h1>
+            <h1 class="m-0">Emails</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -15,10 +15,5 @@ public class EmailAdminController {
 		return "admin/email/index";
 	}
 	
-	@RequestMapping(value = {"", "update"}, method = RequestMethod.GET)
-	public String update() {
-		
-	
-		return "admin/email/update";
-	}
+
 }
