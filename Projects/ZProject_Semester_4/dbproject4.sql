@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 08, 2021 lúc 04:30 PM
+-- Thời gian đã tạo: Th12 12, 2021 lúc 04:42 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account` (
-  `account_id` varchar(50) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(250) NOT NULL,
-  `fullname` varchar(100) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
+  `fullname` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
   `dob` date DEFAULT NULL,
-  `addr` varchar(250) DEFAULT NULL,
-  `gender` bit(2) DEFAULT NULL,
-  `phone` char(20) DEFAULT NULL,
+  `addr` varchar(250) NOT NULL,
+  `gender` bit(2) NOT NULL,
+  `phone` varchar(250) DEFAULT NULL,
   `avatar` text NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -46,7 +46,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-('acc1', 'vinh', '1', 'vinh', 'llasdfj', NULL, NULL, b'01', NULL, 'asdf', b'01');
+(1, 'vinh', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(2, 'user', '1', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', 'asdfasdf', b'01');
 
 -- --------------------------------------------------------
 
@@ -55,8 +56,8 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 --
 
 CREATE TABLE `account_role` (
-  `account_id` varchar(50) NOT NULL,
-  `role_id` varchar(50) NOT NULL
+  `account_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -64,27 +65,37 @@ CREATE TABLE `account_role` (
 --
 
 INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
-('acc1', 'admin');
+(1, 1),
+(1, 2),
+(2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `mail`
+-- Cấu trúc bảng cho bảng `email`
 --
 
-CREATE TABLE `mail` (
+CREATE TABLE `email` (
   `mail_id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
   `email_user` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `content` text NOT NULL,
-  `reply_content` text NOT NULL,
+  `reply_content` text DEFAULT NULL,
   `send_date` datetime NOT NULL,
-  `reply_date` datetime NOT NULL,
+  `reply_date` datetime DEFAULT NULL,
   `checked` bit(2) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `email`
+--
+
+INSERT INTO `email` (`mail_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
+(1, 'con khi', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01'),
+(2, 'con meo', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -94,13 +105,22 @@ CREATE TABLE `mail` (
 
 CREATE TABLE `pay` (
   `pay_id` int(11) NOT NULL,
-  `account_id` varchar(50) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `payment` varchar(100) NOT NULL,
   `title` varchar(250) NOT NULL,
   `fee` decimal(10,0) NOT NULL,
   `date_paid` datetime NOT NULL,
   `pay_status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `pay`
+--
+
+INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
+(1, 2, 'cash', 'oke con de', '120', '2021-12-10 22:36:39', b'01'),
+(2, 2, 'credit card', 'asdfsda', '200', '2021-12-12 16:37:30', b'01'),
+(3, 2, 'credit card', 'hhhhh', '2000', '2021-12-12 16:37:30', b'01');
 
 -- --------------------------------------------------------
 
@@ -109,8 +129,8 @@ CREATE TABLE `pay` (
 --
 
 CREATE TABLE `role` (
-  `role_id` varchar(50) NOT NULL,
-  `role_name` varchar(100) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(250) NOT NULL,
   `description` varchar(250) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -120,8 +140,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
-('admin', 'ROLE_ADMIN', 'Can do everything', b'01'),
-('user', 'ROLE_USER', 'Having user\'s role', b'00');
+(1, 'ROLE_ADMIN', 'role admin', b'01'),
+(2, 'ROLE_USER', 'role user', b'01');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -141,9 +161,9 @@ ALTER TABLE `account_role`
   ADD KEY `ac_role_pk_2` (`role_id`);
 
 --
--- Chỉ mục cho bảng `mail`
+-- Chỉ mục cho bảng `email`
 --
-ALTER TABLE `mail`
+ALTER TABLE `email`
   ADD PRIMARY KEY (`mail_id`);
 
 --
@@ -164,16 +184,28 @@ ALTER TABLE `role`
 --
 
 --
--- AUTO_INCREMENT cho bảng `mail`
+-- AUTO_INCREMENT cho bảng `account`
 --
-ALTER TABLE `mail`
-  MODIFY `mail_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `account`
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `email`
+--
+ALTER TABLE `email`
+  MODIFY `mail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `role`
+--
+ALTER TABLE `role`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
