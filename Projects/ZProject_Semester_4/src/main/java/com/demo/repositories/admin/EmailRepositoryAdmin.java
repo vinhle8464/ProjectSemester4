@@ -1,11 +1,11 @@
 package com.demo.repositories.admin;
 
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.demo.models.Role;
 
 @Repository
-public interface RoleRepositoryAdmin extends CrudRepository<Role, Integer> {
+public interface EmailRepositoryAdmin extends CrudRepository<com.demo.models.Email, Integer> {
 
 }

@@ -31,6 +31,13 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/plugins/summernote/summernote-bs4.min.css">
+  <!-- 
+  add new   -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
+   <!-- 
+  add new   -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -242,6 +249,13 @@
 <script src="${pageContext.request.contextPath}/resources/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath}/resources/admin/dist/js/pages/dashboard.js"></script>
+
+ <!-- 
+  add new   -->
+ <!-- add custom js -->
+ <script src="${pageContext.request.contextPath}/resources/admin/js/lib.js"></script>
+  <!-- 
+  add new   -->
 </body>
 </html>
 
