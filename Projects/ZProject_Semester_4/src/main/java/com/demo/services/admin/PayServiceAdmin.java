@@ -2,11 +2,11 @@ package com.demo.services.admin;
 
 import java.util.List;
 
-import com.demo.models.Role;
+import com.demo.models.Pay;
 public interface PayServiceAdmin {
 
-		public Role find(String roleId);
+		public Pay find(int payId);
 		
-		public List<Role> findAllRole();
+		public List<Pay> findAllPay();
 		
 }

@@ -5,27 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.models.Email;
 import com.demo.models.Pay;
 import com.demo.models.Role;
+import com.demo.repositories.admin.EmailRepositoryAdmin;
 import com.demo.repositories.admin.PayRepositoryAdmin;
 import com.demo.repositories.admin.RoleRepositoryAdmin;
 import com.demo.repositories.user.RoleRepositoryUser;
 
 @Service
-public class PaySeviceAdminImpl implements PayServiceAdmin{
+public class EmailSeviceAdminImpl implements EmailServiceAdmin{
 
 	@Autowired
-	private PayRepositoryAdmin payRepositoryAdmin;
+	private EmailRepositoryAdmin emailRepositoryAdmin;
 
 	@Override
-	public Pay find(int payId) {
-		return payRepositoryAdmin.findById(payId).get();
+	public Email find(int mailId) {
+		return emailRepositoryAdmin.findById(mailId).get();
 		
 	}
 
 	@Override
-	public List<Pay> findAllPay() {
-		return (List<Pay>) payRepositoryAdmin.findAll();
+	public List<Email> findAllEmail() {
+		return (List<Email>) emailRepositoryAdmin.findAll();
 	}
 	
 	
