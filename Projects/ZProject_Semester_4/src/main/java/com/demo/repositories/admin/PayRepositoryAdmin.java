@@ -3,9 +3,9 @@ package com.demo.repositories.admin;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.demo.models.Role;
+import com.demo.models.Pay;
 
 @Repository
-public interface RoleRepositoryAdmin extends CrudRepository<Role, Integer> {
+public interface PayRepositoryAdmin extends CrudRepository<Pay, Integer> {
 
 }
