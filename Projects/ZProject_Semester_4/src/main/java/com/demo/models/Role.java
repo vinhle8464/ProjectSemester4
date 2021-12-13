@@ -1,11 +1,13 @@
 package com.demo.models;
-// Generated Dec 3, 2021, 10:25:53 PM by Hibernate Tools 5.1.10.Final
+// Generated Dec 12, 2021, 10:05:24 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "role", catalog = "dbproject4")
 public class Role implements java.io.Serializable {
 
-	private String roleId;
+	private Integer roleId;
 	private String roleName;
 	private String description;
 	private boolean status;
@@ -26,15 +28,13 @@ public class Role implements java.io.Serializable {
 	public Role() {
 	}
 
-	public Role(String roleId, String roleName, String description, boolean status) {
-		this.roleId = roleId;
+	public Role(String roleName, String description, boolean status) {
 		this.roleName = roleName;
 		this.description = description;
 		this.status = status;
 	}
 
-	public Role(String roleId, String roleName, String description, boolean status, Set<Account> accounts) {
-		this.roleId = roleId;
+	public Role(String roleName, String description, boolean status, Set<Account> accounts) {
 		this.roleName = roleName;
 		this.description = description;
 		this.status = status;
@@ -42,17 +42,18 @@ public class Role implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "role_id", unique = true, nullable = false, length = 50)
-	public String getRoleId() {
+	@Column(name = "role_id", unique = true, nullable = false)
+	public Integer getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(String roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 
-	@Column(name = "role_name", nullable = false, length = 100)
+	@Column(name = "role_name", nullable = false, length = 250)
 	public String getRoleName() {
 		return this.roleName;
 	}

@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 3, 2021, 10:25:53 PM by Hibernate Tools 5.1.10.Final
+// Generated Dec 12, 2021, 10:05:24 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name = "account", catalog = "dbproject4")
 public class Account implements java.io.Serializable {
 
-	private String accountId;
+	private Integer accountId;
 	private String username;
 	private String password;
 	private String fullname;
@@ -40,24 +42,20 @@ public class Account implements java.io.Serializable {
 	public Account() {
 	}
 
-	public Account(String accountId, String username, String password, String fullname, String email,Date dob, String addr, boolean gender, String phone, String avatar, boolean status) {
-		this.accountId = accountId;
+	public Account(String username, String password, String fullname, String email, String addr, boolean gender,
+			String avatar, boolean status) {
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
 		this.email = email;
-		this.dob = dob;
 		this.addr = addr;
 		this.gender = gender;
-		this.phone = phone;
 		this.avatar = avatar;
 		this.status = status;
 	}
 
-	public Account(String accountId, String roleId, String username, String password, String fullname, String email,
-			Date dob, String addr, boolean gender, String phone, String avatar, boolean status, Set<Role> roles,
-			Set<Pay> pays) {
-		this.accountId = accountId;
+	public Account(String username, String password, String fullname, String email, Date dob, String addr,
+			boolean gender, String phone, String avatar, boolean status, Set<Role> roles, Set<Pay> pays) {
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -73,16 +71,16 @@ public class Account implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "account_id", unique = true, nullable = false, length = 50)
-	public String getAccountId() {
+	@Column(name = "account_id", unique = true, nullable = false)
+	public Integer getAccountId() {
 		return this.accountId;
 	}
 
-	public void setAccountId(String accountId) {
+	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
-
 
 	@Column(name = "username", nullable = false, length = 50)
 	public String getUsername() {
@@ -102,7 +100,7 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "fullname", nullable = false, length = 100)
+	@Column(name = "fullname", nullable = false, length = 250)
 	public String getFullname() {
 		return this.fullname;
 	}
@@ -111,7 +109,7 @@ public class Account implements java.io.Serializable {
 		this.fullname = fullname;
 	}
 
-	@Column(name = "email", nullable = false, length = 100)
+	@Column(name = "email", nullable = false, length = 250)
 	public String getEmail() {
 		return this.email;
 	}
@@ -121,7 +119,7 @@ public class Account implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "dob", nullable = false, length = 10)
+	@Column(name = "dob", length = 10)
 	public Date getDob() {
 		return this.dob;
 	}
@@ -148,7 +146,7 @@ public class Account implements java.io.Serializable {
 		this.gender = gender;
 	}
 
-	@Column(name = "phone", nullable = false, length = 20)
+	@Column(name = "phone", length = 250)
 	public String getPhone() {
 		return this.phone;
 	}
