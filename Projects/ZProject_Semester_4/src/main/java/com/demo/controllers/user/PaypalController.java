@@ -25,7 +25,7 @@ public class PaypalController {
 	@Autowired
 	private EmailService mailService;
 	
-	// method index
+	// abcxyz
 	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 		String authtoken = environment.getProperty("paypal.authtoken");
