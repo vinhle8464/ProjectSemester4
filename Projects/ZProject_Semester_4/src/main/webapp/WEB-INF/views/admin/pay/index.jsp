@@ -88,7 +88,7 @@
 						<td>${pay.payment }</td>
 						<td>${pay.title }</td>
 						<td>${pay.fee }</td>
-						<td>${pay.datePaid }</td>
+						<td>
 						<fmt:formatDate var="datePaid" value="${pay.datePaid}" pattern="dd/MM/yyyy HH:mm:ss" />
 				${datePaid }</td>
 						
