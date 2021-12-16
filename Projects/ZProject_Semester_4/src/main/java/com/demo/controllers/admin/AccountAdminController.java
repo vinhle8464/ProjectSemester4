@@ -78,9 +78,9 @@ public class AccountAdminController implements ServletContextAware{
 	}
 
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
-	public String delete(@RequestParam("accountId") int accountId) {
+	public String delete(@RequestParam("accountID") int accountID) {
 
-		accountServiceAdmin.delete(accountId);
+		accountServiceAdmin.delete(accountID);
 
 		return "redirect:/admin/account/index";
 	}

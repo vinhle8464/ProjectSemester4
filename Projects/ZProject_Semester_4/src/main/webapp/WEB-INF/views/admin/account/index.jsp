@@ -18,10 +18,11 @@
 		});
 		
 		function openDeleteModal(accountId){
-			$('#accountId').val(accountId);
+			$('#accountID').val(accountId);
+			
 		}
 		
-		function openEditModal(accountId){
+		/* function openEditModal(accountId){
 			$.ajax({
 				type: 'GET',
 				url: '${pageContext.request.contextPath }/admin/ajax/findaccountbyid',
@@ -31,18 +32,10 @@
 				success: function(account){
 					$('#result4').html(data);
 				}
-			});
-			
+			});		
+		} */
 		
-		}
-		$(document).ready(function() {
-			$('#comboboxCategory').on('change', function(){
-				var value = $('#comboboxCategory option:selected').val();
-				if(value == 'all'){
-					
-				}
-			});
-		});
+		
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -329,7 +322,7 @@
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 											value="Cancel">
-											<input type="hidden" name="accountId" id="accountId">
+											<input type="hidden" name="accountID" id="accountID">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
