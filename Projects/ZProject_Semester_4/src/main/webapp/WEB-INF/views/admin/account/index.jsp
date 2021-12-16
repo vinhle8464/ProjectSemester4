@@ -16,6 +16,33 @@
 		$(function() {
 			$("#birthday").datepicker();
 		});
+		
+		function openDeleteModal(accountId){
+			$('#accountId').val(accountId);
+		}
+		
+		function openEditModal(accountId){
+			$.ajax({
+				type: 'GET',
+				url: '${pageContext.request.contextPath }/admin/ajax/findaccountbyid',
+				data: {
+					accountId: accountId	
+				},
+				success: function(account){
+					$('#result4').html(data);
+				}
+			});
+			
+		
+		}
+		$(document).ready(function() {
+			$('#comboboxCategory').on('change', function(){
+				var value = $('#comboboxCategory option:selected').val();
+				if(value == 'all'){
+					
+				}
+			});
+		});
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -90,6 +117,7 @@
 					</tr>
 				</thead>
 				<tbody>
+				
 				<c:forEach var="account" items="${accounts}">
 					<tr>
 						<td>
@@ -107,9 +135,9 @@
 				${dob }</td>
 						<td>${account.gender }</td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
+							<a href="#editEmployeeModal" id="${account.accountId }" onclick="openEditModal(id);" class="edit" data-toggle="modal"><i
 														class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+							<a href="#deleteEmployeeModal" id="${account.accountId }" onclick="openDeleteModal(id);" class="delete" data-toggle="modal"><i
 														class="material-icons" data-toggle="tooltip"
 														title="Delete">&#xE872;</i></a>
 						</td>
@@ -212,36 +240,73 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
+		<s:form method="post" modelAttribute="account"
+									action="${pageContext.request.contextPath }/admin/account/update" enctype="multipart/form-data">
+				
+				<div class="modal-header">	
+									
+					<h4 class="modal-title">Update Account</h4>
 					<button type="button" class="close" data-dismiss="modal"
 											aria-hidden="true">&times;</button>
+											
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">		
+				<div class="form-group">
+						<label>AccountId</label>
+						<s:input path="accountId" type="text" class="form-control" disable="disable"/>
+				
+					</div>			
 					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
+						<label>UserName</label>
+						<s:input path="username" type="text" class="form-control" required="required"/>
+				
 					</div>
+				
+					<div class="form-group">
+						<label>FullName</label>
+						<s:input path="fullname" type="text" class="form-control" required="required" />
+					
+					</div>	
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" class="form-control" required>
+						<s:input path="email" type="email" class="form-control" required="required" />
+					
+					</div>
+						<div class="form-group">
+						<label>Date of Birth</label>
+						<s:input path="dob" id="birthday" class="form-control" required="required" />
+					
 					</div>
 					<div class="form-group">
 						<label>Address</label>
-						<textarea class="form-control" required></textarea>
+						<s:textarea cols="5" rows="10" path="addr" type="text" class="form-control" required="required" />
+					
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+						<label>Gender</label>
+						<br/>
+						<s:radiobutton path="gender" value="true" /> Male <br>
+					<s:radiobutton path="gender" value="false" /> Female
+					</div>	
+					<div class="form-group">
+						<label>Phone Number</label>
+						<s:input path="phone" type="text" class="form-control" required="required" />
+					
+					</div>	
+					<div class="form-group">
+						<label>Avatar</label>
+						<input type="file" name="file" class="form-control" required="required" />
+					
+					
+					</div>	
+									
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 											value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<s:input type="submit" class="btn btn-success" value="save" path=""/>
 				</div>
-			</form>
+			</s:form>
 		</div>
 	</div>
 </div>
@@ -249,8 +314,8 @@
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
+			<form method="get" action="${pageContext.request.contextPath }/admin/account/delete">
+				<div class="modal-header">				
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal"
 											aria-hidden="true">&times;</button>
@@ -264,6 +329,7 @@
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 											value="Cancel">
+											<input type="hidden" name="accountId" id="accountId">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
