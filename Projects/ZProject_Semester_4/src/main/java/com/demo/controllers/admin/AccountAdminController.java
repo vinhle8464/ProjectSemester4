@@ -1,13 +1,11 @@
 package com.demo.controllers.admin;
 
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,10 +77,10 @@ public class AccountAdminController implements ServletContextAware{
 		return "redirect:/admin/account/index";
 	}
 
-	@RequestMapping(value = { "delete/{id}" }, method = RequestMethod.GET)
-	public String delete(@PathVariable("id") int id) {
+	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
+	public String delete(@RequestParam("accountID") int accountID) {
 
-		accountServiceAdmin.delete(id);
+		accountServiceAdmin.delete(accountID);
 
 		return "redirect:/admin/account/index";
 	}
