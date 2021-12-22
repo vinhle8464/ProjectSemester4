@@ -16,8 +16,8 @@ public class RoleSeviceUserImpl implements RoleServiceUser{
 	private RoleRepositoryUser roleRepositoryUser;
 
 	@Override
-	public Role find(String roleId) {
-		return roleRepositoryUser.findById(roleId);
+	public Role find(int roleId) {
+		return roleRepositoryUser.findById(roleId).get();
 		
 	}
 

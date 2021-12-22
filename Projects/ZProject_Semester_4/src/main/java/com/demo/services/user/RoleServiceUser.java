@@ -5,7 +5,7 @@ import java.util.List;
 import com.demo.models.Role;
 public interface RoleServiceUser {
 
-		public Role find(String roleId);
+		public Role find(int roleId);
 		
 		public List<Role> findAllRole();
 		
