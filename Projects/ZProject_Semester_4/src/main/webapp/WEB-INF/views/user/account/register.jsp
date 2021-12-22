@@ -3,54 +3,177 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Registration Page</title>
 
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome-free/css/all.min.css">
+<!-- icheck bootstrap -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/admin/dist/css/adminlte.min.css">
+	<script>
+	$(function() {
+		$("#dob").datepicker();
+	});
+</script>
 </head>
-<body>
 
-	<h3>Register</h3>
+<body class="hold-transition register-page">
+	<div class="register-box">
+		<div class="register-logo">
+			<a href="../../index2.html"><b>Admin</b>LTE</a>
+		</div>
 
-	<s:form method="post" modelAttribute="account"
+		<div class="card">
+			<div class="card-body register-card-body">
+				<p class="login-box-msg">Register a new membership</p>
+
+				<s:form method="post" modelAttribute="account"
 		action="${pageContext.request.contextPath }/user/account/register">
+					<div class="input-group mb-3">
+						<s:input path="username"
+							class="form-control" placeholder="User name"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:password path="password"
+							class="form-control" placeholder="Password"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input name="repassword" type="password" class="form-control"
+							placeholder="Retype password">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="fullname" class="form-control" placeholder="Full name"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-signature"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="addr" class="form-control" placeholder="Address"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-address-book"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:radiobutton value="true" path="gender" class="form-control" />
+						<div class="input-group-append">
+							<div class="input-group-radio">
+								<span class="fas fa-male">_Male </span>
+							</div>
+						</div>
+						<s:radiobutton value="false" path="gender" class="form-control"/>
+						<div class="input-group-append">
+							<div class="input-group-radio">
+								<span class="fas fa-female">_Female</span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="dob" class="form-control" placeholder="Date of Birth"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-birthday-cake"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="phone" class="form-control" placeholder="Phone"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-phone"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="email" class="form-control" placeholder="Phone"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<s:input path="avatar" class="form-control" placeholder="Avatar"/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user-tie"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-8">
+							<div class="icheck-primary">
+								<input type="checkbox" id="agreeTerms" name="terms"
+									value="agree"> <label for="agreeTerms"> I agree
+									to the <a href="#">terms</a>
+								</label>
+							</div>
+						</div>
+						<!-- /.col -->
+						<div class="col-4">
+							<button type="submit" class="btn btn-primary btn-block">Register</button>
+						</div>
+						<!-- /.col -->
+					</div>
+					
+				<input type="hidden" name="role" value="2">
+				
+					<input type="hidden" name="status" value="true"/>
+				</s:form>
 
-		<table>
-			<tr>
-				<td>Username</td>
-				<td><s:input path="username" /></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><s:input path="password" /></td>
-			</tr>
-			<tr>
-				<td>Fullname</td>
-				<td><s:input path="fullName" /></td>
-			</tr>
-			<tr>
-				<td>Status</td>
-				<td><s:checkbox path="status" /></td>
-			</tr>
-			<tr>
-				<td>Role</td>
-				<td><c:forEach var="role" items="${roles }">
+				<div class="social-auth-links text-center">
+					<p>- OR -</p>
+					<a href="#" class="btn btn-block btn-primary"> <i
+						class="fab fa-facebook mr-2"></i> Sign up using Facebook
+					</a> <a href="${pageContext.request.contextPath }/user/account/signin-google" class="btn btn-block btn-danger"> <i
+						class="fab fa-google-plus mr-2"></i> Sign up using Google+
+					</a>
+				</div>
 
-						<input type="checkbox" name="role" value="${role.roleId }"> ${role.roleName }
-						<br>
-					</c:forEach></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><input type="submit" value="Register"></td>
-			</tr>
-		</table>
+				<a href="login.html" class="text-center">I already have a
+					membership</a>
+			</div>
+			<!-- /.form-box -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.register-box -->
 
-		<br>
-
-		<a href="${pageContext.request.contextPath }/user/account/login">Login</a>
-
-	</s:form>
+	<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.min.js"></script>
 </body>
 </html>
