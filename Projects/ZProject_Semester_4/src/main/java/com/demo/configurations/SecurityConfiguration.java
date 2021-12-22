@@ -1,5 +1,13 @@
 package com.demo.configurations;
 
+import java.io.IOException;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,50 +15,64 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.demo.services.AccountService;
+import com.demo.services.user.CustomOAuth2UserService;
+import com.demo.services.user.CustomOAuth2User;
+import com.demo.services.user.OAuth2LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+	@Autowired
+	private CustomOAuth2UserService auth2ServiceUser;
+	@Autowired
+	private OAuth2LoginSuccessHandler auth2LoginSuccessHandler;
 	@Autowired
 	private AccountService accountService;
-	
+	@Autowired
+	private DataSource dataSource;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
-		
-//		http.authorizeRequests()
-//		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-//		.antMatchers("/user/**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER')")
-//		.and()
-//		.formLogin().loginPage("/user/account/login")
-//		.loginProcessingUrl("/user/account/process-login")
-//		.defaultSuccessUrl("/user/home/index")
-//		.failureUrl("/user/account/login?error")
-//		.usernameParameter("username")
-//		.passwordParameter("password")	
-//		.and()
-//		.logout()
-//		.logoutUrl("/user/account/logout")
-//		.logoutSuccessUrl("/user/account/login?logout")
-//		.and()
-//		.exceptionHandling().accessDeniedPage("/user/account/accessDenied")
-//		;
+
+		http.authorizeRequests().antMatchers("login/oauth2/**").permitAll().antMatchers("/admin/**")
+				.access("hasRole('ROLE_ADMIN')").antMatchers("/user/contact/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").antMatchers("/user/home/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").antMatchers("/user/paypal/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").and().formLogin()
+				.loginPage("/user/account/login").loginProcessingUrl("/user/account/process-login")
+				.defaultSuccessUrl("/user/account/welcome").failureUrl("/user/account/login?error")
+				.usernameParameter("username").passwordParameter("password").and().oauth2Login()
+				.loginPage("/user/account/login").userInfoEndpoint().userService(auth2ServiceUser)
+				.and().successHandler(auth2LoginSuccessHandler).defaultSuccessUrl("/user/account/google")
+				.and()
+				.logout()
+				.logoutUrl("/user/account/logout").logoutSuccessUrl("/").and()
+
+				.exceptionHandling().accessDeniedPage("/user/account/accessDenied");
 	}
-	
+
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception
-	{
+	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder.userDetailsService(accountService);
 	}
-	
-	
+
 	@Bean
 	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl tokenRepositoryImpl=new JdbcTokenRepositoryImpl();
+		tokenRepositoryImpl.setDataSource(dataSource);
+		return tokenRepositoryImpl;
+	}
+	
 }

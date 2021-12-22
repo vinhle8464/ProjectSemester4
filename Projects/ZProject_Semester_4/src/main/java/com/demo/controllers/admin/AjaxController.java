@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.models.Account;
+import com.demo.models.AccountAjax;
+import com.demo.models.Product;
 import com.demo.services.admin.AccountServiceAdmin;
 
 @RestController
@@ -17,10 +19,11 @@ public class AjaxController {
 	@Autowired
 	private AccountServiceAdmin accountServiceAdmin;
 	
-	@RequestMapping(value = {"findaccountbyid"}, method = RequestMethod.POST, produces = MimeTypeUtils.TEXT_PLAIN_VALUE)
-	public Account findAccountById(@RequestParam("accountId") int accountId) {
+	@RequestMapping(value = {"findaccountbyid"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public AccountAjax findAccountById(@RequestParam("accountId") int accountId) {
 		
-		return accountServiceAdmin.find(accountId);
+		return accountServiceAdmin.findByIdAjax(accountId);
 		
 	}
+
 }
