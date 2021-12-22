@@ -11,11 +11,11 @@
 </head>
 <body>
 	<h1>Paypal</h1>
-	<form method="post" action="${posturl }">
+	<form method="post" action="${posturl }" modelAttribute="account">
 
 		<input type="hidden" name="item_number_1" value="1">
 		<input type="hidden" name="item_name_1" value="fee">
-		<input type="hidden" name="amount_1" value="11">
+		<input type="hidden" name="amount_1" value="1">
 		<input type="hidden" name="quantity_1" value="1">
 		<br><br>
 		<input type="submit" value="Submit">
