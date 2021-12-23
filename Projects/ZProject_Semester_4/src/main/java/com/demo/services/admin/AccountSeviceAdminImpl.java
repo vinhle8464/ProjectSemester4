@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.demo.models.Account;
@@ -60,11 +61,9 @@ public class AccountSeviceAdminImpl implements AccountServiceAdmin{
 		return accountRepositoryAdmin.findByIdAjax(accountId);
 	}
 
-	@Override
-	public Page<Account> findPaginated(int pageNo, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		
-		return this.accountRepositoryAdmin.findAll(pageable);
-	}
+	 public Page<Account> getPage(int currentPage, int pageSize, String sort){
+		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+			return this.accountRepositoryAdmin.findAll(pageable);
+	    }
 
 }
