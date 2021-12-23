@@ -109,6 +109,8 @@ public class AccountAdminController implements ServletContextAware {
 		account.setGender(true);
 		modelMap.put("account", account);
 
+		// nothing 
+		
 		return "admin/account/index";
 	}
 }
