@@ -1,17 +1,32 @@
 package com.demo.services.user;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+	public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
+		this.redirectStrategy = redirectStrategy;
+	}
+
+	protected RedirectStrategy getRedirectStrategy() {
+		return redirectStrategy;
+	}
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -20,11 +35,16 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		CustomOAuth2User auth2ServiceUserImpl = (CustomOAuth2User) authentication.getPrincipal();
 		String email = auth2ServiceUserImpl.getEmail();
 		String name = auth2ServiceUserImpl.getName();
-		String picture=auth2ServiceUserImpl.getPicture();
+		String picture = auth2ServiceUserImpl.getPicture();
 		System.out.println(name);
 		System.out.println(email);
 		System.out.println(picture);
+		System.out.println(request.getParameter("code"));
+		request.getSession().setAttribute("name", name);
+		redirectStrategy.sendRedirect(request, response, "/googlelogin");
+
 		super.onAuthenticationSuccess(request, response, authentication);
+
 	}
 
 }

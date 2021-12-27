@@ -35,8 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private OAuth2LoginSuccessHandler auth2LoginSuccessHandler;
 	@Autowired
 	private AccountService accountService;
-	@Autowired
-	private DataSource dataSource;
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/user/account/welcome").failureUrl("/user/account/login?error")
 				.usernameParameter("username").passwordParameter("password").and().oauth2Login()
 				.loginPage("/user/account/login").userInfoEndpoint().userService(auth2ServiceUser)
-				.and().successHandler(auth2LoginSuccessHandler).defaultSuccessUrl("/user/account/google")
+				.and().successHandler(auth2LoginSuccessHandler)
 				.and()
 				.logout()
 				.logoutUrl("/user/account/logout").logoutSuccessUrl("/").and()
@@ -68,11 +67,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-	@Bean
-	public PersistentTokenRepository persistentTokenRepository() {
-		JdbcTokenRepositoryImpl tokenRepositoryImpl=new JdbcTokenRepositoryImpl();
-		tokenRepositoryImpl.setDataSource(dataSource);
-		return tokenRepositoryImpl;
-	}
+	
 	
 }

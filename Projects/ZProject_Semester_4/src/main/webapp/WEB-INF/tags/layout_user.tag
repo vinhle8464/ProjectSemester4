@@ -162,9 +162,7 @@
 				</div>
 
 				<div class="right_box">
-					<mt:categories />
 
-					<mt:partners />
 
 				</div>
 
