@@ -186,7 +186,7 @@
 		</select>
 
 	&nbsp;&nbsp;
-	<span>Showing <strong>${pageSize}</strong> out of <b>${totalElements}</b> entries</span>
+	<span>Showing <strong>${currentPage > 1 ? currentPage * pageSize - pageSize : 1}</strong> to <strong>${pageSize * currentPage}</strong> out of <b>${totalElements}</b> entries</span>
          
             <ul class="pagination">
             			<li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
@@ -198,12 +198,66 @@
                         <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
                     </li>
-                <c:forEach begin="0" end="${totalPages-1}" var="page">
-                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">${page+1}</a>
-                    </li>
-                </c:forEach>
+                    
+                    
+                 <!--  // start number of page -->
+                 
+                    <!--   //  totalpage <= 5 -->
+          
+             
+                 <c:if test="${totalPages <= 5 && currentPage <= 2 }">
+	                <c:forEach begin="0" end="${totalPages - 1}" var="page">
+	                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+	                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
+	                    </li>
+	                </c:forEach>
+                </c:if>
+              <!--   //  totalpage > 5 -->
+          
+                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
+	                <c:forEach begin="0" end="4" var="page">
+	                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+	                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
+	                    </li>
+	                </c:forEach>
+                </c:if>
+              
+                   <c:if test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+                  	                
+		              	<c:forEach begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}" end="${currentPage - 1}" var="page1">
+		                    <li class="page-item">
+		                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+																class="page-link">${page1}</a>
+		                    </li>
+		                </c:forEach>
+	                   
+	                 <li class="page-item active">
+	                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${currentPage}</a>
+	                    </li>
+	               	  <c:forEach begin="${currentPage}" end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}" var="page2">
+	                    <li class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+	                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page2 + 1}</a>
+	                    </li>
+	                </c:forEach> 
+                </c:if>
+                
+                   <!--   //  the last page -->
+          
+             
+            		    <c:if test="${currentPage == totalPages && totalPages > 5}">
+		                <c:forEach begin="${totalPages - 5 }" end="${totalPages - 1}" var="page">
+		                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																class="page-link">${page+1}</a>
+		                    </li>
+		                </c:forEach>
+               		</c:if>
+                 
+                  <!--  // end number of page -->
               
                      <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
                         <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
