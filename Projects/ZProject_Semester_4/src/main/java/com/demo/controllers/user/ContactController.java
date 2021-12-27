@@ -60,7 +60,8 @@ public class ContactController {
 	
 	@RequestMapping(value = "success", method = RequestMethod.POST)
 	public String success() {
-
+		// hello
+		
 		return "user/contact/success";
 	}
 }
