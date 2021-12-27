@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+
 import com.demo.models.Account;
 import com.demo.models.AccountAjax;
 
@@ -23,5 +24,7 @@ public interface AccountServiceAdmin {
 
 	public AccountAjax findByIdAjax(int accountId);
 	
-	public Page<Account> findPaginated(int pageNo, int pageSize);
+
+	public Page<Account> getPage(int currentPage, int pageSize, String sort);
+
 }
