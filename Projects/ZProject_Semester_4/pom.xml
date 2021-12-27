@@ -121,15 +121,8 @@
 			<version>v3-rev130-1.25.0</version>
 		</dependency>
 		   
-		   
-		   
-		   
-		   
 	</dependencies>
 
-
- 
- 
  
 	<build>
 		<plugins>
