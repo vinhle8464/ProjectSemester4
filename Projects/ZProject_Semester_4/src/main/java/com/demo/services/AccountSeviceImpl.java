@@ -40,4 +40,19 @@ public class AccountSeviceImpl implements AccountService{
 		}
 	}
 
+	@Override
+	public Account findByUsername(String username) {
+		return accountRepository.findByUsername(username);
+	}
+
+	@Override
+	public Account findById(int accountId) {
+		return accountRepository.findById(accountId).get();
+	}
+
+	@Override
+	public Account update(Account account) {
+		return accountRepository.save(account);
+	}
+
 }

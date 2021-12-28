@@ -8,4 +8,9 @@ public interface AccountService extends UserDetailsService {
 
 		public Account save(Account account);
 		
+		public Account findByUsername(String username);
+		
+		public Account findById(int accountId);
+		
+		public Account update(Account account);
 }

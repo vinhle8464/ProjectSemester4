@@ -6,8 +6,7 @@ import javax.servlet.ServletContext;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-
-
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
+import com.demo.services.AccountService;
 import com.demo.services.admin.AccountServiceAdmin;
 
 @Controller
@@ -30,6 +30,9 @@ public class AccountAdminController implements ServletContextAware {
 	@Autowired
 	private AccountServiceAdmin accountServiceAdmin;
 
+	@Autowired
+	private AccountService accountService;
+	
 	private ServletContext servletContext;
 
 	@Override
@@ -40,9 +43,9 @@ public class AccountAdminController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Model model) {
-	
-		return pagination(1, 5, "accountId", modelMap, model);
+	public String index(ModelMap modelMap, Model model, Authentication authentication) {
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+		return pagination(1, 5, "accountId", modelMap, model, authentication);
 
 	}
 
@@ -93,8 +96,8 @@ public class AccountAdminController implements ServletContextAware {
 
 	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model) {
-
+			ModelMap modelMap, Model model, Authentication authentication) {
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		int pageSizee = pageSize;
 
 		Page<Account> pages = accountServiceAdmin.getPage(currentPage, pageSizee, sort);

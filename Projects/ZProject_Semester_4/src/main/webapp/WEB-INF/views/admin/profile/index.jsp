@@ -6,7 +6,6 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
 
-
 <mt:layout_admin title="Profile">
 	<jsp:attribute name="content">
 		 <link
@@ -27,8 +26,8 @@
 		                <div class="media align-items-end profile-head">
 		                    <div class="profile mr-5">
 								<img src="${pageContext.request.contextPath}/assets/uploads/${account.avatar}"
-									alt="..." width="200" class="rounded mb-1 img-thumbnail"><a
-									href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+									alt="..." width="200" class="rounded mb-1 img-thumbnail">
+									<a href="${pageContext.request.contextPath}/admin/profile/editProfile" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
 							</div>
 		                    <div class="media-body mb-5 text-white">
 		                        <h1 class="mt-0 mb-0">${account.fullname }</h1>
