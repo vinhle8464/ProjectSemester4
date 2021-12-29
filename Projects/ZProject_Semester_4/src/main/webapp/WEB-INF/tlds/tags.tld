@@ -10,5 +10,9 @@
 		<tag-class>com.demo.tags.SideBarAdminTag</tag-class>
 		<body-content>empty</body-content>	
 	</tag>
-	
+	<tag>
+		<name>navbarusers</name>
+		<tag-class>com.demo.tags.NavBarUserTag</tag-class>
+		<body-content>empty</body-content>	
+	</tag>
 </taglib>
