@@ -27,8 +27,8 @@ public class ProfileAdminController {
 
 
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, @RequestParam("accountId") int accountId, Authentication authentication) {
-		Account account = accountService.findById(accountId);
+	public String index(ModelMap modelMap, Authentication authentication) {
+		Account account = accountService.findByUsername(authentication.getName());
 		modelMap.put("account", account);
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		return "admin/profile/index";
@@ -43,7 +43,6 @@ public class ProfileAdminController {
 	@RequestMapping(value = "editProfile", method = RequestMethod.POST)
 	public String editProfile(ModelMap modelMap, @ModelAttribute("accountUsername") Account account, @RequestParam("id") int id) {
 		Account accountNew = accountService.findById(id);
-		accountNew.setUsername(account.getUsername());
 		accountNew.setFullname(account.getFullname());
 		accountNew.setEmail(account.getEmail());
 		accountNew.setDob(account.getDob());
@@ -51,6 +50,6 @@ public class ProfileAdminController {
 		accountNew.setPhone(account.getPhone());
 
 		accountService.update(accountNew);
-		return "redirect:/user/account/login";
+		return "redirect:/admin/profile/index";
 	}
 }

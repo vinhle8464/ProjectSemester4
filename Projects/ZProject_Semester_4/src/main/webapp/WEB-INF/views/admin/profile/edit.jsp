@@ -52,10 +52,7 @@
 						<s:form method="post" action="${pageContext.request.contextPath }/admin/profile/editProfile" modelAttribute="accountUsername" enctype="multipart/form-data">
 									<div class="modal-body">
 										<input type="hidden" value="${accountUsername.accountId }" name="id">					
-										<div class="form-group">
-											<label>Username</label>
-											<s:input path="username" type="text" class="form-control"/>
-										</div>
+										
 										<div class="form-group">
 											<label>FullName</label>
 											<s:input path="fullname" type="text" class="form-control"/>
