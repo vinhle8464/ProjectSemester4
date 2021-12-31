@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Site Metas -->
-<title>SmartEDU - Education Responsive HTML5 Template</title>
+<title> ${title }</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -30,8 +30,9 @@
 	href="${pageContext.request.contextPath}/resources/user/images/apple-touch-icon.png">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/user/css/bootstrap.min.css">
+<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/bootstrap.min.css" >
+
 <!-- Site CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/user/css/style.css">
@@ -45,6 +46,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/user/css/custom.css">
 
+
+
+		
 <!-- Modernizer for Portfolio -->
 <script
 	src="${pageContext.request.contextPath}/resources/user/js/modernizer.js"></script>
@@ -167,6 +171,30 @@
 
 	</div>
 
+	<div class="parallax section dbcolor">
+        <div class="container">
+            <div class="row logos">
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_01.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_02.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_03.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_04.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_05.png" alt="" class="img-repsonsive"></a>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_06.png" alt="" class="img-repsonsive"></a>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
 
 	<footer class="footer">
 		<div class="container">
@@ -272,5 +300,7 @@
 			visibleItems : 4
 		});
 	</script>
+	
+
 </body>
 </html>
