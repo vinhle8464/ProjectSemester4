@@ -212,7 +212,7 @@
 	                    <!--   //  totalpage <= 5 -->
 	          
 	             
-	                 <c:if test="${totalPages <= 5 && currentPage <= 2 }">
+	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
 		                <c:forEach begin="0" end="${totalPages - 1}" var="page">
 		                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
@@ -221,6 +221,7 @@
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
+		               
 	                </c:if>
 	              <!--   //  totalpage > 5 -->
 	          

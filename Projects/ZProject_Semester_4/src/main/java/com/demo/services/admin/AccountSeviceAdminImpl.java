@@ -11,8 +11,8 @@ import org.springframework.data.domain.Sort;
 
 import org.springframework.stereotype.Service;
 
+import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
-import com.demo.models.AccountAjax;
 import com.demo.repositories.admin.AccountRepositoryAdmin;
 
 @Service

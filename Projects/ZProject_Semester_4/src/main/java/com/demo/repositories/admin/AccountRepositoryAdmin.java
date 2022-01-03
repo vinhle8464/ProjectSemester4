@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.demo.models.Account;
-import com.demo.models.AccountAjax;
+import com.demo.entites.AccountAjax;
 
 @Repository
 public interface AccountRepositoryAdmin extends JpaRepository<Account, Integer> {
@@ -20,7 +20,7 @@ public interface AccountRepositoryAdmin extends JpaRepository<Account, Integer> 
 	public Account findByUsername(@Param("username") String username);
 	
 	
-	@Query("select new com.demo.models.AccountAjax(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account where accountId = :accountId")
+	@Query("select new com.demo.entites.AccountAjax(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status) from Account where accountId = :accountId")
 	public AccountAjax findByIdAjax(@Param("accountId") int accountId);
 	
 
