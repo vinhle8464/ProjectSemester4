@@ -221,7 +221,7 @@ CREATE TABLE `pay` (
   `account_id` int(11) NOT NULL,
   `payment` varchar(100) NOT NULL,
   `title` varchar(250) NOT NULL,
-  `fee` decimal(10,0) NOT NULL,
+  `fee` decimal(10,2) NOT NULL,
   `date_paid` datetime NOT NULL,
   `pay_status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -70,10 +70,45 @@
               <p>
                 Pays
                 <span class="right badge badge-danger">New</span>
+              </p>         
+            </a>
+          </li>
+         <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/pack" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Packs
+                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
-        
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/category" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Categories
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/quiz" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Quizzes
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+              <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/ratingandcomment" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Rating and Comment
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
