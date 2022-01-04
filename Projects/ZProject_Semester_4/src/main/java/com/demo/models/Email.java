@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name = "email", catalog = "dbproject4")
 public class Email implements java.io.Serializable {
 
-	private Integer mailId;
+	private Integer emailId;
 	private String title;
 	private String emailUser;
 	private String fullname;
@@ -62,13 +62,13 @@ public class Email implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "mail_id", unique = true, nullable = false)
-	public Integer getMailId() {
-		return this.mailId;
+	@Column(name = "email_id", unique = true, nullable = false)
+	public Integer getEmailId() {
+		return this.emailId;
 	}
 
-	public void setMailId(Integer mailId) {
-		this.mailId = mailId;
+	public void setEmailId(Integer emailId) {
+		this.emailId = emailId;
 	}
 
 	@Column(name = "title", nullable = false, length = 250)
