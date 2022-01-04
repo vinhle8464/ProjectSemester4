@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 03, 2022 at 04:34 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 04, 2022 at 04:50 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,10 +46,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-(1, 'vinh', '$2a$10$WSrS1Cs.u7W.iCtPAZgJr.hd6BkBG.Iz6pIcKeKDlZD1POTF04bMO', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
-(2, 'user', '$2a$10$WSrS1Cs.u7W.iCtPAZgJr.hd6BkBG.Iz6pIcKeKDlZD1POTF04bMO', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
-(3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen Hoang Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Hoa Thanh, Tay Ninh', b'00', '0987654321', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
-(6, 'ngoctran', '$2a$10$ceQX2Vq.3igdk4e7dprqvuRhPq9JRXk9YU1i2U6ubQrFSSR2dRrSC', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
+(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', 'asdfasdf', b'01'),
+(3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
+(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (7, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
 (8, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
 (9, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
@@ -71,22 +71,70 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 (25, 'asdf', '1', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', 'asdfasdf', b'01'),
 (26, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
 (27, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(96, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(97, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(98, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(99, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(100, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(101, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(102, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(103, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(104, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(105, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(106, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(107, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(108, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(109, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(110, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(111, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01');
+(28, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(29, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(30, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(31, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(32, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(33, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(34, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(35, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(36, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(37, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(38, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(39, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(40, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(41, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(42, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(43, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(44, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(45, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(46, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(47, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(48, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(49, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(50, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(51, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(52, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(53, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(54, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(55, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(56, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(57, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(58, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(59, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(60, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(61, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(62, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(63, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(64, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(65, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(66, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(67, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(68, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(69, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(70, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(71, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(72, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(73, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(74, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(75, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(76, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(77, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(78, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(79, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(80, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(81, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(82, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(83, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(84, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(85, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(86, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(87, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(88, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(90, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
+(94, 'hehehe', '$2a$10$ECQuxj/7y.1yDH3Ix0pxKOAbZhAdpQy8WCZXpnmbj5kmgPAa9uI36', 'vinh', 'sddddd@com.ldjsf', '2021-12-01', 'asdf', b'00', '23423424', 'b5fbd81cc4a94ad3bfa35a1dc66f328f.jpg', b'01'),
+(95, 'usertran', '$2a$10$13/qJ3Yh7ChXLKcR1PZ4L.GrK4Iq3Tcb/3ZpJD1LdfCvhdGj0xQai', 'User Ngoc Tran', 'usertran@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0888123456', 'Photo24.jpg', b'01');
 
 -- --------------------------------------------------------
 
@@ -120,7 +168,8 @@ INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (3, 1),
-(6, 1);
+(6, 1),
+(95, 2);
 
 -- --------------------------------------------------------
 
@@ -156,7 +205,7 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `email` (
-  `email_id` int(11) NOT NULL,
+  `mail_id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
   `email_user` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
@@ -173,7 +222,7 @@ CREATE TABLE `email` (
 -- Dumping data for table `email`
 --
 
-INSERT INTO `email` (`email_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
+INSERT INTO `email` (`mail_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
 (1, 'con khi', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01'),
 (2, 'con meo', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01'),
 (3, 'hhhh', 'hhh@gmail.com', 'hhhhhh', '000000000', 'hhahahahahahahahahahahaha', NULL, '2021-12-13 20:55:02', NULL, b'00', b'00'),
@@ -210,6 +259,16 @@ CREATE TABLE `pack` (
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pack`
+--
+
+INSERT INTO `pack` (`pack_id`, `title`, `expiry`, `fee`, `description`, `status`) VALUES
+(1, 'Pack 1 month', 30, '5.00', 'You have 1 month to use the service', b'01'),
+(2, 'Pack 3 months', 90, '13.00', 'You have 3 months to use the service', b'01'),
+(3, 'Pack 1 year', 365, '49.00', 'You have 1 year to use the service', b'01'),
+(5, 'Pack 1 day', 1, '1.00', 'You have 1 day to use the service', b'01');
+
 -- --------------------------------------------------------
 
 --
@@ -221,7 +280,7 @@ CREATE TABLE `pay` (
   `account_id` int(11) NOT NULL,
   `payment` varchar(100) NOT NULL,
   `title` varchar(250) NOT NULL,
-  `fee` decimal(10,0) NOT NULL,
+  `fee` decimal(10,2) NOT NULL,
   `date_paid` datetime NOT NULL,
   `pay_status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -231,12 +290,15 @@ CREATE TABLE `pay` (
 --
 
 INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
-(1, 2, 'cash', 'oke con de', '120', '2021-12-10 22:36:39', b'01'),
-(2, 2, 'credit card', 'asdfsda', '200', '2021-12-12 16:37:30', b'01'),
-(3, 2, 'credit card', 'hhhhh', '2000', '2021-12-12 16:37:30', b'01'),
-(4, 3, 'card', 'fee', '15', '2021-12-16 20:32:56', b'01'),
-(5, 3, 'card', '0.52', '15', '2021-12-16 20:39:23', b'01'),
-(6, 3, 'card', '0.52', '15', '2021-12-16 23:44:54', b'01');
+(1, 2, 'cash', 'oke con de', '120.00', '2021-12-10 22:36:39', b'01'),
+(2, 2, 'credit card', 'asdfsda', '200.00', '2021-12-12 16:37:30', b'01'),
+(3, 2, 'credit card', 'hhhhh', '2000.00', '2021-12-12 16:37:30', b'01'),
+(4, 3, 'card', 'fee', '15.00', '2021-12-16 20:32:56', b'01'),
+(5, 3, 'card', '0.52', '15.00', '2021-12-16 20:39:23', b'01'),
+(6, 3, 'card', '0.52', '15.00', '2021-12-16 23:44:54', b'01'),
+(7, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 14:59:25', b'01'),
+(8, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:00:05', b'01'),
+(9, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:09:25', b'01');
 
 -- --------------------------------------------------------
 
@@ -361,7 +423,7 @@ ALTER TABLE `category`
 -- Indexes for table `email`
 --
 ALTER TABLE `email`
-  ADD PRIMARY KEY (`email_id`);
+  ADD PRIMARY KEY (`mail_id`);
 
 --
 -- Indexes for table `history`
@@ -427,7 +489,7 @@ ALTER TABLE `salary`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `answer`
@@ -445,19 +507,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
-  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `mail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pack`
 --
 ALTER TABLE `pack`
-  MODIFY `pack_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `question`
@@ -481,7 +543,7 @@ ALTER TABLE `rating_comment`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salary`

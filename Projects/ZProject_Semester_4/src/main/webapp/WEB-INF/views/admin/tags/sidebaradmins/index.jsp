@@ -73,6 +73,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin/quiz" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Quiz page
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
         
         </ul>
       </nav>

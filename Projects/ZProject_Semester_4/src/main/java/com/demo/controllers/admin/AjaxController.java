@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.entites.AccountAjax;
 import com.demo.entites.EmailAjax;
 import com.demo.entites.PayAjax;
+import com.demo.entites.QuizAjax;
 import com.demo.entites.RoleAjax;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.EmailServiceAdmin;
@@ -62,4 +63,14 @@ public class AjaxController {
 		return emailServiceAdmin.findByIdAjax(emailId);
 		
 	}
+	
+	/*
+	 * @RequestMapping(value = {"findquizbyid"}, method = RequestMethod.GET,
+	 * produces = MimeTypeUtils.APPLICATION_JSON_VALUE) public QuizAjax
+	 * findQuizById(@RequestParam("quizId") int quizId) {
+	 * 
+	 * return ;
+	 * 
+	 * }
+	 */
 }
