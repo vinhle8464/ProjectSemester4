@@ -27,13 +27,12 @@
 						},
 						success : function(pack) {
 							$('#packId').val(pack.packId);
-							$('#accountIdd').val(pack.accountId);						
-							$('#usernamee').val(pack.username);		
-							$('#packmentt').val(pack.packment);
-							$('#titlee').val(pack.title);						
-							$('#feee').val(pack.fee);			
-							$('#datePaidd').val(pack.datePaid);
-							$('#packStatuss').val(pack.packStatus);							
+							$('#title').val(pack.title);						
+							$('#expiry').val(pack.expiry);		
+							$('#fee').val(pack.fee);
+							$('#description').val(pack.description);						
+							$('#status').val(pack.status);			
+											
 						}
 					});
 		}
@@ -102,13 +101,13 @@
 							<th> <a
 													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packment">packment</a></th>
-													<th> <a
 													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th> <a
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
 													<th> <a
 													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+													<th> <a
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -126,10 +125,10 @@
 								</span>
 							</td>
 							<td>${pack.packId }</td>
-							<td>${pack.account.username }</td>
-							<td>${pack.packment }</td>
 							<td>${pack.title }</td>
+							<td>${pack.expiry }</td>
 							<td>${pack.fee }</td>
+							<td>${pack.description }</td>
 							
 							<td>
 								<a href="#editEmployeeModal" id="${pack.packId }"
@@ -152,8 +151,7 @@
 	    </c:choose>
 					</tbody>
 				</table>
-				
-				
+							
 	<div>
 	
 	    <c:if test="${packs.size() > 0 }">
@@ -307,17 +305,28 @@
 				<div class="modal-body">					
 					<div class="form-group">
 					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>pack-Name</label>
-						<s:input path="packName" type="text" class="form-control"
-													required="required" />
-				
+						
 					</div>
-					<div class="form-group">
+						<div class="form-group">
+						<label>Title</label>
+						<s:input path="title" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
+						<label>Expiry</label>
+						<s:input path="expiry" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
+						<label>Fee</label>
+						<s:input path="fee" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
 						<label>Description</label>
 						<s:input path="description" type="text" class="form-control"
 													required="required" />					
-					</div>
-														
+					</div>													
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -349,42 +358,27 @@
 													class="form-control" disabled="true"/>				
 					</div>	
 					<div class="form-group">
-						<label>accountID</label>
-						<s:input path="account.accountId" type="text" id="accountIdd"
+						<label>Title</label>
+						<s:input path="title" type="text" id="title"
 													class="form-control" disabled="true" />
 				
 					</div>		
 					<div class="form-group">
-						<label>Username</label>
-						<s:input path="account.username" type="text" id="usernamee"
+						<label>Expiry</label>
+						<s:input path="expiry" type="text" id="expiry"
 													class="form-control" disabled="true" required="required" />
 				
 					</div>
 				
 					<div class="form-group">
-						<label>Pack</label>
-						<s:input path="packment" type="text" id="packmentt"
+						<label>Fee</label>
+						<s:input path="fee" type="text" id="fee"
 													class="form-control" required="required" />					
 					</div>	
 						<div class="form-group">
-						<label>Title</label>
-						<s:input path="title" type="text" id="titlee"
-													class="form-control" required="required" />					
-					</div>		<div class="form-group">
-						<label>Fee</label>
-						<s:input path="fee" type="text" id="feee"
-													class="form-control" required="required" />					
-					</div>		<div class="form-group">
-						<label>DatePaid</label>
-						<s:input path="datePaid" type="text" id="datePaidd"
-													class="form-control" required="required" />					
-					</div>	
-							<div class="form-group">
-						<label>packStatus</label>
-						<s:input path="packStatus" type="text" id="packStatuss"
-													class="form-control" required="required" />					
-					</div>		
-									
+						<label>Description</label>
+						<s:input path="description" type="text" id="description"
+													class="form-control" required="required" />						</div>								
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"

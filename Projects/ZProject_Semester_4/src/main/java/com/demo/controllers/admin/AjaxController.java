@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.entites.AccountAjax;
 import com.demo.entites.EmailAjax;
+import com.demo.entites.PackAjax;
 import com.demo.entites.PayAjax;
 import com.demo.entites.RoleAjax;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.EmailServiceAdmin;
+import com.demo.services.admin.PackServiceAdmin;
 import com.demo.services.admin.PayServiceAdmin;
 import com.demo.services.admin.RoleServiceAdmin;
 
@@ -28,11 +30,12 @@ public class AjaxController {
 	
 	@Autowired
 	private PayServiceAdmin payServiceAdmin;
-	
-	
+		
 	@Autowired
 	private EmailServiceAdmin emailServiceAdmin;
 	
+	@Autowired
+	private PackServiceAdmin packServiceAdmin;
 	
 	
 	@RequestMapping(value = {"findaccountbyid"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
@@ -60,6 +63,13 @@ public class AjaxController {
 	public EmailAjax findEmailById(@RequestParam("emailId") int emailId) {
 		
 		return emailServiceAdmin.findByIdAjax(emailId);
+		
+	}
+	
+	@RequestMapping(value = {"findpackbyid"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public PackAjax findPackById(@RequestParam("packId") int packId) {
+		
+		return packServiceAdmin.findByIdAjax(packId);
 		
 	}
 	
