@@ -62,4 +62,14 @@ public class AjaxController {
 		return emailServiceAdmin.findByIdAjax(emailId);
 		
 	}
+	
+	/*
+	 * @RequestMapping(value = {"findquizbyid"}, method = RequestMethod.GET,
+	 * produces = MimeTypeUtils.APPLICATION_JSON_VALUE) public QuizAjax
+	 * findQuizById(@RequestParam("quizId") int quizId) {
+	 * 
+	 * return ;
+	 * 
+	 * }
+	 */
 }

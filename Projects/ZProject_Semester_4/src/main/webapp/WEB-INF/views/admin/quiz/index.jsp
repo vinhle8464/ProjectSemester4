@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<mt:layout_admin title="Pack">
+<mt:layout_admin title="Account">
 
 	<jsp:attribute name="content">
 
@@ -13,27 +13,39 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
-		
-		function openDeleteModal(packId) {
-			$('#packID').val(packId);
+		$(function() {
+			$("#birthday").datepicker();
+			$("#dob").datepicker();
+		});
+		function openDeleteModal(accountId) {
+			$('#accountID').val(accountId);
 		}
-		function openEditModal(packId) {
+		function openEditModal(accountId) {
 			$
 					.ajax({
 						type : 'GET',
-						url : '${pageContext.request.contextPath }/admin/ajax/findpackbyid',
+						url : '${pageContext.request.contextPath }/admin/ajax/findaccountbyid',
 						data : {
-							packId : packId
+							accountId : accountId
 						},
-						success : function(pack) {
-							$('#packId').val(pack.packId);
-							$('#accountIdd').val(pack.accountId);						
-							$('#usernamee').val(pack.username);		
-							$('#packmentt').val(pack.packment);
-							$('#titlee').val(pack.title);						
-							$('#feee').val(pack.fee);			
-							$('#datePaidd').val(pack.datePaid);
-							$('#packStatuss').val(pack.packStatus);							
+						success : function(account) {
+							$('#accId').val(account.accountId);
+							$('#accUsername').val(account.username);
+							$('#accFulllname').val(account.fullname);
+							$('#accEmail').val(account.email);
+							$('#dob').val(account.dob);
+							$('#accAddress').val(account.addr);
+							var $radios = $('input:radio[name=gender]');
+							if (account.gender) {
+								$radios.filter('[value=true]').prop('checked',
+										true);
+							} else {
+								$radios.filter('[value=false]').prop('checked',
+										true);
+							}
+							$('#accPhone').val(account.phone);
+							$('#accAvatar').attr("src",
+									"/assets/uploads/" + account.avatar);
 						}
 					});
 		}
@@ -43,12 +55,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pack Page</h1>
+            <h1>Account Page</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pack Page</li>
+              <li class="breadcrumb-item active">Account Page</li>
             </ol>
           </div>
         </div>
@@ -61,7 +73,7 @@
       <!-- Default box -->
 		<div class="card">
 	        <div class="card-header">
-	          <h3 class="card-title">Manage List Packs</h3>
+	          <h3 class="card-title">Manage List Accounts</h3>
 	
 	          <div class="card-tools">
 	            <button type="button" class="btn btn-tool"
@@ -80,11 +92,11 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Manage <b>Packs</b></h2>
+							<h2>Manage <b>Accounts</b></h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pack</span></a>
+													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger"
 													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
@@ -99,16 +111,12 @@
 									<label for="selectAll"></label>
 								</span>
 							</th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
-							<th><a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packment">packment</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=accountId">AccountID</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=username">Username</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fullname">Fullname</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=email">Email</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=dob">Date of Birth</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=gender">Gender</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -116,8 +124,8 @@
 	
 	      
 	    			  <c:choose>
-	        <c:when test="${packs.size() > 0 }">
-					<c:forEach var="pack" items="${packs}">
+	        <c:when test="${accounts.size() > 0 }">
+					<c:forEach var="account" items="${accounts}">
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -125,18 +133,20 @@
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td>${pack.packId }</td>
-							<td>${pack.account.username }</td>
-							<td>${pack.packment }</td>
-							<td>${pack.title }</td>
-							<td>${pack.fee }</td>
-							
+							<td>${account.accountId }</td>
+							<td>${account.username }</td>
+							<td>${account.fullname }</td>
+							<td>${account.email }</td>
+							<td><fmt:formatDate var="dob" value="${account.dob }"
+																	pattern="dd/MM/yyyy" />
+					${dob }</td>
+							<td>${account.gender ? "Male" : "Female" }</td>
 							<td>
-								<a href="#editEmployeeModal" id="${pack.packId }"
+								<a href="#editEmployeeModal" id="${account.accountId }"
 																onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${pack.packId }"
+								<a href="#deleteEmployeeModal" id="${account.accountId }"
 																onclick="openDeleteModal(id);" class="delete"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -156,20 +166,20 @@
 				
 	<div>
 	
-	    <c:if test="${packs.size() > 0 }">
+	    <c:if test="${accounts.size() > 0 }">
 	        <div class="panel-footer">
 	 
 			<select style="color: #566787;" name="pageSize"
 													onchange="location = this.value;">
 			 <option value="">PageSize</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
 			  <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -179,14 +189,14 @@
 	            			<li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
 	                    </li>
 	                    
@@ -201,7 +211,7 @@
 		                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
@@ -214,7 +224,7 @@
 		                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
@@ -228,14 +238,14 @@
 															end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
 		                        <a
-															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
 															class="page-link">${currentPage}</a>
 		                    </li>
 		               	  <c:forEach begin="${currentPage}"
@@ -244,7 +254,7 @@
 		                    <li
 																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
@@ -260,7 +270,7 @@
 			                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
@@ -271,13 +281,13 @@
 	                     <li
 														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Next</a>
 	                    </li>
 	                      <li
 														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Last</a>
 	                    </li>
 	            </ul>
@@ -293,13 +303,13 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
-			<s:form method="post" modelAttribute="pack"
-										action="${pageContext.request.contextPath }/admin/pack/create"
+			<s:form method="post" modelAttribute="account"
+										action="${pageContext.request.contextPath }/admin/account/create"
 										enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Add Pack</h4>
+					<h4 class="modal-title">Add Account</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 											
@@ -307,17 +317,61 @@
 				<div class="modal-body">					
 					<div class="form-group">
 					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>pack-Name</label>
-						<s:input path="packName" type="text" class="form-control"
+						<label>UserName</label>
+						<s:input path="username" type="text" class="form-control"
 													required="required" />
 				
 					</div>
 					<div class="form-group">
-						<label>Description</label>
-						<s:input path="description" type="text" class="form-control"
-													required="required" />					
+						<label>Password</label>
+						<s:input path="password" type="password" class="form-control"
+													required="required" />
+					
 					</div>
-														
+					<div class="form-group">
+						<label>FullName</label>
+						<s:input path="fullname" type="text" class="form-control"
+													required="required" />
+					
+					</div>	
+					<div class="form-group">
+						<label>Email</label>
+						<s:input path="email" type="email" class="form-control"
+													required="required" />
+					
+					</div>
+						<div class="form-group">
+						<label>Date of Birth</label>
+						<s:input path="dob" id="birthday" class="form-control"
+													required="required" />
+					
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<s:textarea cols="5" rows="10" path="addr" type="text"
+													class="form-control" required="required" />
+					
+					</div>
+					<div class="form-group">
+						<label>Gender</label>
+						<br />
+						<s:radiobutton path="gender" value="true" /> Male <br>
+					<s:radiobutton path="gender" value="false" /> Female
+					</div>	
+					<div class="form-group">
+						<label>Phone Number</label>
+						<s:input path="phone" type="text" class="form-control"
+													required="required" />
+					
+					</div>	
+					<div class="form-group">
+						<label>Avatar</label>
+						<input type="file" name="file" class="form-control"
+													required="required" />
+					
+					
+					</div>	
+									
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -332,58 +386,74 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<s:form method="post" modelAttribute="pack"
-										action="${pageContext.request.contextPath }/admin/pack/update"
+		<s:form method="post" modelAttribute="account"
+										action="${pageContext.request.contextPath }/admin/account/update"
 										enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Pack's Details </h4>
+					<h4 class="modal-title">Update Account</h4>
 					<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>											
+												aria-hidden="true">&times;</button>
+											
 				</div>
 				<div class="modal-body">		
 				<div class="form-group">
-						<label>packID</label>
-						<s:input path="packId" type="text" id="packId"
-													class="form-control" disabled="true"/>				
-					</div>	
-					<div class="form-group">
-						<label>accountID</label>
-						<s:input path="account.accountId" type="text" id="accountIdd"
+						<label>AccountId</label>
+						<s:input path="accountId" type="text" id="accId"
 													class="form-control" disabled="true" />
 				
-					</div>		
+					</div>			
 					<div class="form-group">
-						<label>Username</label>
-						<s:input path="account.username" type="text" id="usernamee"
-													class="form-control" disabled="true" required="required" />
+						<label>UserName</label>
+						<s:input path="username" type="text" id="accUsername"
+													class="form-control" required="required" />
 				
 					</div>
 				
 					<div class="form-group">
-						<label>Pack</label>
-						<s:input path="packment" type="text" id="packmentt"
-													class="form-control" required="required" />					
+						<label>FullName</label>
+						<s:input path="fullname" type="text" id="accFulllname"
+													class="form-control" required="required" />
+					
 					</div>	
+					<div class="form-group">
+						<label>Email</label>
+						<s:input path="email" type="email" id="accEmail"
+													class="form-control" required="required" />
+					
+					</div>
 						<div class="form-group">
-						<label>Title</label>
-						<s:input path="title" type="text" id="titlee"
-													class="form-control" required="required" />					
-					</div>		<div class="form-group">
-						<label>Fee</label>
-						<s:input path="fee" type="text" id="feee"
-													class="form-control" required="required" />					
-					</div>		<div class="form-group">
-						<label>DatePaid</label>
-						<s:input path="datePaid" type="text" id="datePaidd"
-													class="form-control" required="required" />					
+						<label>Date of Birth</label>
+						<s:input path="dob" id="dob" class="form-control"
+													required="required" />
+					
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<s:textarea cols="5" rows="10" path="addr" type="text"
+													id="accAddress" class="form-control" required="required" />
+					
+					</div>
+					<div class="form-group">
+						<label>Gender</label>
+						<br />
+						<s:radiobutton path="gender" id="accGenderMale" value="true" /> Male <br>
+					<s:radiobutton path="gender" id="accGenderFemale" value="false" /> Female
 					</div>	
-							<div class="form-group">
-						<label>packStatus</label>
-						<s:input path="packStatus" type="text" id="packStatuss"
-													class="form-control" required="required" />					
-					</div>		
+					<div class="form-group">
+						<label>Phone Number</label>
+						<s:input path="phone" type="text" id="accPhone"
+													class="form-control" required="required" />
+					
+					</div>	
+					<div class="form-group">
+						<label>Avatar</label>
+						<input type="file" name="file" class="form-control"
+													required="required" />
+					<img src="" id="accAvatar" width="100%" height="100%">
+					
+					</div>	
 									
 				</div>
 				<div class="modal-footer">
@@ -400,9 +470,9 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form method="get"
-										action="${pageContext.request.contextPath }/admin/pack/delete">
+										action="${pageContext.request.contextPath }/admin/account/delete">
 				<div class="modal-header">				
-					<h4 class="modal-title">Delete Pack</h4>
+					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 				</div>
@@ -415,7 +485,7 @@
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 												value="Cancel">
-											<input type="hidden" name="packID" id="packID">
+											<input type="hidden" name="accountID" id="accountID">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
