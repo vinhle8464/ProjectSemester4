@@ -12,7 +12,7 @@ import com.demo.models.Pack;
 public interface PackRepositoryAdmin extends JpaRepository<Pack, Integer> {
 
 
-	@Query("select new com.demo.entites.PayAjax(packId, title, expiry, fee, description, status) from Pack where packId = :packId")
+	@Query("select new com.demo.entites.PackAjax(packId, title, expiry, fee, description, status) from Pack where packId = :packId")
 	public PackAjax findByIdAjax(@Param("packId") int packId);
 	
 }
