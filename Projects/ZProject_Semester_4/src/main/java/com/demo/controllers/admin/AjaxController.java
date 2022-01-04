@@ -64,13 +64,11 @@ public class AjaxController {
 		
 	}
 	
-	/*
-	 * @RequestMapping(value = {"findquizbyid"}, method = RequestMethod.GET,
-	 * produces = MimeTypeUtils.APPLICATION_JSON_VALUE) public QuizAjax
-	 * findQuizById(@RequestParam("quizId") int quizId) {
-	 * 
-	 * return ;
-	 * 
-	 * }
-	 */
+//	@RequestMapping(value = {"findquizbyid"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+//	public QuizAjax findQuizById(@RequestParam("quizId") int quizId) {
+//		
+//		return ;
+//		
+//	}
+	
 }
