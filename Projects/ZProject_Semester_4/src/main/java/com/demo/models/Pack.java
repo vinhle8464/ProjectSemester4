@@ -23,7 +23,7 @@ public class Pack implements java.io.Serializable {
 	private Integer packId;
 	private String title;
 	private int expiry;
-	private BigDecimal fee;
+	private long fee;
 	private String description;
 	private boolean status;
 	private Set<AccountPack> accountPacks = new HashSet<AccountPack>(0);
@@ -31,7 +31,7 @@ public class Pack implements java.io.Serializable {
 	public Pack() {
 	}
 
-	public Pack(String title, int expiry, BigDecimal fee, String description, boolean status) {
+	public Pack(String title, int expiry, long fee, String description, boolean status) {
 		this.title = title;
 		this.expiry = expiry;
 		this.fee = fee;
@@ -39,7 +39,7 @@ public class Pack implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Pack(String title, int expiry, BigDecimal fee, String description, boolean status,
+	public Pack(String title, int expiry, long fee, String description, boolean status,
 			Set<AccountPack> accountPacks) {
 		this.title = title;
 		this.expiry = expiry;
@@ -80,11 +80,11 @@ public class Pack implements java.io.Serializable {
 	}
 
 	@Column(name = "fee", nullable = false, precision = 10)
-	public BigDecimal getFee() {
+	public long getFee() {
 		return this.fee;
 	}
 
-	public void setFee(BigDecimal fee) {
+	public void setFee(long fee) {
 		this.fee = fee;
 	}
 
