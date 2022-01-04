@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.entites.AccountAjax;
 import com.demo.entites.EmailAjax;
 import com.demo.entites.PayAjax;
-import com.demo.entites.QuizAjax;
 import com.demo.entites.RoleAjax;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.EmailServiceAdmin;
