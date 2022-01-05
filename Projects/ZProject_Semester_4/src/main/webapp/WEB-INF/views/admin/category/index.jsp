@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<mt:layout_admin title="Pay">
+<mt:layout_admin title="Category">
 
 	<jsp:attribute name="content">
 
@@ -14,26 +14,22 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
 		
-		function openDeleteModal(payId) {
-			$('#payID').val(payId);
+		function openDeleteModal(categoryId) {
+			$('#categoryID').val(categoryId);
 		}
-		function openEditModal(payId) {
+		function openEditModal(categoryId) {
 			$
 					.ajax({
 						type : 'GET',
-						url : '${pageContext.request.contextPath }/admin/ajax/findpaybyid',
+						url : '${pageContext.request.contextPath }/admin/ajax/findcategorybyid',
 						data : {
-							payId : payId
+							categoryId : categoryId
 						},
-						success : function(pay) {
-							$('#payId').val(pay.payId);
-							$('#accountIdd').val(pay.accountId);						
-							$('#usernamee').val(pay.username);		
-							$('#paymentt').val(pay.payment);
-							$('#titlee').val(pay.title);						
-							$('#feee').val(pay.fee);			
-							$('#datePaidd').val(pay.datePaid);
-							$('#payStatuss').val(pay.payStatus);							
+						success : function(category) {
+							$('#categoryId').val(category.categoryId);
+							$('#titlee').val(category.title);						
+							$('#desc').val(category.description);							
+							$('#categoryIdEdit').val(category.categoryId);							
 						}
 					});
 		}
@@ -43,12 +39,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pay Page</h1>
+            <h1>Category Page</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pay Page</li>
+              <li class="breadcrumb-item active">Category Page</li>
             </ol>
           </div>
         </div>
@@ -61,7 +57,7 @@
       <!-- Default box -->
 		<div class="card">
 	        <div class="card-header">
-	          <h3 class="card-title">Manage List Pays</h3>
+	          <h3 class="card-title">Manage List Categorys</h3>
 	
 	          <div class="card-tools">
 	            <button type="button" class="btn btn-tool"
@@ -80,11 +76,11 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Manage <b>Pays</b></h2>
+							<h2>Manage <b>Categorys</b></h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pay</span></a>
+													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Category</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger"
 													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
@@ -99,16 +95,10 @@
 									<label for="selectAll"></label>
 								</span>
 							</th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payId">payID</a></th>
-							<th><a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payment">Payment</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=categoryId">categoryID</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th><a href="#">Description</a></th>
+							
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -116,8 +106,8 @@
 	
 	      
 	    			  <c:choose>
-	        <c:when test="${pays.size() > 0 }">
-					<c:forEach var="pay" items="${pays}">
+	        <c:when test="${categories.size() > 0 }">
+					<c:forEach var="category" items="${categories}">
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -125,18 +115,16 @@
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td>${pay.payId }</td>
-							<td>${pay.account.username }</td>
-							<td>${pay.payment }</td>
-							<td>${pay.title }</td>
-							<td>${pay.fee }</td>
+							<td>${category.categoryId }</td>
+							<td>${category.title }</td>
+							<td>${category.description }</td>
 							
 							<td>
-								<a href="#editEmployeeModal" id="${pay.payId }"
+								<a href="#editEmployeeModal" id="${category.categoryId }"
 																onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${pay.payId }"
+								<a href="#deleteEmployeeModal" id="${category.categoryId }"
 																onclick="openDeleteModal(id);" class="delete"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -156,20 +144,16 @@
 				
 	<div>
 	
-	    <c:if test="${pays.size() > 0 }">
+	    <c:if test="${categories.size() > 0 }">
 	        <div class="panel-footer">
 	 
 			<select style="color: #566787;" name="pageSize"
 													onchange="location = this.value;">
 			 <option value="">PageSize</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
-			  <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+			 <option value="${pageContext.request.contextPath}/admin/category/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+			 <option value="${pageContext.request.contextPath}/admin/category/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+			 <option value="${pageContext.request.contextPath}/admin/category/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+			  <option value="${pageContext.request.contextPath}/admin/category/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -179,14 +163,14 @@
 	            			<li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
 	                    </li>
 	                    
@@ -198,10 +182,8 @@
 	             
 	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
 		                <c:forEach begin="0" end="${totalPages - 1}" var="page">
-		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
@@ -211,40 +193,31 @@
 	          
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
-		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
-	                   <c:if
-														test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+	                   <c:if test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
-			              	<c:forEach
-															begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+			              	<c:forEach begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
 															end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
-			                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+			                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
-		                        <a
-															href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+		                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
 															class="page-link">${currentPage}</a>
 		                    </li>
-		               	  <c:forEach begin="${currentPage}"
-															end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+		               	  <c:forEach begin="${currentPage}" end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
 															var="page2">
-		                    <li
-																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
@@ -253,14 +226,10 @@
 	                   <!--   //  the last page -->
 	          
 	             
-	            		    <c:if
-														test="${currentPage == totalPages && totalPages > 5}">
-			                <c:forEach begin="${totalPages - 5 }"
-															end="${totalPages - 1}" var="page">
-			                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-			                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+	            		    <c:if test="${currentPage == totalPages && totalPages > 5}">
+			                <c:forEach begin="${totalPages - 5 }" end="${totalPages - 1}" var="page">
+			                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+			                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
@@ -268,16 +237,12 @@
 	                 
 	                  <!--  // end number of page -->
 	              
-	                     <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+	                     <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Next</a>
 	                    </li>
-	                      <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+	                      <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Last</a>
 	                    </li>
 	            </ul>
@@ -293,22 +258,20 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
-			<s:form method="post" modelAttribute="pay"
-										action="${pageContext.request.contextPath }/admin/pay/create"
-										enctype="multipart/form-data">
+			<s:form method="post" modelAttribute="category" action="${pageContext.request.contextPath }/admin/category/create" enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Add pay</h4>
+					<h4 class="modal-title">Add Category</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 											
 				</div>
 				<div class="modal-body">					
-					<%-- <div class="form-group">
+					<div class="form-group">
 					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>pay-Name</label>
-						<s:input path="payName" type="text" class="form-control"
+						<label>Category-Title</label>
+						<s:input path="title" type="text" class="form-control"
 													required="required" />
 				
 					</div>
@@ -317,7 +280,7 @@
 						<s:input path="description" type="text" class="form-control"
 													required="required" />
 					
-					</div> --%>
+					</div>
 					
 									
 				</div>
@@ -334,65 +297,36 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<s:form method="post" modelAttribute="pay"
-										action="${pageContext.request.contextPath }/admin/pay/update"
-										enctype="multipart/form-data">
+		<s:form method="post" modelAttribute="category"
+										action="${pageContext.request.contextPath }/admin/category/edit">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Pay's Details </h4>
+					<h4 class="modal-title">Update Category</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 											
 				</div>
 				<div class="modal-body">		
 				<div class="form-group">
-						<label>payID</label>
-						<s:input path="payId" type="text" id="payId"
-													class="form-control" disabled="true" />
-				
-					</div>	
+						<label>CategoryID</label>
+						<input type="text" id="categoryId" class="form-control" disabled="true" />
+						<s:input path="categoryId" id="categoryIdEdit" type="hidden"/>
+					</div>			
 					<div class="form-group">
-						<label>accountID</label>
-						<s:input path="account.accountId" type="text" id="accountIdd"
-													class="form-control" disabled="true" />
-				
-					</div>		
-					<div class="form-group">
-						<label>Username</label>
-						<s:input path="account.username" type="text" id="usernamee"
-													class="form-control" disabled="true" required="required" />
+						<label>Title</label>
+						<s:input path="title" type="text" id="titlee"
+													class="form-control" required="required" />
 				
 					</div>
 				
 					<div class="form-group">
-						<label>Payment</label>
-						<s:input path="payment" type="text" id="paymentt"
+						<label>Description</label>
+						<s:input path="description" type="text" id="desc"
 													class="form-control" required="required" />
 					
 					</div>	
-						<div class="form-group">
-						<label>Title</label>
-						<s:input path="title" type="text" id="titlee"
-													class="form-control" required="required" />
 					
-					</div>		<div class="form-group">
-						<label>Fee</label>
-						<s:input path="fee" type="text" id="feee"
-													class="form-control" required="required" />
-					
-					</div>		<div class="form-group">
-						<label>DatePaid</label>
-						<s:input path="datePaid" type="text" id="datePaidd"
-													class="form-control" required="required" />
-					
-					</div>	
-							<div class="form-group">
-						<label>PayStatus</label>
-						<s:input path="payStatus" type="text" id="payStatuss"
-													class="form-control" required="required" />
-					
-					</div>		
 									
 				</div>
 				<div class="modal-footer">
@@ -409,9 +343,9 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form method="get"
-										action="${pageContext.request.contextPath }/admin/pay/delete">
+										action="${pageContext.request.contextPath }/admin/category/delete">
 				<div class="modal-header">				
-					<h4 class="modal-title">Delete pay</h4>
+					<h4 class="modal-title">Delete Category</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 				</div>
@@ -424,7 +358,7 @@
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 												value="Cancel">
-											<input type="hidden" name="payID" id="payID">
+											<input type="hidden" name="categoryID" id="categoryID">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>

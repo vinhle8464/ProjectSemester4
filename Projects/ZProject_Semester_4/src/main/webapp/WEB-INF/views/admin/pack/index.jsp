@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<mt:layout_admin title="Pay">
+<mt:layout_admin title="Pack">
 
 	<jsp:attribute name="content">
 
@@ -14,26 +14,25 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
 		
-		function openDeleteModal(payId) {
-			$('#payID').val(payId);
+		function openDeleteModal(packId) {
+			$('#packID').val(packId);
 		}
-		function openEditModal(payId) {
+		function openEditModal(packId) {
 			$
 					.ajax({
 						type : 'GET',
-						url : '${pageContext.request.contextPath }/admin/ajax/findpaybyid',
+						url : '${pageContext.request.contextPath }/admin/ajax/findpackbyid',
 						data : {
-							payId : payId
+							packId : packId
 						},
-						success : function(pay) {
-							$('#payId').val(pay.payId);
-							$('#accountIdd').val(pay.accountId);						
-							$('#usernamee').val(pay.username);		
-							$('#paymentt').val(pay.payment);
-							$('#titlee').val(pay.title);						
-							$('#feee').val(pay.fee);			
-							$('#datePaidd').val(pay.datePaid);
-							$('#payStatuss').val(pay.payStatus);							
+						success : function(pack) {
+							$('#packId').val(pack.packId);
+							$('#title').val(pack.title);						
+							$('#expiry').val(pack.expiry);		
+							$('#fee').val(pack.fee);
+							$('#description').val(pack.description);						
+							$('#status').val(pack.status);			
+											
 						}
 					});
 		}
@@ -43,12 +42,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pay Page</h1>
+            <h1>Pack Page</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pay Page</li>
+              <li class="breadcrumb-item active">Pack Page</li>
             </ol>
           </div>
         </div>
@@ -61,7 +60,7 @@
       <!-- Default box -->
 		<div class="card">
 	        <div class="card-header">
-	          <h3 class="card-title">Manage List Pays</h3>
+	          <h3 class="card-title">Manage List Packs</h3>
 	
 	          <div class="card-tools">
 	            <button type="button" class="btn btn-tool"
@@ -80,11 +79,11 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Manage <b>Pays</b></h2>
+							<h2>Manage <b>Packs</b></h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pay</span></a>
+													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pack</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger"
 													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
@@ -100,15 +99,15 @@
 								</span>
 							</th>
 							<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payId">payID</a></th>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
 							<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payment">Payment</a></th>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
 													<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
 													<th> <a
-													href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -116,8 +115,8 @@
 	
 	      
 	    			  <c:choose>
-	        <c:when test="${pays.size() > 0 }">
-					<c:forEach var="pay" items="${pays}">
+	        <c:when test="${packs.size() > 0 }">
+					<c:forEach var="pack" items="${packs}">
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -125,18 +124,18 @@
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td>${pay.payId }</td>
-							<td>${pay.account.username }</td>
-							<td>${pay.payment }</td>
-							<td>${pay.title }</td>
-							<td>${pay.fee }</td>
+							<td>${pack.packId }</td>
+							<td>${pack.title }</td>
+							<td>${pack.expiry }</td>
+							<td>${pack.fee }</td>
+							<td>${pack.description }</td>
 							
 							<td>
-								<a href="#editEmployeeModal" id="${pay.payId }"
+								<a href="#editEmployeeModal" id="${pack.packId }"
 																onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${pay.payId }"
+								<a href="#deleteEmployeeModal" id="${pack.packId }"
 																onclick="openDeleteModal(id);" class="delete"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -152,24 +151,23 @@
 	    </c:choose>
 					</tbody>
 				</table>
-				
-				
+							
 	<div>
 	
-	    <c:if test="${pays.size() > 0 }">
+	    <c:if test="${packs.size() > 0 }">
 	        <div class="panel-footer">
 	 
 			<select style="color: #566787;" name="pageSize"
 													onchange="location = this.value;">
 			 <option value="">PageSize</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
 			  <option
-														value="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -179,14 +177,14 @@
 	            			<li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
 														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
 	                    </li>
 	                    
@@ -201,7 +199,7 @@
 		                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
@@ -214,7 +212,7 @@
 		                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
@@ -228,14 +226,14 @@
 															end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
 		                        <a
-															href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
 															class="page-link">${currentPage}</a>
 		                    </li>
 		               	  <c:forEach begin="${currentPage}"
@@ -244,7 +242,7 @@
 		                    <li
 																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
@@ -260,7 +258,7 @@
 			                    <li
 																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
@@ -271,13 +269,13 @@
 	                     <li
 														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Next</a>
 	                    </li>
 	                      <li
 														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Last</a>
 	                    </li>
 	            </ul>
@@ -293,33 +291,42 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
-			<s:form method="post" modelAttribute="pay"
-										action="${pageContext.request.contextPath }/admin/pay/create"
+			<s:form method="post" modelAttribute="pack"
+										action="${pageContext.request.contextPath }/admin/pack/create"
 										enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Add pay</h4>
+					<h4 class="modal-title">Add Pack</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 											
 				</div>
 				<div class="modal-body">					
-					<%-- <div class="form-group">
-					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>pay-Name</label>
-						<s:input path="payName" type="text" class="form-control"
-													required="required" />
-				
-					</div>
 					<div class="form-group">
+					<span style="color: red;">${msg==""?"": msg }</span> <br />
+						
+					</div>
+						<div class="form-group">
+						<label>Title</label>
+						<s:input path="title" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
+						<label>Expiry</label>
+						<s:input path="expiry" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
+						<label>Fee</label>
+						<s:input path="fee" type="text" class="form-control"
+													required="required" />					
+					</div>
+						<div class="form-group">
 						<label>Description</label>
 						<s:input path="description" type="text" class="form-control"
-													required="required" />
-					
-					</div> --%>
-					
-									
+													required="required" />					
+					</div>													
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -334,66 +341,44 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<s:form method="post" modelAttribute="pay"
-										action="${pageContext.request.contextPath }/admin/pay/update"
+		<s:form method="post" modelAttribute="pack"
+										action="${pageContext.request.contextPath }/admin/pack/update"
 										enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Pay's Details </h4>
+					<h4 class="modal-title">Pack's Details </h4>
 					<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											
+												aria-hidden="true">&times;</button>											
 				</div>
 				<div class="modal-body">		
 				<div class="form-group">
-						<label>payID</label>
-						<s:input path="payId" type="text" id="payId"
-													class="form-control" disabled="true" />
-				
+						<label>packID</label>
+						<s:input path="packId" type="text" id="packId"
+													class="form-control" disabled="true"/>				
 					</div>	
 					<div class="form-group">
-						<label>accountID</label>
-						<s:input path="account.accountId" type="text" id="accountIdd"
+						<label>Title</label>
+						<s:input path="title" type="text" id="title"
 													class="form-control" disabled="true" />
 				
 					</div>		
 					<div class="form-group">
-						<label>Username</label>
-						<s:input path="account.username" type="text" id="usernamee"
+						<label>Expiry</label>
+						<s:input path="expiry" type="text" id="expiry"
 													class="form-control" disabled="true" required="required" />
 				
 					</div>
 				
 					<div class="form-group">
-						<label>Payment</label>
-						<s:input path="payment" type="text" id="paymentt"
-													class="form-control" required="required" />
-					
+						<label>Fee</label>
+						<s:input path="fee" type="text" id="fee"
+													class="form-control" required="required" />					
 					</div>	
 						<div class="form-group">
-						<label>Title</label>
-						<s:input path="title" type="text" id="titlee"
-													class="form-control" required="required" />
-					
-					</div>		<div class="form-group">
-						<label>Fee</label>
-						<s:input path="fee" type="text" id="feee"
-													class="form-control" required="required" />
-					
-					</div>		<div class="form-group">
-						<label>DatePaid</label>
-						<s:input path="datePaid" type="text" id="datePaidd"
-													class="form-control" required="required" />
-					
-					</div>	
-							<div class="form-group">
-						<label>PayStatus</label>
-						<s:input path="payStatus" type="text" id="payStatuss"
-													class="form-control" required="required" />
-					
-					</div>		
-									
+						<label>Description</label>
+						<s:input path="description" type="text" id="description"
+													class="form-control" required="required" />						</div>								
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -409,9 +394,9 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form method="get"
-										action="${pageContext.request.contextPath }/admin/pay/delete">
+										action="${pageContext.request.contextPath }/admin/pack/delete">
 				<div class="modal-header">				
-					<h4 class="modal-title">Delete pay</h4>
+					<h4 class="modal-title">Delete Pack</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 				</div>
@@ -424,7 +409,7 @@
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 												value="Cancel">
-											<input type="hidden" name="payID" id="payID">
+											<input type="hidden" name="packID" id="packID">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>

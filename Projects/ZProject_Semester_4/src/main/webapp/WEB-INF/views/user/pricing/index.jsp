@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
 <mt:layout_user title="Teacher">
 	
@@ -15,86 +18,50 @@
     <div id="pricing-box" class="section wb">
         <div class="container">
 			<div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable">
-                        <div class="pricingTable-header">
-                            <span class="heading">
-                                <h3>Standard</h3>
-                            </span>
-                            <span class="price-value">$15<span class="month">month</span> <span>Lorem ipsum </span><span>Lorem ipsum dolor sit amet</span></span>
-                        </div>
-
-                        <div class="pricingContent">
-                            <i class="fa fa-adjust"></i>
-                            <ul>
-                                <li>50GB Disk Space</li>
-                                <li>50 Email Accounts</li>
-                                <li>50GB Monthly Bandwidth</li>
-                                <li>10 subdomains</li>
-                                <li>50 Domains</li>
-                            </ul>
-                        </div><!-- /  CONTENT BOX-->
-
-                        <div class="pricingTable-sign-up">
-                            <a href="#" class="hover-btn-new orange"><span>sign up</span></a>
-                        </div><!-- BUTTON BOX-->
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable pink">
-                        <div class="pricingTable-header">
-                            <span class="heading">
-                                <h3>Business</h3>
-                            </span>
-                            <span class="price-value">$30<span class="month">month</span> <span>Lorem ipsum</span><span>Lorem ipsum dolor sit amet</span></span>
-                        </div>
-
-                        <div class="pricingContent">
-                            <i class="fa fa-briefcase"></i>
-                            <ul>
-                                <li>70GB Disk Space</li>
-                                <li>70 Email Accounts</li>
-                                <li>70GB Monthly Bandwidth</li>
-                                <li>30 subdomains</li>
-                                <li>70 Domains</li>
-                            </ul>
-                        </div><!-- /  CONTENT BOX-->
-
-                        <div class="pricingTable-sign-up">
-                            <a href="#" class="hover-btn-new orange"><span>sign up</span></a>
-                        </div><!-- BUTTON BOX-->
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable orange">
-                        <div class="pricingTable-header">
-                            <span class="heading">
-                                <h3>Premium</h3>
-                            </span>
-                            <span class="price-value">$45<span class="month">month</span> <span>Lorem ipsum</span><span>Lorem ipsum dolor sit amet</span></span>
-                        </div>
-
-                        <div class="pricingContent">
-                            <i class="fa fa-cube"></i>
-                            <ul>
-                                <li>80GB Disk Space</li>
-                                <li>80 Email Accounts</li>
-                                <li>80GB Monthly Bandwidth</li>
-                                <li>40 subdomains</li>
-                                <li>80 Domains</li>
-                            </ul>
-                        </div><!-- /  CONTENT BOX-->
-
-                        <div class="pricingTable-sign-up">
-                            <a href="#" class="hover-btn-new orange"><span>sign up</span></a>
-                        </div><!-- BUTTON BOX-->
-                    </div>
-                </div>
+				<c:forEach var="pack" items="${packs }" varStatus="i">
+						<div class="col-md-4">
+		                    <div class="pricingTable">
+		                        <div class="pricingTable-header">
+		                            <span class="heading">
+		                                <h3>${pack.title }</h3>
+		                            </span>
+		                            <span class="price-value">${pack.fee } $ <span>${pack.title } </span><span>${pack.description }</span></span>
+		                        </div>
+		
+		                        <div class="pricingContent">
+		                            <i class="fa fa-adjust"></i>
+		                            <ul>
+		                                <li>50GB Disk Space</li>
+		                                <li>50 Email Accounts</li>
+		                                <li>50GB Monthly Bandwidth</li>
+		                                <li>10 subdomains</li>
+		                                <li>50 Domains</li>
+		                            </ul>
+		                        </div>
+		
+		                        <div class="pricingTable-sign-up">
+		                            <%-- <a href="#" class="hover-btn-new orange"><span>Buy</span></a> --%>
+		                            <s:form method="post" action="${posturl }">
+										<input type="hidden" name="item_number_1" value="${pack.packId }">
+										<input type="hidden" name="item_name_1" value="${pack.title }">
+										<input type="hidden" name="amount_1" value="${pack.fee }">
+										<input type="hidden" name="quantity_1" value="1">
+										<br><br>
+										<input type="submit" value="Buy" class="hover-btn-new orange ">
+										<input type="hidden" name="upload" value="1" /> 
+										<input type="hidden" name="return" value="${returnurl }" /> 
+										<input type="hidden" name="cmd" value="_cart" /> 
+										<input type="hidden" name="business" value="${business }" />
+			                		</s:form>
+		                        </div><!-- BUTTON BOX-->
+		                	</div>
+						</div> 
+						
+				</c:forEach>
+        
             </div>
 		</div>
-    </div><!-- end section -->
+    </div>
 
     <div id="testimonials" class="parallax section db parallax-off" style="background-image:url('${pageContext.request.contextPath }/resources/user/images/parallax_04.jpg');">
         <div class="container">

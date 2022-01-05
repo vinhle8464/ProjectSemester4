@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-
+import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
-import com.demo.models.AccountAjax;
 
 public interface AccountServiceAdmin {
 

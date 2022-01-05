@@ -11,7 +11,7 @@ import com.demo.entites.EmailAjax;
 
 
 @Repository
-public interface EmailRepositoryAdmin extends JpaRepository<com.demo.models.Email, Integer> {
+public interface QuizRepositoryAdmin extends JpaRepository<com.demo.models.Quiz, Integer> {
 
 	@Query("select new com.demo.entites.EmailAjax(emailId, title, emailUser, fullname, phoneNumber, content, replyContent, sendDate, replyDate, checked, status) from Email where emailId = :emailId")
 	public EmailAjax findByIdAjax(@Param("emailId") int emailId);

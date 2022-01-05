@@ -11,57 +11,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.demo.models.Email;
+import com.demo.models.Pack;
 import com.demo.services.AccountService;
-import com.demo.services.admin.EmailServiceAdmin;
+import com.demo.services.admin.PackServiceAdmin;
 
 @Controller
-@RequestMapping(value = {"admin/email"})
-public class EmailAdminController {
+@RequestMapping(value = {"admin/pack"})
+public class PackAdminController {
 
-	
 	@Autowired
-	private EmailServiceAdmin emailServiceAdmin;
-	
+	private PackServiceAdmin packServiceAdmin;
 	
 	@Autowired
 	private AccountService accountService;
-	
 	
 	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		return pagination(1, 5, "emailId", modelMap, model, authentication);		
+		return pagination(1, 5, "packId", modelMap, model, authentication);
+		
 	}
+	
 	
 	
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("email") Email email, ModelMap modelMap) {
+	public String create(@ModelAttribute("pack") Pack pack, ModelMap modelMap) {
 		
-		emailServiceAdmin.create(email);
+		packServiceAdmin.create(pack);
 
-		return "redirect:/admin/email/index";
+		return "redirect:/admin/pack/index";
 	}
 
 	@RequestMapping(value = { "edit" }, method = RequestMethod.PUT)
-	public String edit(@ModelAttribute("email") Email email) {
-		
-		emailServiceAdmin.update(email);
+	public String edit(@ModelAttribute("pack") Pack pack) {
 
-		return "redirect:/admin/email/index";
+		
+		packServiceAdmin.update(pack);
+
+		return "redirect:/admin/pack/index";
 	}
 
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
-	public String delete(@RequestParam("emailID") int emailID) {
+	public String delete(@RequestParam("packID") int packID) {
 
-		emailServiceAdmin.deleteById(emailID);
+		packServiceAdmin.deleteById(packID);
 
-		return "redirect:/admin/email/index";
+		return "redirect:/admin/pack/index";
 	}
 
-	
-	
+		
 	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
 			ModelMap modelMap, Model model, Authentication authentication) {
@@ -70,19 +69,19 @@ public class EmailAdminController {
 		
 		int pageSizee = pageSize;
 
-		Page<Email> pages = emailServiceAdmin.getPage(currentPage, pageSizee, sort);
+		Page<Pack> pages = packServiceAdmin.getPage(currentPage, pageSizee, sort);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", pages.getTotalPages());
 		model.addAttribute("totalElements", pages.getTotalElements());
 		model.addAttribute("pageSize", pageSizee);
 		model.addAttribute("sort", sort);
-		model.addAttribute("emails", pages.getContent());
+		model.addAttribute("packs", pages.getContent());
 
-		Email email = new Email();		
-		modelMap.put("email", email);
+		Pack pack = new Pack();		
+		modelMap.put("pack", pack);
 
 
-		return "admin/email/index";
+		return "admin/pack/index";
 	}
 
 }

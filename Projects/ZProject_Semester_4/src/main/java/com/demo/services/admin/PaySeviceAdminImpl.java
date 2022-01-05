@@ -3,13 +3,15 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.entites.PayAjax;
 import com.demo.models.Pay;
-import com.demo.models.Role;
 import com.demo.repositories.admin.PayRepositoryAdmin;
-import com.demo.repositories.admin.RoleRepositoryAdmin;
-import com.demo.repositories.user.RoleRepositoryUser;
 
 @Service
 public class PaySeviceAdminImpl implements PayServiceAdmin{
@@ -18,15 +20,48 @@ public class PaySeviceAdminImpl implements PayServiceAdmin{
 	private PayRepositoryAdmin payRepositoryAdmin;
 
 	@Override
-	public Pay find(int payId) {
-		return payRepositoryAdmin.findById(payId).get();
+	public Pay findById(int id) {
+		return payRepositoryAdmin.findById(id).get();
+	}
+	
+	// this method was not be completed!
+	@Override
+	public Pay create(Pay Pay) {
+		Pay.setPayStatus(true);
+		return payRepositoryAdmin.save(Pay);
+	}
+	
+	// this method was not be completed!
+	@Override
+	public Pay update(Pay Pay) {
+		
+		return payRepositoryAdmin.save(Pay);
 		
 	}
 
 	@Override
-	public List<Pay> findAllPay() {
-		return (List<Pay>) payRepositoryAdmin.findAll();
+	public void deleteById(int id) {
+		payRepositoryAdmin.deleteById(id);
 	}
+
+	@Override
+	public List<Pay> findAllPay() {
+		
+		return (List<Pay>) payRepositoryAdmin.findAll();
+
+	}
+
+
+	@Override
+	public PayAjax findByIdAjax(int PayId) {
+		return payRepositoryAdmin.findByIdAjax(PayId);
+	}
+
+	 public Page<Pay> getPage(int currentPage, int pageSize, String sort){
+		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+			return this.payRepositoryAdmin.findAll(pageable);
+	    }
+
 	
 	
 	

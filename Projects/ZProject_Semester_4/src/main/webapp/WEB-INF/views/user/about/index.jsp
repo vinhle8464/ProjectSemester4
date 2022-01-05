@@ -5,10 +5,7 @@
 <mt:layout_user title="About">
 	
 	<jsp:attribute name="content">
-		<div class="title">
-					<span class="title_icon"><img src="${pageContext.request.contextPath }/resources/user/images/bullet1.gif"
-						alt="" title="" /></span>About
-		</div>
+		
 	<div class="all-title-box">
 		<div class="container text-center">
 			<h1>About Us<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
