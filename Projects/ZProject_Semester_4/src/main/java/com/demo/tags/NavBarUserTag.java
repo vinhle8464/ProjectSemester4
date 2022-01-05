@@ -14,7 +14,7 @@ public class NavBarUserTag extends RequestContextAwareTag {
 	@Override
 	public void doFinally() {
 		try {
-			String jspPage = "../tags/navbarusers/index.jsp";
+			String jspPage = "../../tags/navbarusers/index.jsp";
 			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
 			request.getRequestDispatcher(jspPage);
 			pageContext.include(jspPage);

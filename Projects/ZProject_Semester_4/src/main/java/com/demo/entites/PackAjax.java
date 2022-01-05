@@ -12,7 +12,7 @@ public class PackAjax {
 	private Integer packId;
 	private String title;
 	private int expiry;
-	private long fee;
+	private float fee;
 	private String description;
 	private boolean status;
 	
@@ -34,10 +34,10 @@ public class PackAjax {
 	public void setExpiry(int expiry) {
 		this.expiry = expiry;
 	}
-	public long getFee() {
+	public float getFee() {
 		return fee;
 	}
-	public void setFee(long fee) {
+	public void setFee(float fee) {
 		this.fee = fee;
 	}
 	public String getDescription() {
@@ -52,7 +52,7 @@ public class PackAjax {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public PackAjax(Integer packId, String title, int expiry, long fee, String description, boolean status) {
+	public PackAjax(Integer packId, String title, int expiry, float fee, String description, boolean status) {
 		super();
 		this.packId = packId;
 		this.title = title;

@@ -1,4 +1,4 @@
-package com.demo.controllers.user;
+	package com.demo.controllers.user;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -94,6 +94,9 @@ public class PricingController {
 		System.out.println("business: " + result.getBusiness());
 		System.out.println("payment_type: " + result.getPayment_type());
 		System.out.println("fee: " + request.getParameter("amt"));
+		
+		System.out.println("getMc_currency: " + result.getMc_currency());
+		System.out.println("Fee: " + request.getParameter("amt"));
 		
 		Account account = accountService.findByUsername(authentication.getName());
 		

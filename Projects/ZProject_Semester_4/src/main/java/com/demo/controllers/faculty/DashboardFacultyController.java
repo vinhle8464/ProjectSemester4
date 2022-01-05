@@ -1,4 +1,4 @@
-package com.demo.controllers.admin;
+package com.demo.controllers.faculty;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,8 +14,8 @@ import com.demo.models.Account;
 import com.demo.services.AccountService;
 
 @Controller
-@RequestMapping(value = { "admin/dashboard" })
-public class DashboardAdminController {
+@RequestMapping(value = { "faculty/dashboard" })
+public class DashboardFacultyController {
 
 	@Autowired
 	private AccountService accountService;
@@ -24,10 +24,8 @@ public class DashboardAdminController {
 	public String index(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("account");
-		System.out.println("bao");
-		System.out.println(account.getFullname());
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 
-		return "admin/dashboard/index";
+		return "faculty/dashboard/index";
 	}
 }

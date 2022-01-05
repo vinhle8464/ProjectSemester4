@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
-<mt:layout_admin title="Admin - Dashboard">
+<mt:layout_admin title="Faculty - Dashboard">
 
 	<jsp:attribute name="content">
 		   <!-- Content Header (Page header) -->
