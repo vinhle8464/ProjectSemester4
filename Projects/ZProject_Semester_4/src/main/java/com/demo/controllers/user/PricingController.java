@@ -27,6 +27,7 @@ import com.demo.paypals.PayPalConfig;
 import com.demo.paypals.PayPalResult;
 import com.demo.paypals.PayPalSucess;
 import com.demo.services.AccountService;
+import com.demo.services.user.AccountPackService;
 import com.demo.services.user.PayService;
 import com.demo.services.user.PricingService;
 
@@ -46,6 +47,9 @@ public class PricingController {
 	
 	@Autowired
 	private PayService payService;
+	
+	@Autowired
+	private AccountPackService accountPackService;
 	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String register(ModelMap modelMap, Authentication authentication) {
@@ -89,6 +93,7 @@ public class PricingController {
 		System.out.println("mc_fee: " + result.getMc_fee());
 		System.out.println("business: " + result.getBusiness());
 		System.out.println("payment_type: " + result.getPayment_type());
+		System.out.println("fee: " + request.getParameter("amt"));
 		
 		Account account = accountService.findByUsername(authentication.getName());
 		
@@ -101,14 +106,20 @@ public class PricingController {
 		pay.setPayStatus(true);
 		payService.save(pay);
 		
-		AccountPackId accountPackId = new AccountPackId();
-		accountPackId.setAccountId(account.getAccountId());
-		accountPackId.setPackId(0);
-		
-		AccountPack accountPack = new AccountPack();
-		accountPack.setAccount(account);
-		accountPack.setId(accountPackId);
-		accountPack.setPack(null);
+//		AccountPackId accountPackId = new AccountPackId();
+//		accountPackId.setAccountId(account.getAccountId());
+//		accountPackId.setPackId(packId);
+//		
+//		Pack pack = pricingService.findById(packId);
+//		
+//		AccountPack accountPack = new AccountPack();
+//		accountPack.setAccount(account);
+//		accountPack.setId(accountPackId);
+//		accountPack.setPack(pack);
+//		accountPack.setStartDate(new Date());
+//		accountPack.setStatus(true);
+//		
+//		accountPackService.save(accountPack);
 		
 		return "user/pricing/success";
 	}

@@ -19,4 +19,9 @@ public class PricingServiceImpl implements PricingService{
 		return pricingRepository.findAll();
 	}
 
+	@Override
+	public Pack findById(int packId) {
+		return pricingRepository.findById(packId).get();
+	}
+
 }

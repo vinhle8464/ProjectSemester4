@@ -52,6 +52,8 @@
 										<input type="hidden" name="return" value="${returnurl }" /> 
 										<input type="hidden" name="cmd" value="_cart" /> 
 										<input type="hidden" name="business" value="${business }" />
+										
+										<input type="hidden" name="packId" value="${pack.packId }">
 			                		</s:form>
 		                        </div><!-- BUTTON BOX-->
 		                	</div>

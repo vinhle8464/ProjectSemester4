@@ -1,6 +1,6 @@
 package com.demo.entites;
 
-public class QuizAjax {
+public class QuizAccountAjax {
 
 	private Integer quizId;
 	private String title;
@@ -51,7 +51,7 @@ public class QuizAjax {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public QuizAjax(Integer quizId, String title, String description, int times, byte timer, boolean fee,
+	public QuizAccountAjax(Integer quizId, String title, String description, int times, byte timer, boolean fee,
 			boolean status) {
 		super();
 		this.quizId = quizId;
@@ -62,7 +62,7 @@ public class QuizAjax {
 		this.fee = fee;
 		this.status = status;
 	}
-	public QuizAjax() {
+	public QuizAccountAjax() {
 		super();
 	}
 	
