@@ -14,7 +14,7 @@ public class SideBarAdminTag extends RequestContextAwareTag {
 	@Override
 	public void doFinally() {
 		try {
-			String jspPage = "../tags/sidebaradmins/index.jsp";
+			String jspPage = "../../tags/sidebaradmins/index.jsp";
 			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
 			request.getRequestDispatcher(jspPage);
 			pageContext.include(jspPage);

@@ -14,7 +14,7 @@ public class PayAjax {
 	private String username;
 	private String payment;
 	private String title;
-	private long fee;
+	private float fee;
 	
 	@DateTimeFormat( pattern = "MM/dd/yyyy hh:mm:ss")
 	private Date datePaid;
@@ -49,10 +49,10 @@ public class PayAjax {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public long getFee() {
+	public float getFee() {
 		return fee;
 	}
-	public void setFee(long fee) {
+	public void setFee(float fee) {
 		this.fee = fee;
 	}
 	public Date getDatePaid() {
@@ -67,7 +67,7 @@ public class PayAjax {
 	public void setPayStatus(boolean payStatus) {
 		this.payStatus = payStatus;
 	}
-	public PayAjax(Integer payId, Integer accountId, String username, String payment, String title, long fee,
+	public PayAjax(Integer payId, Integer accountId, String username, String payment, String title, float fee,
 			Date datePaid, boolean payStatus) {
 		super();
 		this.payId = payId;

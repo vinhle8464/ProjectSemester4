@@ -79,7 +79,7 @@ public class Pack implements java.io.Serializable {
 		this.expiry = expiry;
 	}
 
-	@Column(name = "fee", nullable = false, precision = 10)
+	@Column(name = "fee", nullable = false, precision = 10, scale = 2)
 	public long getFee() {
 		return this.fee;
 	}

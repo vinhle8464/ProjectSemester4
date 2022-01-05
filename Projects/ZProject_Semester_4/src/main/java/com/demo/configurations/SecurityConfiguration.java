@@ -41,11 +41,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 
-		http.authorizeRequests().antMatchers("login/oauth2/**").permitAll().antMatchers("/admin/**")
-				.access("hasRole('ROLE_ADMIN')").antMatchers("/user/contact/**")
-				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").antMatchers("/user/home/**")
-				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").antMatchers("/user/paypal/**")
-				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").and().formLogin()
+		http.authorizeRequests().antMatchers("login/oauth2/**").permitAll()
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/faculty/**").access("hasRole('ROLE_USER_FACULTY')")
+		.antMatchers("/user/contact/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER_FACULTY') or hasRole('ROLE_USER_CANDIDATE')").antMatchers("/user/home/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER_FACULTY') or hasRole('ROLE_USER_CANDIDATE')").antMatchers("/user/paypal/**")
+				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER_FACULTY') or hasRole('ROLE_USER_CANDIDATE')").and().formLogin()
 				.loginPage("/user/account/login").loginProcessingUrl("/user/account/process-login")
 				.defaultSuccessUrl("/user/account/welcome").failureUrl("/user/account/login?error")
 				.usernameParameter("username").passwordParameter("password").and().oauth2Login()

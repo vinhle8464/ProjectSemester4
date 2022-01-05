@@ -109,10 +109,10 @@
 			<s:authorize access="hasRole('ROLE_USER_FACULTY')">
 
 				<li class="nav-item"><a
-					href="${pageContext.request.contextPath}/admin/account"
+					href="${pageContext.request.contextPath}/faculty/quiz"
 					class="nav-link"> <i class="nav-icon fas fa-user"></i>
 						<p>
-							Quizzes <span class="right badge badge-danger">New</span>
+							Quizzes - Faculty <span class="right badge badge-danger">New</span>
 						</p>
 				</a></li>
 			</s:authorize>

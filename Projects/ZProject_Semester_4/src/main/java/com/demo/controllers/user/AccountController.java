@@ -184,11 +184,13 @@ public class AccountController implements ServletContextAware {
 		HttpSession session = request.getSession();
 		System.out.println("hello" + authentication.getAuthorities().toString());
 		System.out.println("hello" + authentication.getName().toString());
-		if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN, ROLE_USER]")
-				|| authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
+		if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
 			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
 			return "redirect:/admin/dashboard/index";
-		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER]")) {
+		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_FACULTY]")) {
+			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+			return "redirect:/faculty/dashboard/index";
+		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
 			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
 			return "redirect:/user/home/index";
 		} else if (authentication.getAuthorities().toString().equalsIgnoreCase(

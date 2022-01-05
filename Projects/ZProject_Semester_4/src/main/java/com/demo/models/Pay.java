@@ -25,14 +25,14 @@ public class Pay implements java.io.Serializable {
 	private Account account;
 	private String payment;
 	private String title;
-	private long fee;
+	private float fee;
 	private Date datePaid;
 	private boolean payStatus;
 
 	public Pay() {
 	}
 
-	public Pay(Account account, String payment, String title, long fee, Date datePaid, boolean payStatus) {
+	public Pay(Account account, String payment, String title, float fee, Date datePaid, boolean payStatus) {
 		this.account = account;
 		this.payment = payment;
 		this.title = title;
@@ -81,12 +81,12 @@ public class Pay implements java.io.Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "fee", nullable = false, precision = 10, scale = 0)
-	public long getFee() {
+	@Column(name = "fee", nullable = false, precision = 10, scale = 2)
+	public float getFee() {
 		return this.fee;
 	}
 
-	public void setFee(long fee) {
+	public void setFee(float fee) {
 		this.fee = fee;
 	}
 
