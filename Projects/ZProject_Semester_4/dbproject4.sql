@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 04, 2022 at 04:50 PM
+-- Host: localhost
+-- Generation Time: Jan 06, 2022 at 05:12 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.21
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,8 +46,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
-(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', 'asdfasdf', b'01'),
+(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
+(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (7, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
@@ -166,10 +166,8 @@ CREATE TABLE `account_role` (
 
 INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
 (1, 1),
-(1, 2),
-(3, 1),
-(6, 1),
-(95, 2);
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -205,7 +203,7 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `email` (
-  `mail_id` int(11) NOT NULL,
+  `email_id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
   `email_user` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
@@ -222,7 +220,7 @@ CREATE TABLE `email` (
 -- Dumping data for table `email`
 --
 
-INSERT INTO `email` (`mail_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
+INSERT INTO `email` (`email_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
 (1, 'con khi', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01'),
 (2, 'con meo', 'useremail@lkadjf', 'ten user', '234234234', 'help me', NULL, '2021-12-12 16:38:12', NULL, b'00', b'01'),
 (3, 'hhhh', 'hhh@gmail.com', 'hhhhhh', '000000000', 'hhahahahahahahahahahahaha', NULL, '2021-12-13 20:55:02', NULL, b'00', b'00'),
@@ -264,8 +262,8 @@ CREATE TABLE `pack` (
 --
 
 INSERT INTO `pack` (`pack_id`, `title`, `expiry`, `fee`, `description`, `status`) VALUES
-(1, 'Pack 1 month', 30, '5.00', 'You have 1 month to use the service', b'01'),
-(2, 'Pack 3 months', 90, '13.00', 'You have 3 months to use the service', b'01'),
+(1, 'Pack 1 month', 30, '5.32', 'You have 1 month to use the service', b'01'),
+(2, 'Pack 3 months', 90, '13.23', 'You have 3 months to use the service', b'01'),
 (3, 'Pack 1 year', 365, '49.00', 'You have 1 year to use the service', b'01'),
 (5, 'Pack 1 day', 1, '1.00', 'You have 1 day to use the service', b'01');
 
@@ -290,15 +288,18 @@ CREATE TABLE `pay` (
 --
 
 INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
-(1, 2, 'cash', 'oke con de', '120.00', '2021-12-10 22:36:39', b'01'),
-(2, 2, 'credit card', 'asdfsda', '200.00', '2021-12-12 16:37:30', b'01'),
-(3, 2, 'credit card', 'hhhhh', '2000.00', '2021-12-12 16:37:30', b'01'),
-(4, 3, 'card', 'fee', '15.00', '2021-12-16 20:32:56', b'01'),
+(1, 2, 'cash', 'oke con de', '120.43', '2021-12-10 22:36:39', b'01'),
+(2, 2, 'credit card', 'asdfsda', '200.23', '2021-12-12 16:37:30', b'01'),
+(3, 2, 'credit card', 'hhhhh', '2000.43', '2021-12-12 16:37:30', b'01'),
+(4, 3, 'card', 'fee', '15.23', '2021-12-16 20:32:56', b'01'),
 (5, 3, 'card', '0.52', '15.00', '2021-12-16 20:39:23', b'01'),
 (6, 3, 'card', '0.52', '15.00', '2021-12-16 23:44:54', b'01'),
 (7, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 14:59:25', b'01'),
 (8, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:00:05', b'01'),
-(9, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:09:25', b'01');
+(9, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:09:25', b'01'),
+(10, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 20:59:15', b'01'),
+(11, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:09:17', b'01'),
+(12, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:10:44', b'01');
 
 -- --------------------------------------------------------
 
@@ -366,7 +367,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
 (1, 'ROLE_ADMIN', 'role admin', b'01'),
-(2, 'ROLE_USER', 'role user', b'01');
+(2, 'ROLE_USER_FACULTY', 'role user faculty', b'01'),
+(3, 'ROLE_USER_CANDIDATE', 'role user candidate\r\n', b'01');
 
 -- --------------------------------------------------------
 
@@ -423,7 +425,7 @@ ALTER TABLE `category`
 -- Indexes for table `email`
 --
 ALTER TABLE `email`
-  ADD PRIMARY KEY (`mail_id`);
+  ADD PRIMARY KEY (`email_id`);
 
 --
 -- Indexes for table `history`
@@ -507,7 +509,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
-  MODIFY `mail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pack`
@@ -519,7 +521,7 @@ ALTER TABLE `pack`
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `question`
@@ -543,7 +545,7 @@ ALTER TABLE `rating_comment`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `salary`

@@ -98,6 +98,8 @@ public class PricingController {
 		System.out.println("getMc_currency: " + result.getMc_currency());
 		System.out.println("Fee: " + request.getParameter("amt"));
 		
+		
+		
 		Account account = accountService.findByUsername(authentication.getName());
 		
 		Pay pay = new Pay();
