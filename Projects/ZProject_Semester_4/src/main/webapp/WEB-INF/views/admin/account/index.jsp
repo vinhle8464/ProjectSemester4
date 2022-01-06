@@ -77,7 +77,7 @@
 	
 	          <div class="card-tools">
 	            <button type="button" class="btn btn-tool"
-								data-card-widget="collapse" title="Collapse">
+							data-card-widget="collapse" title="Collapse">
 	              <i class="fas fa-minus"></i>
 	            </button>
 	           <!--  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
@@ -92,13 +92,14 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Manage <b>Accounts</b></h2>
+							<h2>Manage <b>Accounts</b>
+											</h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+												data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+												data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
 					</div>
 				</div>
@@ -112,17 +113,17 @@
 								</span>
 							</th>
 							<th> <a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=accountId">AccountID</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=accountId">AccountID</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=username">Username</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=username">Username</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fullname">Fullname</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fullname">Fullname</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=email">Email</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=email">Email</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=dob">Date of Birth</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=dob">Date of Birth</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=gender">Gender</a></th>
+												href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=gender">Gender</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -135,7 +136,8 @@
 						<tr>
 							<td>
 								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<input type="checkbox" id="checkbox1" name="options[]"
+																value="1">
 									<label for="checkbox1"></label>
 								</span>
 							</td>
@@ -144,18 +146,18 @@
 							<td>${account.fullname }</td>
 							<td>${account.email }</td>
 							<td><fmt:formatDate var="dob" value="${account.dob }"
-																	pattern="dd/MM/yyyy" />
+																pattern="dd/MM/yyyy" />
 					${dob }</td>
 							<td>${account.gender ? "Male" : "Female" }</td>
 							<td>
 								<a href="#editEmployeeModal" id="${account.accountId }"
-																onclick="openEditModal(id);" class="edit"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+															onclick="openEditModal(id);" class="edit"
+															data-toggle="modal"><i class="material-icons"
+																data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 								<a href="#deleteEmployeeModal" id="${account.accountId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+															onclick="openDeleteModal(id);" class="delete"
+															data-toggle="modal"><i class="material-icons"
+																data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>
@@ -176,16 +178,16 @@
 	        <div class="panel-footer">
 	 
 			<select style="color: #566787;" name="pageSize"
-													onchange="location = this.value;">
+												onchange="location = this.value;">
 			 <option value="">PageSize</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+													value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+													value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+													value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
 			  <option
-														value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+													value="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -193,17 +195,17 @@
 	         
 	            <ul class="pagination">
 	            			<li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">First</a>
+													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Previous</a>
+													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Previous</a>
 	                    </li>
 	                    
 	                    
@@ -213,12 +215,13 @@
 	          
 	             
 	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
-		                <c:forEach begin="0" end="${totalPages - 1}" var="page">
+		                <c:forEach begin="0" end="${totalPages - 1}"
+														var="page">
 		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 		               
@@ -228,40 +231,40 @@
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
 		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
 	                   <c:if
-														test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+													test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
 			              	<c:forEach
-															begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
-															end="${currentPage - 1}" var="page1">
+														begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+														end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page1}</a>
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
 		                        <a
-															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${currentPage}</a>
+														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+														class="page-link">${currentPage}</a>
 		                    </li>
 		               	  <c:forEach begin="${currentPage}"
-															end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
-															var="page2">
+														end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+														var="page2">
 		                    <li
-																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page2 + 1}</a>
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
 	                </c:if>
@@ -270,14 +273,14 @@
 	          
 	             
 	            		    <c:if
-														test="${currentPage == totalPages && totalPages > 5}">
+													test="${currentPage == totalPages && totalPages > 5}">
 			                <c:forEach begin="${totalPages - 5 }"
-															end="${totalPages - 1}" var="page">
+														end="${totalPages - 1}" var="page">
 			                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
 	               		</c:if>
@@ -285,16 +288,16 @@
 	                  <!--  // end number of page -->
 	              
 	                     <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Next</a>
+													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Next</a>
 	                    </li>
 	                      <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Last</a>
+													href="${pageContext.request.contextPath}/admin/account/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Last</a>
 	                    </li>
 	            </ul>
 	        </div>
@@ -312,7 +315,6 @@
 			<s:form method="post" modelAttribute="account"
 										action="${pageContext.request.contextPath }/admin/account/create"
 										enctype="multipart/form-data">
-				
 				<div class="modal-header">	
 									
 					<h4 class="modal-title">Add Account</h4>
@@ -370,6 +372,16 @@
 													required="required" />
 					
 					</div>	
+					
+					<div class="form-group">
+						<label>Role</label>
+						<br>
+						<c:forEach var="role" items="${roles }">
+						<input type="checkbox" name="role" value="${role.roleId }">${role.roleName }<br>
+					</c:forEach>
+					</div>
+				
+				
 					<div class="form-group">
 						<label>Avatar</label>
 						<input type="file" name="file" class="form-control"
@@ -396,6 +408,7 @@
 										action="${pageContext.request.contextPath }/admin/account/update"
 										enctype="multipart/form-data">
 				
+					<input name="avatar" type="hidden" value="no" />
 				<div class="modal-header">	
 									
 					<h4 class="modal-title">Update Account</h4>
@@ -413,20 +426,20 @@
 					<div class="form-group">
 						<label>UserName</label>
 						<s:input path="username" type="text" id="accUsername"
-													class="form-control" required="required" />
+													class="form-control" disabled="true" />
 				
 					</div>
 				
 					<div class="form-group">
 						<label>FullName</label>
 						<s:input path="fullname" type="text" id="accFulllname"
-													class="form-control" required="required" />
+													class="form-control" />
 					
 					</div>	
 					<div class="form-group">
 						<label>Email</label>
 						<s:input path="email" type="email" id="accEmail"
-													class="form-control" required="required" />
+													class="form-control" />
 					
 					</div>
 						<div class="form-group">
@@ -451,12 +464,10 @@
 						<label>Phone Number</label>
 						<s:input path="phone" type="text" id="accPhone"
 													class="form-control" required="required" />
-					
 					</div>	
 					<div class="form-group">
 						<label>Avatar</label>
-						<input type="file" name="file" class="form-control"
-													required="required" />
+						<input type="file" name="file" class="form-control" />
 					<img src="" id="accAvatar" width="100%" height="100%">
 					
 					</div>	

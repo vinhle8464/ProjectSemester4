@@ -1,6 +1,5 @@
 package com.demo.controllers.admin;
 
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +8,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,7 @@ import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
 import com.demo.services.admin.AccountServiceAdmin;
+import com.demo.services.admin.RoleServiceAdmin;
 
 @Controller
 @RequestMapping(value = { "admin/account" })
@@ -34,8 +36,19 @@ public class AccountAdminController implements ServletContextAware {
 
 	@Autowired
 	private AccountService accountService;
-	
+
+	@Autowired
+	private RoleServiceAdmin roleServiceAdmin;
 	private ServletContext servletContext;
+	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+	public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
+		this.redirectStrategy = redirectStrategy;
+	}
+
+	protected RedirectStrategy getRedirectStrategy() {
+		return redirectStrategy;
+	}
 
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -47,13 +60,15 @@ public class AccountAdminController implements ServletContextAware {
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+
 		return pagination(1, 5, "accountId", modelMap, model, authentication);
 
 	}
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("account") Account account, @RequestParam(value = "file") MultipartFile file,
-			RedirectAttributes redirectAttributes, ModelMap modelMap) {
+	public String create(@ModelAttribute("account") Account account, @RequestParam("role") int[] roles,
+			@RequestParam(value = "file") MultipartFile file, RedirectAttributes redirectAttributes,
+			ModelMap modelMap) {
 		if (accountServiceAdmin.findByUsername(account.getUsername().trim()) != null) {
 			modelMap.put("accounts", accountServiceAdmin.findAllAccount());
 			modelMap.put("account", account);
@@ -65,22 +80,32 @@ public class AccountAdminController implements ServletContextAware {
 			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
 			account.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt()));
 			account.setAvatar(fileNameUpload);
+			if (roles != null && roles.length > 0) {
+				for (int role : roles) {
+					account.getRoles().add(roleServiceAdmin.findById(role));
+				}
+			}
 			accountServiceAdmin.create(account);
 		}
 
 		return "redirect:/admin/account/index";
 	}
 
-	@RequestMapping(value = { "edit" }, method = RequestMethod.POST)
-	public String edit(@ModelAttribute("account") Account account) {
-
-		if (account.getPassword().isEmpty()) {
-			account.setPassword(accountServiceAdmin.findById(account.getAccountId()).getPassword());
-		} else {
-
-			account.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt()));
+	@RequestMapping(value = { "update" }, method = RequestMethod.POST)
+	public String edit(@ModelAttribute("account") Account account, @RequestParam(value = "file") MultipartFile file,
+			RedirectAttributes redirectAttributes) {
+		Account account2 = accountService.findByUsername(account.getUsername());
+		if (file != null) {
+			String fileNameUpload = UploadHelper.upload(servletContext, file);
+			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+			account2.setAvatar(fileNameUpload);
 		}
-		accountServiceAdmin.update(account);
+		account2.setAddr(account.getAddr());
+		account2.setFullname(account.getFullname());
+		System.out.println(account2.getFullname());
+		account2.setAvatar(accountService.findByUsername(account.getUsername()).getAvatar());
+
+		accountServiceAdmin.update(account2);
 
 		return "redirect:/admin/account/index";
 	}
@@ -93,12 +118,10 @@ public class AccountAdminController implements ServletContextAware {
 		return "redirect:/admin/account/index";
 	}
 
-	
-
-
-	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
-	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model, Authentication authentication) {
+	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
+	public String pagination(@RequestParam(name = "currentPage") int currentPage,
+			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
+			Model model, Authentication authentication) {
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		int pageSizee = pageSize;
 
@@ -113,9 +136,9 @@ public class AccountAdminController implements ServletContextAware {
 		Account account = new Account();
 		account.setGender(true);
 		modelMap.put("account", account);
+		modelMap.put("roles", roleServiceAdmin.findAllRole());
+		// nothing
 
-		// nothing 
-		
 		return "admin/account/index";
 	}
 }
