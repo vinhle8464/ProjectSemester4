@@ -93,7 +93,6 @@ public class PricingController {
 		System.out.println("mc_fee: " + result.getMc_fee());
 		System.out.println("business: " + result.getBusiness());
 		System.out.println("payment_type: " + result.getPayment_type());
-		System.out.println("fee: " + request.getParameter("amt"));
 		
 		System.out.println("getMc_currency: " + result.getMc_currency());
 		System.out.println("Fee: " + request.getParameter("amt"));
@@ -103,8 +102,8 @@ public class PricingController {
 		Pay pay = new Pay();
 		pay.setAccount(account);
 		pay.setPayment("PAYPAL");
-		pay.setTitle("PAYMENT PACK");
-		pay.setFee(11);
+		pay.setTitle("PAYMENT PACK - CODE: " + request.getParameter("tx"));
+		pay.setFee(Float.parseFloat(request.getParameter("amt")));
 		pay.setDatePaid(new Date());
 		pay.setPayStatus(true);
 		payService.save(pay);
