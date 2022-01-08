@@ -1,10 +1,9 @@
-	package com.demo.controllers.user;
+package com.demo.controllers.user;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -74,6 +73,9 @@ public class PricingController {
 	public String success(HttpServletRequest request, Authentication authentication) {
 		PayPalConfig payPalConfig = new PayPalConfig();
 		
+		HttpSession httpSession = request.getSession();
+		int pakcid = Integer.parseInt(httpSession.getAttribute("packId").toString());
+		
 		String authtoken = environment.getProperty("paypal.authtoken");
 		String posturl = environment.getProperty("paypal.posturl");
 		String business = environment.getProperty("paypal.business");
@@ -85,17 +87,6 @@ public class PricingController {
 		payPalConfig.setReturnurl(returnurl);
 		
 		PayPalResult result = PayPalSucess.getPayPal(request, payPalConfig);
-		System.out.println("fist name: " + result.getFirst_name());
-		System.out.println("last name: " + result.getLast_name());
-		System.out.println("email: " + result.getPayer_email());
-		System.out.println("country: " + result.getAddress_country());
-		System.out.println("payment_date: " + result.getPayment_date());
-		System.out.println("mc_fee: " + result.getMc_fee());
-		System.out.println("business: " + result.getBusiness());
-		System.out.println("payment_type: " + result.getPayment_type());
-		
-		System.out.println("getMc_currency: " + result.getMc_currency());
-		System.out.println("Fee: " + request.getParameter("amt"));
 		
 		Account account = accountService.findByUsername(authentication.getName());
 		
@@ -108,20 +99,21 @@ public class PricingController {
 		pay.setPayStatus(true);
 		payService.save(pay);
 		
-//		AccountPackId accountPackId = new AccountPackId();
-//		accountPackId.setAccountId(account.getAccountId());
-//		accountPackId.setPackId(packId);
-//		
-//		Pack pack = pricingService.findById(packId);
-//		
-//		AccountPack accountPack = new AccountPack();
-//		accountPack.setAccount(account);
-//		accountPack.setId(accountPackId);
-//		accountPack.setPack(pack);
-//		accountPack.setStartDate(new Date());
-//		accountPack.setStatus(true);
-//		
-//		accountPackService.save(accountPack);
+		AccountPackId accountPackId = new AccountPackId();
+		accountPackId.setAccountId(account.getAccountId());
+		accountPackId.setPackId(pakcid);
+		
+		Pack pack = pricingService.findById(pakcid);
+		
+		AccountPack accountPack = new AccountPack();
+		accountPack.setAccount(account);
+		accountPack.setId(accountPackId);
+		accountPack.setPack(pack);
+		accountPack.setStartDate(new Date());
+		accountPack.setStatus(true);
+		accountPackService.save(accountPack);
+		
+		httpSession.removeAttribute("packId");
 		
 		return "user/pricing/success";
 	}

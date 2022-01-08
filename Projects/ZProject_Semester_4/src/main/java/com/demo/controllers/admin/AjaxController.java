@@ -1,5 +1,8 @@
 package com.demo.controllers.admin;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import com.demo.entites.EmailAjax;
 import com.demo.entites.PackAjax;
 import com.demo.entites.PayAjax;
 import com.demo.entites.RoleAjax;
+import com.demo.models.Pack;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.admin.EmailServiceAdmin;
@@ -85,4 +89,11 @@ public class AjaxController {
 		
 	}
 	
+	@RequestMapping(value = {"sessionpackid"}, method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public void sessionPackId(@RequestParam("packId") int packId, HttpServletRequest request) {
+		
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("packId", packId);
+		
+	}
 }
