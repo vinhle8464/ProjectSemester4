@@ -408,7 +408,7 @@
 										action="${pageContext.request.contextPath }/admin/account/update"
 										enctype="multipart/form-data">
 				
-					<input name="avatar" type="hidden" value="no" />
+					<input name="avatar" type="hidden" value="noimg" />
 				<div class="modal-header">	
 									
 					<h4 class="modal-title">Update Account</h4>
@@ -425,8 +425,8 @@
 					</div>			
 					<div class="form-group">
 						<label>UserName</label>
-						<s:input path="username" type="text" id="accUsername"
-													class="form-control" disabled="true" />
+						<input name="username" type="text" id="accUsername"
+													class="form-control" readonly="readonly" />
 				
 					</div>
 				
