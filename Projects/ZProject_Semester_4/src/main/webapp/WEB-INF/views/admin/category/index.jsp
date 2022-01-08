@@ -253,7 +253,7 @@
 	</div>
 
 
-<!-- Edit Modal HTML -->
+<!-- ADD Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">

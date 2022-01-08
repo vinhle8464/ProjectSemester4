@@ -88,6 +88,8 @@ public class PricingController {
 		
 		PayPalResult result = PayPalSucess.getPayPal(request, payPalConfig);
 		
+		
+		
 		Account account = accountService.findByUsername(authentication.getName());
 		
 		Pay pay = new Pay();
