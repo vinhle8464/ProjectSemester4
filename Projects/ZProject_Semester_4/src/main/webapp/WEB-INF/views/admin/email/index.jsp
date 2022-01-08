@@ -8,8 +8,7 @@
 
 	<jsp:attribute name="content">
 
-<link rel="stylesheet"
-			href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
@@ -18,8 +17,7 @@
 			$('#emailID').val(emailId);
 		}
 		function openEditModal(emailId) {
-			$
-					.ajax({
+			$.ajax({
 						type : 'GET',
 						url : '${pageContext.request.contextPath }/admin/ajax/findemailbyid',
 						data : {
@@ -106,18 +104,13 @@
 									<label for="selectAll"></label>
 								</span>
 							</th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailId">emailID</a></th>
-							<th><a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailUser">EmailUser</a></th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=phoneNumber">PhoneNumber</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=sendDate">SendDate</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=replyDate">replyDate</a></th>
-														<th> <a
-													href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=checked">Checked</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailId">Email ID</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailUser">Email User</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=phoneNumber">Phone Number</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=sendDate">Send Date</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=replyDate">Reply Date</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=checked">Checked</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -125,36 +118,64 @@
 	
 	      
 	    			  <c:choose>
-	        <c:when test="${emails.size() > 0 }">
+	        		<c:when test="${emails.size() > 0 }">
 					<c:forEach var="email" items="${emails}">
-						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
-							<td>${email.emailId }</td>
-							<td>${email.emailUser }</td>
-							<td>${email.phoneNumber }</td>
-							<td>${email.sendDate }</td>
-							<td>${email.replyDate }</td>
-							<td>${email.checked ? "Yes" : "No" }</td>
-							
-							<td>
-								<a href="#editEmployeeModal" id="${email.emailId }"
-																onclick="openEditModal(id);" class="edit"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${email.emailId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+					<c:if test="${email.checked == false}">
+							<tr style="background: #c5d9ed;" onclick="window.location='${pageContext.request.contextPath }/admin/email/replyIndex?emailId=${email.emailId }';">
+								
+								<td>
+									<span class="custom-checkbox">
+										<input type="checkbox" id="checkbox1" name="options[]" value="1">
+										<label for="checkbox1"></label>
+									</span>
+								</td>
+								<td><strong>${email.emailId }</strong></td>
+								<td><strong>${email.emailUser }</strong></td>
+								<td><strong>${email.title }</strong></td>
+								<td><strong>${email.phoneNumber }</strong></td>
+								<td><strong>${email.sendDate }</strong></td>
+								<td><strong>${email.replyDate }</strong></td>
+								<td><strong>${email.checked ? "Yes" : "No" }</strong></td>
+								
+								<td>
+									<a href="#editEmployeeModal" id="${email.emailId }" onclick="openEditModal(id);" class="edit" data-toggle="modal"><i class="material-icons"
+																		data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+									<a href="#deleteEmployeeModal" id="${email.emailId }" onclick="openDeleteModal(id);" class="delete" data-toggle="modal"><i class="material-icons"
+																		data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+					</c:if>
+						<c:if test="${email.checked == true}">
+							<tr onclick="window.location='${pageContext.request.contextPath }/admin/email/replyIndex?emailId=${email.emailId }';">
+								<td>
+									<span class="custom-checkbox">
+										<input type="checkbox" id="checkbox1" name="options[]" value="1">
+										<label for="checkbox1"></label>
+									</span>
+								</td>
+								<td>${email.emailId }</td>
+								<td>${email.emailUser }</td>
+								<td>${email.title }</td>
+								<td>${email.phoneNumber }</td>
+								<td>${email.sendDate }</td>
+								<td>${email.replyDate }</td>
+								<td>${email.checked ? "Yes" : "No" }</td>
+								
+								<td>
+									<a href="#editEmployeeModal" id="${email.emailId }"
+																	onclick="openEditModal(id);" class="edit"
+																	data-toggle="modal"><i class="material-icons"
+																		data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+									<a href="#deleteEmployeeModal" id="${email.emailId }"
+																	onclick="openDeleteModal(id);" class="delete"
+																	data-toggle="modal"><i class="material-icons"
+																		data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+					</c:if>
 						</c:forEach>
 						  </c:when>
-	        <c:otherwise>
+	        		<c:otherwise>
 	            <tr align="center">
 	                <td colspan="5">No Users available</td>
 	            </tr>
@@ -172,31 +193,23 @@
 			<select style="color: #566787;" name="pageSize"
 													onchange="location = this.value;">
 			 <option value="">PageSize</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
-			 <option
-														value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
-			  <option
-														value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+			 <option value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+			 <option value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+			 <option value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+			  <option value="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
 		<span>Showing <strong>${currentPage > 1 ? currentPage * pageSize - pageSize : 1}</strong> to <strong>${pageSize * currentPage}</strong> out of <b>${totalElements}</b> entries</span>
 	         
 	            <ul class="pagination">
-	            			<li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+	            			<li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">First</a>
 	                    </li>
 	                    
-	                     <li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+	                     <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
 	                    </li>
 	                    
@@ -221,40 +234,31 @@
 	          
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
-		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
-	                   <c:if
-														test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+	                   <c:if test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
-			              	<c:forEach
-															begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+			              	<c:forEach begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
 															end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
-			                        <a
-																href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+			                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
-		                        <a
-															href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+		                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
 															class="page-link">${currentPage}</a>
 		                    </li>
-		               	  <c:forEach begin="${currentPage}"
-															end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+		               	  <c:forEach begin="${currentPage}" end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
 															var="page2">
-		                    <li
-																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
@@ -263,14 +267,10 @@
 	                   <!--   //  the last page -->
 	          
 	             
-	            		    <c:if
-														test="${currentPage == totalPages && totalPages > 5}">
-			                <c:forEach begin="${totalPages - 5 }"
-															end="${totalPages - 1}" var="page">
-			                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-			                        <a
-																href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+	            		    <c:if test="${currentPage == totalPages && totalPages > 5}">
+			                <c:forEach begin="${totalPages - 5 }" end="${totalPages - 1}" var="page">
+			                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+			                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
@@ -278,16 +278,12 @@
 	                 
 	                  <!--  // end number of page -->
 	              
-	                     <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+	                     <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Next</a>
 	                    </li>
-	                      <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+	                      <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Last</a>
 	                    </li>
 	            </ul>

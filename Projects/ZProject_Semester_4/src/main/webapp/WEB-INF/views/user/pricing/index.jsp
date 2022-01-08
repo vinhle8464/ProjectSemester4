@@ -8,6 +8,25 @@
 <mt:layout_user title="Teacher">
 	
 	<jsp:attribute name="content">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<script type="text/javascript">
+		
+		 function getpackid(packID){
+			 var packId = packID;
+			 alert(packId);
+				$.ajax({
+					type: 'POST',
+					url: '${pageContext.request.contextPath }/admin/ajax/sessionpackid',
+					data: {
+						packId: packId
+					}
+				});
+				
+			};
+		
+	</script>
 	
 	<div class="all-title-box">
 		<div class="container text-center">
@@ -47,13 +66,13 @@
 										<input type="hidden" name="amount_1" value="${pack.fee }">
 										<input type="hidden" name="quantity_1" value="1">
 										<br><br>
-										<input type="submit" value="Buy" class="hover-btn-new orange ">
+										<input type="submit" value="Buy" class="hover-btn-new orange " id="${pack.packId}"  onclick="getpackid(id);">
 										<input type="hidden" name="upload" value="1" /> 
 										<input type="hidden" name="return" value="${returnurl }" /> 
 										<input type="hidden" name="cmd" value="_cart" /> 
 										<input type="hidden" name="business" value="${business }" />
 										
-										<input type="hidden" name="packId" value="${pack.packId }">
+										
 			                		</s:form>
 		                        </div><!-- BUTTON BOX-->
 		                	</div>
