@@ -71,8 +71,8 @@
 						</div>
 						<div class="form-group col-sm-4">
 							<select class="form-control" id="cbbCategory">
+								<option value="all">All</option>
 								<c:forEach var="category" items="${categories }">
-									<option value="all">All</option>
 									<option value="${category.categoryId }">${category.title }</option>
 								</c:forEach>
 							 </select>

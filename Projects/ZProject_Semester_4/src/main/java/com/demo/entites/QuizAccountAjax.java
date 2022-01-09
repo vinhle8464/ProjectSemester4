@@ -4,6 +4,7 @@ public class QuizAccountAjax {
 
 	private Integer quizId;
 	private String title;
+	private String fullname;
 	private String description;
 	private int times;
 	private byte timer;
@@ -20,6 +21,12 @@ public class QuizAccountAjax {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 	public String getDescription() {
 		return description;
@@ -51,11 +58,12 @@ public class QuizAccountAjax {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public QuizAccountAjax(Integer quizId, String title, String description, int times, byte timer, boolean fee,
-			boolean status) {
+	public QuizAccountAjax(Integer quizId, String title, String fullname, String description, int times, byte timer,
+			boolean fee, boolean status) {
 		super();
 		this.quizId = quizId;
 		this.title = title;
+		this.fullname = fullname;
 		this.description = description;
 		this.times = times;
 		this.timer = timer;

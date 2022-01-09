@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 06, 2022 at 05:12 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 09, 2022 at 05:46 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,7 +47,7 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
 (1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
-(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'asdfasdf', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
+(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
 (7, 'asdf', '1', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', 'asdfasdf', b'01'),
@@ -149,6 +149,13 @@ CREATE TABLE `account_pack` (
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `account_pack`
+--
+
+INSERT INTO `account_pack` (`account_id`, `pack_id`, `start_date`, `status`) VALUES
+(6, 5, '2022-01-08', b'01');
+
 -- --------------------------------------------------------
 
 --
@@ -167,7 +174,9 @@ CREATE TABLE `account_role` (
 INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(3, 1),
+(6, 2),
+(95, 3);
 
 -- --------------------------------------------------------
 
@@ -195,6 +204,20 @@ CREATE TABLE `category` (
   `description` varchar(250) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
+(1, 'Math', 'Test Math', b'01'),
+(2, 'Physic', 'Test Physic', b'01'),
+(3, 'Chemistry', 'Test chemistry', b'00'),
+(4, 'Biological', 'About biological', b'01'),
+(5, 'Literature', 'About literature', b'01'),
+(6, 'Geographic', 'About geographic', b'01'),
+(7, 'Technology', 'About technology', b'01'),
+(8, 'Information technology', 'About information technology', b'01');
 
 -- --------------------------------------------------------
 
@@ -299,7 +322,8 @@ INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid
 (9, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:09:25', b'01'),
 (10, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 20:59:15', b'01'),
 (11, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:09:17', b'01'),
-(12, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:10:44', b'01');
+(12, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:10:44', b'01'),
+(13, 6, 'PAYPAL', 'PAYMENT PACK - CODE: 6US04340G0361683A', '1.00', '2022-01-08 16:00:13', b'01');
 
 -- --------------------------------------------------------
 
@@ -332,6 +356,20 @@ CREATE TABLE `quiz` (
   `fee` bit(2) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quiz`
+--
+
+INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `status`) VALUES
+(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 0, 60, b'00', b'01'),
+(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', b'01'),
+(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', b'01'),
+(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', b'01'),
+(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', b'01'),
+(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí', 2, 6, 0, 50, b'00', b'00'),
+(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', b'01'),
+(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', b'00');
 
 -- --------------------------------------------------------
 
@@ -503,7 +541,7 @@ ALTER TABLE `answer`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `email`
@@ -521,7 +559,7 @@ ALTER TABLE `pack`
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `question`
@@ -533,7 +571,7 @@ ALTER TABLE `question`
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rating_comment`

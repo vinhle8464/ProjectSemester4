@@ -10,7 +10,6 @@ import com.demo.models.Quiz;
 
 public interface QuizAccountServiceAdmin {
 
-	
-	public List<Quiz> findAllQuiz(int accountId);
+
 
 }

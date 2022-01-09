@@ -17,26 +17,45 @@
 		function openDeleteModal(quizId) {
 			$('#quizID').val(quizId);
 		}
-		/* function openEditModal(quizId) {
-			$
-					.ajax({
+		 function openEditModal(quizId) {
+			$.ajax({
 						type : 'GET',
 						url : '${pageContext.request.contextPath }/faculty/ajax/findquizbyid',
 						data : {
 							quizId : quizId
 						},
 						success : function(quiz) {
-							$('#quizId').val(quiz.quizId);
-							$('#accountIdd').val(quiz.accountId);						
-							$('#usernamee').val(quiz.username);		
-							$('#quizmentt').val(quiz.quizment);
-							$('#titlee').val(quiz.title);						
-							$('#feee').val(quiz.fee);			
-							$('#datePaidd').val(quiz.datePaid);
-							$('#quizStatuss').val(quiz.quizStatus);							
+							$('#quizIdd').val(quiz.quizId);
+							$('#quizIdEdit').val(quiz.quizId);
+							$('#title').val(quiz.title);
+							$('#description').val(quiz.description);
+							
+							var $radios = $('input:radio[name=fee]');
+							if (quiz.fee) {
+								$radios.filter('[value=true]').prop('checked',
+										true);
+							} else {
+								$radios.filter('[value=false]').prop('checked',
+										true);
+							}
+							
+							$('#category').val(quiz.categoryId);
+							$('#times').val(quiz.times);
+							$('#timer').val(quiz.timer);
+							
+							var $radios2 = $('input:radio[name=status]');
+							if (quiz.status) {
+								$radios2.filter('[value=true]').prop('checked',
+										true);
+							} else {
+								$radios2.filter('[value=false]').prop('checked',
+										true);
+							}
+							
 						}
 					});
-		} */
+			
+		}
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -83,10 +102,8 @@
 							<h2>Manage <b>Quizzes</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New quiz</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New quiz</span></a>
+							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
 					</div>
 				</div>
@@ -99,16 +116,13 @@
 									<label for="selectAll"></label>
 								</span>
 							</th>
-							<th> <a
-													href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizId">quizID</a></th>
-							<th><a
-													href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
-							<th> <a
-													href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizment">quizment</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
-													<th> <a
-													href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizId">Quiz ID</a></th>
+							<th><a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=category.title">Category Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=status">Status</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -118,7 +132,8 @@
 	    			  <c:choose>
 	        <c:when test="${quizs.size() > 0 }">
 					<c:forEach var="quiz" items="${quizs}">
-						<tr>
+						<c:if test="${quiz.account.accountId ==  accountUsername.accountId}">
+							<tr>
 							<td>
 								<span class="custom-checkbox">
 									<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -126,24 +141,33 @@
 								</span>
 							</td>
 							<td>${quiz.quizId }</td>
-							<td>${quiz.account.username }</td>
-							<td>${quiz.quizment }</td>
+							<td>${quiz.account.fullname }</td>
+							<td>${quiz.description }</td>
 							<td>${quiz.title }</td>
-							<td>${quiz.fee }</td>
+							<td>${quiz.category.title }</td>
+							<c:if test="${quiz.fee == true}">
+								<td style="color: green;"><strong>${quiz.fee }</strong></td>
+							</c:if>
+							<c:if test="${quiz.fee == false}">
+								<td style="color: red;"><strong>${quiz.fee }</strong></td>
+							</c:if>
 							
+							<c:if test="${quiz.status == true}">
+								<td style="color: green;"><strong>${quiz.status }</strong></td>
+							</c:if>
+							<c:if test="${quiz.status == false}">
+								<td style="color: red;"><strong>${quiz.status }</strong></td>
+							</c:if>
 							<td>
-								<a href="#editEmployeeModal" id="${quiz.quizId }"
-																onclick="openEditModal(id);" class="edit"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${quiz.quizId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#editEmployeeModal" id="${quiz.quizId }" onclick="openEditModal(id);" class="edit"
+																data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								<a href="#deleteEmployeeModal" id="${quiz.quizId }" onclick="openDeleteModal(id);" class="delete"
+																data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						</c:forEach>
-						  </c:when>
+						</c:if>
+					</c:forEach>
+				</c:when>
 	        <c:otherwise>
 	            <tr align="center">
 	                <td colspan="5">No Users available</td>
@@ -162,40 +186,25 @@
 			<select style="color: #566787;" name="pageSize"
 													onchange="location = this.value;">
 			 <option value="">PageSize</option>
-			 <option
-														value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
-			 <option
-														value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
-			 <option
-														value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
-			  <option
-														value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+			  <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
 		<span>Showing <strong>${currentPage > 1 ? currentPage * pageSize - pageSize : 1}</strong> to <strong>${pageSize * currentPage}</strong> out of <b>${totalElements}</b> entries</span>
 	         
 	            <ul class="pagination">
-	            			<li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+	            			<li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">First</a>
 	                    </li>
 	                    
-	                     <li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+	                     <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Previous</a>
 	                    </li>
-	                    
-	                    
-	                 <!--  // start number of page -->
-	                 
-	                    <!--   //  totalpage <= 5 -->
-	          
-	             
 	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
 		                <c:forEach begin="0" end="${totalPages - 1}" var="page">
 		                    <li
@@ -211,40 +220,31 @@
 	          
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
-		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
-	                   <c:if
-														test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+	                   <c:if test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
-			              	<c:forEach
-															begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+			              	<c:forEach begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
 															end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
-			                        <a
-																href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+			                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
-		                        <a
-															href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+		                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
 															class="page-link">${currentPage}</a>
 		                    </li>
-		               	  <c:forEach begin="${currentPage}"
-															end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+		               	  <c:forEach begin="${currentPage}" end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
 															var="page2">
-		                    <li
-																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
-		                        <a
-																href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+		                    <li class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+		                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
@@ -253,14 +253,10 @@
 	                   <!--   //  the last page -->
 	          
 	             
-	            		    <c:if
-														test="${currentPage == totalPages && totalPages > 5}">
-			                <c:forEach begin="${totalPages - 5 }"
-															end="${totalPages - 1}" var="page">
-			                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
-			                        <a
-																href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+	            		    <c:if test="${currentPage == totalPages && totalPages > 5}">
+			                <c:forEach begin="${totalPages - 5 }" end="${totalPages - 1}" var="page">
+			                    <li class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+			                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
 																class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
@@ -268,16 +264,12 @@
 	                 
 	                  <!--  // end number of page -->
 	              
-	                     <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+	                     <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Next</a>
 	                    </li>
-	                      <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-	                        <a
-														href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+	                      <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+	                        <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
 														class="page-link">Last</a>
 	                    </li>
 	            </ul>
@@ -304,22 +296,7 @@
 												aria-hidden="true">&times;</button>
 											
 				</div>
-				<div class="modal-body">					
-					<%-- <div class="form-group">
-					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>quiz-Name</label>
-						<s:input path="quizName" type="text" class="form-control"
-													required="required" />
-				
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<s:input path="description" type="text" class="form-control"
-													required="required" />
-					
-					</div> --%>
-					
-									
+				<div class="modal-body">		
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -334,73 +311,60 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<%-- <s:form method="post" modelAttribute="quiz"
-										action="${pageContext.request.contextPath }/faculty/quiz/update"
-										enctype="multipart/form-data">
-				
-				<div class="modal-header">	
-									
-					<h4 class="modal-title">quiz's Details </h4>
-					<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											
+		<s:form method="post" modelAttribute="quiz" action="${pageContext.request.contextPath }/faculty/quiz/edit" enctype="multipart/form-data">	
+				<div class="modal-header">
+					<h4 class="modal-title">Edit Quiz</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">		
-				<div class="form-group">
-						<label>quizID</label>
-						<s:input path="quizId" type="text" id="quizId"
-													class="form-control" disabled="true" />
-				
-					</div>	
 					<div class="form-group">
-						<label>accountID</label>
-						<s:input path="account.accountId" type="text" id="accountIdd"
-													class="form-control" disabled="true" />
-				
-					</div>		
-					<div class="form-group">
-						<label>Username</label>
-						<s:input path="account.username" type="text" id="usernamee"
-													class="form-control" disabled="true" required="required" />
-				
+						<label>Quiz ID</label>
+						<input type="text" id="quizIdd" class="form-control" disabled="true" />
+						<s:input path="quizId" id="quizIdEdit" type="hidden" />
 					</div>
-				
 					<div class="form-group">
-						<label>quizment</label>
-						<s:input path="quizment" type="text" id="quizmentt"
-													class="form-control" required="required" />
+						<label>Title</label>
+						<s:input path="title" type="text" id="title" class="form-control" required="required" />
 					
 					</div>	
 						<div class="form-group">
-						<label>Title</label>
-						<s:input path="title" type="text" id="titlee"
-													class="form-control" required="required" />
-					
-					</div>		<div class="form-group">
-						<label>Fee</label>
-						<s:input path="fee" type="text" id="feee"
-													class="form-control" required="required" />
-					
-					</div>		<div class="form-group">
-						<label>DatePaid</label>
-						<s:input path="datePaid" type="text" id="datePaidd"
-													class="form-control" required="required" />
-					
-					</div>	
-							<div class="form-group">
-						<label>quizStatus</label>
-						<s:input path="quizStatus" type="text" id="quizStatuss"
-													class="form-control" required="required" />
+						<label>Description</label>
+						<s:input path="description" type="text" id="description" class="form-control" required="required" />
 					
 					</div>		
-									
+					<div class="form-group">
+						<label>Fee</label><br/>
+						<s:radiobutton path="fee" class="fee" value="true"/> True &nbsp; &nbsp;
+						<s:radiobutton path="fee" class="fee" value="false"/> False
+					</div>		
+					<div class="form-group">
+						<label>Category</label>
+						<select name="categoryId" id="category" class="form-control" required="required" >
+							<c:forEach var="category" items="${categories }">
+								<option value="${category.categoryId}">${category.title }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Times</label>
+						<s:input path="times" type="text" id="times" class="form-control" required="required" />
+					</div>		
+					<div class="form-group">
+						<label>Timer</label>
+						<s:input path="timer" type="text" id="timer" class="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<label>Status</label> <br/>
+						<s:radiobutton path="status" class="status" value="true"/> True &nbsp; &nbsp;
+						<s:radiobutton path="status" class="status" value="false"/> False
+					</div>					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 												value="Cancel">
 					<s:input type="submit" class="btn btn-success" value="save" path="" />
 				</div>
-			</s:form> --%>
+			</s:form>
 		</div>
 	</div>
 </div>
@@ -408,8 +372,7 @@
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="get"
-										action="${pageContext.request.contextPath }/faculty/quiz/delete">
+			<form method="get" action="${pageContext.request.contextPath }/faculty/quiz/delete">
 				<div class="modal-header">				
 					<h4 class="modal-title">Delete quiz</h4>
 					<button type="button" class="close" data-dismiss="modal"

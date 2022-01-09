@@ -9,60 +9,56 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.entites.QuizAccountAjax;
 import com.demo.entites.QuizAjax;
+import com.demo.models.Account;
 import com.demo.models.Quiz;
 import com.demo.repositories.admin.QuizRepositoryAdmin;
+import com.demo.repositories.faculty.QuizRepositoryFaculty;
 
 @Service
 public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 
 	@Autowired
-	private QuizRepositoryAdmin QuizRepositoryAdmin;
+	private QuizRepositoryFaculty quizRepositoryFaculty;
+
+	@Override
+	public List<Quiz> findAllQuiz() {
+		return quizRepositoryFaculty.findAll();
+	}
 
 	@Override
 	public Quiz findById(int id) {
-		return QuizRepositoryAdmin.findById(id).get();
+		return quizRepositoryFaculty.findById(id).get();
 	}
-	
-	// this method was not be completed!
+
 	@Override
-	public Quiz create(Quiz Quiz) {
-		Quiz.setStatus(true);
-		return QuizRepositoryAdmin.save(Quiz);
+	public Quiz create(Quiz quiz) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	// this method was not be completed!
+
 	@Override
-	public Quiz update(Quiz Quiz) {
-		
-		return QuizRepositoryAdmin.save(Quiz);
-		
+	public Quiz update(Quiz quiz) {
+		return quizRepositoryFaculty.save(quiz);
 	}
 
 	@Override
 	public void deleteById(int id) {
-		QuizRepositoryAdmin.deleteById(id);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public List<Quiz> findAllQuiz() {
-		
-		return (List<Quiz>) QuizRepositoryAdmin.findAll();
-
+	public QuizAjax findByIdAjax(int quizId) {
+		return quizRepositoryFaculty.findByIdAjax(quizId);
 	}
 
-
-//	@Override
-//	public QuizAjax findByIdAjax(int QuizId) {
-//		return QuizRepositoryAdmin.findByIdAjax(QuizId);
-//	}
-
-	 public Page<Quiz> getPage(int currentPage, int pageSize, String sort){
-		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
-			return this.QuizRepositoryAdmin.findAll(pageable);
-	    }
-
-	
+	@Override
+	public Page<Quiz> getPage(int currentPage, int pageSize, String sort) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepositoryFaculty.findAll(pageable);
+	}
 	
 	
 
