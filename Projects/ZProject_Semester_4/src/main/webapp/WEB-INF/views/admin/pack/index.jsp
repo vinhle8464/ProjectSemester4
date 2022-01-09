@@ -13,7 +13,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
-		
 		function openDeleteModal(packId) {
 			$('#packID').val(packId);
 		}
@@ -27,12 +26,12 @@
 						},
 						success : function(pack) {
 							$('#packId').val(pack.packId);
-							$('#title').val(pack.title);						
-							$('#expiry').val(pack.expiry);		
-							$('#fee').val(pack.fee);
-							$('#description').val(pack.description);						
-							$('#status').val(pack.status);			
-											
+							$('#titlee').val(pack.title);
+							$('#expiryy').val(pack.expiry);
+							$('#feee').val(pack.fee);
+							$('#descriptionn').val(pack.description);
+							$('#statuss').val(pack.status);
+
 						}
 					});
 		}
@@ -64,7 +63,7 @@
 	
 	          <div class="card-tools">
 	            <button type="button" class="btn btn-tool"
-								data-card-widget="collapse" title="Collapse">
+							data-card-widget="collapse" title="Collapse">
 	              <i class="fas fa-minus"></i>
 	            </button>
 	           <!--  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
@@ -79,13 +78,14 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Manage <b>Packs</b></h2>
+							<h2>Manage <b>Packs</b>
+											</h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pack</span></a>
+												data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pack</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+												data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 						</div>
 					</div>
 				</div>
@@ -99,15 +99,15 @@
 								</span>
 							</th>
 							<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
+												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
 							<th><a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
 							<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
+												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
 													<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
 													<th> <a
-													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -120,7 +120,8 @@
 						<tr>
 							<td>
 								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<input type="checkbox" id="checkbox1" name="options[]"
+																value="1">
 									<label for="checkbox1"></label>
 								</span>
 							</td>
@@ -132,13 +133,13 @@
 							
 							<td>
 								<a href="#editEmployeeModal" id="${pack.packId }"
-																onclick="openEditModal(id);" class="edit"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+															onclick="openEditModal(id);" class="edit"
+															data-toggle="modal"><i class="material-icons"
+																data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 								<a href="#deleteEmployeeModal" id="${pack.packId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+															onclick="openDeleteModal(id);" class="delete"
+															data-toggle="modal"><i class="material-icons"
+																data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>
@@ -158,16 +159,16 @@
 	        <div class="panel-footer">
 	 
 			<select style="color: #566787;" name="pageSize"
-													onchange="location = this.value;">
+												onchange="location = this.value;">
 			 <option value="">PageSize</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+													value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+													value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
 			 <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+													value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
 			  <option
-														value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+													value="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -175,17 +176,17 @@
 	         
 	            <ul class="pagination">
 	            			<li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">First</a>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
-														class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Previous</a>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Previous</a>
 	                    </li>
 	                    
 	                    
@@ -195,12 +196,13 @@
 	          
 	             
 	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
-		                <c:forEach begin="0" end="${totalPages - 1}" var="page">
+		                <c:forEach begin="0" end="${totalPages - 1}"
+														var="page">
 		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 		               
@@ -210,40 +212,40 @@
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
 		                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
 	                   <c:if
-														test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+													test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
 			              	<c:forEach
-															begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
-															end="${currentPage - 1}" var="page1">
+														begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+														end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page1}</a>
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
 		                        <a
-															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${currentPage}</a>
+														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+														class="page-link">${currentPage}</a>
 		                    </li>
 		               	  <c:forEach begin="${currentPage}"
-															end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
-															var="page2">
+														end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+														var="page2">
 		                    <li
-																class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page2 + 1}</a>
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
 	                </c:if>
@@ -252,14 +254,14 @@
 	          
 	             
 	            		    <c:if
-														test="${currentPage == totalPages && totalPages > 5}">
+													test="${currentPage == totalPages && totalPages > 5}">
 			                <c:forEach begin="${totalPages - 5 }"
-															end="${totalPages - 1}" var="page">
+														end="${totalPages - 1}" var="page">
 			                    <li
-																class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 			                        <a
-																href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-																class="page-link">${page+1}</a>
+															href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+															class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
 	               		</c:if>
@@ -267,16 +269,16 @@
 	                  <!--  // end number of page -->
 	              
 	                     <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Next</a>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Next</a>
 	                    </li>
 	                      <li
-														class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-														href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">Last</a>
+													href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+													class="page-link">Last</a>
 	                    </li>
 	            </ul>
 	        </div>
@@ -354,31 +356,30 @@
 				<div class="modal-body">		
 				<div class="form-group">
 						<label>packID</label>
-						<s:input path="packId" type="text" id="packId"
-													class="form-control" disabled="true"/>				
+						<input name="packId" type="text" id="packId" class="form-control"
+													readonly="readonly" />				
 					</div>	
 					<div class="form-group">
 						<label>Title</label>
-						<s:input path="title" type="text" id="title"
-													class="form-control" disabled="true" />
+						<input name="title" type="text" id="titlee" class="form-control"
+													readonly="readonly" />
 				
 					</div>		
 					<div class="form-group">
 						<label>Expiry</label>
-						<s:input path="expiry" type="text" id="expiry"
-													class="form-control" disabled="true" required="required" />
+						<s:input path="expiry" type="text" id="expiryy"
+													class="form-control" />
 				
 					</div>
 				
 					<div class="form-group">
 						<label>Fee</label>
-						<s:input path="fee" type="text" id="fee"
-													class="form-control" required="required" />					
+						<s:input path="fee" type="text" id="feee" class="form-control" />					
 					</div>	
 						<div class="form-group">
 						<label>Description</label>
-						<s:input path="description" type="text" id="description"
-													class="form-control" required="required" />						</div>								
+						<s:input path="description" type="text" id="descriptionn"
+													class="form-control" />						</div>								
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"

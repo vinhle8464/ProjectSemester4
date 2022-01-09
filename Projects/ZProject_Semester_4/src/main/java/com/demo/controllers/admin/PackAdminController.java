@@ -16,37 +16,38 @@ import com.demo.services.AccountService;
 import com.demo.services.admin.PackServiceAdmin;
 
 @Controller
-@RequestMapping(value = {"admin/pack"})
+@RequestMapping(value = { "admin/pack" })
 public class PackAdminController {
 
 	@Autowired
 	private PackServiceAdmin packServiceAdmin;
-	
+
 	@Autowired
 	private AccountService accountService;
-	
-	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
-		
+
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		return pagination(1, 5, "packId", modelMap, model, authentication);
-		
+
 	}
-	
-	
-	
+
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
 	public String create(@ModelAttribute("pack") Pack pack, ModelMap modelMap) {
-		
+
 		packServiceAdmin.create(pack);
 
 		return "redirect:/admin/pack/index";
 	}
 
-	@RequestMapping(value = { "edit" }, method = RequestMethod.PUT)
+	@RequestMapping(value = { "update" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("pack") Pack pack) {
+		System.out.println(pack.getPackId());
+		if (pack.getTitle() == "") {
+			pack.setTitle(packServiceAdmin.findById(pack.getPackId()).getTitle());
+		}
 
-		
 		packServiceAdmin.update(pack);
 
 		return "redirect:/admin/pack/index";
@@ -60,13 +61,13 @@ public class PackAdminController {
 		return "redirect:/admin/pack/index";
 	}
 
-		
-	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
-	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model, Authentication authentication) {
-		
+	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
+	public String pagination(@RequestParam(name = "currentPage") int currentPage,
+			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
+			Model model, Authentication authentication) {
+
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		
+
 		int pageSizee = pageSize;
 
 		Page<Pack> pages = packServiceAdmin.getPage(currentPage, pageSizee, sort);
@@ -77,9 +78,8 @@ public class PackAdminController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("packs", pages.getContent());
 
-		Pack pack = new Pack();		
+		Pack pack = new Pack();
 		modelMap.put("pack", pack);
-
 
 		return "admin/pack/index";
 	}
