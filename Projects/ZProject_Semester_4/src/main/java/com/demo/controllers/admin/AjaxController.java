@@ -88,12 +88,5 @@ public class AjaxController {
 		return categoryServiceAdmin.findByIdAjax(categoryId);
 		
 	}
-	
-	@RequestMapping(value = {"sessionpackid"}, method = RequestMethod.POST, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public void sessionPackId(@RequestParam("packId") int packId, HttpServletRequest request) {
-		
-		HttpSession httpSession = request.getSession();
-		httpSession.setAttribute("packId", packId);
-		
-	}
+
 }

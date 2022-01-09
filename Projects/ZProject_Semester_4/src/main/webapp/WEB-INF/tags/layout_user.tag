@@ -164,12 +164,8 @@
   	
 	</header>
 	<!-- End header -->
-	<div class="content-wrapper">
 
 		<jsp:invoke fragment="content"></jsp:invoke>
-
-
-	</div>
 
 	<div class="parallax section dbcolor">
         <div class="container">
@@ -210,7 +206,7 @@
 							dis montes.</p>
 						<div class="footer-right">
 							<ul class="footer-links-soi">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://www.facebook.com/profile.php?id=100025109400686"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-github"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
@@ -248,10 +244,11 @@
 						</div>
 
 						<ul class="footer-links">
-							<li><a href="mailto:#">info@yoursite.com</a></li>
+							<li><a href="mailto:#">appchateproject@gmail.com</a></li>
 							<li><a href="#">www.yoursite.com</a></li>
-							<li>PO Box 16122 Collins Street West Victoria 8007 Australia</li>
-							<li>+61 3 8376 6284</li>
+							<li>Login Memory team 2021 Ho Chi Minh City Vietnam</li>
+							<li>appchateproject@gmail.com</li>
+							<li>+84 942 755 402</li>
 						</ul>
 						<!-- end links -->
 					</div>

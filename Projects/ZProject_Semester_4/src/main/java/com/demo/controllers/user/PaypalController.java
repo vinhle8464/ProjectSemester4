@@ -69,27 +69,6 @@ public class PaypalController {
 		payPalConfig.setReturnurl(returnurl);
 		
 		PayPalResult result = PayPalSucess.getPayPal(request, payPalConfig);
-		System.out.println("fist name: " + result.getFirst_name());
-		System.out.println("last name: " + result.getLast_name());
-		System.out.println("email: " + result.getPayer_email());
-		System.out.println("country: " + result.getAddress_country());
-		System.out.println("payment_date: " + result.getPayment_date());
-		System.out.println("mc_fee: " + result.getMc_fee());
-		System.out.println("business: " + result.getBusiness());
-		System.out.println("payment_type: " + result.getPayment_type());
-		
-		account.setAccountId(3);
-		account.setUsername("tran");
-		account.setPassword("1");
-		account.setFullname("ngoctran");
-		account.setEmail("tran@gmail.com");
-		Date birthday = new Date("01/04/2001");
-		account.setDob(birthday);
-		account.setAddr("Tay Ninh");
-		account.setGender(false);
-		account.setPhone("0999999999");
-		account.setAvatar("148fa5fab32d4e669482caa8943cfd38.jpg");
-		account.setStatus(true);
 		
 		Pay pay = new Pay();
 		pay.setAccount(account);

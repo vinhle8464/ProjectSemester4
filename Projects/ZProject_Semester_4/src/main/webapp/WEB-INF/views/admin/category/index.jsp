@@ -18,8 +18,7 @@
 			$('#categoryID').val(categoryId);
 		}
 		function openEditModal(categoryId) {
-			$
-					.ajax({
+			$.ajax({
 						type : 'GET',
 						url : '${pageContext.request.contextPath }/admin/ajax/findcategorybyid',
 						data : {
