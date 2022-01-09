@@ -89,9 +89,13 @@
 								</span>
 							</th>
 							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizId">Quiz ID</a></th>
-							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizName">Quiz Name</a></th>
-							<th><a href="#">Description</a></th>
-							
+							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=times">Times</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=times">Timer</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -109,10 +113,17 @@
 								</span>
 							</td>
 							<td>${quiz.quizId }</td>
+							<td>${quiz.account.username }</td>
+							<td>${quiz.account.fullname }</td>
 							<td>${quiz.title }</td>
 							<td>${quiz.times }</td>
 							<td>${quiz.timer }</td>
-							<td>${quiz.fee }</td>
+							<c:if test="${quiz.fee == true}">
+								<td style="color: green;"><strong>${quiz.fee }</strong></td>
+							</c:if>
+							<c:if test="${quiz.fee == false}">
+								<td style="color: red;"><strong>${quiz.fee }</strong></td>
+							</c:if>
 							<td>${quiz.description }</td>
 							<td>
 								<a href="#editEmployeeModal" id="${quiz.quizId }" onclick="openEditModal(id);" class="edit"

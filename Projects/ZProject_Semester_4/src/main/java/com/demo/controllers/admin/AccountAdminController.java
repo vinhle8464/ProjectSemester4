@@ -103,6 +103,7 @@ public class AccountAdminController implements ServletContextAware {
 		}
 		account2.setEmail(account.getEmail());
 		account2.setAddr(account.getAddr());
+		account2.setGender(account.isGender());
 		account2.setFullname(account.getFullname());
 
 		accountServiceAdmin.update(account2);
