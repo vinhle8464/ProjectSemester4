@@ -36,49 +36,6 @@
     <div id="pricing-box" class="section wb">
         <div class="container">
 			<div class="row">
-				<%-- <c:forEach var="pack" items="${packs }" varStatus="i">
-						<div class="col-md-4">
-		                    <div class="pricingTable">
-		                        <div class="pricingTable-header">
-		                            <span class="heading">
-		                                <h3>${pack.title }</h3>
-		                            </span>
-		                            <span class="price-value">${pack.fee } $ <span>${pack.title } </span><span>${pack.description }</span></span>
-		                        </div>
-		
-		                        <div class="pricingContent">
-		                            <i class="fa fa-adjust"></i>
-		                            <ul>
-		                                <li>50GB Disk Space</li>
-		                                <li>50 Email Accounts</li>
-		                                <li>50GB Monthly Bandwidth</li>
-		                                <li>10 subdomains</li>
-		                                <li>50 Domains</li>
-		                            </ul>
-		                        </div>
-		
-		                        <div class="pricingTable-sign-up">
-		                            <a href="#" class="hover-btn-new orange"><span>Buy</span></a>
-		                            <s:form method="post" action="${posturl }">
-										<input type="hidden" name="item_number_1" value="${pack.packId }">
-										<input type="hidden" name="item_name_1" value="${pack.title }">
-										<input type="hidden" name="amount_1" value="${pack.fee }">
-										<input type="hidden" name="quantity_1" value="1">
-										<br><br>
-										<input type="submit" value="Buy" class="hover-btn-new orange " id="${pack.packId}"  onclick="getpackid(id);">
-										<input type="hidden" name="upload" value="1" /> 
-										<input type="hidden" name="return" value="${returnurl }" /> 
-										<input type="hidden" name="cmd" value="_cart" /> 
-										<input type="hidden" name="business" value="${business }" />
-										
-										
-			                		</s:form>
-		                        </div><!-- BUTTON BOX-->
-		                	</div>
-						</div> 
-						
-				</c:forEach> --%>
-        
             </div>
 		</div>
     </div>
@@ -126,14 +83,14 @@
                                             <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
+                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
                                             <s:form method="post" action="${posturl }">
 												<input type="hidden" name="item_number_1" value="${pack.packId }">
 												<input type="hidden" name="item_name_1" value="${pack.title }">
 												<input type="hidden" name="amount_1" value="${pack.fee }">
 												<input type="hidden" name="quantity_1" value="1">
 												<br><br>
-												<input type="submit" value="Buy" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
+												<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
 												<input type="hidden" name="upload" value="1" /> 
 												<input type="hidden" name="return" value="${returnurl }" /> 
 												<input type="hidden" name="cmd" value="_cart" /> 
@@ -167,14 +124,14 @@
                                             <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
+                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
                                             <s:form method="post" action="${posturl }">
 												<input type="hidden" name="item_number_1" value="${pack.packId }">
 												<input type="hidden" name="item_name_1" value="${pack.title }">
 												<input type="hidden" name="amount_1" value="${pack.fee }">
 												<input type="hidden" name="quantity_1" value="1">
 												<br><br>
-												<input type="submit" value="Buy" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
+												<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
 												<input type="hidden" name="upload" value="1" /> 
 												<input type="hidden" name="return" value="${returnurl }" /> 
 												<input type="hidden" name="cmd" value="_cart" /> 
