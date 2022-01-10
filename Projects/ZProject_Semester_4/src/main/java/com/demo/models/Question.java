@@ -24,24 +24,24 @@ public class Question implements java.io.Serializable {
 	private Integer questionId;
 	private Quiz quiz;
 	private String title;
-	private String explain;
+	private String explainDetail;
 	private boolean status;
 	private Set<Answer> answers = new HashSet<Answer>(0);
 
 	public Question() {
 	}
 
-	public Question(Quiz quiz, String title, String explain, boolean status) {
+	public Question(Quiz quiz, String title, String explainDetail, boolean status) {
 		this.quiz = quiz;
 		this.title = title;
-		this.explain = explain;
+		this.explainDetail = explainDetail;
 		this.status = status;
 	}
 
-	public Question(Quiz quiz, String title, String explain, boolean status, Set<Answer> answers) {
+	public Question(Quiz quiz, String title, String explainDetail, boolean status, Set<Answer> answers) {
 		this.quiz = quiz;
 		this.title = title;
-		this.explain = explain;
+		this.explainDetail = explainDetail;
 		this.status = status;
 		this.answers = answers;
 	}
@@ -77,19 +77,21 @@ public class Question implements java.io.Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "explain", nullable = false, length = 65535)
-	public String getExplain() {
-		return this.explain;
+	@Column(name = "explain_detail", nullable = false, length = 65535)
+	public String getExplainDetail() {
+		return explainDetail;
 	}
 
-	public void setExplain(String explain) {
-		this.explain = explain;
+	public void setExplainDetail(String explainDetail) {
+		this.explainDetail = explainDetail;
 	}
 
 	@Column(name = "status", nullable = false)
 	public boolean isStatus() {
 		return this.status;
 	}
+
+
 
 	public void setStatus(boolean status) {
 		this.status = status;
@@ -104,4 +106,11 @@ public class Question implements java.io.Serializable {
 		this.answers = answers;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [questionId=" + questionId + ", quiz=" + quiz.getQuizId() + ", title=" + title + ", explainDetail=" + explainDetail
+				+ ", status=" + status + ", answers=" + answers + "]";
+	}
+
+	
 }

@@ -118,7 +118,7 @@
 							</th>
 							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizId">Quiz ID</a></th>
 							<th><a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
-							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+							
 							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
 							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=category.title">Category Title</a></th>
 							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
@@ -134,6 +134,7 @@
 					<c:forEach var="quiz" items="${quizs}">
 						<c:if test="${quiz.account.accountId ==  accountUsername.accountId}">
 							<tr>
+							
 							<td>
 								<span class="custom-checkbox">
 									<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -142,7 +143,7 @@
 							</td>
 							<td>${quiz.quizId }</td>
 							<td>${quiz.account.fullname }</td>
-							<td>${quiz.description }</td>
+							
 							<td>${quiz.title }</td>
 							<td>${quiz.category.title }</td>
 							<c:if test="${quiz.fee == true}">
@@ -158,12 +159,18 @@
 							<c:if test="${quiz.status == false}">
 								<td style="color: red;"><strong>${quiz.status }</strong></td>
 							</c:if>
+							
 							<td>
+							<a href="${pageContext.request.contextPath }/faculty/question/index?quizId=${quiz.quizId }" id="${quiz.quizId }"
+																>Details</a>
+																
 								<a href="#editEmployeeModal" id="${quiz.quizId }" onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${quiz.quizId }" onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								
+							<%-- 	<a href="#deleteEmployeeModal" id="${quiz.quizId }" onclick="openDeleteModal(id);" class="delete"
+																data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a> --%>
 							</td>
+							
 						</tr>
 						</c:if>
 					</c:forEach>
