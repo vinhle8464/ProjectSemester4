@@ -12,7 +12,7 @@ import com.demo.models.Question;
 public interface QuestionRepositoryFaculty extends JpaRepository<Question, Integer> {
 
 
-	@Query("select new com.demo.entites.QuestionAjax(questionId, quiz.quizId, title, explain, status) from Question where questionId = :questionId")
+	@Query("select new com.demo.entites.QuestionAjax(questionId, quiz.quizId, title, explainDetail, status) from Question where questionId = :questionId")
 	public QuestionAjax findByIdAjax(@Param("questionId") int questionId);
 	
 }

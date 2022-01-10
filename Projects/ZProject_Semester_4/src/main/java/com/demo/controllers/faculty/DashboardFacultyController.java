@@ -77,7 +77,7 @@ public class DashboardFacultyController {
 				
 				for(String explain : questions) {
 					if(explain.contains("explain")) {
-						question2.setExplain(explain);					
+						question2.setExplainDetail(explain);					
 					}
 					questions = ArrayUtils.removeElement(questions, explain);
 					System.out.println("count question: " + questions.length);

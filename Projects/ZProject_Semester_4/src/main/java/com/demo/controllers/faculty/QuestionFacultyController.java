@@ -47,11 +47,12 @@ public class QuestionFacultyController {
 		Question question2 = new Question();
 		question2.setTitle("aa");
 		question2.setQuiz(quizServiceFaculty.findById(quizId));
-		question2.setExplain("sss");
+		question2.setExplainDetail("sss");
 		question2.setStatus(true);
 		
+		System.out.println(question2.toString());
 
-		question.setQuiz(quizServiceFaculty.findById(quizId));
+		//question.setQuiz(quizServiceFaculty.findById(quizId));
 		
 		questionServiceFaculty.create(question2);
 

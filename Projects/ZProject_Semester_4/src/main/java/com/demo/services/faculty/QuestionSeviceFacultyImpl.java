@@ -30,7 +30,13 @@ public class QuestionSeviceFacultyImpl implements QuestionServiceFaculty{
 	// this method was not be completed!
 	@Override
 	public Question create(Question question) {
-		return questionRepositoryFaculty.save(question);
+		try {
+			return questionRepositoryFaculty.save(question);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
 	}
 	
 	// this method was not be completed!

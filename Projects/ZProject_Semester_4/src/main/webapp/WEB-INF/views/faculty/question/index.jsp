@@ -29,7 +29,7 @@
 							$('#questionId').val(question.questionId);
 							$('#quizId').val(question.quiz.quizId);						
 							$('#title').val(question.title);		
-							$('#explain').val(question.explain);		
+							$('#explainDetail').val(question.explainDetail);		
 							$('#status').val(question.status);		
 						}
 					});
@@ -307,8 +307,8 @@
 				
 					</div>
 					<div class="form-group">
-						<label>Explain</label>
-						<s:input path="explain" type="text" class="form-control"
+						<label>explainDetail</label>
+						<s:input path="explainDetail" type="text" class="form-control"
 													required="required" />
 					
 					</div>
@@ -362,8 +362,8 @@
 					</div>
 				
 					<div class="form-group">
-						<label>Explain</label>
-						<s:input path="explain" type="text" 
+						<label>explainDetail</label>
+						<s:input path="explainDetail" type="text" 
 													class="form-control" required="required" />
 					
 					</div>	

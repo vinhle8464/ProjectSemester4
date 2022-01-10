@@ -252,7 +252,7 @@ INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid
 CREATE TABLE `question` (
   `question_id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
-  `explain` text NOT NULL,
+  `explain_detail` text NOT NULL,
   `quiz_id` int(11) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

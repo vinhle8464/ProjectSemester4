@@ -13,7 +13,7 @@ public class QuestionAjax {
 	private Integer questionId;
 	private Integer quizId;
 	private String title;
-	private String explain;
+	private String explainDetail;
 	private boolean status;
 	
 	
@@ -36,11 +36,11 @@ public class QuestionAjax {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getExplain() {
-		return explain;
+	public String getExplainDetail() {
+		return explainDetail;
 	}
-	public void setExplain(String explain) {
-		this.explain = explain;
+	public void setExplainDetail(String explainDetail) {
+		this.explainDetail = explainDetail;
 	}
 	public boolean isStatus() {
 		return status;
@@ -49,12 +49,12 @@ public class QuestionAjax {
 		this.status = status;
 	}
 	
-	public QuestionAjax(Integer questionId, Integer quizId, String title, String explain, boolean status) {
+	public QuestionAjax(Integer questionId, Integer quizId, String title, String explainDetail, boolean status) {
 		super();
 		this.questionId = questionId;
 		this.quizId = quizId;
 		this.title = title;
-		this.explain = explain;
+		this.explainDetail = explainDetail;
 		this.status = status;
 	}
 	public QuestionAjax() {
