@@ -19,4 +19,5 @@ public interface AccountServiceUser {
 
 	public void delete(int id);
 
+	public long countAccountUser();
 }

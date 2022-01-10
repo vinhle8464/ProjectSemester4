@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.models.Account;
+import com.demo.models.Category;
 import com.demo.models.Quiz;
 import com.demo.services.AccountService;
+import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
 
 @Controller
@@ -25,12 +28,15 @@ public class QuizFacultyController {
 	@Autowired
 	private AccountService accountService;
 	
+	@Autowired
+	private CategoryServiceAdmin categoryServiceAdmin;
+	
 	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		return pagination(1, 5, "quizId", modelMap, model, authentication);
-		
 	}
 	
 	
@@ -43,13 +49,16 @@ public class QuizFacultyController {
 		return "redirect:/faculty/quiz/index";
 	}
 
-	@RequestMapping(value = { "edit" }, method = RequestMethod.PUT)
-	public String edit(@ModelAttribute("quiz") Quiz quiz) {
-
+	@RequestMapping(value = { "edit" }, method = RequestMethod.POST)
+	public String edit(@ModelAttribute("quiz") Quiz quiz,  Authentication authentication, 
+			@RequestParam(value = "categoryId") int categoryId, ModelMap modelMap, Model model) {
 		
+		Account account = accountService.findByUsername(authentication.getName());
+		Category category = categoryServiceAdmin.findById(categoryId);
+		quiz.setCategory(category);
+		quiz.setAccount(account);
 		quizServiceFaculty.update(quiz);
-
-		return "redirect:/faculty/quiz/index";
+		return pagination(1, 50, "title", modelMap, model, authentication);
 	}
 
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
@@ -67,7 +76,7 @@ public class QuizFacultyController {
 			ModelMap modelMap, Model model, Authentication authentication) {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		int pageSizee = pageSize;
 
 		Page<Quiz> pages = quizServiceFaculty.getPage(currentPage, pageSizee, sort);

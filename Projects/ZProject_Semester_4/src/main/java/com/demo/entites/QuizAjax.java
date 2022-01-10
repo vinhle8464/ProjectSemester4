@@ -3,6 +3,8 @@ package com.demo.entites;
 public class QuizAjax {
 
 	private Integer quizId;
+	private int categoryId;
+	private String categoryName;
 	private String title;
 	private String description;
 	private int times;
@@ -14,6 +16,18 @@ public class QuizAjax {
 	}
 	public void setQuizId(Integer quizId) {
 		this.quizId = quizId;
+	}
+	public int getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public String getTitle() {
 		return title;
@@ -51,10 +65,12 @@ public class QuizAjax {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public QuizAjax(Integer quizId, String title, String description, int times, byte timer, boolean fee,
-			boolean status) {
+	public QuizAjax(Integer quizId, int categoryId, String categoryName, String title, String description, int times,
+			byte timer, boolean fee, boolean status) {
 		super();
 		this.quizId = quizId;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.title = title;
 		this.description = description;
 		this.times = times;
@@ -65,7 +81,6 @@ public class QuizAjax {
 	public QuizAjax() {
 		super();
 	}
-	
-	
+
 	
 }

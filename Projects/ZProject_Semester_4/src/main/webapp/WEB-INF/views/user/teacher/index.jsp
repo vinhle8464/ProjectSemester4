@@ -18,7 +18,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-01.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/duongduong.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -29,8 +29,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Williamson</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">Yang Yang</h3>
+							<span class="post">Math</span>
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-02.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/trieulotu.jpg" >
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -49,8 +49,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Kristiana</h3>
-							<span class="post">Web Designer</span>
+							<h3 class="title">Zhào Lù sī</h3>
+							<span class="post">Chemistry</span>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-03.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/dinhvuhe.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -69,8 +69,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Steve Thomas</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">Dīng yǔ xī</h3>
+							<span class="post">Physic</span>
 						</div>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-04.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/trieuledinh.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -89,8 +89,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Miranda joy</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">Zhào Lìyǐng</h3>
+							<span class="post">Biological</span>
 						</div>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-01.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/huakhai.png">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -109,8 +109,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Williamson</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">Xǔ Kǎi</h3>
+							<span class="post">History</span>
 						</div>
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-02.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/banhtieunhiem.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -129,8 +129,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Kristiana</h3>
-							<span class="post">Web Designer</span>
+							<h3 class="title">Péng Xiǎo Rǎn</h3>
+							<span class="post">Literature</span>
 						</div>
 					</div>
 				</div>
@@ -138,7 +138,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-03.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/nguutuanphong.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -149,8 +149,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Steve Thomas</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">牛骏峰</h3>
+							<span class="post">Technology</span>
 						</div>
 					</div>
 				</div>
@@ -158,7 +158,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="${pageContext.request.contextPath }/resources/user/images/team-04.png">
+							<img src="${pageContext.request.contextPath }/resources/user/images/truongduhi.jpg">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -169,8 +169,8 @@
 							</div>
 						</div>
 						<div class="team-content">
-							<h3 class="title">Miranda joy</h3>
-							<span class="post">Web Developer</span>
+							<h3 class="title">Zhāng Yǔxī</h3>
+							<span class="post">Geographic</span>
 						</div>
 					</div>
 				</div>

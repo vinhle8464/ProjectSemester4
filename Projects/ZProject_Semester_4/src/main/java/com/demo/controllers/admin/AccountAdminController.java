@@ -95,15 +95,16 @@ public class AccountAdminController implements ServletContextAware {
 	public String edit(@ModelAttribute("account") Account account, @RequestParam(value = "file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
 		Account account2 = accountService.findByUsername(account.getUsername());
-		if (file != null) {
-			String fileNameUpload = UploadHelper.upload(servletContext, file);
+		account2.setAvatar(accountService.findByUsername(account.getUsername()).getAvatar());
+		String fileNameUpload = UploadHelper.upload(servletContext, file);
+		if (fileNameUpload != null) {
 			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
 			account2.setAvatar(fileNameUpload);
 		}
+		account2.setEmail(account.getEmail());
 		account2.setAddr(account.getAddr());
+		account2.setGender(account.isGender());
 		account2.setFullname(account.getFullname());
-		System.out.println(account2.getFullname());
-		account2.setAvatar(accountService.findByUsername(account.getUsername()).getAvatar());
 
 		accountServiceAdmin.update(account2);
 

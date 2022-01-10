@@ -24,11 +24,6 @@ public class QuizAccountServiceAdminImpl implements QuizAccountServiceAdmin{
 
 	@Autowired
 	private QuizAccountRepository quizAccountRepository;
-	
-	@Override
-	public List<Quiz> findAllQuiz(int accountId) {
-		return (List<Quiz>) quizAccountRepository.findByAccountIdAjax(accountId);
-	}
 
 	
 

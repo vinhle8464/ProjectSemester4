@@ -74,6 +74,8 @@ public class PricingController {
 		PayPalConfig payPalConfig = new PayPalConfig();
 		
 		HttpSession httpSession = request.getSession();
+		System.out.println("pack id: " + httpSession.getAttribute("packId").toString());
+		
 		int pakcid = Integer.parseInt(httpSession.getAttribute("packId").toString());
 		
 		String authtoken = environment.getProperty("paypal.authtoken");
@@ -87,8 +89,6 @@ public class PricingController {
 		payPalConfig.setReturnurl(returnurl);
 		
 		PayPalResult result = PayPalSucess.getPayPal(request, payPalConfig);
-		
-		
 		
 		Account account = accountService.findByUsername(authentication.getName());
 		

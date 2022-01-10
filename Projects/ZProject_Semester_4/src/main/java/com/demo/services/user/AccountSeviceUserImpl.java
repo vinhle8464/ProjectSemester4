@@ -53,4 +53,9 @@ public class AccountSeviceUserImpl implements AccountServiceUser{
 		return (List<Account>) accountRepository.findAll();
 	}
 
+	@Override
+	public long countAccountUser() {
+		return accountRepository.count();
+	}
+
 }

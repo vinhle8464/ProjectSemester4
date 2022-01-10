@@ -36,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
+import com.demo.services.user.AccountServiceUser;
 import com.demo.services.user.OAuth2LoginSuccessHandler;
 import com.demo.services.user.RoleServiceUser;
 import com.demo.validators.AccountValidator;
@@ -62,6 +63,9 @@ public class AccountController implements ServletContextAware {
 	private AccountService accountService;
 
 	private ServletContext servletContext;
+	
+	@Autowired
+	private AccountServiceUser accountServiceUser;
 
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -180,7 +184,7 @@ public class AccountController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "welcome", method = RequestMethod.GET)
-	public String welcome(Authentication authentication, HttpServletRequest request) {
+	public String welcome(Authentication authentication, HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		System.out.println("hello" + authentication.getAuthorities().toString());
 		System.out.println("hello" + authentication.getName().toString());
@@ -192,6 +196,7 @@ public class AccountController implements ServletContextAware {
 			return "redirect:/faculty/dashboard/index";
 		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
 			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+			session.setAttribute("counta", accountServiceUser.countAccountUser());
 			return "redirect:/user/home/index";
 		} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
 				"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
