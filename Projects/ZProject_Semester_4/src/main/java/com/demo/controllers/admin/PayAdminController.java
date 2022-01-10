@@ -29,7 +29,7 @@ public class PayAdminController {
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		return pagination(1, 5, "payId", modelMap, model, authentication);
+		return pagination(1, 25, "payId", modelMap, model, authentication);
 		
 	}
 	

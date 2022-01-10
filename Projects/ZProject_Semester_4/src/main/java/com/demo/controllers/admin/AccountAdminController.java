@@ -61,7 +61,7 @@ public class AccountAdminController implements ServletContextAware {
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 
-		return pagination(1, 5, "accountId", modelMap, model, authentication);
+		return pagination(1, 25, "accountId", modelMap, model, authentication);
 
 	}
 
