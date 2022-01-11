@@ -27,7 +27,8 @@
 					data-toggle="dropdown">Course </a>
 					<div class="dropdown-menu" aria-labelledby="dropdown-a">
 						<c:forEach var="category" items="${categories }">
-							<a class="dropdown-item" href="course-grid-2.html">${category.title }
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath}/user/home/category/${category.title }">${category.title }
 							</a>
 						</c:forEach>
 
