@@ -36,7 +36,7 @@ public class QuizFacultyController {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
-		return pagination(1, 5, "quizId", modelMap, model, authentication);
+		return pagination(1, 25, "quizId", modelMap, model, authentication);
 	}
 	
 	

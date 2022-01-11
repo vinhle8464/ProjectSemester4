@@ -31,7 +31,8 @@
 							$('#accUsername').val(account.username);
 							$('#accFulllname').val(account.fullname);
 							$('#accEmail').val(account.email);
-							$('#dob').val(account.dob);
+							//$('#dob').val(account.dob);
+							$("#dob").val($.datepicker.formatDate('mm/dd/yy', new Date()));
 							$('#accAddress').val(account.addr);
 							var $radios = $('input:radio[name=gender]');
 							if (account.gender) {
