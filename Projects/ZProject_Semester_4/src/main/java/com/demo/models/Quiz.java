@@ -178,4 +178,14 @@ public class Quiz implements java.io.Serializable {
 		this.questions = questions;
 	}
 
+	@Override
+	public String toString() {
+		return "Quiz [quizId=" + quizId + ", account=" + account + ", categoryID=" + category.getCategoryId() + ", title=" + title
+				+ ", description=" + description + ", times=" + times + ", timer=" + timer + ", fee=" + fee
+				+ ", status=" + status + ", ratingComments=" + ratingComments + ", histories=" + histories
+				+ ", questions=" + questions + "]";
+	}
+
+	
+	
 }

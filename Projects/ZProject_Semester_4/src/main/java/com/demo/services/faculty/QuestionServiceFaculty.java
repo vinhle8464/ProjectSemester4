@@ -23,5 +23,7 @@ public interface QuestionServiceFaculty {
 	
 
 	public Page<Question> getPage(int currentPage, int pageSize, String sort);
-		
+	
+	public Page<Question> getAllQuestionByQuizId(int currentPage, int pageSize, String sort, int quizId);
+	
 }

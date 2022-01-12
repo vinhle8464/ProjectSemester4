@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 09, 2022 at 07:14 PM
+-- Host: localhost
+-- Generation Time: Jan 12, 2022 at 12:04 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.21
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,8 +46,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephatlksjdf', '2021-12-08', 'asdfasf', b'01', '23423234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
-(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'asdfasdf', '2021-12-15', 'asdfasf', b'01', '234234234', '148fa5fab32d4e669482caa8943cfd38.jpg', b'01'),
+(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephat8464@gmail.com', '2021-12-08', 'asdfasf', b'01', '23423234', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01'),
+(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'lephat8464@gmail.com', '2021-12-15', 'asdfasf', b'01', '234234234', '3c83adfb0bfe4c10bac147091d3888f3.png', b'01'),
 (3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', 'Photo28.jpg', b'01'),
 (6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'Photo24.jpg', b'01'),
 (94, 'hehehe', '$2a$10$ECQuxj/7y.1yDH3Ix0pxKOAbZhAdpQy8WCZXpnmbj5kmgPAa9uI36', 'vinh', 'vinhkhung@gmail.com', '2021-12-01', 'tay ninh', b'01', '23423424', '822e27dd8557477486b79a78e35f4f3b.jpg', b'01'),
@@ -108,6 +108,50 @@ CREATE TABLE `answer` (
   `answer_status` bit(2) NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `status`) VALUES
+(2, 'Ngoc', 12, b'00', b'01'),
+(3, 'Lan', 12, b'00', b'01'),
+(4, 'Han', 12, b'00', b'01'),
+(5, 'Tran', 12, b'01', b'01'),
+(6, 'Sai gon', 13, b'00', b'01'),
+(7, 'Da Nang', 13, b'00', b'01'),
+(8, 'Tay Ninh', 13, b'01', b'01'),
+(9, 'Ha Noi', 13, b'00', b'01'),
+(10, 'Roi', 14, b'00', b'01'),
+(11, 'Chua', 14, b'00', b'01'),
+(12, 'Khong muon an com', 14, b'00', b'01'),
+(13, 'Dang giam can k an com dau', 14, b'01', b'01'),
+(14, '1m70', 15, b'00', b'01'),
+(15, '1m50', 15, b'01', b'01'),
+(16, '1m52', 15, b'00', b'01'),
+(17, '1m48', 15, b'00', b'01'),
+(18, '1', 16, b'00', b'01'),
+(19, '0', 16, b'00', b'01'),
+(20, '2', 16, b'01', b'01'),
+(21, '3', 16, b'00', b'01'),
+(22, '4', 16, b'00', b'01'),
+(23, '15', 17, b'00', b'01'),
+(24, '21', 17, b'01', b'01'),
+(25, '20', 17, b'00', b'01'),
+(26, '12', 17, b'00', b'01'),
+(27, '18', 17, b'00', b'01'),
+(28, '1', 18, b'00', b'01'),
+(29, '2', 18, b'00', b'01'),
+(30, '3', 18, b'01', b'01'),
+(31, '1', 19, b'00', b'01'),
+(32, '2', 19, b'00', b'01'),
+(33, '3', 19, b'00', b'01'),
+(34, '4', 19, b'01', b'01'),
+(35, '5', 19, b'01', b'01'),
+(36, 'vui', 20, b'01', b'01'),
+(37, 'buon', 20, b'00', b'01'),
+(38, 'kkhoc', 20, b'00', b'01'),
+(39, 'xiu', 20, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -257,6 +301,21 @@ CREATE TABLE `question` (
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`) VALUES
+(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01'),
+(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01'),
+(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01'),
+(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01'),
+(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01'),
+(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01'),
+(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01'),
+(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01'),
+(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01');
+
 -- --------------------------------------------------------
 
 --
@@ -280,15 +339,17 @@ CREATE TABLE `quiz` (
 --
 
 INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `status`) VALUES
-(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 0, 60, b'00', b'01'),
+(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', b'01'),
 (2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', b'01'),
 (3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', b'01'),
 (5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', b'01'),
 (6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', b'01'),
-(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí', 2, 6, 0, 50, b'00', b'00'),
+(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', b'00'),
 (8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', b'01'),
 (9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', b'00'),
-(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', b'01');
+(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', b'01'),
+(11, 'trac nghiem tinh cach', 'xao do ehe\r\nco cai nit', 2, 8, 11, 10, b'00', b'01'),
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -454,7 +515,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -484,13 +545,13 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `rating_comment`

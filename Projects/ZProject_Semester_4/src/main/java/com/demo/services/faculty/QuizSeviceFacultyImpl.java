@@ -34,8 +34,8 @@ public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 
 	@Override
 	public Quiz create(Quiz quiz) {
-		// TODO Auto-generated method stub
-		return null;
+		return quizRepositoryFaculty.save(quiz);
+		
 	}
 
 	@Override
@@ -58,6 +58,12 @@ public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 	public Page<Quiz> getPage(int currentPage, int pageSize, String sort) {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 		return this.quizRepositoryFaculty.findAll(pageable);
+	}
+
+	@Override
+	public Page<Quiz> getAllQuizByAccountId(int currentPage, int pageSize, String sort, int accountId) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepositoryFaculty.getAllQuizByAccountId(accountId, pageable);
 	}
 	
 	

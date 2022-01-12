@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
+
+	<s:authorize access="hasRole('ROLE_ADMIN')">
 <!-- Brand Logo -->
 <a href="${pageContext.request.contextPath}/admin/dashboard"
 	class="brand-link"> <img
@@ -26,7 +28,35 @@
 				class="d-block">${accountUsername.fullname }</a>
 		</div>
 	</div>
+	</s:authorize>
+	
+<s:authorize access="hasRole('ROLE_USER_FACULTY')">
+<!-- Brand Logo -->
+<a href="${pageContext.request.contextPath}/faculty/dashboard"
+	class="brand-link"> <img
+	src="${pageContext.request.contextPath}/resources/admin/dist/img/AdminLTELogo.png"
+	alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+	style="opacity: .8"> <span class="brand-text font-weight-light">AdminLTE
+		3</span>
+</a>
 
+<!-- Sidebar -->
+<div class="sidebar">
+	<!-- Sidebar user panel (optional) -->
+	<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+		<div class="image">
+			<img
+				src="${pageContext.request.contextPath}/assets/uploads/${accountUsername.avatar }"
+				class="img-circle elevation-2" alt="User Image">
+		</div>
+		<div class="info">
+			<a
+				href="${pageContext.request.contextPath}/faculty/profile/index?accountId=${accountUsername.accountId }"
+				class="d-block">${accountUsername.fullname }</a>
+		</div>
+	</div>
+	</s:authorize>
+	
 	<!-- SidebarSearch Form -->
 	<div class="form-inline">
 		<div class="input-group" data-widget="sidebar-search">

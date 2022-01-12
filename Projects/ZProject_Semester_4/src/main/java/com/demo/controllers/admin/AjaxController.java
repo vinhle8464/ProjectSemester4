@@ -16,6 +16,7 @@ import com.demo.entites.EmailAjax;
 import com.demo.entites.PackAjax;
 import com.demo.entites.PayAjax;
 import com.demo.entites.RoleAjax;
+import com.demo.models.Account;
 import com.demo.models.Pack;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.CategoryServiceAdmin;
@@ -86,6 +87,15 @@ public class AjaxController {
 	public CategoryAjax findCategoryById(@RequestParam("categoryId") int categoryId) {
 		
 		return categoryServiceAdmin.findByIdAjax(categoryId);
+		
+	}
+	
+	@RequestMapping(value = {"checkStatus"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public Account checkStatus(@RequestParam("accountId") int accountId) {
+		
+		Account account = accountServiceAdmin.findById(accountId);
+		account.setStatus(!account.isStatus());
+		return accountServiceAdmin.update(account);
 		
 	}
 

@@ -123,11 +123,8 @@
 							<td>${pay.fee }</td>
 							
 							<td>
-								<a href="#editEmployeeModal" id="${pay.payId }"
-															onclick="openEditModal(id);" class="edit"
-															data-toggle="modal"><i class="material-icons"
-																data-toggle="tooltip" title="Detail">&#xE88E;</i></a>
-								
+								<a href="#editEmployeeModal" id="${pay.payId }" onclick="openEditModal(id);" class="edit" data-toggle="modal">
+								<i class="material-icons" data-toggle="tooltip" title="Detail">&#xE88E;</i></a>
 							</td>
 						</tr>
 						</c:forEach>

@@ -1,6 +1,7 @@
 package com.demo.controllers.faculty;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.entites.QuestionAnswer;
 import com.demo.models.Account;
 import com.demo.models.Answer;
 import com.demo.models.Question;
@@ -52,59 +54,40 @@ public class DashboardFacultyController {
 		Account account = (Account) session.getAttribute("account");
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 	
+		QuestionAnswer questionAnswer = new QuestionAnswer();
+		modelMap.put("questionAnswer", questionAnswer);
+		
+		Question question = new Question();
+		modelMap.put("question", question);
+		
 		return "faculty/dashboard/index";
 	}
 	
-	@RequestMapping(value = { "testt" }, method = RequestMethod.POST)
-	public String testt(@RequestParam("quizId") int quizId, HttpServletRequest request) {
+
+	
+	
+	@RequestMapping(value = { "test2" }, method = RequestMethod.POST)
+	public String test2(@ModelAttribute("questionAnswer") QuestionAnswer questionAnswer, @RequestParam("quizId") int quizId, @RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus, HttpServletRequest request) {
 		
-		String[] questions = request.getParameterValues("questions");
+		//String[] questions = request.getParameterValues("questions");
+//		
+//		List<String> convertedAnswerTitle = Arrays.asList(questionAnswer.getAnswer().getTitle().split(",", -1));
+//		
 		
-//		System.out.println("count question: " + questions.length);
-//		for(String question : questions) {
-//			System.out.println("value: " + question);
-//		}
-		for(String questionTitle : questions) {
-			Question question2 = new Question();
-			List<Answer> answers = new ArrayList<Answer>();
-			
-			if(questionTitle.contains("question")) {
-				question2.setTitle(questionTitle);
-				question2.setQuestionId(quizId);
-				question2.setStatus(true);
-				questions = ArrayUtils.removeElement(questions, questionTitle);
-				System.out.println("count question: " + questions.length);
-				
-				for(String explain : questions) {
-					if(explain.contains("explain")) {
-						question2.setExplainDetail(explain);					
-					}
-					questions = ArrayUtils.removeElement(questions, explain);
-					System.out.println("count question: " + questions.length);
-					
-				}
-				Question question = questionServiceFaculty.create(question2);
-				
-				for(String answerTitle : questions) {
-					if(answerTitle.contains("answer")) {
-						if(answerTitle.contains("true"))
-						//answers.add(new Answer(question, answerTitle, true, true));
-						answerServiceFaculty.create(new Answer(question, answerTitle, true, true));
-						}else {
-						//answers.add(new Answer(question, answerTitle, false, true));
-						answerServiceFaculty.create(new Answer(question, answerTitle, false, true));
-					}
-					questions = ArrayUtils.removeElement(questions, answerTitle);
-					System.out.println("count question: " + questions.length);
-					
-				}
-						
-					
-			}
+		System.out.println("title "  + quizId);
+		System.out.println("title "  + questionAnswer.getQuestion().getTitle());
+		System.out.println("title "  + questionAnswer.getQuestion().getExplainDetail());
+	
+		for(String title : answerTitle) {
+			System.out.println("title: " + title);
 		}
-
-		System.out.println("count question: " + questions.length);
-
+		
+		for(String status : answerStatus) {
+			System.out.println("status: " + status);
+		}
+		System.out.println("==================== "  );
+		
+		
 		return "faculty/dashboard/index";
 	}
 }

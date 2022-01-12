@@ -67,13 +67,13 @@ public class Answer implements java.io.Serializable {
 
 	@Column(name = "answer_status", nullable = false)
 	public boolean isAnswerStatus() {
-		return this.answerStatus;
+		return answerStatus;
 	}
-
+	
 	public void setAnswerStatus(boolean answerStatus) {
 		this.answerStatus = answerStatus;
 	}
-
+	
 	@Column(name = "status", nullable = false)
 	public boolean isStatus() {
 		return this.status;
@@ -82,5 +82,7 @@ public class Answer implements java.io.Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	
 
 }

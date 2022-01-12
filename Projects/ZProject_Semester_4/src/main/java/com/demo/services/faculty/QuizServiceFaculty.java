@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import com.demo.entites.QuizAccountAjax;
 import com.demo.entites.QuizAjax;
 import com.demo.models.Account;
+import com.demo.models.Question;
 import com.demo.models.Quiz;
 public interface QuizServiceFaculty {
 
@@ -25,5 +26,7 @@ public interface QuizServiceFaculty {
 
 	public Page<Quiz> getPage(int currentPage, int pageSize, String sort);
 
+	public Page<Quiz> getAllQuizByAccountId(int currentPage, int pageSize, String sort, int accountId);
+	
 	
 }
