@@ -32,6 +32,20 @@
 						}
 					});
 		}
+		
+		function getSwitch(roleId){
+			
+			$.ajax({
+					type : 'GET',
+					url : '${pageContext.request.contextPath }/admin/ajax/checkStatusRole',
+					data : {
+						roleId: roleId
+					},
+					success: function(role) {
+						
+					}
+			 });
+		}
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -78,28 +92,18 @@
 							<h2>Manage <b>Roles</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Role</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Role</span></a>
+													
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
-							<th> <a
-													href="${pageContext.request.contextPath}/admin/role/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=roleId">roleID</a></th>
-							<th><a
-													href="${pageContext.request.contextPath}/admin/role/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=roleName">RoleName</a></th>
-							<th><a
-													href="#">Description</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/role/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=roleId">Role ID</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/role/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=roleName">Role Name</a></th>
+							<th><a href="#">Description</a></th>
+							<th><a href="#">Status</a></th>
 							
 							<th>Actions</th>
 						</tr>
@@ -109,27 +113,46 @@
 	      
 	    			  <c:choose>
 	        <c:when test="${roles.size() > 0 }">
-					<c:forEach var="role" items="${roles}">
+					<c:forEach var="role" items="${roles}" varStatus="i">
 						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
-							<td>${role.roleId }</td>
+							<td width="100px">${role.roleId }</td>
 							<td>${role.roleName }</td>
 							<td>${role.description }</td>
-							
+							<td>
+								<c:if test="${role.status == true }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${role.roleId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Active</span>
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${role.status == false }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${role.roleId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Unactive</span>
+										</div>
+									</div>
+								</c:if>
+							</td>
 							<td>
 								<a href="#editEmployeeModal" id="${role.roleId }"
 																onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${role.roleId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>

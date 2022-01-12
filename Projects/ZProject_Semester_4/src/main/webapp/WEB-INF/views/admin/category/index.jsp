@@ -32,6 +32,21 @@
 						}
 					});
 		}
+		
+	   function getSwitch(categoryId){
+			
+			$.ajax({
+					type : 'GET',
+					url : '${pageContext.request.contextPath }/admin/ajax/checkStatusCategory',
+					data : {
+						categoryId: categoryId
+					},
+					success: function(category) {
+						
+					}
+			 });
+		}
+		
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -80,24 +95,17 @@
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
 													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Category</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+											
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
-							<th> <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=categoryId">categoryID</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=categoryId">CategoryID</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/category/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
 							<th><a href="#">Description</a></th>
-							
+							<th><a href="#">Status</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -106,27 +114,46 @@
 	      
 	    			  <c:choose>
 	        <c:when test="${categories.size() > 0 }">
-					<c:forEach var="category" items="${categories}">
+					<c:forEach var="category" items="${categories}" varStatus="i">
 						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
 							<td>${category.categoryId }</td>
 							<td>${category.title }</td>
 							<td>${category.description }</td>
-							
+							<td>
+								<c:if test="${category.status == true }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${category.categoryId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Active</span>
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${category.status == false }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${category.categoryId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Unactive</span>
+										</div>
+									</div>
+								</c:if>
+							</td>
 							<td>
 								<a href="#editEmployeeModal" id="${category.categoryId }"
 																onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${category.categoryId }"
-																onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>

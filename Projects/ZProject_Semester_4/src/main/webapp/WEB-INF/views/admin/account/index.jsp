@@ -48,11 +48,12 @@
 		function getSwitch(accountId){
 			 $.ajax({
 					type : 'GET',
-					url : '${pageContext.request.contextPath }/admin/ajax/checkStatus',
+					url : '${pageContext.request.contextPath }/admin/ajax/checkStatusAccount',
 					data : {
 						accountId: accountId
 					},
 					success: function(account) {
+						location.reload();
 						/* var result = '';
 						if(account.status){
 							result += '<div class="custom-control custom-switch col-3">';

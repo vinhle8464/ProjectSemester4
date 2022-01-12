@@ -88,22 +88,13 @@
 							<h2>Manage <b>Emails</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="#addEmployeeModal" class="btn btn-success"
-													data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Email</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger"
-													data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Email</span></a>					
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
 							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailId">Email ID</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=emailUser">Email User</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
@@ -111,7 +102,7 @@
 							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=sendDate">Send Date</a></th>
 							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=replyDate">Reply Date</a></th>
 							<th> <a href="${pageContext.request.contextPath}/admin/email/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=checked">Checked</a></th>
-							<th>Actions</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -123,36 +114,18 @@
 					<c:if test="${email.checked == false}">
 							<tr style="background: #c5d9ed;" onclick="window.location='${pageContext.request.contextPath }/admin/email/replyIndex?emailId=${email.emailId }';">
 								
-								<td>
-									<span class="custom-checkbox">
-										<input type="checkbox" id="checkbox1" name="options[]" value="1">
-										<label for="checkbox1"></label>
-									</span>
-								</td>
-								<td><strong>${email.emailId }</strong></td>
+								<td width="100px"><strong>${email.emailId }</strong></td>
 								<td><strong>${email.emailUser }</strong></td>
 								<td><strong>${email.title }</strong></td>
 								<td><strong>${email.phoneNumber }</strong></td>
 								<td><strong>${email.sendDate }</strong></td>
 								<td><strong>${email.replyDate }</strong></td>
 								<td><strong>${email.checked ? "Yes" : "No" }</strong></td>
-								
-								<td>
-									<a href="#editEmployeeModal" id="${email.emailId }" onclick="openEditModal(id);" class="edit" data-toggle="modal"><i class="material-icons"
-																		data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-									<a href="#deleteEmployeeModal" id="${email.emailId }" onclick="openDeleteModal(id);" class="delete" data-toggle="modal"><i class="material-icons"
-																		data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-								</td>
 							</tr>
 					</c:if>
 						<c:if test="${email.checked == true}">
 							<tr onclick="window.location='${pageContext.request.contextPath }/admin/email/replyIndex?emailId=${email.emailId }';">
-								<td>
-									<span class="custom-checkbox">
-										<input type="checkbox" id="checkbox1" name="options[]" value="1">
-										<label for="checkbox1"></label>
-									</span>
-								</td>
+								
 								<td>${email.emailId }</td>
 								<td>${email.emailUser }</td>
 								<td>${email.title }</td>
@@ -161,16 +134,6 @@
 								<td>${email.replyDate }</td>
 								<td>${email.checked ? "Yes" : "No" }</td>
 								
-								<td>
-									<a href="#editEmployeeModal" id="${email.emailId }"
-																	onclick="openEditModal(id);" class="edit"
-																	data-toggle="modal"><i class="material-icons"
-																		data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-									<a href="#deleteEmployeeModal" id="${email.emailId }"
-																	onclick="openDeleteModal(id);" class="delete"
-																	data-toggle="modal"><i class="material-icons"
-																		data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-								</td>
 							</tr>
 					</c:if>
 						</c:forEach>
@@ -311,19 +274,6 @@
 											
 				</div>
 				<div class="modal-body">					
-					<%-- <div class="form-group">
-					<span style="color: red;">${msg==""?"": msg }</span> <br />
-						<label>email-Name</label>
-						<s:input path="emailName" type="text" class="form-control"
-													required="required" />
-				
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<s:input path="description" type="text" class="form-control"
-													required="required" />
-					
-					</div> --%>
 					
 									
 				</div>

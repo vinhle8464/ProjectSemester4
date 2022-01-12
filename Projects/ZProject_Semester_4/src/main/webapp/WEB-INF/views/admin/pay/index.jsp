@@ -7,7 +7,6 @@
 <mt:layout_admin title="Pay">
 
 	<jsp:attribute name="content">
-
 <link rel="stylesheet"
 			href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -91,10 +90,10 @@
 					<thead>
 						<tr>
 							<th>
-							
+								Serial
 							</th>
 							<th> <a
-												href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payId">payID</a></th>
+												href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=payId">Pay ID</a></th>
 							<th><a
 												href="${pageContext.request.contextPath}/admin/pay/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
 							<th> <a
@@ -110,8 +109,9 @@
 	
 	      
 	    			  <c:choose>
+	    			  
 	        <c:when test="${pays.size() > 0 }">
-					<c:forEach var="pay" items="${pays}">
+					<c:forEach var="pay" items="${pays}" >
 						<tr>
 							<td>
 								

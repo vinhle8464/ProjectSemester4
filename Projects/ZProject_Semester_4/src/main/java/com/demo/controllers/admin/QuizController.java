@@ -41,7 +41,7 @@ public class QuizController {
 			ModelMap modelMap, Model model, Authentication authentication) {
 		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		int pageSizee = pageSize;
 
 		Page<Quiz> pages = quizServiceAdmin.getPage(currentPage, pageSizee, sort);

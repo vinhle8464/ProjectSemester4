@@ -18,8 +18,73 @@
 			$('#quizID').val(quizId);
 		}
 		
+		function getSwitch(quizId){
+			
+			$.ajax({
+					type : 'GET',
+					url : '${pageContext.request.contextPath }/admin/ajax/checkStatusQuiz',
+					data : {
+						quizId: quizId
+					},
+					success: function(quiz) {
+								
+					}
+			 });		
+		}
 		
-		
+		$(document).ready(function(){
+			$('#cbbCategory').change(function(){
+				var value = $('#cbbCategory option:selected').val();
+				if(value == 'all'){
+					$.ajax({
+						type: 'GET',
+						url: '${pageContext.request.contextPath }/admin/ajax/findAllQuizWithCategory',
+						success: function(quizs){
+							location.reload();
+							/* var result = '';
+							for(i = 0; i < quizs.lenght; i++){
+								result += '<tr>';
+								result += '<td>' + quizs[i].quizId + '</td>';
+								result += '<td>' + quizs[i].account.username + '</td>';
+								result += '<td>' + quizs[i].account.fullname + '</td>';
+								result += '<td>' + quizs[i].title + '</td>';
+								result += '<td>' + quizs[i].category.title + '</td>';
+								result += '<td>' + quizs[i].times + '</td>';
+								result += '<td>' + quizs[i].timer + '</td>';
+								result += '</tr>';
+							}
+							$('#tableQuiz').html(result); */
+						}
+					});
+				} else {
+					$.ajax({
+						type: 'GET',
+						url: '${pageContext.request.contextPath }/admin/ajax/findByCategoryIdWithQuiz',
+						data: {
+							categoryId: value
+						},
+						success: function(quizs){
+							location.reload();
+							/* var result = '';
+							for(i = 0; i < quizs.lenght; i++){
+								result += '<tr>';
+								result += '<td>' + quizs[i].quizId + '</td>';
+								result += '<td>' + quizs[i].account.username + '</td>';
+								result += '<td>' + quizs[i].account.fullname + '</td>';
+								result += '<td>' + quizs[i].title + '</td>';
+								result += '<td>' + quizs[i].category.title + '</td>';
+								result += '<td>' + quizs[i].times + '</td>';
+								result += '<td>' + quizs[i].timer + '</td>';
+								result += '</tr>';
+							}
+							$('#tableQuiz').html(result); */
+						}
+						
+					});
+				}
+				
+			});
+		});
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -67,7 +132,7 @@
 						</div>
 						<div class="col-sm-4">
 							<a href="#" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Quiz</span></a>
-							<a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+							
 						</div>
 						<div class="form-group col-sm-4">
 							<select class="form-control" id="cbbCategory">
@@ -82,40 +147,31 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
 							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=quizId">Quiz ID</a></th>
 							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.username">Username</a></th>
 							<th> <a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=category.title">Category</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=times">Times</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=times">Timer</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+							<th>Status</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="tableQuiz">
 	
 	      
 	    			  <c:choose>
 	        <c:when test="${quizs.size() > 0 }">
-					<c:forEach var="quiz" items="${quizs}">
+					<c:forEach var="quiz" items="${quizs}" varStatus="i">
 						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
-							<td>${quiz.quizId }</td>
+							<td width="100px">${quiz.quizId }</td>
 							<td>${quiz.account.username }</td>
 							<td>${quiz.account.fullname }</td>
 							<td>${quiz.title }</td>
+							<td>${quiz.category.title }</td>
 							<td>${quiz.times }</td>
 							<td>${quiz.timer }</td>
 							<c:if test="${quiz.fee == true}">
@@ -126,12 +182,33 @@
 							</c:if>
 							<td>${quiz.description }</td>
 							<td>
+								<c:if test="${quiz.status == true }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${quiz.quizId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${quiz.status == false }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${quiz.quizId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+									</div>
+								</c:if>
+							</td>
+							<td>
 								<a href="#editEmployeeModal" id="${quiz.quizId }" onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${quiz.quizId }" onclick="openDeleteModal(id);" class="delete"
-																data-toggle="modal"><i class="material-icons"
-																	data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>

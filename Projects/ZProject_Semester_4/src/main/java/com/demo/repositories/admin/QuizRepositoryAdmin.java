@@ -1,5 +1,7 @@
 package com.demo.repositories.admin;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,11 @@ public interface QuizRepositoryAdmin extends JpaRepository<com.demo.models.Quiz,
 
 	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz where quizId = :quizId")
 	public QuizAjax findByIdAjax(@Param("quizId") int quizId);
+	
+	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz")
+	public List<QuizAjax> findAllAjaxByCategoryId();
+	
+	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz where category.categoryId = :categoryId")
+	public List<QuizAjax> findAjaxByCategoryId(@Param("categoryId") int categoryId);
 	
 }

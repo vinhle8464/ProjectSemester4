@@ -8,8 +8,7 @@
 
 	<jsp:attribute name="content">
 
-<link rel="stylesheet"
-			href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
@@ -35,6 +34,20 @@
 						}
 					});
 		}
+		
+			function getSwitch(packId){
+				$.ajax({
+						type : 'GET',
+						url : '${pageContext.request.contextPath }/admin/ajax/checkStatusPack',
+						data : {
+							packId: packId
+						},
+						success: function(pack) {
+							
+						}
+				 });
+			}
+		
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -84,30 +97,19 @@
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
 												data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New pack</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger"
-												data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+												
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
-							<th> <a
-												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">packID</a></th>
-							<th><a
-												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
-							<th> <a
-												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
-													<th> <a
-												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
-													<th> <a
-												href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=packId">Pack ID</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=expiry">Expiry</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/admin/pack/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=description">Description</a></th>
+							<th>Status</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -116,30 +118,48 @@
 	      
 	    			  <c:choose>
 	        <c:when test="${packs.size() > 0 }">
-					<c:forEach var="pack" items="${packs}">
+					<c:forEach var="pack" items="${packs}" varStatus="i">
 						<tr>
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]"
-																value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
-							<td>${pack.packId }</td>
+							<td width="100px">${pack.packId }</td>
 							<td>${pack.title }</td>
 							<td>${pack.expiry }</td>
 							<td>${pack.fee }</td>
 							<td>${pack.description }</td>
-							
+							<td>
+								<c:if test="${pack.status == true }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${pack.packId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Active</span>
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${pack.status == false }">
+									<div class="row result">
+										<div class="custom-control custom-switch col-3">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${pack.packId }" onchange="getSwitch(name);">
+										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
+										</div>
+										<div class="col-1">
+											<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div>
+										</div>
+										<div class="col-8">
+											<span>Unactive</span>
+										</div>
+									</div>
+								</c:if>
+							</td>
 							<td>
 								<a href="#editEmployeeModal" id="${pack.packId }"
 															onclick="openEditModal(id);" class="edit"
 															data-toggle="modal"><i class="material-icons"
 																data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" id="${pack.packId }"
-															onclick="openDeleteModal(id);" class="delete"
-															data-toggle="modal"><i class="material-icons"
-																data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 						</c:forEach>

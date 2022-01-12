@@ -24,5 +24,9 @@ public interface QuizServiceAdmin {
 	public QuizAjax findByIdAjax(int quizId);
 
 	public Page<Quiz> getPage(int currentPage, int pageSize, String sort);
+	
+	public List<QuizAjax> findAllAjaxByCategoryId();
+	
+	public List<QuizAjax> findAjaxByCategoryId(int categoryId);
 
 }

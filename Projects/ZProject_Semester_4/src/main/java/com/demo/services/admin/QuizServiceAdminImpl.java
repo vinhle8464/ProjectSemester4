@@ -60,5 +60,16 @@ public class QuizServiceAdminImpl implements QuizServiceAdmin{
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 			return this.quizRepositoryAdmin.findAll(pageable);
 	}
+	
+	@Override
+	public List<QuizAjax> findAllAjaxByCategoryId() {
+		return quizRepositoryAdmin.findAllAjaxByCategoryId();
+	}
+
+	@Override
+	public List<QuizAjax> findAjaxByCategoryId(int categoryId) {
+		return quizRepositoryAdmin.findAjaxByCategoryId(categoryId);
+	}
+
 
 }
