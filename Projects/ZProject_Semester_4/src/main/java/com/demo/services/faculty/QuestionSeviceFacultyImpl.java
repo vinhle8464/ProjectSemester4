@@ -33,7 +33,6 @@ public class QuestionSeviceFacultyImpl implements QuestionServiceFaculty{
 		try {
 			return questionRepositoryFaculty.save(question);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			return null;
 		}
 		

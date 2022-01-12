@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.entites.AnswerAjax;
 import com.demo.entites.QuizAjax;
 import com.demo.models.Answer;
 import com.demo.models.Question;
@@ -23,10 +24,10 @@ public class AnswerSeviceFacultyImpl implements AnswerServiceFaculty{
 	@Autowired
 	private AnswerRepositoryFaculty answerRepositoryFaculty;
 
-//	@Override
-//	public Quiz findById(int id) {
-//		return QuizRepositoryAdmin.findById(id).get();
-//	}
+	@Override
+	public Answer findById(int id) {
+		return answerRepositoryFaculty.findById(id).get();
+	}
 	
 	// this method was not be completed!
 	@Override
@@ -35,26 +36,29 @@ public class AnswerSeviceFacultyImpl implements AnswerServiceFaculty{
 	}
 	
 	// this method was not be completed!
-//	@Override
-//	public Quiz update(Quiz Quiz) {
-//		
-//		return QuizRepositoryAdmin.save(Quiz);
-//		
-//	}
-//
-//	@Override
-//	public void deleteById(int id) {
-//		QuizRepositoryAdmin.deleteById(id);
-//	}
-//
-//	@Override
-//	public List<Quiz> findAllQuiz() {
-//		
-//		return (List<Quiz>) QuizRepositoryAdmin.findAll();
-//
-//	}
+	@Override
+	public Answer update(Answer answer) {
+		
+		return answerRepositoryFaculty.save(answer);
+		
+	}
 
-	
-	
+	@Override
+	public void deleteById(int id) {
+		answerRepositoryFaculty.deleteById(id);
+	}
+
+	@Override
+	public List<Answer> findAllAnswer() {
+		
+		return  answerRepositoryFaculty.findAll();
+
+	}
+
+	@Override
+	public AnswerAjax findByIdAjax(int answerId) {
+		return answerRepositoryFaculty.findByIdAjax(answerId);
+	}
+
 
 }

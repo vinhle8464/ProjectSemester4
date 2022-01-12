@@ -89,6 +89,7 @@ public class QuestionFacultyController {
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
 	public String delete(@RequestParam("questionID") int questionID) {
 
+		answerServiceFaculty.deleteById(questionID);
 		questionServiceFaculty.deleteById(questionID);
 
 		return "redirect:/faculty/question/index";
@@ -98,7 +99,7 @@ public class QuestionFacultyController {
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
 			Model model, Authentication authentication, int quizId) {
-
+		
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 
 		int pageSizee = pageSize;
