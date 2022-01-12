@@ -68,6 +68,12 @@ public class QuestionSeviceFacultyImpl implements QuestionServiceFaculty{
 		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 			return this.questionRepositoryFaculty.findAll(pageable);
 	    }
+
+	@Override
+	public Page<Question> getAllQuestionByQuizId(int currentPage, int pageSize, String sort, int quizId) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.questionRepositoryFaculty.getAllQuestionByQuizId(quizId, pageable);
+	}
 	 
 	 
 }

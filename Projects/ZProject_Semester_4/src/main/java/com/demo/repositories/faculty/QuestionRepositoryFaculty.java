@@ -1,5 +1,7 @@
 package com.demo.repositories.faculty;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,7 @@ public interface QuestionRepositoryFaculty extends JpaRepository<Question, Integ
 	@Query("select new com.demo.entites.QuestionAjax(questionId, quiz.quizId, title, explainDetail, status) from Question where questionId = :questionId")
 	public QuestionAjax findByIdAjax(@Param("questionId") int questionId);
 	
+	@Query(value = "SELECT * FROM question q WHERE q.quiz_id = ?1",
+		    nativeQuery = true)
+	public Page<Question> getAllQuestionByQuizId(int quizId, Pageable pageable);
 }

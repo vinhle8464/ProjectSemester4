@@ -19,30 +19,31 @@ import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
 
 @Controller
-@RequestMapping(value = {"faculty/quiz"})
+@RequestMapping(value = { "faculty/quiz" })
 public class QuizFacultyController {
 
 	@Autowired
 	private QuizServiceFaculty quizServiceFaculty;
-	
+
 	@Autowired
 	private AccountService accountService;
-	
+
 	@Autowired
 	private CategoryServiceAdmin categoryServiceAdmin;
-	
-	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
-		
+
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
-		return pagination(1, 25, "quizId", modelMap, model, authentication);
+//		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
 	}
-	
-	
-	
+
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("quiz") Quiz quiz, ModelMap modelMap) {
+	public String create(@ModelAttribute("quiz") Quiz quiz, @RequestParam("categoryId") int categoryId, ModelMap modelMap, Authentication authentication) {
+
+		quiz.setCategory(categoryServiceAdmin.findById(categoryId));
+		quiz.setAccount(accountService.findByUsername(authentication.getName()));
 		
 		quizServiceFaculty.create(quiz);
 
@@ -50,15 +51,16 @@ public class QuizFacultyController {
 	}
 
 	@RequestMapping(value = { "edit" }, method = RequestMethod.POST)
-	public String edit(@ModelAttribute("quiz") Quiz quiz,  Authentication authentication, 
-			@RequestParam(value = "categoryId") int categoryId, ModelMap modelMap, Model model) {
-		
+	public String edit(@ModelAttribute("quiz") Quiz quiz, Authentication authentication,
+			@RequestParam(value = "categoryId") int categoryId) {
+
 		Account account = accountService.findByUsername(authentication.getName());
 		Category category = categoryServiceAdmin.findById(categoryId);
 		quiz.setCategory(category);
 		quiz.setAccount(account);
 		quizServiceFaculty.update(quiz);
-		return pagination(1, 50, "title", modelMap, model, authentication);
+		//return pagination(1, 25, "quizId", modelMap, model, authentication);
+		return "redirect:/faculty/quiz/index";
 	}
 
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
@@ -69,17 +71,18 @@ public class QuizFacultyController {
 		return "redirect:/faculty/quiz/index";
 	}
 
-	
-	
-	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
-	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model, Authentication authentication) {
+	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
+	public String pagination(@RequestParam(name = "currentPage") int currentPage,
+			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
+			Model model, Authentication authentication) {
+
+		Account account = accountService.findByUsername(authentication.getName());
 		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+		modelMap.put("accountUsername", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		int pageSizee = pageSize;
 
-		Page<Quiz> pages = quizServiceFaculty.getPage(currentPage, pageSizee, sort);
+		Page<Quiz> pages = quizServiceFaculty.getAllQuizByAccountId(currentPage, pageSizee, sort, account.getAccountId());
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", pages.getTotalPages());
 		model.addAttribute("totalElements", pages.getTotalElements());
@@ -87,9 +90,8 @@ public class QuizFacultyController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("quizs", pages.getContent());
 
-		Quiz quiz = new Quiz();		
+		Quiz quiz = new Quiz();
 		modelMap.put("quiz", quiz);
-
 
 		return "faculty/quiz/index";
 	}
