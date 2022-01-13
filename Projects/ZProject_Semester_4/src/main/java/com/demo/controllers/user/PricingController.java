@@ -26,6 +26,7 @@ import com.demo.paypals.PayPalConfig;
 import com.demo.paypals.PayPalResult;
 import com.demo.paypals.PayPalSucess;
 import com.demo.services.AccountService;
+import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.user.AccountPackService;
 import com.demo.services.user.PayService;
 import com.demo.services.user.PricingService;
@@ -50,6 +51,9 @@ public class PricingController {
 	@Autowired
 	private AccountPackService accountPackService;
 	
+	@Autowired
+	private CategoryServiceAdmin categoryServiceAdmin;
+	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String register(ModelMap modelMap, Authentication authentication) {
 		String authtoken = environment.getProperty("paypal.authtoken");
@@ -64,7 +68,10 @@ public class PricingController {
 		
 		modelMap.put("packs", pricingService.findAll());
 		modelMap.put("account", accountService.findByUsername(authentication.getName()));
-		
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		Account account = new Account();
+		account.setDob(new Date());
+		modelMap.put("account", account);
 		return "user/pricing/index";
 	}
 

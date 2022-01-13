@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.configurations.MyConstants;
+import com.demo.models.Account;
 import com.demo.models.Email;
+import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.user.EmailService;
 
 
@@ -27,8 +29,16 @@ public class ContactController {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
+	@Autowired
+	private CategoryServiceAdmin categoryServiceAdmin;
+	
+	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String register(ModelMap modelMap) {
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		Account account = new Account();
+		account.setDob(new Date());
+		modelMap.put("account", account);
 		Email email = new Email();
 		modelMap.put("email", email);
 		return "user/contact/index";

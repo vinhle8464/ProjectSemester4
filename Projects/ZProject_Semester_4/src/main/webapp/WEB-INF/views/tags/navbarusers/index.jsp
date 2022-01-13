@@ -192,13 +192,7 @@
 						</c:forEach>
 
 					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="dropdown-a"
-					data-toggle="dropdown">Blog </a>
-					<div class="dropdown-menu" aria-labelledby="dropdown-a">
-						<a class="dropdown-item" href="blog.html">Blog </a> <a
-							class="dropdown-item" href="blog-single.html">Blog single </a>
-					</div></li>
+			
 				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/teacher">Teachers</a></li>
 				<li class="nav-item"><a class="nav-link"

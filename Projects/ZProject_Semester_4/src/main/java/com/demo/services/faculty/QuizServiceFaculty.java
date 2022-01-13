@@ -3,18 +3,12 @@ package com.demo.services.faculty;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
-
-import com.demo.entites.QuizAccountAjax;
 import com.demo.entites.QuizAjax;
-import com.demo.models.Account;
-import com.demo.models.Question;
 import com.demo.models.Quiz;
 public interface QuizServiceFaculty {
 
 	public List<Quiz> findAllQuiz();
 
-	public List<Quiz> findAllQuizByCategoryId(int categoryId);
 	
 	public Quiz findById(int id);
 

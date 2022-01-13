@@ -66,11 +66,5 @@ public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 		return this.quizRepositoryFaculty.getAllQuizByAccountId(accountId, pageable);
 	}
 
-	@Override
-	public List<Quiz> findAllQuizByCategoryId(int categoryId) {
-		return quizRepositoryFaculty.findAllQuizByCategoryId(categoryId);
-	}
 	
-	
-
 }

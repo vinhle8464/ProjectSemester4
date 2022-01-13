@@ -27,7 +27,5 @@ public interface QuizRepositoryFaculty extends JpaRepository<Quiz, Integer> {
 		    nativeQuery = true)
 	public Page<Quiz> getAllQuizByAccountId(int account_id, Pageable pageable);
 	
-	@Query("from Quiz where categoryId=:categoryId")
-	public List<Quiz> findAllQuizByCategoryId(@Param("categoryId") int categoryId);
 	
 }
