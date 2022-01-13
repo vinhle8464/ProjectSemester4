@@ -2,7 +2,6 @@ package com.demo.controllers.faculty;
 
 import javax.servlet.ServletContext;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
