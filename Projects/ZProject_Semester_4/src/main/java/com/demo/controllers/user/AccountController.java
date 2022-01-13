@@ -53,7 +53,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.drive.DriveScopes;
 
 @Controller
-@RequestMapping(value = { "", "user/account", "login/oauth2/code" })
+@RequestMapping(value = { "user/account", "login/oauth2/code" })
 public class AccountController implements ServletContextAware {
 	@Autowired
 	private AccountValidator accountValidator;
@@ -84,7 +84,7 @@ public class AccountController implements ServletContextAware {
 		return redirectStrategy;
 	}
 
-	@RequestMapping(value = { "", "login" }, method = RequestMethod.GET)
+	@RequestMapping(value = {  "login" }, method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, ModelMap modelMap) {
 
@@ -113,36 +113,7 @@ public class AccountController implements ServletContextAware {
 		return "user/account/register";
 	}
 
-	@RequestMapping(value = "googlelogin", method = RequestMethod.GET)
-	public String google(ModelMap modelMap, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("email");
-		if (accountService.findByUsername(email) == null) {
-			int[] roles = { 2 };
-			Account account = new Account();
-			account.setUsername((String) session.getAttribute("email"));
-			String hash = new BCryptPasswordEncoder().encode((String) session.getAttribute("email"));
-			account.setPassword(hash);
-			account.setEmail((String) session.getAttribute("email"));
-			account.setFullname((String) session.getAttribute("name"));
-			account.setAddr("no");
-			account.setGender(true);
-			account.setAvatar((String) session.getAttribute("picture"));
-			account.setStatus(true);
-			if (roles != null && roles.length > 0) {
-				for (int role : roles) {
-					account.getRoles().add(roleServiceUser.find(role));
-				}
-			}
-			accountService.save(account);
-		} else {
-
-		}
-
-		modelMap.put("msg", "Login As Google Account " + session.getAttribute("name"));
-		return "redirect:/user/account/welcome";
-
-	}
+	
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
