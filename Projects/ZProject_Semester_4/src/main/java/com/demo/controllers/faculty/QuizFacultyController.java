@@ -1,5 +1,8 @@
 package com.demo.controllers.faculty;
 
+import javax.servlet.ServletContext;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -10,7 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.models.Category;
 import com.demo.models.Quiz;
@@ -20,7 +27,7 @@ import com.demo.services.faculty.QuizServiceFaculty;
 
 @Controller
 @RequestMapping(value = { "faculty/quiz" })
-public class QuizFacultyController {
+public class QuizFacultyController implements ServletContextAware{
 
 	@Autowired
 	private QuizServiceFaculty quizServiceFaculty;
@@ -30,6 +37,15 @@ public class QuizFacultyController {
 
 	@Autowired
 	private CategoryServiceAdmin categoryServiceAdmin;
+	
+	private ServletContext servletContext;
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+
+		this.servletContext = servletContext;
+
+	}
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
@@ -40,8 +56,14 @@ public class QuizFacultyController {
 	}
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("quiz") Quiz quiz, @RequestParam("categoryId") int categoryId, ModelMap modelMap, Authentication authentication) {
-
+	public String create(@ModelAttribute("quiz") Quiz quiz, @RequestParam("categoryId") int categoryId, 
+			ModelMap modelMap, Authentication authentication, @RequestParam(value = "file") MultipartFile file,
+			RedirectAttributes redirectAttributes) {
+		
+		String fileNameUpload = UploadHelper.upload(servletContext, file);
+		redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+		
+		quiz.setImage(fileNameUpload);
 		quiz.setCategory(categoryServiceAdmin.findById(categoryId));
 		quiz.setAccount(accountService.findByUsername(authentication.getName()));
 		
@@ -52,12 +74,18 @@ public class QuizFacultyController {
 
 	@RequestMapping(value = { "edit" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("quiz") Quiz quiz, Authentication authentication,
-			@RequestParam(value = "categoryId") int categoryId) {
+			@RequestParam(value = "categoryId") int categoryId, @RequestParam(value = "file") MultipartFile file,
+			RedirectAttributes redirectAttributes) {
 
 		Account account = accountService.findByUsername(authentication.getName());
 		Category category = categoryServiceAdmin.findById(categoryId);
 		quiz.setCategory(category);
 		quiz.setAccount(account);
+		String fileNameUpload = UploadHelper.upload(servletContext, file);
+		if (fileNameUpload != null) {
+			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+			quiz.setImage(fileNameUpload);
+		}
 		quizServiceFaculty.update(quiz);
 		//return pagination(1, 25, "quizId", modelMap, model, authentication);
 		return "redirect:/faculty/quiz/index";

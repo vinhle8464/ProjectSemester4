@@ -396,10 +396,7 @@
 				
 					<div class="form-group">
 						<label>Avatar</label>
-						<input type="file" name="file" class="form-control"
-													required="required" />
-					
-					
+						<input type="file" name="file" class="form-control" required="required" />
 					</div>	
 									
 				</div>

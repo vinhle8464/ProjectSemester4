@@ -50,6 +50,7 @@
 								$radios2.filter('[value=false]').prop(
 										'checked', true);
 							}
+							$('#imgQuiz').attr("src", "/assets/uploads/" + quiz.image);
 
 						}
 					});
@@ -319,7 +320,7 @@
 		<div class="modal-content">
 		
 			<s:form method="post" modelAttribute="quiz"
-										action="${pageContext.request.contextPath }/faculty/quiz/create">
+										action="${pageContext.request.contextPath }/faculty/quiz/create" enctype="multipart/form-data">
 				
 				<div class="modal-header">	
 									
@@ -363,6 +364,10 @@
 					</div>	
 						<s:input path="times" type="hidden" value="0" />
 						<s:input path="status" type="hidden" value="true" />
+					<div class="form-group">
+						<label>Image</label>
+						<input type="file" name="file" class="form-control" required="required" />
+					</div>	
 				</div>
 				
 				<div class="modal-footer">
@@ -432,7 +437,12 @@
 					</div>	
 					
 					<s:input path="quizId" id="quizIdEdit" type="hidden" />
-									
+							
+					<div class="form-group">
+						<label>Image</label>
+						<input type="file" name="file" class="form-control" />
+						<img src="" id="imgQuiz" width="100%" height="100%">
+					</div>			
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
