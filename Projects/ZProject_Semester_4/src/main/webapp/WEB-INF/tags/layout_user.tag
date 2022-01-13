@@ -5,7 +5,6 @@
 <%@ attribute name="content" fragment="true"%>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Site Metas -->
-<title> ${title }</title>
+<title>${title }</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -31,7 +30,8 @@
 
 <!-- Bootstrap CSS -->
 <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/bootstrap.min.css" >
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/user/css/bootstrap.min.css">
 
 <!-- Site CSS -->
 <link rel="stylesheet"
@@ -48,7 +48,6 @@
 
 
 
-		
 <!-- Modernizer for Portfolio -->
 <script
 	src="${pageContext.request.contextPath}/resources/user/js/modernizer.js"></script>
@@ -61,92 +60,7 @@
 </head>
 <body class="host_version">
 
-	<!-- Modal -->
-	<div class="modal fade" id="login" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-dialog-centered modal-lg"
-			role="document">
-			<div class="modal-content">
-				<div class="modal-header tit-up">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Customer Login</h4>
-				</div>
-				<div class="modal-body customer-box">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs">
-						<li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-						<li><a href="#Registration" data-toggle="tab">Registration</a></li>
-					</ul>
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div class="tab-pane active" id="Login">
-							<form role="form" class="form-horizontal">
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="email1" placeholder="Name"
-											type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="exampleInputPassword1"
-											placeholder="Email" type="email">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-10">
-										<button type="submit"
-											class="btn btn-light btn-radius btn-brd grd1">
-											Submit</button>
-										<a class="for-pwd" href="javascript:;">Forgot your
-											password?</a>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="tab-pane" id="Registration">
-							<form role="form" class="form-horizontal">
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" placeholder="Name" type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="email" placeholder="Email"
-											type="email">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="mobile" placeholder="Mobile"
-											type="email">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="password"
-											placeholder="Password" type="password">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-10">
-										<button type="button"
-											class="btn btn-light btn-radius btn-brd grd1">Save
-											&amp; Continue</button>
-										<button type="button"
-											class="btn btn-light btn-radius btn-brd grd1">
-											Cancel</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- LOADER -->
 	<div id="preloader">
@@ -161,36 +75,51 @@
 	<!-- Start header -->
 	<header class="top-navbar">
 		<mt:navbarusers />
-  	
+
 	</header>
 	<!-- End header -->
 
-		<jsp:invoke fragment="content"></jsp:invoke>
+	<jsp:invoke fragment="content"></jsp:invoke>
 
 	<div class="parallax section dbcolor">
-        <div class="container">
-            <div class="row logos">
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_01.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_02.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_03.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_04.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_05.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/user/images/logo_06.png" alt="" class="img-repsonsive"></a>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
+		<div class="container">
+			<div class="row logos">
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_01.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_02.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_03.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_04.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_05.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+					<a href="#"><img
+						src="${pageContext.request.contextPath}/resources/user/images/logo_06.png"
+						alt="" class="img-repsonsive"></a>
+				</div>
+			</div>
+			<!-- end row -->
+		</div>
+		<!-- end container -->
+	</div>
+	<!-- end section -->
 
 	<footer class="footer">
 		<div class="container">
@@ -206,7 +135,9 @@
 							dis montes.</p>
 						<div class="footer-right">
 							<ul class="footer-links-soi">
-								<li><a href="https://www.facebook.com/profile.php?id=100025109400686"><i class="fa fa-facebook"></i></a></li>
+								<li><a
+									href="https://www.facebook.com/profile.php?id=100025109400686"><i
+										class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-github"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
@@ -297,7 +228,7 @@
 			visibleItems : 4
 		});
 	</script>
-	
+
 
 </body>
 </html>
