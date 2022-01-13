@@ -12,10 +12,10 @@ public class AboutController {
 	
 	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String register(ModelMap modelMap) {
+	public String index(ModelMap modelMap) {
 
-	
 		return "user/about/index";
+		
 	}
 
 

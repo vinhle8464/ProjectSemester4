@@ -28,7 +28,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdown-a">
 						<c:forEach var="category" items="${categories }">
 							<a class="dropdown-item"
-								href="${pageContext.request.contextPath}/user/home/category/${category.title }">${category.title }
+								href="${pageContext.request.contextPath}/user/course/index?categoryId=${category.categoryId }">${category.title }
 							</a>
 						</c:forEach>
 
