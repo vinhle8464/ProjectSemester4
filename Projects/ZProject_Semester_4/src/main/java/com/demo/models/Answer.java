@@ -82,6 +82,12 @@ public class Answer implements java.io.Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Answer [answerId=" + answerId + ", questionid=" + question.getQuestionId() + ", title=" + title + ", answerStatus="
+				+ answerStatus + ", status=" + status + "]";
+	}
 	
 	
 

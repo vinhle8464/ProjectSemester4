@@ -56,8 +56,15 @@ public class AnswerSeviceFacultyImpl implements AnswerServiceFaculty{
 	}
 
 	@Override
-	public AnswerAjax findByIdAjax(int answerId) {
+	public List<AnswerAjax> findByIdAjax(int answerId) {
 		return answerRepositoryFaculty.findByIdAjax(answerId);
+	}
+
+	@Override
+	public void deleteByQuestionId(int questionId) {
+		
+		answerRepositoryFaculty.deleteByQuestionId(questionId);
+		
 	}
 
 

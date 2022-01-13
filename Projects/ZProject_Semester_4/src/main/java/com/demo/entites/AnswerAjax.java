@@ -11,11 +11,18 @@ public class AnswerAjax {
 
 
 	private Integer answerId;
+	private Integer questionId;
 	private String title;
 	private boolean answerStatus;
 	private boolean status;
 	
 	
+	public Integer getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(Integer questionId) {
+		this.questionId = questionId;
+	}
 	public Integer getAnswerId() {
 		return answerId;
 	}
@@ -40,9 +47,11 @@ public class AnswerAjax {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public AnswerAjax(Integer answerId, String title, boolean answerStatus, boolean status) {
+
+	public AnswerAjax(Integer answerId, Integer questionId, String title, boolean answerStatus, boolean status) {
 		super();
 		this.answerId = answerId;
+		this.questionId = questionId;
 		this.title = title;
 		this.answerStatus = answerStatus;
 		this.status = status;
@@ -50,8 +59,7 @@ public class AnswerAjax {
 	public AnswerAjax() {
 		super();
 	}
-	
-	
+
 	
 	
 }

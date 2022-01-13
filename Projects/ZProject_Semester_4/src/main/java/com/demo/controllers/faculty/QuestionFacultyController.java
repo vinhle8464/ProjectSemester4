@@ -38,73 +38,102 @@ public class QuestionFacultyController {
 	@Autowired
 	private QuizServiceFaculty quizServiceFaculty;
 
-	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, Authentication authentication) {
+	private int quizIdd;
 
+	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
+	public String index(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			Authentication authentication) {
+		this.quizIdd = quizId;
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		return pagination(1, 25, "question_id", modelMap, model, authentication, quizId);
+		return pagination(1, 25, "question_id", modelMap, model, authentication);
 
 	}
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("question") Question question, @RequestParam("quizId") int quizId, @RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus, ModelMap modelMap) {
-		
-		// add question 
-		question.setQuiz(quizServiceFaculty.findById(quizId));
+	public String create(@ModelAttribute("question") Question question,
+			@RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus) {
+
+		// add question
+		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
-	
+
 		question = questionServiceFaculty.create(question);
-	
-		
-		int i = 0;		
+
+		int i = 0;
 		// add list answers
-		for(String title : answerTitle) {
+		for (String title : answerTitle) {
 			Answer answer = new Answer();
 			answer.setTitle(title);
 			answer.setQuestion(question);
-			
-			if(answerStatus[i].equalsIgnoreCase("0")) {
+
+			if (answerStatus[i].equalsIgnoreCase("0")) {
 				answer.setAnswerStatus(false);
-				
-			}else {
-				answer.setAnswerStatus(true);				
+
+			} else {
+				answer.setAnswerStatus(true);
 			}
-			i++;
 			answer.setStatus(true);
-			
 			answerServiceFaculty.create(answer);
+			i++;
+
 		}
-		
-		return "redirect:/faculty/question/index?quizId=" + quizId;
+
+		return "redirect:/faculty/question/index?quizId=" + quizIdd;
 	}
 
-	@RequestMapping(value = { "edit" }, method = RequestMethod.PUT)
-	public String edit(@ModelAttribute("question") Question question) {
+	@RequestMapping(value = { "update" }, method = RequestMethod.POST)
+	public String edit(@ModelAttribute("question") Question question, @RequestParam("answerId") String[] answerId,
+			@RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus) {
 
-		questionServiceFaculty.update(question);
+		// update question
+		question.setQuiz(quizServiceFaculty.findById(quizIdd));
+		question.setStatus(true);
 
-		return "redirect:/faculty/question/index";
+		question = questionServiceFaculty.update(question);
+
+		// update answers		
+		for (int i = 0; i < answerTitle.length; i++) {
+			Answer answer = new Answer();
+
+			if (answerId.length > i) {
+				answer.setAnswerId(Integer.parseInt(answerId[i].toString()));
+			}
+			answer.setTitle(answerTitle[i]);
+			answer.setQuestion(question);
+
+			if (answerStatus[i].equalsIgnoreCase("0")) {
+				answer.setAnswerStatus(false);
+			} else {
+				answer.setAnswerStatus(true);
+			}
+			answer.setStatus(true);
+
+			answerServiceFaculty.update(answer);
+
+		}
+
+		return "redirect:/faculty/question/index?quizId=" + quizIdd;
 	}
 
 	@RequestMapping(value = { "delete" }, method = RequestMethod.GET)
 	public String delete(@RequestParam("questionID") int questionID) {
 
-		answerServiceFaculty.deleteById(questionID);
+		answerServiceFaculty.deleteByQuestionId(questionID);
 		questionServiceFaculty.deleteById(questionID);
 
-		return "redirect:/faculty/question/index";
+		return "redirect:/faculty/question/index?quizId=" + quizIdd;
 	}
 
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
-			Model model, Authentication authentication, int quizId) {
-		
+			Model model, Authentication authentication) {
+
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 
 		int pageSizee = pageSize;
 
-		Page<Question> pages = questionServiceFaculty.getAllQuestionByQuizId(currentPage, pageSizee, sort, quizId);
+		Page<Question> pages = questionServiceFaculty.getAllQuestionByQuizId(currentPage, pageSizee, sort, quizIdd);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", pages.getTotalPages());
 		model.addAttribute("totalElements", pages.getTotalElements());
@@ -112,12 +141,10 @@ public class QuestionFacultyController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("questions", pages.getContent());
 
-		
 		Question question = new Question();
 		modelMap.put("question", question);
-		modelMap.put("quizId", quizId);
-		
-		
+		modelMap.put("quizId", quizIdd);
+
 		return "faculty/question/index";
 	}
 

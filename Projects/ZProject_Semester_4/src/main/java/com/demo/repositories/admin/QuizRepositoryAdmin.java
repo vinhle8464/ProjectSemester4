@@ -12,13 +12,13 @@ import com.demo.entites.QuizAjax;
 @Repository
 public interface QuizRepositoryAdmin extends JpaRepository<com.demo.models.Quiz, Integer> {
 
-	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz where quizId = :quizId")
+	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, image, status) from Quiz where quizId = :quizId")
 	public QuizAjax findByIdAjax(@Param("quizId") int quizId);
 	
-	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz")
+	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, image, status) from Quiz")
 	public List<QuizAjax> findAllAjaxByCategoryId();
 	
-	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, status) from Quiz where category.categoryId = :categoryId")
+	@Query("select new com.demo.entites.QuizAjax(quizId, category.categoryId, category.title, title, description, times, timer, fee, image, status) from Quiz where category.categoryId = :categoryId")
 	public List<QuizAjax> findAjaxByCategoryId(@Param("categoryId") int categoryId);
 	
 }

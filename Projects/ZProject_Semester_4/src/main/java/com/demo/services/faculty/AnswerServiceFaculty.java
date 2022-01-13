@@ -21,7 +21,9 @@ public interface AnswerServiceFaculty {
 
 	public void deleteById(int id);
 
-	public AnswerAjax findByIdAjax(int quizId);
+	public void deleteByQuestionId(int questionId);
+
+	public List<AnswerAjax> findByIdAjax(int quizId);
 	
 		
 }

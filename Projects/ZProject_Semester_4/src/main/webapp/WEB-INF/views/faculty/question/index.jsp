@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
-		/* Add and remove answer */
+		/* Add and remove answer in modal Add*/
 		$(document)
 				.on(
 						'click',
@@ -26,25 +26,74 @@
 		$(document).on('click', '.removeAnswer', function() {
 			$(this).parent('div').remove();
 		});
-		/* Add and remove answer */
-
+		/* Add and remove answer in modal Add*/
+		
+				/* Add and remove answer in modal Edit*/
+		$(document)
+				.on(
+						'click',
+						'.addAnswerEdit',
+						function() {
+							var $div = ' <div><br><input name="answerTitle" required="required">	True: <input type="checkbox" name="answerStatus" value="1"> &nbsp; False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
+							$("#answersEdit").append($div);
+						});
+	/* 	function removeAnswerEdit(answerId){
+			alert(answerId);
+			$(this).parent('div').remove();
+		} */
+		 $(document).on('click', '.removeAnswerEdit', function() {
+			
+			 $.ajax({
+					type : 'GET',
+					url : '${pageContext.request.contextPath }/faculty/ajax/deleteanswer',
+					data : {
+						answerId : this.id
+					}
+			 });
+			 
+			$(this).parent('div').remove();
+		});
+		/* Add and remove answer in modal Edit*/
+		
+		
 		function openDeleteModal(questionId) {
 			$('#questionID').val(questionId);
 		}
 		function openEditModal(questionId) {
-			$
-					.ajax({
+			$.ajax({
 						type : 'GET',
-						url : '${pageContext.request.contextPath }/faculty/ajax/findquestionbyid',
+						url : '${pageContext.request.contextPath }/faculty/ajax/findquestionandanswerbyid',
 						data : {
 							questionId : questionId
+
 						},
-						success : function(question) {
-							$('#questionId').val(question.questionId);
-							$('#quizId').val(question.quiz.quizId);
-							$('#title').val(question.title);
-							$('#explainDetail').val(question.explainDetail);
-							$('#status').val(question.status);
+						success : function(result) {
+							$('#questionId').val(result.questionAjax.questionId);
+							$('#titlee').val(result.questionAjax.title);
+							$('#explainDetaill').val(
+									result.questionAjax.explainDetail);
+							$('#status').val(result.questionAjax.status);
+
+							var $answer = '';
+							var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEdit" value="+">';
+							for (var i = 0; i < result.answerAjaxs.length; i++) {
+
+								if (result.answerAjaxs[i].answerStatus) {
+									$answer += '<div><br><input name="answerTitle" value="' + result.answerAjaxs[i].title + '" required="required">'
+											+ 'True: <input type="checkbox" name="answerStatus" value="1" checked> &nbsp;'
+											+ 'False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;'
+											+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="' + result.answerAjaxs[i].answerId + '">'
+											+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+								} else {
+									$answer += '	<div><br><input name="answerTitle" value="' + result.answerAjaxs[i].title + '" required="required">'
+											+ 'True: <input type="checkbox" name="answerStatus" value="1" > &nbsp;'
+											+ 'False: <input type="checkbox" name="answerStatus" value="0" checked> &nbsp;	&nbsp;	&nbsp;'
+											+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="' + result.answerAjaxs[i].answerId + '">'
+											+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+								}
+
+							}
+							$('#answersEdit').html($buttonAddAnswer + $answer);
 						}
 					});
 		}
@@ -316,36 +365,41 @@
 					<input name="quizId" type="hidden" value="${quizId }" />
 					<hr>
 		  	<div id="answers">
-		  	ANSWERS: <input style="float:right;" type="button" class="btn-default addAnswer" value="+">
+		  	ANSWERS: <input style="float: right;" type="button"
+													class="btn-default addAnswer" value="+">
 							<div>
 		  		<br>
-		  		<input name="answerTitle">	
+		  		<input name="answerTitle" required="required">	
 		  		
  		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
  		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   		<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswer">
+ 		   		<input
+														style="color: red; border: none; background-color: white;"
+														type="button" value="X" class="removeAnswer">
  		   		</div>
 		  	
 		  	<div>
 		  	<br>
-		  		<input name="answerTitle">	
+		  		<input name="answerTitle" required="required">	
 		  		
  		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
  		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   		<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswer">
+ 		   		<input
+														style="color: red; border: none; background-color: white;"
+														type="button" value="X" class="removeAnswer">
  		   		</div>
 		  
 		  		<div>
 		  			<br>
-		  		<input name="answerTitle">	
+		  		<input name="answerTitle" required="required">	
 		  		
  		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
  		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   	<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswer">
+ 		   	<input style="color: red; border: none; background-color: white;"
+														type="button" value="X" class="removeAnswer">
  		   		</div>
 		  
 		  </div>
-					<s:input path="status" type="hidden" value="true" />
 									
 				</div>
 				<div class="modal-footer">
@@ -367,38 +421,31 @@
 				
 				<div class="modal-header">	
 									
-					<h4 class="modal-title">Update Question</h4>
+					<h4 class="modal-title">Update Question and Answers</h4>
 					<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 											
 				</div>
 				<div class="modal-body">		
-				<div class="form-group">
-						<label>QuestionID</label>
-						<s:input path="questionId" type="text" class="form-control"
-													disabled="true" />
-				
-					</div>	
-					<div class="form-group">
-						<label>QuizID</label>
-						<s:input path="quiz.quizId" type="text" class="form-control"
-													disabled="true" />
-				
-					</div>		
+			
 					<div class="form-group">
 						<label>Title</label>
-						<s:input path="title" type="text" class="form-control"
+						<s:input path="title" id="titlee" type="text" class="form-control"
 													required="required" />
 				
 					</div>
 				
 					<div class="form-group">
 						<label>explainDetail</label>
-						<s:input path="explainDetail" type="text" class="form-control"
-													required="required" />				
+						<s:input path="explainDetail" id="explainDetaill" type="text"
+													class="form-control" required="required" />				
 					</div>	
-					<s:input type="hidden" path="status" />
-									
+					<s:input path="questionId" type="hidden" />
+				
+				  	<div id="answersEdit">
+		  
+							
+		  </div>				
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"
@@ -430,6 +477,7 @@
 					<input type="button" class="btn btn-default" data-dismiss="modal"
 												value="Cancel">
 											<input type="hidden" name="questionID" id="questionID">
+											<input type="hidden" name="quizId">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>

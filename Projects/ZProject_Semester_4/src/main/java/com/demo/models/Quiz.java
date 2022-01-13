@@ -29,6 +29,7 @@ public class Quiz implements java.io.Serializable {
 	private int times;
 	private byte timer;
 	private boolean fee;
+	private String image;
 	private boolean status;
 	private Set<RatingComment> ratingComments = new HashSet<RatingComment>(0);
 	private Set<History> histories = new HashSet<History>(0);
@@ -38,7 +39,7 @@ public class Quiz implements java.io.Serializable {
 	}
 
 	public Quiz(Account account, Category category, String title, String description, int times, byte timer,
-			boolean fee, boolean status) {
+			boolean fee, String image, boolean status) {
 		this.account = account;
 		this.category = category;
 		this.title = title;
@@ -46,11 +47,12 @@ public class Quiz implements java.io.Serializable {
 		this.times = times;
 		this.timer = timer;
 		this.fee = fee;
+		this.image = image;
 		this.status = status;
 	}
 
 	public Quiz(Account account, Category category, String title, String description, int times, byte timer,
-			boolean fee, boolean status, Set<RatingComment> ratingComments, Set<History> histories,
+			boolean fee, String image, boolean status, Set<RatingComment> ratingComments, Set<History> histories,
 			Set<Question> questions) {
 		this.account = account;
 		this.category = category;
@@ -59,6 +61,7 @@ public class Quiz implements java.io.Serializable {
 		this.times = times;
 		this.timer = timer;
 		this.fee = fee;
+		this.image = image;
 		this.status = status;
 		this.ratingComments = ratingComments;
 		this.histories = histories;
@@ -142,6 +145,15 @@ public class Quiz implements java.io.Serializable {
 		this.fee = fee;
 	}
 
+	@Column(name = "image", nullable = false, length = 250)
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Column(name = "status", nullable = false)
 	public boolean isStatus() {
 		return this.status;
@@ -180,12 +192,10 @@ public class Quiz implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Quiz [quizId=" + quizId + ", account=" + account + ", categoryID=" + category.getCategoryId() + ", title=" + title
-				+ ", description=" + description + ", times=" + times + ", timer=" + timer + ", fee=" + fee
-				+ ", status=" + status + ", ratingComments=" + ratingComments + ", histories=" + histories
-				+ ", questions=" + questions + "]";
+		return "Quiz [quizId=" + quizId + ", account=" + account + ", categoryID=" + category.getCategoryId()
+				+ ", title=" + title + ", description=" + description + ", times=" + times + ", timer=" + timer
+				+ ", fee=" + fee + ", status=" + status + ", ratingComments=" + ratingComments + ", histories="
+				+ histories + ", questions=" + questions + "]";
 	}
 
-	
-	
 }

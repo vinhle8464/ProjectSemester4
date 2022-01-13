@@ -66,28 +66,5 @@ public class DashboardFacultyController {
 
 	
 	
-	@RequestMapping(value = { "test2" }, method = RequestMethod.POST)
-	public String test2(@ModelAttribute("questionAnswer") QuestionAnswer questionAnswer, @RequestParam("quizId") int quizId, @RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus, HttpServletRequest request) {
-		
-		//String[] questions = request.getParameterValues("questions");
-//		
-//		List<String> convertedAnswerTitle = Arrays.asList(questionAnswer.getAnswer().getTitle().split(",", -1));
-//		
-		
-		System.out.println("title "  + quizId);
-		System.out.println("title "  + questionAnswer.getQuestion().getTitle());
-		System.out.println("title "  + questionAnswer.getQuestion().getExplainDetail());
 	
-		for(String title : answerTitle) {
-			System.out.println("title: " + title);
-		}
-		
-		for(String status : answerStatus) {
-			System.out.println("status: " + status);
-		}
-		System.out.println("==================== "  );
-		
-		
-		return "faculty/dashboard/index";
-	}
 }

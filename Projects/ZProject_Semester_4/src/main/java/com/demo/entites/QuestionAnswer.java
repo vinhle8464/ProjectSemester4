@@ -7,35 +7,33 @@ import com.demo.models.Question;
 
 public class QuestionAnswer {
 
-	private Question question;
-	private Answer answer;
+	private QuestionAjax questionAjax;
+	private List<AnswerAjax> answerAjaxs;
 
-	public Question getQuestion() {
-		return question;
+	public QuestionAjax getQuestionAjax() {
+		return questionAjax;
 	}
 
-	public void setQuestion(Question question) {
-		this.question = question;
+	public void setQuestionAjax(QuestionAjax questionAjax) {
+		this.questionAjax = questionAjax;
 	}
 
-	public Answer getAnswer() {
-		return answer;
+	public List<AnswerAjax> getAnswerAjaxs() {
+		return answerAjaxs;
 	}
 
-	public void setAnswer(Answer answer) {
-		this.answer = answer;
+	public void setAnswerAjaxs(List<AnswerAjax> answerAjaxs) {
+		this.answerAjaxs = answerAjaxs;
 	}
-	
 
-	public QuestionAnswer(Question question, Answer answer) {
+	public QuestionAnswer(QuestionAjax questionAjax, List<AnswerAjax> answerAjaxs) {
 		super();
-		this.question = question;
-		this.answer = answer;
+		this.questionAjax = questionAjax;
+		this.answerAjaxs = answerAjaxs;
 	}
 
 	public QuestionAnswer() {
 		super();
 	}
 
-	
 }

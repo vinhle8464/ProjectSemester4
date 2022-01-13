@@ -60,6 +60,11 @@ public class QuestionAjax {
 	public QuestionAjax() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "QuestionAjax [questionId=" + questionId + ", quizId=" + quizId + ", title=" + title + ", explainDetail="
+				+ explainDetail + ", status=" + status + "]";
+	}
 	
 	
 	

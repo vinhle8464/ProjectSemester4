@@ -331,6 +331,7 @@ CREATE TABLE `quiz` (
   `times` int(11) NOT NULL,
   `timer` tinyint(4) NOT NULL,
   `fee` bit(2) NOT NULL,
+  `image` text NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -338,18 +339,18 @@ CREATE TABLE `quiz` (
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `status`) VALUES
-(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', b'01'),
-(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', b'01'),
-(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', b'01'),
-(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', b'01'),
-(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', b'01'),
-(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', b'00'),
-(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', b'01'),
-(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', b'00'),
-(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', b'01'),
-(11, 'trac nghiem tinh cach', 'xao do ehe\r\nco cai nit', 2, 8, 11, 10, b'00', b'01'),
-(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'00', b'01');
+INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`) VALUES
+(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01'),
+(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', 'Photo24.jpg', b'01'),
+(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', 'Photo24.jpg', b'01'),
+(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', 'Photo24.jpg', b'01'),
+(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', 'Photo24.jpg', b'01'),
+(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00'),
+(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01'),
+(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00'),
+(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01'),
+(11, 'trac nghiem tinh cach', 'xao do ehe\r\nco cai nit', 2, 8, 11, 10, b'00', 'Photo24.jpg', b'01'),
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'00', 'Photo24.jpg', b'01');
 
 -- --------------------------------------------------------
 
