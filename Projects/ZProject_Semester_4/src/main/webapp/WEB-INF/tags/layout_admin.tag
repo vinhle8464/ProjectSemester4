@@ -4,6 +4,7 @@
 	type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
 
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
@@ -49,6 +50,7 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/css/style.css">
+	
 <!-- 
   add new   -->
 </head>
@@ -104,7 +106,7 @@
 
 				<!-- logout -->
 				<li class="nav-item"><a class="nav-link"
-					data-widget="fullscreen" href="#" role="button">Logout
+					data-widget="fullscreen" href="${pageContext.request.contextPath }/user/account/logout" role="button">Logout
 				</a></li>
 				<!-- logout -->
 
@@ -208,4 +210,3 @@
   add new   -->
 </body>
 </html>
-

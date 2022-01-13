@@ -65,6 +65,11 @@ public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 		return this.quizRepositoryFaculty.getAllQuizByAccountId(accountId, pageable);
 	}
+
+	@Override
+	public List<Quiz> findAllQuizByCategoryId(int categoryId) {
+		return quizRepositoryFaculty.findAllQuizByCategoryId(categoryId);
+	}
 	
 	
 

@@ -1,5 +1,9 @@
 package com.demo.repositories.faculty;
 
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,6 +27,7 @@ public interface QuizRepositoryFaculty extends JpaRepository<Quiz, Integer> {
 		    nativeQuery = true)
 	public Page<Quiz> getAllQuizByAccountId(int account_id, Pageable pageable);
 	
-	
+	@Query("from Quiz where categoryId=:categoryId")
+	public List<Quiz> findAllQuizByCategoryId(@Param("categoryId") int categoryId);
 	
 }

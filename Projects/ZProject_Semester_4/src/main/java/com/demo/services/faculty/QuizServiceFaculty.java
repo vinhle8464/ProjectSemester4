@@ -14,6 +14,8 @@ public interface QuizServiceFaculty {
 
 	public List<Quiz> findAllQuiz();
 
+	public List<Quiz> findAllQuizByCategoryId(int categoryId);
+	
 	public Quiz findById(int id);
 
 	public Quiz create(Quiz quiz);
