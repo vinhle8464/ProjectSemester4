@@ -96,7 +96,6 @@
     </section>
 		  <!-- Main content -->
     <section class="content">
-		<div id="abc">ABC</div>
 		
       <!-- Default box -->
 		<div class="card">
@@ -108,9 +107,6 @@
 							data-card-widget="collapse" title="Collapse">
 	              <i class="fas fa-minus"></i>
 	            </button>
-	           <!--  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-	              <i class="fas fa-times"></i>
-	            </button> -->
 	          </div>
 	        </div>
 	    <div class="card-body">          
@@ -380,8 +376,7 @@
 					</div>	
 					<div class="form-group">
 						<label>Phone Number</label>
-						<s:input path="phone" type="text" class="form-control"
-													required="required" />
+						<s:input path="phone" type="text" class="form-control" required="required" pattern="[0-9]{1,15}"/>
 					
 					</div>	
 					
