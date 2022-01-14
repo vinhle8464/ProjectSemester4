@@ -33,6 +33,8 @@ public class HomeController {
 		Account account = new Account();
 		account.setDob(new Date());
 		modelMap.put("account", account);
+		modelMap.put("home", true);
+		
 		return "user/home/index";
 	}
 

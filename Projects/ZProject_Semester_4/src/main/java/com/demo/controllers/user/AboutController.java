@@ -25,6 +25,8 @@ public class AboutController {
 		Account account = new Account();
 		account.setDob(new Date());
 		modelMap.put("account", account);
+		modelMap.put("about", true);
+		
 		return "user/about/index";
 		
 	}

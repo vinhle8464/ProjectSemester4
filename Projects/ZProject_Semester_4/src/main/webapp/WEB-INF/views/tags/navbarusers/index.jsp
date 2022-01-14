@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 
@@ -177,12 +176,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbars-host">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item ${home ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/home">Home</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${about ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/about">About Us</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+				<li class="nav-item ${course ? 'active' : '' } dropdown"><a
+					class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/user/course" id="dropdown-a"
 					data-toggle="dropdown">Course </a>
 					<div class="dropdown-menu" aria-labelledby="dropdown-a">
 						<c:forEach var="category" items="${categories }">
@@ -193,11 +192,11 @@
 
 					</div></li>
 			
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${teacher ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/teacher">Teachers</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${pricing ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/pricing">Pricing</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${contact ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/contact">Contact</a></li>
 				<c:if test="${sessionScope.account != null}">
 					<li class="nav-item dropdown">

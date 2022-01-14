@@ -39,7 +39,26 @@ public class CourseController {
 	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model, Authentication authentication) {
 		
 		this.categoryIdd = categoryId;
+		modelMap.put("course", true);
+		
+		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
+		
+	}
 	
+	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
+	public String QuizDetails(ModelMap modelMap, Model model, Authentication authentication) {
+		
+		Account account = new Account();
+		account.setDob(new Date());
+		
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+		
+		Account username = accountService.findByUsername(authentication.getName());		
+		modelMap.put("accountUsername", username);
+		
+		
 		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
 		
 	}
@@ -50,10 +69,9 @@ public class CourseController {
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
 			Model model, Authentication authentication) {
 
-		Account username = accountService.findByUsername(authentication.getName());
-		
+		Account username = accountService.findByUsername(authentication.getName());		
 		modelMap.put("accountUsername", username);
-		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		
 		int pageSizee = pageSize;
 
 		Page<Quiz> pages = courseService.getAllQuizByCategoryId(currentPage, pageSizee, sort, categoryIdd);

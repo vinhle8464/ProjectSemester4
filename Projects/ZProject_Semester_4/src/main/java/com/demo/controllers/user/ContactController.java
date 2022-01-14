@@ -41,6 +41,8 @@ public class ContactController {
 		modelMap.put("account", account);
 		Email email = new Email();
 		modelMap.put("email", email);
+		modelMap.put("contact", true);
+		
 		return "user/contact/index";
 	}
 

@@ -72,6 +72,9 @@ public class PricingController {
 		Account account = new Account();
 		account.setDob(new Date());
 		modelMap.put("account", account);
+		
+		modelMap.put("course", true);
+		
 		return "user/pricing/index";
 	}
 
