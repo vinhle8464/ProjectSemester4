@@ -50,8 +50,8 @@ public class DashboardFacultyController {
 	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(Authentication authentication, ModelMap modelMap, HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("account");
+		//HttpSession session = request.getSession();
+		//Account account = (Account) session.getAttribute("account");
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 	
 		QuestionAnswer questionAnswer = new QuestionAnswer();
@@ -66,5 +66,23 @@ public class DashboardFacultyController {
 
 	
 	
+	@RequestMapping(value = {"test" }, method = RequestMethod.GET)
+	public String test(Authentication authentication, ModelMap modelMap, HttpServletRequest request, Model model) {
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+	
+		
+		String[] a = request.getParameterValues("answerStatus");
+		System.out.println(a.length);
+		for (String string : a) {
+			if(string == null) {
+				System.out.println("null1");
+			}else {
+				System.out.println("answerstatus: " + string);
+			}
+			
+		}
+		
+		return "faculty/dashboard/index";
+	}
 	
 }

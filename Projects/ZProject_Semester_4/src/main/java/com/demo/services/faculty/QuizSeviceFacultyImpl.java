@@ -9,11 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.demo.entites.QuizAccountAjax;
 import com.demo.entites.QuizAjax;
-import com.demo.models.Account;
 import com.demo.models.Quiz;
-import com.demo.repositories.admin.QuizRepositoryAdmin;
 import com.demo.repositories.faculty.QuizRepositoryFaculty;
 
 @Service
