@@ -2854,6 +2854,25 @@ body.host_version .first-section .effect-1.slide-btn::after{
 	min-height: 300px;
 }
 
+.all-title-box-profile{
+	background: url(../images/background_profile.jpg)no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	min-height: 300px;
+}
+
+.all-title-box-profile h1{
+	color: #fff;
+	font-weight: 600;
+	text-transform: capitalize;
+	padding-top: 11%;
+	font-size: 48px;
+	line-height: 0px;
+}
+
 .all-title-box h1{
 	color: #fff;
 	font-weight: 600;
