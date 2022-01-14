@@ -8,10 +8,13 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+ 
   <script>
   $( function() {
     $( "#dob" ).datepicker();
   } );
+  
+ 
   </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -180,10 +183,10 @@
 					href="${pageContext.request.contextPath}/user/home">Home</a></li>
 				<li class="nav-item ${about ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/about">About Us</a></li>
-				<li class="nav-item ${course ? 'active' : '' } dropdown"><a
-					class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/user/course" id="dropdown-a"
-					data-toggle="dropdown">Course </a>
-					<div class="dropdown-menu" aria-labelledby="dropdown-a">
+				<li class="nav-item ${course ? 'active' : '' } dropdown" ><a
+					class="nav-link disabled" href="${pageContext.request.contextPath}/user/course/index?categoryId=0" id="dropdown-a"
+				>Course </a>
+					<div class="dropdown-menu"  aria-labelledby="dropdown-a">
 						<c:forEach var="category" items="${categories }">
 							<a class="dropdown-item"
 								href="${pageContext.request.contextPath}/user/course/index?categoryId=${category.categoryId }">${category.title }
@@ -229,7 +232,7 @@
 				          <a href="${pageContext.request.contextPath}/user/profile/index/${sessionScope.account.accountId }" class="dropdown-item">
 				            <!-- Message Start -->
 				            <div class="media">
-				              	Setting
+				              	Profile
 				            </div>
 				            <!-- Message End -->
 				          </a>

@@ -10,14 +10,22 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.demo.models.Quiz;
-import com.demo.repositories.user.CourseRepository;
+import com.demo.repositories.user.QuizRepository;
+import com.demo.services.faculty.QuizServiceFaculty;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
 	@Autowired
-	private CourseRepository courseRepository;
+	private QuizRepository courseRepository;
 
+	@Override
+	public Page<Quiz> getPage(int currentPage, int pageSize, String sort) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.courseRepository.findAll(pageable);
+	}
+
+	
 	@Override
 	public Page<Quiz> getAllQuizByCategoryId(int currentPage, int pageSize, String sort, int categoryId) {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());

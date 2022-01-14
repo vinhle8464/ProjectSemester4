@@ -10,6 +10,9 @@ public interface CourseService {
 //	public List<Quiz> findAllQuizByCategoryId(int categoryId);
 //	
 	
+	public Page<Quiz> getPage(int currentPage, int pageSize, String sort);
+
+	
 	public Page<Quiz> getAllQuizByCategoryId(int currentPage, int pageSize, String sort, int categoryId);
 	
 	

@@ -17,6 +17,7 @@ import com.demo.models.Account;
 import com.demo.models.Quiz;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
+import com.demo.services.faculty.QuizServiceFaculty;
 import com.demo.services.user.CourseService;
 
 
@@ -33,20 +34,34 @@ public class CourseController {
 	@Autowired
 	private CategoryServiceAdmin categoryServiceAdmin;
 	
+	@Autowired
+	private QuizServiceFaculty quizServiceFaculty;
+	
+	
 	private int categoryIdd;
 	
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model, Authentication authentication) {
 		
-		this.categoryIdd = categoryId;
-		modelMap.put("course", true);
-		
-		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
-		
+		if(categoryId > 0) {
+			this.categoryIdd = categoryId;
+			modelMap.put("course", true);
+			
+			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
+			
+		}else {
+			this.categoryIdd = 0;
+			
+			modelMap.put("course", true);
+			
+			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
+			
+		}
+	
 	}
 	
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(ModelMap modelMap, Model model, Authentication authentication) {
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, Authentication authentication) {
 		
 		Account account = new Account();
 		account.setDob(new Date());
@@ -58,9 +73,9 @@ public class CourseController {
 		Account username = accountService.findByUsername(authentication.getName());		
 		modelMap.put("accountUsername", username);
 		
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 		
-		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
-		
+		return "user/course/quizdetails";
 	}
 
 
@@ -74,7 +89,14 @@ public class CourseController {
 		
 		int pageSizee = pageSize;
 
-		Page<Quiz> pages = courseService.getAllQuizByCategoryId(currentPage, pageSizee, sort, categoryIdd);
+		Page<Quiz> pages = null;
+		if(categoryIdd > 0) {
+			pages = courseService.getAllQuizByCategoryId(currentPage, pageSizee, sort, categoryIdd);
+		}else {
+			
+			pages = courseService.getPage(currentPage, pageSizee, sort);
+		}
+		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", pages.getTotalPages());
 		model.addAttribute("totalElements", pages.getTotalElements());
@@ -92,5 +114,7 @@ public class CourseController {
 
 		return "user/course/index";
 	}
+	
+	
 	
 }

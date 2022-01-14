@@ -50,7 +50,9 @@
                 	<div class="course-br">
 							<div class="course-title">
 								<h2>
-											<a href="#" title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
+											<a
+														href="${pageContext.request.contextPath}/user/course/quizdetails?quizId=${quiz.quizId}"
+														title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
 										</h2>
 							</div>
 							<div class="course-desc">
@@ -69,7 +71,9 @@
 													class="fa fa-dollar" aria-hidden="true"></i> &nbsp; ${quiz.fee ? "Purchase" : "Free"} </li>
 							</ul>
 							<div class="course-rating">
-								 <a style="color: black;" href="#" class="hover-btn-new orange"><span>Take Test</span></a> 						
+								 <a style="color: black;"
+													href="${pageContext.request.contextPath}/user/course/quizdetails?quizId=${quiz.quizId}"
+													class="hover-btn-new orange"><span>Take Test</span></a> 						
 							</div>
 						</div>
                 	</div>
@@ -99,26 +103,26 @@
       
 	            <ul style="float: right;" class="pagination">
 	            			<li
-													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+									class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-													href="${pageContext.request.contextPath}/user/course/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
-													class="page-link">First</a>
+									href="${pageContext.request.contextPath}/user/course/pagination?currentPage=1&pageSize=${pageSize}&sort=${sort}"
+									class="page-link">First</a>
 	                    </li>
 	                    
 	                     <li
-													class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+									class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 	                        <a
-													href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
-													class="page-link">Previous</a>
+									href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage - 1}&pageSize=${pageSize}&sort=${sort}"
+									class="page-link">Previous</a>
 	                    </li>
 	                 <c:if test="${totalPages <= 5 && currentPage <= 5 }">
 		                <c:forEach begin="0" end="${totalPages - 1}"
-														var="page">
+										var="page">
 		                    <li
-															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+											class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-															href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${page+1}</a>
+											href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+											class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 		               
@@ -128,40 +132,40 @@
 	                 <c:if test="${totalPages > 5 && currentPage <= 2 }">
 		                <c:forEach begin="0" end="4" var="page">
 		                    <li
-															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+											class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-															href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${page+1}</a>
+											href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+											class="page-link">${page+1}</a>
 		                    </li>
 		                </c:forEach>
 	                </c:if>
 	              
 	                   <c:if
-													test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
+									test="${totalPages > 5 && currentPage >= 3 && currentPage != totalPages}">
 	                  	                
 			              	<c:forEach
-														begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
-														end="${currentPage - 1}" var="page1">
+										begin="${currentPage <= totalPages - 2 ? currentPage - 2 : currentPage - 3}"
+										end="${currentPage - 1}" var="page1">
 			                    <li class="page-item">
 			                        <a
-															href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${page1}</a>
+											href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page1}&pageSize=${pageSize}&sort=${sort}"
+											class="page-link">${page1}</a>
 			                    </li>
 			                </c:forEach>
 		                   
 		                 <li class="page-item active">
 		                        <a
-														href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
-														class="page-link">${currentPage}</a>
+										href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=${sort}"
+										class="page-link">${currentPage}</a>
 		                    </li>
 		               	  <c:forEach begin="${currentPage}"
-														end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
-														var="page2">
+										end="${currentPage <= totalPages - 2 ? currentPage + 1 : currentPage}"
+										var="page2">
 		                    <li
-															class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
+											class="${currentPage == page2 + 1 ? 'page-item active' : 'page-item' }">
 		                        <a
-															href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${page2 + 1}</a>
+											href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page2 + 1}&pageSize=${pageSize}&sort=${sort}"
+											class="page-link">${page2 + 1}</a>
 		                    </li>
 		                </c:forEach> 
 	                </c:if>
@@ -170,14 +174,14 @@
 	          
 	             
 	            		    <c:if
-													test="${currentPage == totalPages && totalPages > 5}">
+									test="${currentPage == totalPages && totalPages > 5}">
 			                <c:forEach begin="${totalPages - 5 }"
-														end="${totalPages - 1}" var="page">
+										end="${totalPages - 1}" var="page">
 			                    <li
-															class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
+											class="${currentPage == page + 1 ? 'page-item active' : 'page-item' }">
 			                        <a
-															href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
-															class="page-link">${page+1}</a>
+											href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${page + 1}&pageSize=${pageSize}&sort=${sort}"
+											class="page-link">${page+1}</a>
 			                    </li>
 			                </c:forEach>
 	               		</c:if>
@@ -185,16 +189,16 @@
 	                  <!--  // end number of page -->
 	              
 	                     <li
-													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+									class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-													href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
-													class="page-link">Next</a>
+									href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${currentPage + 1}&pageSize=${pageSize}&sort=${sort}"
+									class="page-link">Next</a>
 	                    </li>
 	                      <li
-													class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+									class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 	                        <a
-													href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
-													class="page-link">Last</a>
+									href="${pageContext.request.contextPath}/user/course/pagination?currentPage=${totalPages }&pageSize=${pageSize}&sort=${sort}"
+									class="page-link">Last</a>
 	                    </li>
 	            </ul>
 	              </div>
@@ -246,12 +250,6 @@
 			<!-- end container -->
     </div>
 		<!-- end section -->
-	<script>
-		/* alert($('.course-desc p').text().length);
-			if ($(".course-desc p").text().length > 200) {
-				short_text = $(".course-desc p").text().substr(0, 200);
-				$(".course-desc p").html(short_text + "...");
-			} */
-	</script>
+
 	</jsp:attribute>
 </mt:layout_user>

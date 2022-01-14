@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.demo.models.Quiz;
 
 @Repository
-public interface CourseRepository extends CrudRepository<Quiz, Integer>{
+public interface QuizRepository extends CrudRepository<Quiz, Integer>{
 
 //	@Query("from Quiz where category.categoryId=:categoryId")
 //	public List<Quiz> findAllQuizByCategoryId(@Param("categoryId") int categoryId);
@@ -19,5 +19,8 @@ public interface CourseRepository extends CrudRepository<Quiz, Integer>{
 		    nativeQuery = true)
 	public Page<Quiz> getAllQuizByCategoryId(int category_id, Pageable pageable);
 	
+	@Query(value = "SELECT * FROM quiz",
+		    nativeQuery = true)
+	public Page<Quiz> findAll(Pageable pageable);
 	
 }
