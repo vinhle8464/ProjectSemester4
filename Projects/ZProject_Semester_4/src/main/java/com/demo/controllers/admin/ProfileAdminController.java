@@ -3,11 +3,13 @@ package com.demo.controllers.admin;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +28,10 @@ public class ProfileAdminController {
 	private AccountService accountService;
 
 
-	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Authentication authentication) {
-		Account account = accountService.findByUsername(authentication.getName());
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(ModelMap modelMap, Authentication authentication, @RequestParam("accountId") int id) {
+		
+		Account account = accountService.findById(id);
 		modelMap.put("account", account);
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		return "admin/profile/index";
@@ -51,5 +54,31 @@ public class ProfileAdminController {
 
 		accountService.update(accountNew);
 		return "redirect:/admin/profile/index";
+	}
+	
+	@RequestMapping(value = "editPassword", method = RequestMethod.POST)
+	public String editPassword(ModelMap modelMap, HttpSession httpSession, @RequestParam("currentPassword") String currentPassword,
+			@RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword) {
+		
+		Account account = (Account) httpSession.getAttribute("account");
+		
+		boolean valuate = BCrypt.checkpw(currentPassword, account.getPassword());
+		if(valuate) {
+			if(newPassword.equalsIgnoreCase(confirmPassword)) {
+				String hash = BCrypt.hashpw(newPassword, BCrypt.gensalt(4));
+				account.setPassword(hash);
+				accountService.update(account);
+				modelMap.put("msg", "<script>alert('Change password successfully')</script>");
+				System.out.println("Cap nhat thanh cong " + hash);
+			}else {
+				modelMap.put("msg", "<script>alert('Confirm Password is wrong!!!')</script>");
+				System.out.println("Nhap lai mat khau khong chinh xac");
+			}
+		}else {
+			modelMap.put("msg", "<script>alert('Current Password is wrong!!!')</script>");
+			System.out.println("Mat khau hien tai khong dung");
+		}
+		
+		return "admin/profile/index";
 	}
 }
