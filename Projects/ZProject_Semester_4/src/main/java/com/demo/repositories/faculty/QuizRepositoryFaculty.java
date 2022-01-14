@@ -1,8 +1,5 @@
 package com.demo.repositories.faculty;
 
-import java.util.List;
-
-import javax.websocket.server.PathParam;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,7 +1,5 @@
 package com.demo.controllers.faculty;
 
-import javax.management.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -13,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.demo.entites.QuestionAnswer;
 import com.demo.models.Answer;
 import com.demo.models.Question;
-import com.demo.models.Quiz;
 import com.demo.services.AccountService;
 import com.demo.services.faculty.AnswerServiceFaculty;
 import com.demo.services.faculty.QuestionServiceFaculty;
@@ -53,6 +49,8 @@ public class QuestionFacultyController {
 	public String create(@ModelAttribute("question") Question question,
 			@RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus) {
 
+	
+		
 		// add question
 		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
