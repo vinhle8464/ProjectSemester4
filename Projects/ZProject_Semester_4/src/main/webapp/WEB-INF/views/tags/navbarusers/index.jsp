@@ -228,8 +228,18 @@
 					            <!-- Message End -->
 					          </a>
 					       </ss:authorize>
+					       <ss:authorize access="hasRole('ROLE_ADMIN')">
+							<div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/admin/dashboard" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									Dashboard
+					            </div>
+					            <!-- Message End -->
+					          </a>
+					       </ss:authorize>
 				          <div class="dropdown-divider"></div>
-				          <a href="${pageContext.request.contextPath}/user/profile/index/${sessionScope.account.accountId }" class="dropdown-item">
+				          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
 				            <!-- Message Start -->
 				            <div class="media">
 				              	Profile

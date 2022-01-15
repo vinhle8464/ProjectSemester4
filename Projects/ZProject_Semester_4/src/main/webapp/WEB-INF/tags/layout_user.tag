@@ -45,18 +45,8 @@
 <!-- Custom CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/user/css/custom.css">
-
-
-
-<!-- Modernizer for Portfolio -->
-<script
-	src="${pageContext.request.contextPath}/resources/user/js/modernizer.js"></script>
-
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.${pageContext.request.contextPath}/resources/user/js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body class="host_version">
 

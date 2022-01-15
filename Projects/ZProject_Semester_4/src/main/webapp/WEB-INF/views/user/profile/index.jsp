@@ -7,8 +7,32 @@
 <mt:layout_user title="Profile">
 	
 	<jsp:attribute name="content">
-		
-		
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+
+	<script src="${pageContext.request.contextPath}/resources/user/js/modernizer.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	
+	<script>
+	  $( function() {
+	    $( "#birthday" ).datepicker();
+	  } );
+	  
+	  function openChangeAvt(accountId) {
+			$.ajax({
+					type : 'GET',
+					url : '${pageContext.request.contextPath }/user/ajax/findaccountbyid',
+					data : {
+						accountId : accountId
+						},
+					success : function(account) {
+						$('#accAvatar').attr("src", "/assets/uploads/" + account.avatar);
+					}
+				});
+		}
+	</script>
+	
 	<div class="all-title-box-profile">
 		<div class="container text-center">
 			<h1>Profile<span class="m_1"></span></h1>
@@ -22,20 +46,30 @@
                 <p class="lead">You can edit yourself information</p>
             </div><!-- end title -->
                     <!-- Main content -->
+                    
 				    <section class="content">
 				      <div class="container-fluid">
+				      	
 				        <div class="row">
 				          <div class="col-md-3">
 				
 				            <!-- Profile Image -->
 				            <div class="card card-primary card-outline">
 				              <div class="card-body box-profile">
-				                <div class="text-center">
-				                  <img class="profile-user-img img-fluid img-circle"
-				                       src="${pageContext.request.contextPath}/assets/uploads/${accountProfile.avatar}"
-				                       alt="User profile picture">
-				                </div>
-				
+				              <form method="post" action="${pageContext.request.contextPath }/user/profile/changeImage" enctype="multipart/form-data">
+					               <div class="text-center" style="position: relative; display: inline-block;">
+						                  <img class="profile-user-img img-fluid img-circle" src="${pageContext.request.contextPath}/assets/uploads/${accountProfile.avatar}"
+						                       alt="User profile picture">
+						                  <div class="gb_gb gb_cb">
+						                  		<a class="gb_hb gb_Jf gb_cb gb_Of" aria-label="Thay đổi ảnh hồ sơ." href="#openfile" data-toggle="modal" id="${accountProfile.accountId }" onclick="openChangeAvt(id);">
+						                  			<svg class="gb_ib" enable-background="new 0 0 24 24" focusable="false" height="26" viewBox="0 0 24 24" width="18">
+						                  				<path d="M20 5h-3.17L15 3H9L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H4V7h16v12zM12 9c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path>
+						                  			</svg>
+						                  		</a>
+						                  </div>
+					               </div>
+				               </form>
+				                <br>
 				                <h3 class="profile-username text-center">${accountProfile.fullname}</h3>
 				
 				                <p class="text-muted text-center">${accountProfile.addr}</p>
@@ -105,105 +139,168 @@
 				              <div class="card-header p-2">
 				                <ul class="nav nav-pills">
 				                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Information</a></li>
-				                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+				                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Change Pasword</a></li>
 				                </ul>
 				              </div><!-- /.card-header -->
 				              <div class="card-body">
 				                <div class="tab-content">
-				                  <div class="active tab-pane" id="activity" style="font-size: 1.5rem; font-family: cursive; padding-left: 10%;
-    color: darkblue;">
-				                  	<form class="form-horizontal">
+				                  <div class="active tab-pane" id="activity" style="font-size: 1.5rem; padding-left: 10%;">
+				                  	<div class="form-horizontal">
 				                      <div class="form-group row">
-				                        <label for="inputName" class="col-sm-4 col-form-label">Username:</label>
+				                        <label for="inputName" class="col-sm-3 col-form-label">Username:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.username}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editUsername"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileUsername" enctype="multipart/form-data">
+				                      	<div class="form-group row collapse" id="editUsername">
+										   <label for="inputName" class="col-sm-3 col-form-label"></label>
+					                       <div class="col-sm-8">
+					                       	 <p>Your current username is <strong>${accountProfile.username}</strong>. Do you want to change?</p>
+					                         <input type="text" class="form-control" placeholder="Username" name="username"> <br>
+					                         <input type="submit" value="Change" class="btn btn-danger">
+					                       </div>
+				                      	</div>
+				                      </form>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputEmail" class="col-sm-4 col-form-label">Fullname:</label>
+				                        <label for="inputEmail" class="col-sm-3 col-form-label">Fullname:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.fullname}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editFullname"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileFullname" enctype="multipart/form-data">
+					                      <div class="form-group row collapse" id="editFullname">
+											   <label for="inputName" class="col-sm-3 col-form-label"></label>
+						                       <div class="col-sm-8">
+						                       	 <p>Your current fullname is <strong>${accountProfile.fullname}</strong>. Do you want to change?</p>
+						                         <input type="text" class="form-control" placeholder="Fullname" name="fullname"> <br>
+						                         <input type="submit" value="Change" class="btn btn-danger">
+						                       </div>
+					                      </div>
+				                      </form>
 				                      <div class="form-group row">
-				                        <label for="inputName2" class="col-sm-4 col-form-label">Email:</label>
+				                        <label for="inputName2" class="col-sm-3 col-form-label">Email:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.email}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editEmail"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileEmail" enctype="multipart/form-data">
+					                      <div class="form-group row collapse" id="editEmail">
+											   <label for="inputName" class="col-sm-3 col-form-label"></label>
+						                       <div class="col-sm-8">
+						                       	 <p>Your current email is <strong>${accountProfile.email}</strong>. Do you want to change?</p>
+						                         <input type="email" class="form-control" placeholder="Your email" name="email"> <br>
+						                         <input type="submit" value="Change" class="btn btn-danger">
+						                       </div>
+					                      </div>
+					                  </form>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputExperience" class="col-sm-4 col-form-label">Birthday:</label>
+				                        <label for="inputExperience" class="col-sm-3 col-form-label">Birthday:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.dob}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editBirthday"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileBirthday" enctype="multipart/form-data">
+					                      <div class="form-group row collapse" id="editBirthday">
+											   <label for="inputName" class="col-sm-3 col-form-label"></label>
+						                       <div class="col-sm-8">
+						                         <input type="text" class="form-control" id="birthday" placeholder="Birthday" name="birthday"> <br>
+						                         <input type="submit" value="Change" class="btn btn-danger">
+						                       </div>
+					                      </div>
+				                      </form>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputSkills" class="col-sm-4 col-form-label">Address:</label>
+				                        <label for="inputSkills" class="col-sm-3 col-form-label">Address:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.addr}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editAddress"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileAddress" enctype="multipart/form-data">
+					                      <div class="form-group row collapse" id="editAddress">
+											   <label for="inputName" class="col-sm-3 col-form-label"></label>
+						                       <div class="col-sm-8">
+						                         <input type="text" class="form-control" placeholder="Address" name="address"> <br>
+						                         <input type="submit" value="Change" class="btn btn-danger">
+						                       </div>
+					                      </div>
+				                      </form>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputName" class="col-sm-4 col-form-label">Phone:</label>
+				                        <label for="inputName" class="col-sm-3 col-form-label">Phone:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.phone}
 				                        </div>
+				                        <div class="col-sm-1">
+				                        	<a data-toggle="collapse" data-target="#editPhone"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+				                        </div>
 				                      </div>
+				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfilePhone" enctype="multipart/form-data">
+					                      <div class="form-group row collapse" id="editPhone">
+											   <label for="inputName" class="col-sm-3 col-form-label"></label>
+						                       <div class="col-sm-8">
+						                       	 <p>Your current phone is <strong>${accountProfile.phone}</strong>. Do you want to change?</p>
+						                         <input type="text" class="form-control" placeholder="Phone" pattern="[0-9]{1,15}" name="phone"> <br>
+						                         <input type="submit" value="Change" class="btn btn-danger">
+						                       </div>
+					                      </div>
+				                      </form>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputName" class="col-sm-4 col-form-label">Gender:</label>
+				                        <label for="inputName" class="col-sm-3 col-form-label">Gender:</label>
 				                        <div class="col-sm-8">
 				                          ${accountProfile.gender? "Male" : "Female"}
 				                        </div>
 				                      </div>
 				                      
-				                    </form>
+				                    </div>
 				                  </div>
 				                  <!-- /.tab-pane -->
 				
 				                  <div class="tab-pane" id="settings">
-				                    <form class="form-horizontal">
+				                    <form method="post" action="${pageContext.request.contextPath}/user/profile/editPassword" class="form-horizontal">
+				                      ${msg == "" ? "" : msg}
 				                      <div class="form-group row">
-				                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+				                        <label class="col-sm-2 col-form-label">Current password</label>
 				                        <div class="col-sm-10">
-				                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+				                          <input type="password" class="form-control" placeholder="Current password" name="currentPassword" id="currentPassword">
 				                        </div>
 				                      </div>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+				                        <label class="col-sm-2 col-form-label">New password</label>
 				                        <div class="col-sm-10">
-				                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+				                          <input type="password" class="form-control" placeholder="New password" name="newPassword" id="newPassword">
 				                        </div>
 				                      </div>
+				                      
 				                      <div class="form-group row">
-				                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+				                        <label for="inputName" class="col-sm-2 col-form-label">Confirm password</label>
 				                        <div class="col-sm-10">
-				                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
+				                          <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword">
 				                        </div>
 				                      </div>
-				                      <div class="form-group row">
-				                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-				                        <div class="col-sm-10">
-				                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-				                        </div>
-				                      </div>
-				                      <div class="form-group row">
-				                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-				                        <div class="col-sm-10">
-				                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-				                        </div>
-				                      </div>
+				                      
 				                      <div class="form-group row">
 				                        <div class="offset-sm-2 col-sm-10">
-				                          <div class="checkbox">
-				                            <label>
-				                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-				                            </label>
-				                          </div>
-				                        </div>
-				                      </div>
-				                      <div class="form-group row">
-				                        <div class="offset-sm-2 col-sm-10">
-				                          <button type="submit" class="btn btn-danger">Submit</button>
+				                          <button type="submit" class="btn btn-danger" id="changePass">Change</button>
 				                        </div>
 				                      </div>
 				                    </form>
@@ -248,6 +345,32 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
+
+	<div id="openfile" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<input name="avatar" type="hidden" value="noimg" />
+				<div class="modal-header">
+					<h4 class="modal-title">Change Image</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										
+				</div>
+				<div class="modal-body">
+					<form method="post" action="${pageContext.request.contextPath }/user/profile/changeImage" enctype="multipart/form-data">
+						<div class="form-group">
+							<img src="" id="accAvatar" width="100%" height="100%">
+							<br>
+							<input type="file" name="file" class="form-control" />
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+							<input type="submit" class="btn btn-success" value="Upload" path="" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div> 
 
 	</jsp:attribute>
 </mt:layout_user>

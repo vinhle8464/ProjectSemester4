@@ -1,9 +1,8 @@
 <%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" uri="http://mytags.vn"%>
-<%@ attribute name="title" required="true" rtexprvalue="true"
-	type="java.lang.String"%>
+<%@ attribute name="title" required="true" rtexprvalue="true" type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
-
+<%@ taglib prefix="ss" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
@@ -119,14 +118,26 @@
 				              	<div>${sessionScope.account.email }</div>
 				            </div>
 				            <!-- Message End -->
-				          <div class="dropdown-divider"></div>
-				          <a href="${pageContext.request.contextPath}/admin/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
-				            <!-- Message Start -->
-				            <div class="media">
-				              	Profile
-				            </div>
-				            <!-- Message End -->
-				          </a>
+				          <ss:authorize access="hasRole('ROLE_USER_FACULTY')">
+					          <div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+					              	Profile
+					            </div>
+					            <!-- Message End -->
+					          </a>
+				          </ss:authorize>
+				          <ss:authorize access="hasRole('ROLE_ADMIN')">
+					          <div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/admin/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+					              	Profile
+					            </div>
+					            <!-- Message End -->
+					          </a>
+				          </ss:authorize>
 				          <div class="dropdown-divider"></div>
 				          <a href="${pageContext.request.contextPath}/user/account/logout" class="dropdown-item">
 				            <!-- Message Start -->

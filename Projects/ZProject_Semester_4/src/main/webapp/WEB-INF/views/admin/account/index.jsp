@@ -472,7 +472,7 @@
 					<div class="form-group">
 						<label>Avatar</label>
 						<input type="file" name="file" class="form-control" />
-					<img src="" id="accAvatar" width="100%" height="100%">
+						<img src="" id="accAvatar" width="100%" height="100%">
 					
 					</div>	
 									

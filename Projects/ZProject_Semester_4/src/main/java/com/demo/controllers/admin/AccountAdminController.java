@@ -55,10 +55,6 @@ public class AccountAdminController implements ServletContextAware {
 
 	}
 	
-	
-	
-	
-
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
