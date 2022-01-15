@@ -31,7 +31,7 @@ public class HomeController {
 	public String register(ModelMap modelMap) {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-		account.setDob(new Date());
+		
 		modelMap.put("account", account);
 		modelMap.put("home", true);
 		

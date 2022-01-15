@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 29, 2021, 9:30:54 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,13 +67,13 @@ public class Answer implements java.io.Serializable {
 
 	@Column(name = "answer_status", nullable = false)
 	public boolean isAnswerStatus() {
-		return answerStatus;
+		return this.answerStatus;
 	}
-	
+
 	public void setAnswerStatus(boolean answerStatus) {
 		this.answerStatus = answerStatus;
 	}
-	
+
 	@Column(name = "status", nullable = false)
 	public boolean isStatus() {
 		return this.status;
@@ -82,13 +82,5 @@ public class Answer implements java.io.Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
-	@Override
-	public String toString() {
-		return "Answer [answerId=" + answerId + ", questionid=" + question.getQuestionId() + ", title=" + title + ", answerStatus="
-				+ answerStatus + ", status=" + status + "]";
-	}
-	
-	
 
 }

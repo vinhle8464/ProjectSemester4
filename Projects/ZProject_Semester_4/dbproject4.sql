@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2022 at 12:04 PM
+-- Generation Time: Jan 15, 2022 at 02:46 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -130,14 +130,14 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (15, '1m50', 15, b'01', b'01'),
 (16, '1m52', 15, b'00', b'01'),
 (17, '1m48', 15, b'00', b'01'),
-(18, '1', 16, b'00', b'01'),
-(19, '0', 16, b'00', b'01'),
-(20, '2', 16, b'01', b'01'),
+(18, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
+(19, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
+(20, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'01', b'01'),
 (21, '3', 16, b'00', b'01'),
-(22, '4', 16, b'00', b'01'),
+(22, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
 (23, '15', 17, b'00', b'01'),
 (24, '21', 17, b'01', b'01'),
-(25, '20', 17, b'00', b'01'),
+(25, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 17, b'00', b'01'),
 (26, '12', 17, b'00', b'01'),
 (27, '18', 17, b'00', b'01'),
 (28, '1', 18, b'00', b'01'),
@@ -151,7 +151,10 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (36, 'vui', 20, b'01', b'01'),
 (37, 'buon', 20, b'00', b'01'),
 (38, 'kkhoc', 20, b'00', b'01'),
-(39, 'xiu', 20, b'00', b'01');
+(39, 'xiu', 20, b'00', b'01'),
+(40, '1', 21, b'01', b'01'),
+(41, '2', 21, b'00', b'01'),
+(42, '3', 21, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -223,7 +226,11 @@ CREATE TABLE `history` (
   `date` date NOT NULL,
   `quiz_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `list_question_id` text NOT NULL,
+  `list_answer_choice` text NOT NULL,
+  `time_done` datetime NOT NULL,
+  `number_right_answer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -314,7 +321,8 @@ INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `st
 (17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01'),
 (18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01'),
 (19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01'),
-(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01');
+(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01'),
+(21, 'tset', 'test', 11, b'01');
 
 -- --------------------------------------------------------
 
@@ -332,25 +340,26 @@ CREATE TABLE `quiz` (
   `timer` tinyint(4) NOT NULL,
   `fee` bit(2) NOT NULL,
   `image` text NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`) VALUES
-(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01'),
-(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', 'Photo24.jpg', b'01'),
-(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', 'Photo24.jpg', b'01'),
-(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', 'Photo24.jpg', b'01'),
-(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', 'Photo24.jpg', b'01'),
-(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00'),
-(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01'),
-(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00'),
-(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01'),
-(11, 'trac nghiem tinh cach', 'xao do ehe\r\nco cai nit', 2, 8, 11, 10, b'00', 'Photo24.jpg', b'01'),
-(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'00', 'Photo24.jpg', b'01');
+INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`, `date_created`) VALUES
+(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00', '0000-00-00 00:00:00'),
+(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00', '0000-00-00 00:00:00'),
+(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01', '0000-00-00 00:00:00'),
+(11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 11, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '0000-00-00 00:00:00'),
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'01', 'Photo24.jpg', b'01', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -516,7 +525,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -546,7 +555,7 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `quiz`

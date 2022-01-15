@@ -70,8 +70,7 @@ public class PricingController {
 		modelMap.put("account", accountService.findByUsername(authentication.getName()));
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-		account.setDob(new Date());
-		modelMap.put("account", account);
+	modelMap.put("account", account);
 		
 		modelMap.put("course", true);
 		
