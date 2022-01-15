@@ -1,6 +1,5 @@
 package com.demo.controllers.user;
 
-
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,83 +19,85 @@ import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
 import com.demo.services.user.CourseService;
 
-
 @Controller
-@RequestMapping(value = {"user/course"})
+@RequestMapping(value = { "user/course" })
 public class CourseController {
-	
+
 	@Autowired
 	private AccountService accountService;
 
 	@Autowired
 	private CourseService courseService;
-	
+
 	@Autowired
 	private CategoryServiceAdmin categoryServiceAdmin;
-	
+
 	@Autowired
 	private QuizServiceFaculty quizServiceFaculty;
-	
-	
+
 	private int categoryIdd;
-	
+
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model, Authentication authentication) {
-		
-		if(categoryId > 0) {
+	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model,
+			Authentication authentication) {
+
+		if (categoryId > 0) {
 			this.categoryIdd = categoryId;
 			modelMap.put("course", true);
-			
+
 			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
-			
-		}else {
+
+		} else {
 			this.categoryIdd = 0;
-			
+
 			modelMap.put("course", true);
-			
+
 			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
-			
+
 		}
-	
+
 	}
-	
+
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, Authentication authentication) {
-		
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			Authentication authentication) {
+
 		Account account = new Account();
 		account.setDob(new Date());
-		
+
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-		
-		Account username = accountService.findByUsername(authentication.getName());		
+
+		Account username = accountService.findByUsername(authentication.getName());
 		modelMap.put("accountUsername", username);
-		
+
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
-		
+
 		return "user/course/quizdetails";
 	}
-
 
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
 			Model model, Authentication authentication) {
 
-		Account username = accountService.findByUsername(authentication.getName());		
-		modelMap.put("accountUsername", username);
 		
+		if (accountService.findByUsername(authentication.getName()) != null) {
+			modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+
+		}
+
 		int pageSizee = pageSize;
 
 		Page<Quiz> pages = null;
-		if(categoryIdd > 0) {
+		if (categoryIdd > 0) {
 			pages = courseService.getAllQuizByCategoryId(currentPage, pageSizee, sort, categoryIdd);
-		}else {
-			
+		} else {
+
 			pages = courseService.getPage(currentPage, pageSizee, sort);
 		}
-		
+
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPages", pages.getTotalPages());
 		model.addAttribute("totalElements", pages.getTotalElements());
@@ -104,17 +105,13 @@ public class CourseController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("quizs", pages.getContent());
 
-
 		Account account = new Account();
 		account.setDob(new Date());
-		
+
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
-		
 
 		return "user/course/index";
 	}
-	
-	
-	
+
 }
