@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <mt:layout_user title="Course">
 
@@ -31,7 +32,7 @@
 						</div>
 						<div class="course-rating">
 								 <a style="color: black;"
-										href="${pageContext.request.contextPath}/user/course/quizdetails?quizId=${quiz.quizId}"
+										href="${pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
 										class="hover-btn-new orange"><span>Start Test</span></a> 						
 							</div>
 					</div>
@@ -46,11 +47,12 @@
 											href="#"
 											title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
 										</h2>
-										<ul>
-						<li><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.timer} 22/01/2022  &nbsp;</li></ul>
+										<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}" pattern="dd/MM/yyyy" />
+				
+						<li><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp;</li></ul>
 							</div>
 							<div class="course-desc">
-								<p>${quiz.description.length() > 220 ? quiz.description.substring(0, 220) += '...' :  quiz.description}</p>
+								<p>${quiz.description.length() > 500 ? quiz.description.substring(0, 500) += '...' :  quiz.description}</p>
 							</div>
 							
 						</div>

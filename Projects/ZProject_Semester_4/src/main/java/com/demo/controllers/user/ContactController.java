@@ -37,7 +37,6 @@ public class ContactController {
 	public String register(ModelMap modelMap) {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-		account.setDob(new Date());
 		modelMap.put("account", account);
 		Email email = new Email();
 		modelMap.put("email", email);

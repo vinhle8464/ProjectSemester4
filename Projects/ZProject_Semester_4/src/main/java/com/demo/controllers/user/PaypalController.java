@@ -37,20 +37,20 @@ public class PaypalController {
 	
 	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
-		Account account = new Account();
-		
-		String authtoken = environment.getProperty("paypal.authtoken");
-		String posturl = environment.getProperty("paypal.posturl");
-		String business = environment.getProperty("paypal.business");
-		String returnurl = environment.getProperty("paypal.returnurl");
-		
-		modelMap.put("authtoken", authtoken);
-		modelMap.put("posturl", posturl);
-		modelMap.put("business", business);
-		modelMap.put("returnurl", returnurl);
-		modelMap.put("products", mailService.listProduct());
-		modelMap.put("account", account);
-		
+//		Account account = new Account();
+//		
+//		String authtoken = environment.getProperty("paypal.authtoken");
+//		String posturl = environment.getProperty("paypal.posturl");
+//		String business = environment.getProperty("paypal.business");
+//		String returnurl = environment.getProperty("paypal.returnurl");
+//		
+//		modelMap.put("authtoken", authtoken);
+//		modelMap.put("posturl", posturl);
+//		modelMap.put("business", business);
+//		modelMap.put("returnurl", returnurl);
+//		modelMap.put("products", mailService.listProduct());
+//		modelMap.put("account", account);
+//		
 		return "user/paypal/index";
 	}
 	

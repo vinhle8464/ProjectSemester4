@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <mt:layout_user title="Course">
 
@@ -54,18 +55,23 @@
 														href="${pageContext.request.contextPath}/user/course/quizdetails?quizId=${quiz.quizId}"
 														title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
 										</h2>
+										
 							</div>
 							<div class="course-desc">
 								<p>${quiz.description.length() > 220 ? quiz.description.substring(0, 220) += '...' :  quiz.description}</p>
 							</div>
 							<div class="course-rating">
-										<p>
+						
+										<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}"
+													pattern="dd/MM/yyyy" />
+			
+										<p><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp; | &nbsp;
 											<i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; ${quiz.questions.size()} Questions</p>			
 							</div>
 						</div>
 						<div class="course-meta-bot">
 							<ul>
-								<li><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp; ${quiz.timer}  Minutes &nbsp; |</li>
+								<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp; ${quiz.timer}  Minutes &nbsp; |</li>
 								<li><i class="fa fa-users" aria-hidden="true"></i> &nbsp; ${quiz.times} Times &nbsp; |</li>
 								<li style="${quiz.fee ? 'color:red;' : 'color:green;'}"><i
 													class="fa fa-dollar" aria-hidden="true"></i> &nbsp; ${quiz.fee ? "Purchase" : "Free"} </li>

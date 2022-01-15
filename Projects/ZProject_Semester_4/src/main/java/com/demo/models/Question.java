@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 29, 2021, 9:30:54 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -79,7 +79,7 @@ public class Question implements java.io.Serializable {
 
 	@Column(name = "explain_detail", nullable = false, length = 65535)
 	public String getExplainDetail() {
-		return explainDetail;
+		return this.explainDetail;
 	}
 
 	public void setExplainDetail(String explainDetail) {
@@ -90,8 +90,6 @@ public class Question implements java.io.Serializable {
 	public boolean isStatus() {
 		return this.status;
 	}
-
-
 
 	public void setStatus(boolean status) {
 		this.status = status;
@@ -106,11 +104,4 @@ public class Question implements java.io.Serializable {
 		this.answers = answers;
 	}
 
-	@Override
-	public String toString() {
-		return "Question [questionId=" + questionId + ", quiz=" + quiz.getQuizId() + ", title=" + title + ", explainDetail=" + explainDetail
-				+ ", status=" + status + ", answers=" + answers + "]";
-	}
-
-	
 }

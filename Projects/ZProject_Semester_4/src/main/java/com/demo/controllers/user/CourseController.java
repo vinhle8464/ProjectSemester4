@@ -1,6 +1,8 @@
 package com.demo.controllers.user;
 
-import java.util.Date;
+
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -63,8 +65,6 @@ public class CourseController {
 			Authentication authentication) {
 
 		Account account = new Account();
-		account.setDob(new Date());
-
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
@@ -77,6 +77,62 @@ public class CourseController {
 		return "user/course/quizdetails";
 	}
 
+	
+	@RequestMapping(value = { "starttest" }, method = RequestMethod.GET)
+	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			Authentication authentication) {
+
+		Account account = new Account();
+		Account username = accountService.findByUsername(authentication.getName());
+		
+		
+		
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+		modelMap.put("accountUsername", username);
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+
+		return "user/course/starttest";
+	}
+	
+	@RequestMapping(value = { "endtest" }, method = RequestMethod.POST)
+	public String EndTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			Authentication authentication, HttpServletRequest request) {
+
+		System.out.println("timesubmit " + request.getParameter("timersubmit"));
+		Account account = new Account();
+		Account username = accountService.findByUsername(authentication.getName());
+		
+		// plus 1 time in times of quiz
+		Quiz quiz = quizServiceFaculty.findById(quizId);
+		quiz.setTimes(quiz.getTimes() + 1);
+		quizServiceFaculty.update(quiz);
+
+		
+		String[] questionId = request.getParameterValues("questionId");
+		int i = 0;
+		System.out.println("questionId size: " + questionId.length);
+		for (String string : questionId) {
+			System.out.println("questionId: " + string);
+			
+			String answer = "answer" + i;
+			System.out.println("answer: "  + answer);
+			System.out.println("answer this : " + request.getParameter(answer) );
+			i++;
+		}
+		
+		
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+		modelMap.put("accountUsername", username);
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+
+		return "redirect:/user/course/starttest?quizId=" + quizId;
+	}
+	
+	
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
@@ -106,7 +162,6 @@ public class CourseController {
 		model.addAttribute("quizs", pages.getContent());
 
 		Account account = new Account();
-		account.setDob(new Date());
 
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());

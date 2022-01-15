@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 29, 2021, 9:30:54 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -16,16 +16,25 @@ public class HistoryId implements java.io.Serializable {
 	private int quizId;
 	private int accountId;
 	private boolean status;
+	private String listQuestionId;
+	private String listAnswerChoice;
+	private Date timeDone;
+	private int numberRightAnswer;
 
 	public HistoryId() {
 	}
 
-	public HistoryId(int historyId, Date date, int quizId, int accountId, boolean status) {
+	public HistoryId(int historyId, Date date, int quizId, int accountId, boolean status, String listQuestionId,
+			String listAnswerChoice, Date timeDone, int numberRightAnswer) {
 		this.historyId = historyId;
 		this.date = date;
 		this.quizId = quizId;
 		this.accountId = accountId;
 		this.status = status;
+		this.listQuestionId = listQuestionId;
+		this.listAnswerChoice = listAnswerChoice;
+		this.timeDone = timeDone;
+		this.numberRightAnswer = numberRightAnswer;
 	}
 
 	@Column(name = "history_id", nullable = false)
@@ -73,6 +82,42 @@ public class HistoryId implements java.io.Serializable {
 		this.status = status;
 	}
 
+	@Column(name = "list_question_id", nullable = false, length = 65535)
+	public String getListQuestionId() {
+		return this.listQuestionId;
+	}
+
+	public void setListQuestionId(String listQuestionId) {
+		this.listQuestionId = listQuestionId;
+	}
+
+	@Column(name = "list_answer_choice", nullable = false, length = 65535)
+	public String getListAnswerChoice() {
+		return this.listAnswerChoice;
+	}
+
+	public void setListAnswerChoice(String listAnswerChoice) {
+		this.listAnswerChoice = listAnswerChoice;
+	}
+
+	@Column(name = "time_done", nullable = false, length = 26)
+	public Date getTimeDone() {
+		return this.timeDone;
+	}
+
+	public void setTimeDone(Date timeDone) {
+		this.timeDone = timeDone;
+	}
+
+	@Column(name = "number_right_answer", nullable = false)
+	public int getNumberRightAnswer() {
+		return this.numberRightAnswer;
+	}
+
+	public void setNumberRightAnswer(int numberRightAnswer) {
+		this.numberRightAnswer = numberRightAnswer;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -86,7 +131,16 @@ public class HistoryId implements java.io.Serializable {
 				&& ((this.getDate() == castOther.getDate()) || (this.getDate() != null && castOther.getDate() != null
 						&& this.getDate().equals(castOther.getDate())))
 				&& (this.getQuizId() == castOther.getQuizId()) && (this.getAccountId() == castOther.getAccountId())
-				&& (this.isStatus() == castOther.isStatus());
+				&& (this.isStatus() == castOther.isStatus())
+				&& ((this.getListQuestionId() == castOther.getListQuestionId())
+						|| (this.getListQuestionId() != null && castOther.getListQuestionId() != null
+								&& this.getListQuestionId().equals(castOther.getListQuestionId())))
+				&& ((this.getListAnswerChoice() == castOther.getListAnswerChoice())
+						|| (this.getListAnswerChoice() != null && castOther.getListAnswerChoice() != null
+								&& this.getListAnswerChoice().equals(castOther.getListAnswerChoice())))
+				&& ((this.getTimeDone() == castOther.getTimeDone()) || (this.getTimeDone() != null
+						&& castOther.getTimeDone() != null && this.getTimeDone().equals(castOther.getTimeDone())))
+				&& (this.getNumberRightAnswer() == castOther.getNumberRightAnswer());
 	}
 
 	public int hashCode() {
@@ -97,6 +151,10 @@ public class HistoryId implements java.io.Serializable {
 		result = 37 * result + this.getQuizId();
 		result = 37 * result + this.getAccountId();
 		result = 37 * result + (this.isStatus() ? 1 : 0);
+		result = 37 * result + (getListQuestionId() == null ? 0 : this.getListQuestionId().hashCode());
+		result = 37 * result + (getListAnswerChoice() == null ? 0 : this.getListAnswerChoice().hashCode());
+		result = 37 * result + (getTimeDone() == null ? 0 : this.getTimeDone().hashCode());
+		result = 37 * result + this.getNumberRightAnswer();
 		return result;
 	}
 

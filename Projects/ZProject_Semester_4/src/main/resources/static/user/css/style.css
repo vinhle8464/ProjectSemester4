@@ -433,9 +433,17 @@ a img.aligncenter {
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -457,7 +465,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -477,7 +493,15 @@ scale
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 
@@ -497,7 +521,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -519,9 +551,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -543,7 +583,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -563,7 +611,15 @@ scale
 
 
 
+
+
+
+
 1
+
+
+
+
 
 
 
@@ -583,7 +639,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -605,9 +669,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -629,7 +701,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -649,7 +729,15 @@ scale
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 
@@ -669,7 +757,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -691,9 +787,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -715,7 +819,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -735,7 +847,15 @@ scale
 
 
 
+
+
+
+
 1
+
+
+
+
 
 
 
@@ -755,7 +875,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -777,9 +905,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -801,7 +937,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -821,7 +965,15 @@ scale
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 
@@ -841,7 +993,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -863,9 +1023,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -887,7 +1055,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -907,7 +1083,15 @@ scale
 
 
 
+
+
+
+
 1
+
+
+
+
 
 
 
@@ -927,7 +1111,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -949,9 +1141,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -973,7 +1173,15 @@ transform
 
 
 
+
+
+
+
 scale
+
+
+
+
 
 
 
@@ -993,7 +1201,15 @@ scale
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 
@@ -1013,7 +1229,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -1035,9 +1259,17 @@ scale
 
 
 
+
+
+
+
 %
 {
 transform
+
+
+
+
 
 
 
@@ -1059,6 +1291,10 @@ transform
 
 
 
+
+
+
+
 scale
 
 
@@ -1068,7 +1304,15 @@ scale
 
 
 
+
+
+
+
 (
+
+
+
+
 
 
 
@@ -1090,7 +1334,15 @@ scale
 
 
 
+
+
+
+
 )
+
+
+
+
 
 
 
@@ -4730,7 +4982,6 @@ a.link-style3 {
 .course_note {
 	padding: 15px;
 	height: 196px !important;
-	
 }
 
 .course_note div {
@@ -4740,3 +4991,68 @@ a.link-style3 {
 .course_note div:last-child {
 	height: 0px
 }
+
+.test_body {
+	border: 2px solid rgba(0, 0, 0, .125);
+	border-radius: 10px;
+}
+
+.test_body div.row {
+	padding: 30px 50px;
+}
+
+.quiz_title {
+    text-align: center;
+    margin: auto;
+}
+
+.quiz_title h2 {
+	font-size: 30px;
+	font-weight: bold;
+	color: #eea412;
+}
+
+.quiz_content {
+	width: 100%;
+}
+
+.quiz_content hr {
+	border-top: 3px solid rgba(0, 0, 0, .1);
+}
+
+.quiz_content div h3 {
+	font-weight: bold;
+}
+
+.quiz_content div p {
+	padding-left: 10px;
+	font-size: 17px;
+}
+
+.quiz_content div div {
+	padding: 10px 20px;
+	font-size: 15px;
+}
+
+.quiz_content div div input {
+	height: 23px;
+	width: 50px;
+	vertical-align: middle;
+}
+
+
+.btn_submit {
+    margin: auto;
+    text-align: center;
+    padding: 50px;
+}
+
+.btn_submit input {
+    color: white;
+    background-color: #eea412;
+    width: 300px;
+    font-size: 20px;
+   
+}
+
+
