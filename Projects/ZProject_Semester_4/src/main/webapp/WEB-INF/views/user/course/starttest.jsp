@@ -50,7 +50,7 @@
 
 	window.onload = function() {
 		var timer = document.getElementById('timer').value;
-		var Minutes = 60 * 120, display = document.querySelector('#timee');
+		var Minutes = 60 * timer, display = document.querySelector('#timee');
 		startTimer(Minutes, display);
 
 	};
