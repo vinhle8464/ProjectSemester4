@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 16, 2022, 9:20:04 PM by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -41,7 +41,7 @@ public class History implements java.io.Serializable {
 			@AttributeOverride(name = "status", column = @Column(name = "status", nullable = false)),
 			@AttributeOverride(name = "listQuestionId", column = @Column(name = "list_question_id", nullable = false, length = 65535)),
 			@AttributeOverride(name = "listAnswerChoice", column = @Column(name = "list_answer_choice", nullable = false, length = 65535)),
-			@AttributeOverride(name = "timeDone", column = @Column(name = "time_done", nullable = false, length = 26)),
+			@AttributeOverride(name = "timeDone", column = @Column(name = "time_done", nullable = false)),
 			@AttributeOverride(name = "numberRightAnswer", column = @Column(name = "number_right_answer", nullable = false)) })
 	public HistoryId getId() {
 		return this.id;

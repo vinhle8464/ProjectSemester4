@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 16, 2022, 9:20:04 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -18,14 +18,14 @@ public class HistoryId implements java.io.Serializable {
 	private boolean status;
 	private String listQuestionId;
 	private String listAnswerChoice;
-	private Date timeDone;
+	private int timeDone;
 	private int numberRightAnswer;
 
 	public HistoryId() {
 	}
 
 	public HistoryId(int historyId, Date date, int quizId, int accountId, boolean status, String listQuestionId,
-			String listAnswerChoice, Date timeDone, int numberRightAnswer) {
+			String listAnswerChoice, int timeDone, int numberRightAnswer) {
 		this.historyId = historyId;
 		this.date = date;
 		this.quizId = quizId;
@@ -100,12 +100,12 @@ public class HistoryId implements java.io.Serializable {
 		this.listAnswerChoice = listAnswerChoice;
 	}
 
-	@Column(name = "time_done", nullable = false, length = 26)
-	public Date getTimeDone() {
+	@Column(name = "time_done", nullable = false)
+	public int getTimeDone() {
 		return this.timeDone;
 	}
 
-	public void setTimeDone(Date timeDone) {
+	public void setTimeDone(int timeDone) {
 		this.timeDone = timeDone;
 	}
 
@@ -138,8 +138,7 @@ public class HistoryId implements java.io.Serializable {
 				&& ((this.getListAnswerChoice() == castOther.getListAnswerChoice())
 						|| (this.getListAnswerChoice() != null && castOther.getListAnswerChoice() != null
 								&& this.getListAnswerChoice().equals(castOther.getListAnswerChoice())))
-				&& ((this.getTimeDone() == castOther.getTimeDone()) || (this.getTimeDone() != null
-						&& castOther.getTimeDone() != null && this.getTimeDone().equals(castOther.getTimeDone())))
+				&& (this.getTimeDone() == castOther.getTimeDone())
 				&& (this.getNumberRightAnswer() == castOther.getNumberRightAnswer());
 	}
 
@@ -153,7 +152,7 @@ public class HistoryId implements java.io.Serializable {
 		result = 37 * result + (this.isStatus() ? 1 : 0);
 		result = 37 * result + (getListQuestionId() == null ? 0 : this.getListQuestionId().hashCode());
 		result = 37 * result + (getListAnswerChoice() == null ? 0 : this.getListAnswerChoice().hashCode());
-		result = 37 * result + (getTimeDone() == null ? 0 : this.getTimeDone().hashCode());
+		result = 37 * result + this.getTimeDone();
 		result = 37 * result + this.getNumberRightAnswer();
 		return result;
 	}

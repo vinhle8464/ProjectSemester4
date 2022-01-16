@@ -100,7 +100,7 @@ public class CourseController {
 	public String EndTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
 			Authentication authentication, HttpServletRequest request) {
 
-		System.out.println("timesubmit " + request.getParameter("timersubmit"));
+		System.out.println("timesubmit==============: " + request.getParameter("timersubmit"));
 		Account account = new Account();
 		Account username = accountService.findByUsername(authentication.getName());
 		

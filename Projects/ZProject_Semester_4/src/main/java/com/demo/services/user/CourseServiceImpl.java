@@ -17,19 +17,19 @@ import com.demo.services.faculty.QuizServiceFaculty;
 public class CourseServiceImpl implements CourseService {
 
 	@Autowired
-	private QuizRepository courseRepository;
+	private QuizRepository quizRepository;
 
 	@Override
 	public Page<Quiz> getPage(int currentPage, int pageSize, String sort) {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
-		return this.courseRepository.findAll(pageable);
+		return this.quizRepository.findAll(pageable);
 	}
 
 	
 	@Override
 	public Page<Quiz> getAllQuizByCategoryId(int currentPage, int pageSize, String sort, int categoryId) {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
-		return this.courseRepository.getAllQuizByCategoryId(categoryId, pageable);
+		return this.quizRepository.getAllQuizByCategoryId(categoryId, pageable);
 
 	}
 
