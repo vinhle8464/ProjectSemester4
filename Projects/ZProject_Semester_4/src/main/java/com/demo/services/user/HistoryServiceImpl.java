@@ -1,6 +1,5 @@
 package com.demo.services.user;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,65 +8,38 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.demo.entites.PackAjax;
-import com.demo.entites.PayAjax;
-import com.demo.models.Pack;
-import com.demo.models.Pay;
-import com.demo.repositories.admin.PackRepositoryAdmin;
+import com.demo.models.History;
+import com.demo.repositories.user.HistoryRepository;
 
 @Service
 public class HistoryServiceImpl implements HistoryService{
 
 	@Autowired
-	private PackRepositoryAdmin packRepositoryAdmin;
+	private HistoryRepository historyRepository;
 
 	@Override
-	public Pack findById(int id) {
-		return packRepositoryAdmin.findById(id).get();
+	public History findById(int id) {
+		return historyRepository.findById(id).get();
 	}
 	
 	// this method was not be completed!
 	@Override
-	public Pack create(Pack pack) {
-		pack.setStatus(true);
-		return packRepositoryAdmin.save(pack);
+	public History create(History history) {
+		return historyRepository.save(history);
 	}
 	
 	// this method was not be completed!
 	@Override
-	public Pack update(Pack pack) {
+	public History update(History history) {
 		
-		return packRepositoryAdmin.save(pack);
+		return historyRepository.save(history);
 		
 	}
 
-	@Override
-	public void deleteById(int id) {
-		packRepositoryAdmin.deleteById(id);
-	}
 
-	@Override
-	public List<Pack> findAllPack() {
-		
-		return (List<Pack>) packRepositoryAdmin.findAll();
-
-	}
-
-
-	
-	
-	@Override
-	public PackAjax findByIdAjax(int PayId) {
-		return packRepositoryAdmin.findByIdAjax(PayId);
-	}
-
-	 public Page<Pack> getPage(int currentPage, int pageSize, String sort){
+	 public Page<History> getAllHistoryByAccountId(int currentPage, int pageSize, String sort, int accountId){
 		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
-			return this.packRepositoryAdmin.findAll(pageable);
+			return this.historyRepository.getAllQuizByAccountId(accountId, pageable);
 	    }
-
-	
-	
-	
 
 }

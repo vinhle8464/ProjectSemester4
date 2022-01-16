@@ -2,6 +2,9 @@ package com.demo.controllers.user;
 
 
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
+import com.demo.models.Answer;
+import com.demo.models.History;
+import com.demo.models.HistoryId;
+import com.demo.models.Question;
 import com.demo.models.Quiz;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
@@ -109,18 +116,62 @@ public class CourseController {
 		quiz.setTimes(quiz.getTimes() + 1);
 		quizServiceFaculty.update(quiz);
 
+		// create new history 
+		HistoryId historyId = new HistoryId();
+		historyId.setDate(new Date());
+		historyId.setQuizId(quizId);
+		historyId.setAccountId(username.getAccountId());
+		historyId.setStatus(true);
+		historyId.setListQuestionId(request.getParameterValues("questionId").toString());
 		
-		String[] questionId = request.getParameterValues("questionId");
+		// get list anserchoice
+		List<String> listAnswerChoice = null;	
+		String[] listQuestionId = request.getParameterValues("questionId");		
 		int i = 0;
-		System.out.println("questionId size: " + questionId.length);
-		for (String string : questionId) {
-			System.out.println("questionId: " + string);
+//		System.out.println("questionId size: " + questionId.length);
+		for (String string : listQuestionId) {
+			//System.out.println("questionId: " + string);
 			
 			String answer = "answer" + i;
+			
 			System.out.println("answer: "  + answer);
 			System.out.println("answer this : " + request.getParameter(answer) );
+			listAnswerChoice.add(request.getParameter(answer));
+			
 			i++;
 		}
+		historyId.setListAnswerChoice(listAnswerChoice.toString());
+		historyId.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
+		
+		
+		// get number of right  answer_ choice
+		List<Question> questions = (List<Question>) quiz.getQuestions();
+		int t = 0;
+		int rightAnswerChoice = 0;
+		for (String questionId : listQuestionId) {
+			
+			for (Question question : questions) {
+				
+				if(Integer.parseInt(questionId)  == question.getQuestionId()) {
+					String answer = "answer" + i;
+					int answerChoice = Integer.parseInt(request.getParameter(answer));
+					
+					List<Answer> answers = (List<Answer>) question.getAnswers();
+					String[] listAnswer = answers.toArray(new String[0]);
+					for (String aaa : listAnswer) {
+						System.out.println(aaa);
+					}
+					
+//					if(answers.get(3)[0] == true) {
+//						
+//					}
+				}
+			}
+			String answer = "answer" + i;
+			listAnswerChoice.add(request.getParameter(answer));
+			t++;
+		}
+		
 		
 		
 		modelMap.put("account", account);
