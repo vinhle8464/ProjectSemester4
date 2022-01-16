@@ -50,8 +50,8 @@
 								$radios2.filter('[value=false]').prop(
 										'checked', true);
 							}
+							$('#dateCreated').val($.datepicker.formatDate('mm/dd/yy', new Date()));
 							$('#imgQuiz').attr("src", "/assets/uploads/" + quiz.image);
-
 						}
 					});
 
@@ -116,17 +116,13 @@
 								
 							</th>
 						
-							<th><a
-												href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
+							<th><a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=account.fullname">Fullname</a></th>
 							
-							<th> <a
-												href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
-							<th> <a
-												href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=category.title">Category Title</a></th>
-							<th> <a
-												href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
-							<th> <a
-												href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=status">Status</a></th>
+							<th width="530px"> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=title">Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=category.title">Category Title</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=dateCreated">Date created</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=fee">Fee</a></th>
+							<th> <a href="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=status">Status</a></th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -146,6 +142,8 @@
 							
 							<td>${quiz.title }</td>
 							<td>${quiz.category.title }</td>
+							<td>${quiz.dateCreated }</td>
+							
 							<c:if test="${quiz.fee == true}">
 								<td style="color: green;"><strong>${quiz.fee }</strong></td>
 							</c:if>
@@ -161,12 +159,10 @@
 							</c:if>
 							
 							<td>
-							<a
-																href="${pageContext.request.contextPath }/faculty/question/index?quizId=${quiz.quizId }"
+							<a href="${pageContext.request.contextPath }/faculty/question/index?quizId=${quiz.quizId }"
 																id="${quiz.quizId }">Details</a>
 																
-								<a href="#editEmployeeModal" id="${quiz.quizId }"
-																onclick="openEditModal(id);" class="edit"
+								<a href="#editEmployeeModal" id="${quiz.quizId }" onclick="openEditModal(id);" class="edit"
 																data-toggle="modal"><i class="material-icons"
 																	data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 															
@@ -194,14 +190,10 @@
 			<select style="color: #566787;" name="pageSize"
 												onchange="location = this.value;">
 			 <option value="">PageSize</option>
-			 <option
-													value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
-			 <option
-													value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
-			 <option
-													value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
-			  <option
-													value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=5&sort=${sort}">5</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=10&sort=${sort}">10</option>
+			 <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=25&sort=${sort}">25</option>
+			  <option value="${pageContext.request.contextPath}/faculty/quiz/pagination?currentPage=1&pageSize=50&sort=${sort}">50</option>
 			</select>
 	
 		&nbsp;&nbsp;
@@ -423,7 +415,7 @@
 					<div class="form-group">
 						<label>Times</label>
 						<s:input path="times" type="text" id="timess" class="form-control"
-													required="required" />
+													required="required" disabled="true"/>
 					</div>		
 					<div class="form-group">
 						<label>Timer</label>
@@ -437,6 +429,12 @@
 					</div>	
 					
 					<s:input path="quizId" id="quizIdEdit" type="hidden" />
+					
+					<div class="form-group">
+						<label>Date created</label>
+						<s:input path="dateCreated" type="text" id="dateCreated" class="form-control"
+													required="required" disabled="true"/>
+					</div>
 							
 					<div class="form-group">
 						<label>Image</label>

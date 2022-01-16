@@ -38,11 +38,10 @@ public class ProfileAdminController implements ServletContextAware{
 	}
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Authentication authentication, @RequestParam("accountId") int id) {
+	public String index(ModelMap modelMap,@RequestParam("accountId") int id) {
 		
 		Account account = accountService.findById(id);
 		modelMap.put("account", account);
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		return "admin/profile/index";
 	}
 	

@@ -37,11 +37,9 @@ public class QuestionFacultyController {
 	private int quizIdd;
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
-			Authentication authentication) {
+	public String index(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
 		this.quizIdd = quizId;
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		return pagination(1, 25, "question_id", modelMap, model, authentication);
+		return pagination(1, 25, "question_id", modelMap, model);
 
 	}
 
@@ -125,9 +123,7 @@ public class QuestionFacultyController {
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
-			Model model, Authentication authentication) {
-
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+			Model model) {
 
 		int pageSizee = pageSize;
 

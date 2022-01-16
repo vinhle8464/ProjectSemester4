@@ -72,7 +72,7 @@ public class PricingController {
 		Account account = new Account();
 	modelMap.put("account", account);
 		
-		modelMap.put("course", true);
+		modelMap.put("pricing", true);
 		
 		return "user/pricing/index";
 	}

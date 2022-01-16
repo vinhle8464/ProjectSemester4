@@ -52,7 +52,6 @@ public class DashboardFacultyController {
 	public String index(Authentication authentication, ModelMap modelMap, HttpServletRequest request, Model model) {
 		//HttpSession session = request.getSession();
 		//Account account = (Account) session.getAttribute("account");
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 	
 		QuestionAnswer questionAnswer = new QuestionAnswer();
 		modelMap.put("questionAnswer", questionAnswer);

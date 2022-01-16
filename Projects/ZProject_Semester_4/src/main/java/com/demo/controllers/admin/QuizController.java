@@ -30,17 +30,15 @@ public class QuizController {
 	private CategoryServiceAdmin categoryServiceAdmin;
 	
 	@RequestMapping(value = {"","index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Model model, Authentication authentication) {
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+	public String index(ModelMap modelMap, Model model) {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
-		return pagination(1, 25, "quizId", modelMap, model, authentication);
+		return pagination(1, 25, "quizId", modelMap, model);
 	}
 	
 	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model, Authentication authentication) {
+			ModelMap modelMap, Model model) {
 		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		int pageSizee = pageSize;
 

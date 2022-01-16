@@ -21,12 +21,11 @@ public class DashboardAdminController {
 	private AccountService accountService;
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
+	public String index(ModelMap modelMap, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("account");
 		System.out.println("bao");
 		System.out.println(account.getFullname());
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 
 		return "admin/dashboard/index";
 	}

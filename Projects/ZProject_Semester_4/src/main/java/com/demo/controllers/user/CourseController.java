@@ -76,9 +76,6 @@ public class CourseController {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
 
-		Account username = accountService.findByUsername(authentication.getName());
-		modelMap.put("accountUsername", username);
-
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		return "user/course/quizdetails";

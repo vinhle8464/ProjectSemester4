@@ -15,9 +15,10 @@
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
 	<script>
-	  $( function() {
+	
+/* 	  $( function() {
 	    $( "#birthday" ).datepicker();
-	  } );
+	  } ); */
 	  
 	  function openChangeAvt(accountId) {
 			$.ajax({
@@ -218,7 +219,7 @@
 					                      <div class="form-group row collapse" id="editBirthday">
 											   <label for="inputName" class="col-sm-3 col-form-label"></label>
 						                       <div class="col-sm-8">
-						                         <input type="text" class="form-control" id="birthday" placeholder="Birthday" name="birthday"> <br>
+						                         <input type="text" class="form-control" id="" placeholder="Birthday" name="birthday"> <br>
 						                         <input type="submit" value="Change" class="btn btn-danger">
 						                       </div>
 					                      </div>
