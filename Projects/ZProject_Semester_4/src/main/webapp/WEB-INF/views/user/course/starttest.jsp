@@ -61,7 +61,7 @@
 	
 <div
 				style="background-color: #eea412; padding: 5px; border-radius: 5px;">
-				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span> minutes!</div>
+				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span></div>
 	</div>
     <div id="overviews" class="section wb">
         <div class="container">
