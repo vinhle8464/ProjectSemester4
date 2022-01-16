@@ -11,8 +11,27 @@
 
 
 <script>
+	/* var sec = 0;
+	function pad(val) {
+		return val > 9 ? val : "00" + val;
+	} */
+	
+/* 	function animateValue(id){
+	    var current = 0;
+
+	    setInterval(function(){
+	    		$('#timersubmit').val(current++);
+	    },1000);
+	} */
+	/* setInterval(function() {
+		$("#seconds").html(pad(++sec % 60));
+		$("#minutes").html(pad(parseInt(sec / 60, 10)));
+	}, 1000); */
+
 	function startTimer(duration, display) {
 		var timer = duration, minutes, seconds;
+		var current = 0;
+
 		setInterval(function() {
 			minutes = parseInt(timer / 60, 10);
 			seconds = parseInt(timer % 60, 10);
@@ -21,7 +40,7 @@
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 
 			display.textContent = minutes + ":" + seconds;
-
+			$('#timersubmit').val(current++);
 			if (--timer < 0) {
 				timer = duration;
 				document.getElementById('formquiz').submit();
@@ -31,21 +50,10 @@
 
 	window.onload = function() {
 		var timer = document.getElementById('timer').value;
-		var fiveMinutes = 60 * timer, display = document.querySelector('#time');
-		var fiveMinutes = 60 * timer, display = document.querySelector('#timersubmit');
-		startTimer(fiveMinutes, display);
+		var Minutes = 60 * 120, display = document.querySelector('#timee');
+		startTimer(Minutes, display);
+
 	};
-	
-	/* $('#formquiz').submit(function() {
-	    alert('con khi');
-	    var $time = $('#time').val();
-		$('#timersubmit').val($time);
-	    
-	});
-	
-	$(document).on('submit','formquiz',function(){
-		alert('con khi');
-		}); */
 </script>
 
 	<div
@@ -53,7 +61,7 @@
 	
 <div
 				style="background-color: #eea412; padding: 5px; border-radius: 5px;">
-				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="time">${quiz.timer }:00</span> minutes!</div>
+				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span> minutes!</div>
 	</div>
     <div id="overviews" class="section wb">
         <div class="container">
@@ -63,8 +71,7 @@
 	         			<h2>${quiz.title}</h2>
 	         		</div>             
 	            </div>
-	            <input type="hidden" id="timer"
-											value="${quiz.timer }">
+	            <input type="hidden" id="timer" value="${quiz.timer }">
 	            <form id="formquiz" method="post"
 						action="${pageContext.request.contextPath }/user/course/endtest?quizId=${quiz.quizId}">
 	            <c:forEach var="question" items="${quiz.questions}"
