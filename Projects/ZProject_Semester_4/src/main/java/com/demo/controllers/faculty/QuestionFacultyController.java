@@ -89,7 +89,7 @@ public class QuestionFacultyController {
 			i++;
 
 		}
-
+/// nthohing 
 		return "redirect:/faculty/question/index?quizId=" + quizIdd;
 	}
 
