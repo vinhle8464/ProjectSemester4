@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Answer;
 import com.demo.models.Question;
-import com.demo.services.AccountService;
 import com.demo.services.faculty.AnswerServiceFaculty;
 import com.demo.services.faculty.QuestionServiceFaculty;
 import com.demo.services.faculty.QuizServiceFaculty;
@@ -25,9 +23,7 @@ import com.demo.services.faculty.QuizServiceFaculty;
 @RequestMapping(value = { "faculty/question" })
 public class QuestionFacultyController {
 
-	@Autowired
-	private AccountService accountService;
-
+	
 	@Autowired
 	private QuestionServiceFaculty questionServiceFaculty;
 
