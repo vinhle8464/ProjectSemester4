@@ -10,17 +10,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
 import com.demo.models.AccountPack;
-import com.demo.models.AccountPackId;
-import com.demo.models.Pack;
 import com.demo.models.Pay;
 import com.demo.paypals.PayPalConfig;
 import com.demo.paypals.PayPalResult;
@@ -110,16 +104,10 @@ public class PricingController {
 		pay.setPayStatus(true);
 		payService.save(pay);
 		
-		AccountPackId accountPackId = new AccountPackId();
-		accountPackId.setAccountId(account.getAccountId());
-		accountPackId.setPackId(pakcid);
-		
-		Pack pack = pricingService.findById(pakcid);
 		
 		AccountPack accountPack = new AccountPack();
 		accountPack.setAccount(account);
-		accountPack.setId(accountPackId);
-		accountPack.setPack(pack);
+		accountPack.setPack(pricingService.findById(pakcid));
 		accountPack.setStartDate(new Date());
 		accountPack.setStatus(true);
 		accountPackService.save(accountPack);

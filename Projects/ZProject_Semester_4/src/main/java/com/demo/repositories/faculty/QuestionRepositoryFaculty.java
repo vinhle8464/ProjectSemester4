@@ -14,7 +14,7 @@ import com.demo.models.Question;
 public interface QuestionRepositoryFaculty extends JpaRepository<Question, Integer> {
 
 	
-	@Query("select new com.demo.entites.QuestionAjax(questionId, quiz.quizId, title, explainDetail, status) from Question where questionId = :questionId")
+	@Query("select new com.demo.entites.QuestionAjax(questionId, quiz.quizId, title, explainDetail, status, typeAnswerChoice) from Question where questionId = :questionId")
 	public QuestionAjax findByIdAjax(@Param("questionId") int questionId);
 	
 	@Query(value = "SELECT * FROM question q WHERE q.quiz_id = ?1",
