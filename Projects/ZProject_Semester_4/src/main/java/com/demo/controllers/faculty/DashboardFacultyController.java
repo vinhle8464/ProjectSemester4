@@ -69,17 +69,28 @@ public class DashboardFacultyController {
 	public String test(Authentication authentication, ModelMap modelMap, HttpServletRequest request, Model model) {
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 	
-		
 		String[] a = request.getParameterValues("answerStatus");
 		System.out.println(a.length);
+	
+		System.out.println("+++++");
+//		int i = 0;		
+//		for (String string : a) {
+//			if(string.equalsIgnoreCase("1")) {
+//				a = ArrayUtils.remove(a, i - 1);
+//				i--;
+//			}
+//			i++;
+//		}
 		for (String string : a) {
-			if(string == null) {
-				System.out.println("null1");
-			}else {
-				System.out.println("answerstatus: " + string);
-			}
-			
+			System.out.println(string);
 		}
+		System.out.println("===============");
+		return "faculty/dashboard/index";
+	}
+	
+	@RequestMapping(value = {"testt" }, method = RequestMethod.GET)
+	public String testt(Authentication authentication, ModelMap modelMap, HttpServletRequest request, Model model) {
+		
 		
 		return "faculty/dashboard/index";
 	}

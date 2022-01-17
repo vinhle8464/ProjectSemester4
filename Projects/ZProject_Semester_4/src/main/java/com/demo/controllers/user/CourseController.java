@@ -1,12 +1,13 @@
 package com.demo.controllers.user;
 
-
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.models.Account;
 import com.demo.models.Answer;
 import com.demo.models.History;
-import com.demo.models.HistoryId;
 import com.demo.models.Question;
 import com.demo.models.Quiz;
 import com.demo.services.AccountService;
@@ -47,29 +47,27 @@ public class CourseController {
 	private int categoryIdd;
 
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
-	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model,
-			Authentication authentication) {
+	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model) {
 
 		if (categoryId > 0) {
 			this.categoryIdd = categoryId;
 			modelMap.put("course", true);
 
-			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
+			return pagination(1, 15, "quiz_id", modelMap, model);
 
 		} else {
 			this.categoryIdd = 0;
 
 			modelMap.put("course", true);
 
-			return pagination(1, 15, "quiz_id", modelMap, model, authentication);
+			return pagination(1, 15, "quiz_id", modelMap, model);
 
 		}
 
 	}
 
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
-			Authentication authentication) {
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
 
 		Account account = new Account();
 		modelMap.put("account", account);
@@ -81,84 +79,94 @@ public class CourseController {
 		return "user/course/quizdetails";
 	}
 
-	
 	@RequestMapping(value = { "starttest" }, method = RequestMethod.GET)
-	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
-			Authentication authentication) {
+	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
 
 		Account account = new Account();
-		Account username = accountService.findByUsername(authentication.getName());
-		
-		
-		
+
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-		modelMap.put("accountUsername", username);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		return "user/course/starttest";
 	}
-	
+
 	@RequestMapping(value = { "endtest" }, method = RequestMethod.POST)
 	public String EndTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
-			Authentication authentication, HttpServletRequest request) {
+			HttpServletRequest request) {
 
 		System.out.println("timesubmit==============: " + request.getParameter("timersubmit"));
 		Account account = new Account();
-		Account username = accountService.findByUsername(authentication.getName());
-		
+
 		// plus 1 time in times of quiz
 		Quiz quiz = quizServiceFaculty.findById(quizId);
 		quiz.setTimes(quiz.getTimes() + 1);
 		quizServiceFaculty.update(quiz);
 
-		// create new history 
-		HistoryId historyId = new HistoryId();
-		historyId.setDate(new Date());
-		historyId.setQuizId(quizId);
-		historyId.setAccountId(username.getAccountId());
-		historyId.setStatus(true);
-		historyId.setListQuestionId(request.getParameterValues("questionId").toString());
-		
+		// create new history
+		History history = new History();
+		history.setDate(new Date());
+		history.setQuiz(quizServiceFaculty.findById(quizId));
+
+		HttpSession session = request.getSession();
+		Account account2 = (Account) request.getSession().getAttribute("account");
+		history.setAccount(accountService.findById(account2.getAccountId()));
+		history.setStatus(true);
+		history.setListQuestionId(request.getParameterValues("questionId").toString());
 		// get list anserchoice
-		List<String> listAnswerChoice = null;	
-		String[] listQuestionId = request.getParameterValues("questionId");		
+		List<String> listAnswerChoice = new ArrayList<String>();
+		List<String> listAnswerIdChoice = new ArrayList<String>();
+		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
 //		System.out.println("questionId size: " + questionId.length);
 		for (String string : listQuestionId) {
-			//System.out.println("questionId: " + string);
-			
+			// System.out.println("questionId: " + string);
+
 			String answer = "answer" + i;
-			
-			System.out.println("answer: "  + answer);
-			System.out.println("answer this : " + request.getParameter(answer) );
-			listAnswerChoice.add(request.getParameter(answer));
-			
+			String answerId = "answerId" + i;
+
+			System.out.println("answer: " + answer);
+			System.out.println("answer this : " + request.getParameter(answer));
+
+			listAnswerIdChoice.add(request.getParameter(answerId).toString());
+
+			if (request.getParameter(answer) != null) {
+				listAnswerChoice.add(request.getParameter(answer).toString());
+			} else {
+				listAnswerChoice.add("0");
+			}
+
 			i++;
 		}
-		historyId.setListAnswerChoice(listAnswerChoice.toString());
-		historyId.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
-		
-		
-		// get number of right  answer_ choice
-		List<Question> questions = (List<Question>) quiz.getQuestions();
+
+		history.setListAnswerChoice(listAnswerChoice.toArray(new String[0]).toString());
+		history.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
+
+		// get number of right answer_ choice
+//		List<Question> questions = (List<Question>) quiz.getQuestions();
 		int t = 0;
 		int rightAnswerChoice = 0;
 		for (String questionId : listQuestionId) {
-			
-			for (Question question : questions) {
-				
-				if(Integer.parseInt(questionId)  == question.getQuestionId()) {
+
+			for (Question question : quiz.getQuestions()) {
+
+				if (Integer.parseInt(questionId) == question.getQuestionId()) {
+					System.out.println("questID: " + question.getQuestionId());
 					String answer = "answer" + i;
-					int answerChoice = Integer.parseInt(request.getParameter(answer));
-					
-					List<Answer> answers = (List<Answer>) question.getAnswers();
-					String[] listAnswer = answers.toArray(new String[0]);
-					for (String aaa : listAnswer) {
-						System.out.println(aaa);
+
+					System.out.println("caaaa: " + listAnswerChoice.toArray(new String[0])[t]);
+					int answerChoice = Integer.parseInt(listAnswerChoice.toArray(new String[0])[t]);
+
+					List<String> answerTrue = new ArrayList<String>();
+					for (Answer answerr : question.getAnswers()) {
+
+						System.out.println("questionID2: " + answerr.getQuestion().getQuestionId());
+						System.out.println("answerID2: " + answerr.getAnswerId());
+						answerTrue.add(String.valueOf(answerr.isAnswerStatus()));
+						System.out.println(String.valueOf(answerr.isAnswerStatus()));
 					}
-					
+
 //					if(answers.get(3)[0] == true) {
 //						
 //					}
@@ -168,29 +176,19 @@ public class CourseController {
 			listAnswerChoice.add(request.getParameter(answer));
 			t++;
 		}
-		
-		
-		
+
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-		modelMap.put("accountUsername", username);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		return "redirect:/user/course/starttest?quizId=" + quizId;
 	}
-	
-	
+
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
-			Model model, Authentication authentication) {
-
-		
-		if (accountService.findByUsername(authentication.getName()) != null) {
-			modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-
-		}
+			Model model) {
 
 		int pageSizee = pageSize;
 

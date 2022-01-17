@@ -1,5 +1,8 @@
 package com.demo.controllers.faculty;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -45,18 +48,31 @@ public class QuestionFacultyController {
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
 	public String create(@ModelAttribute("question") Question question,
-			@RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus) {
+			HttpServletRequest request) {
 
-	
+		String[] answerTitle = request.getParameterValues("answerTitle");
+		String[] answerStatus = request.getParameterValues("answerStatus");
+		
 		
 		// add question
 		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
 
 		question = questionServiceFaculty.create(question);
+		
+		// sort listanswerstatus again
+		int t = 0;		
+		for (String string : answerStatus) {
+			if(string.equalsIgnoreCase("1")) {
+				answerStatus = ArrayUtils.remove(answerStatus, t - 1);
+				t--;
+			}
+			t++;
+		}
+		
 
-		int i = 0;
 		// add list answers
+		int i = 0;
 		for (String title : answerTitle) {
 			Answer answer = new Answer();
 			answer.setTitle(title);
@@ -79,14 +95,28 @@ public class QuestionFacultyController {
 
 	@RequestMapping(value = { "update" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("question") Question question, @RequestParam("answerId") String[] answerId,
-			@RequestParam("answerTitle") String[] answerTitle, @RequestParam("answerStatus") String[] answerStatus) {
+			HttpServletRequest request) {
 
+		String[] answerTitle = request.getParameterValues("answerTitle");
+		String[] answerStatus = request.getParameterValues("answerStatus");
+		
+		
 		// update question
 		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
 
 		question = questionServiceFaculty.update(question);
 
+		// sort listanswerstatus again
+		int t = 0;		
+		for (String string : answerStatus) {
+			if(string.equalsIgnoreCase("1")) {
+				answerStatus = ArrayUtils.remove(answerStatus, t - 1);
+				t--;
+			}
+			t++;
+		}
+		
 		// update answers		
 		for (int i = 0; i < answerTitle.length; i++) {
 			Answer answer = new Answer();

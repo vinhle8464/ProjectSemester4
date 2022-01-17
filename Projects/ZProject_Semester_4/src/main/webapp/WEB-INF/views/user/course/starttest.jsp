@@ -15,14 +15,14 @@
 	function pad(val) {
 		return val > 9 ? val : "00" + val;
 	} */
-	
-/* 	function animateValue(id){
-	    var current = 0;
 
-	    setInterval(function(){
-	    		$('#timersubmit').val(current++);
-	    },1000);
-	} */
+	/* 	function animateValue(id){
+	 var current = 0;
+
+	 setInterval(function(){
+	 $('#timersubmit').val(current++);
+	 },1000);
+	 } */
 	/* setInterval(function() {
 		$("#seconds").html(pad(++sec % 60));
 		$("#minutes").html(pad(parseInt(sec / 60, 10)));
@@ -61,7 +61,8 @@
 	
 <div
 				style="background-color: #eea412; padding: 5px; border-radius: 5px;">
-				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span></div>
+				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span>
+			</div>
 	</div>
     <div id="overviews" class="section wb">
         <div class="container">
@@ -92,6 +93,8 @@
 		         				<div>
 		         					<input type="radio" name="answer${i.index }"
 													value="${t.index + 1}"> ${answer.title }
+									<input type="hidden" name="answerId${i.index }"
+													value="${answer.answerId}">
 		         				</div>
 		         				 </c:forEach>
 		         			</div>

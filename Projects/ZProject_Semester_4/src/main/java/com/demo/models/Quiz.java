@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 17, 2022, 9:56:49 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class Quiz implements java.io.Serializable {
 	private byte timer;
 	private boolean fee;
 	private String image;
-	private boolean status;	
+	private boolean status;
 	private Date dateCreated;
 	private Set<RatingComment> ratingComments = new HashSet<RatingComment>(0);
 	private Set<History> histories = new HashSet<History>(0);

@@ -202,6 +202,7 @@
 		class="fa fa-angle-up"></i></a>
 
 	<!-- ALL JS FILES -->
+	
 	<script
 		src="${pageContext.request.contextPath}/resources/user/js/all.js"></script>
 	<!-- ALL PLUGINS -->

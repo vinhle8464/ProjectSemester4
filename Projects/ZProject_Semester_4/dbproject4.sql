@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2022 at 03:36 PM
+-- Generation Time: Jan 17, 2022 at 03:54 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -154,7 +154,25 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (39, 'xiu', 20, b'00', b'01'),
 (40, '1', 21, b'01', b'01'),
 (41, '2', 21, b'00', b'01'),
-(42, '3', 21, b'00', b'01');
+(42, '3', 21, b'00', b'01'),
+(43, '1 chan', 22, b'01', b'01'),
+(44, '2 chan', 22, b'00', b'01'),
+(45, '3 chan', 22, b'01', b'01'),
+(46, '4 chan', 22, b'00', b'01'),
+(48, 'asdf', 23, b'01', b'01'),
+(49, 'fdsa', 23, b'00', b'01'),
+(50, 'vvvvvv', 23, b'00', b'01'),
+(51, 'qqqq', 24, b'01', b'01'),
+(52, 'wwww', 24, b'00', b'01'),
+(53, 'eeeee', 24, b'00', b'01'),
+(54, 'rrrrrr', 24, b'01', b'01'),
+(55, 'rrrr', 25, b'00', b'01'),
+(56, 'eeee', 25, b'01', b'01'),
+(57, 'wwwww', 25, b'00', b'01'),
+(58, 'qqqqqq', 25, b'01', b'01'),
+(60, 'sdf', 24, b'00', b'01'),
+(61, 'rrer', 24, b'00', b'01'),
+(62, 'gggeeee', 24, b'01', b'01');
 
 -- --------------------------------------------------------
 
@@ -322,7 +340,12 @@ INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `st
 (18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01'),
 (19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01'),
 (20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01'),
-(21, 'tset', 'test', 11, b'01');
+(21, 'tset', 'test', 11, b'01'),
+(22, 'con co co may chan', 'giagi thich', 13, b'01'),
+(23, 'aaaa', 'bbbb', 13, b'01'),
+(24, 'abcbcbc', 'assssss', 13, b'01'),
+(25, 'ggggg', 'tt', 13, b'01'),
+(26, 'sdf', 'sdf', 13, b'01');
 
 -- --------------------------------------------------------
 
@@ -359,7 +382,8 @@ INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_i
 (9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:01'),
 (10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:04'),
 (11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 11, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
-(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 58, 1, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:10:55');
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 136, 1, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
+(13, 'Trac nghiem online', 'mo ta', 2, 8, 0, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
 
 -- --------------------------------------------------------
 
@@ -459,6 +483,7 @@ ALTER TABLE `email`
 -- Indexes for table `history`
 --
 ALTER TABLE `history`
+  ADD PRIMARY KEY (`history_id`),
   ADD KEY `account_id` (`account_id`),
   ADD KEY `quiz_id` (`quiz_id`);
 
@@ -525,7 +550,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -538,6 +563,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `email`
   MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pack`
@@ -555,13 +586,13 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `rating_comment`
