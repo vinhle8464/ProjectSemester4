@@ -1,13 +1,13 @@
 package com.demo.models;
-// Generated Jan 17, 2022, 9:56:49 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 18, 2022, 12:54:17 AM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "account_pack", catalog = "dbproject4")
 public class AccountPack implements java.io.Serializable {
 
-	private AccountPackId id;
+	private Integer accountPackId;
 	private Account account;
 	private Pack pack;
 	private Date startDate;
@@ -30,29 +30,27 @@ public class AccountPack implements java.io.Serializable {
 	public AccountPack() {
 	}
 
-	public AccountPack(AccountPackId id, Account account, Pack pack, Date startDate, boolean status) {
-		this.id = id;
+	public AccountPack(Account account, Pack pack, Date startDate, boolean status) {
 		this.account = account;
 		this.pack = pack;
 		this.startDate = startDate;
 		this.status = status;
 	}
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@AttributeOverrides({
-			@AttributeOverride(name = "accountId", column = @Column(name = "account_id", nullable = false)),
-			@AttributeOverride(name = "packId", column = @Column(name = "pack_id", nullable = false)) })
-	public AccountPackId getId() {
-		return this.id;
+	@Column(name = "account_pack_id", unique = true, nullable = false)
+	public Integer getAccountPackId() {
+		return this.accountPackId;
 	}
 
-	public void setId(AccountPackId id) {
-		this.id = id;
+	public void setAccountPackId(Integer accountPackId) {
+		this.accountPackId = accountPackId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "account_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "account_id", nullable = false)
 	public Account getAccount() {
 		return this.account;
 	}
@@ -62,7 +60,7 @@ public class AccountPack implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pack_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "pack_id", nullable = false)
 	public Pack getPack() {
 		return this.pack;
 	}
