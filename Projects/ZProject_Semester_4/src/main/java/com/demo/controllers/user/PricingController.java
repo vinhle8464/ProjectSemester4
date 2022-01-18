@@ -71,7 +71,9 @@ public class PricingController {
 		Date now = new Date();
 		boolean result = false;
 
-		if(account2.getAccountPacks().size() == 0) {
+		if(account2 == null) {
+			result = false;
+		} else if(account2.getAccountPacks().size() == 0 && account2 != null) {
 			System.out.println("Khong co goi");
 		} else {
 			for(AccountPack accountPack: account2.getAccountPacks()) {

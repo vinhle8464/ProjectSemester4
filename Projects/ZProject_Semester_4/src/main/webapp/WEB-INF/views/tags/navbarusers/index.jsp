@@ -6,6 +6,7 @@
 <%@ taglib prefix="ss" uri="http://www.springframework.org/security/tags"%>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/styleComment.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script type="text/javascript">

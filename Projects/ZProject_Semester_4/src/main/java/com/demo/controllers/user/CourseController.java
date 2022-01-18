@@ -83,6 +83,7 @@ public class CourseController {
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		// truyen doi tuong cho phan comment
+
 		RatingComment comment = new RatingComment();
 		modelMap.put("comment", comment);
 
@@ -156,7 +157,8 @@ public class CourseController {
 		history.setStatus(true);
 		history.setListQuestionId(request.getParameterValues("questionId").toString());
 		// get list anserchoice
-		// List<String> listAnswerChoice = new ArrayList<String>();
+
+		//List<String> listAnswerChoice = new ArrayList<String>();
 		List<String> listAnswerIdChoice = new ArrayList<String>();
 		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
@@ -178,7 +180,20 @@ public class CourseController {
 						listAnswerIdChoice.add(answerId);
 					}
 				}
+//=======
+//		
+//			System.out.println("answer: " + answer);
+//			System.out.println("answer this : " + request.getParameter(answer));
+//
+//			//listAnswerIdChoice.add(request.getParameter(answer).toString());
+//
+//			if (request.getParameter(answer) != null) {
+//				listAnswerIdChoice.add(request.getParameter(answer).toString());
+//			} else {
+//				listAnswerIdChoice.add("0");
+//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
 			}
+		
 			// else {
 //				listAnswerIdChoice.add("0");
 //			}
@@ -200,6 +215,7 @@ public class CourseController {
 				
 				
 				if (Integer.parseInt(questionId) == question.getQuestionId()) {
+//<<<<<<< HEAD
 					if (question.getTypeAnswerChoice().equalsIgnoreCase("radio")) {
 						for (Answer answer : question.getAnswers()) {
 							for (String answerIdChoice : listAnswerIdChoice) {
@@ -229,13 +245,37 @@ public class CourseController {
 								}
 							}
 						}
-					}
-				}
-			}
+//=======
+//					System.out.println("questID: " + question.getQuestionId());
+//					String answer = "answer" + i;
+//
+//					System.out.println("caaaa: " + listAnswerIdChoice.toArray(new String[0])[t]);
+//					int answerIdChoice = Integer.parseInt(listAnswerIdChoice.toArray(new String[0])[t]);
+//
+//					List<String> answerTrue = new ArrayList<String>();
+//					for (Answer answerr : question.getAnswers()) {
+//
+//						System.out.println("questionID2: " + answerr.getQuestion().getQuestionId());
+//						System.out.println("answerID2: " + answerr.getAnswerId());
+//						answerTrue.add(String.valueOf(answerr.isAnswerStatus()));
+//						System.out.println(String.valueOf(answerr.isAnswerStatus()));
+//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
+//					}
+//				}
+//			}
+//<<<<<<< HEAD
 
 //			String answer = "answer" + i;
 //			listAnswerIdChoice.add(request.getParameter(answer));
 //			t++;
+//=======
+//			String answer = "answer" + i;
+//			listAnswerIdChoice.add(request.getParameter(answer));
+//			t++;
+//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
+		}
+				}
+			}
 		}
 		System.out.println("right andwer: " + rightAnswerChoice);
 		history.setNumberRightAnswer(rightAnswerChoice);
@@ -249,7 +289,7 @@ public class CourseController {
 
 		return "redirect:/user/course/testresult?quizId=" + quizId;
 	}
-
+		
 	// test result
 	@RequestMapping(value = { "testresult" }, method = RequestMethod.GET)
 	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
