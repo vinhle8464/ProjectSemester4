@@ -20,4 +20,5 @@ public interface QuestionRepositoryFaculty extends JpaRepository<Question, Integ
 	@Query(value = "SELECT * FROM question q WHERE q.quiz_id = ?1",
 		    nativeQuery = true)
 	public Page<Question> getAllQuestionByQuizId(int quizId, Pageable pageable);
+	
 }

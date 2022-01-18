@@ -78,5 +78,5 @@ public class QuestionAjax {
 	public QuestionAjax() {
 		super();
 	}
-
+	
 }

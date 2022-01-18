@@ -47,7 +47,17 @@ public class QuestionFacultyController {
 			HttpServletRequest request) {
 
 		String[] answerTitle = request.getParameterValues("answerTitle");
-		String[] answerStatus = request.getParameterValues("answerStatus");
+		String[] answerStatus = null;
+		
+		if(request.getParameterValues("answerStatusMultiple") != null) {
+			answerStatus = request.getParameterValues("answerStatusMultiple");
+			question.setTypeAnswerChoice("checkbox");
+		}
+		if(request.getParameterValues("answerStatusSingle") != null) {
+			answerStatus = request.getParameterValues("answerStatusSingle");
+			question.setTypeAnswerChoice("radio");
+
+		}
 		
 		
 		// add question
