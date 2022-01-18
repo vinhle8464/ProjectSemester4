@@ -1,14 +1,15 @@
 package com.demo.repositories.user;
 
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.demo.models.History;
-import com.demo.models.Quiz;
 
 @Repository
 public interface HistoryRepository extends CrudRepository<History, Integer>{
@@ -16,6 +17,8 @@ public interface HistoryRepository extends CrudRepository<History, Integer>{
 	@Query(value = "SELECT * FROM history h WHERE h.account_id = ?1",
 		    nativeQuery = true)
 	public Page<History> getAllQuizByAccountId(int account_id, Pageable pageable);
-	
+
+	@Query("from History where account.accountId = :accountId")
+	public List<History> findAllByAccountId(@Param("accountId") int accountId);
 	
 }
