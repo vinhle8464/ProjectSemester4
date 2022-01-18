@@ -31,8 +31,7 @@
 							</ul>
 						</div>
 						<div class="course-rating">
-								 <a style="color: black;"
-										href="${pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
+								 <a style="color: black;" href="${pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
 										class="hover-btn-new orange"><span>Start Test</span></a> 						
 							</div>
 					</div>

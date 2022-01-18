@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
+import com.demo.models.AccountPack;
 import com.demo.models.Answer;
 import com.demo.models.History;
 import com.demo.models.Question;
@@ -80,7 +81,7 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = { "starttest" }, method = RequestMethod.GET)
-	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpSession session) {
 
 		Account account = new Account();
 
@@ -88,7 +89,32 @@ public class CourseController {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
-
+		
+		// Xu li Pack Khi Nhap Vao Lam Bai
+		Account account2 = (Account) session.getAttribute("account");
+		Date now = new Date();
+		boolean result = false;
+		Quiz quiz = quizServiceFaculty.findById(quizId);
+		if(quiz.isFee() == false){
+			return "user/course/starttest";
+		} else {
+			if(account2.getAccountPacks().size() == 0) {
+				return "user/pricing/index";
+			} else if(account2.getAccountPacks().size() > 0) {
+				for(AccountPack accountPack: account2.getAccountPacks()) {
+					int number = now.getDate() - accountPack.getStartDate().getDate();
+					if(number >  accountPack.getPack().getExpiry() && accountPack.isStatus() == false) {
+						System.out.println("Het han");
+						modelMap.put("result", result);
+						return "redirect:/user/pricing/index";
+					} else {
+						System.out.println("Con han");
+						return "user/course/starttest";
+					}
+				}
+			}
+		}
+		
 		return "user/course/starttest";
 	}
 
