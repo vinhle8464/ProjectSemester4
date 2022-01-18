@@ -70,21 +70,30 @@ public class PricingController {
 		Account account2 = (Account) session.getAttribute("account");
 		Date now = new Date();
 		boolean result = false;
-		for(AccountPack accountPack: account2.getAccountPacks()) {
-			System.out.println("pack: " + accountPack.getPack().getTitle());
-			System.out.println("pack day: " + (accountPack.getStartDate().getDate() - now.getDate()));
-			int number = now.getDate() - accountPack.getStartDate().getDate();
-			System.out.println("number: " + number);
-			System.out.println("expiry: " +  accountPack.getPack().getExpiry());
-			if(number >=  accountPack.getPack().getExpiry()) {
-				System.out.println("Het han");
-			} else {
-				System.out.println("Con han");
-				result = true;
-			}
-			System.out.println("------");
+		
+//		for(AccountPack accountPack: account2.getAccountPacks()) {
+//			System.out.println("pack: " + accountPack.getPack().getTitle());
+//			System.out.println("pack day: " + (accountPack.getStartDate().getDate() - now.getDate()));
+//			int number = now.getDate() - accountPack.getStartDate().getDate();
+//			System.out.println("number: " + number);
+//			System.out.println("expiry: " +  accountPack.getPack().getExpiry());
+//			if(number >=  accountPack.getPack().getExpiry()) {
+//				System.out.println("Het han");
+//			} else {
+//				System.out.println("Con han");
+//				result = true;
+//			}
+//			System.out.println("------");
+//		}	
+
+		if(account2.getAccountPacks().size() == 0) {
+			System.out.println("Khong co goi");
+		} else {
+			result = true;
+			System.out.println(result);
 		}
-		modelMap.put("result", result);
+		
+		//modelMap.put("result", result);
 		System.out.println(result);
 		
 		return "user/pricing/index";

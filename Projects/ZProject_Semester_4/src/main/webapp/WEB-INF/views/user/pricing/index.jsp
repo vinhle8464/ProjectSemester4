@@ -47,10 +47,10 @@
                 <h3>Choose Your Plan</h3>
                 <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             </div><!-- end title -->
-			<c:if test="${result == true }">
+			<%-- <c:if test="${result == true }">
 				Dang mua goi
 			</c:if>
-            <c:if test="${result == false }">
+            <c:if test="${result == false }"> --%>
             	<div class="row">
 	                <div class="col-md-6 offset-md-3">
 	                    <div class="message-box">
@@ -152,7 +152,7 @@
 	                </div><!-- end col -->
 	            </div><!-- end row -->
 	        
-            </c:if>
+            <%-- </c:if> --%>
         </div><!-- end container -->
     </div><!-- end section -->
 
