@@ -55,7 +55,7 @@ public class PricingController {
 	private CategoryServiceAdmin categoryServiceAdmin;
 	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String register(ModelMap modelMap, Authentication authentication) {
+	public String register(ModelMap modelMap, Authentication authentication, HttpSession session) {
 		String authtoken = environment.getProperty("paypal.authtoken");
 		String posturl = environment.getProperty("paypal.posturl");
 		String business = environment.getProperty("paypal.business");
@@ -70,9 +70,28 @@ public class PricingController {
 		modelMap.put("account", accountService.findByUsername(authentication.getName()));
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-	modelMap.put("account", account);
-		
+		modelMap.put("account", account);
 		modelMap.put("pricing", true);
+		
+		Account account2 = (Account) session.getAttribute("account");
+		Date now = new Date();
+		boolean result = false;
+		for(AccountPack accountPack: account2.getAccountPacks()) {
+			System.out.println("pack: " + accountPack.getPack().getTitle());
+			System.out.println("pack day: " + (accountPack.getStartDate().getDate() - now.getDate()));
+			int number = now.getDate() - accountPack.getStartDate().getDate();
+			System.out.println("number: " + number);
+			System.out.println("expiry: " +  accountPack.getPack().getExpiry());
+			if(number >=  accountPack.getPack().getExpiry()) {
+				System.out.println("Het han");
+			} else {
+				System.out.println("Con han");
+				result = true;
+			}
+			System.out.println("------");
+		}
+		modelMap.put("result", result);
+		System.out.println(result);
 		
 		return "user/pricing/index";
 	}
@@ -99,7 +118,7 @@ public class PricingController {
 		
 		PayPalResult result = PayPalSucess.getPayPal(request, payPalConfig);
 		
-		Account account = accountService.findByUsername(authentication.getName());
+		Account account = (Account) httpSession.getAttribute("account");
 		
 		Pay pay = new Pay();
 		pay.setAccount(account);
@@ -123,7 +142,7 @@ public class PricingController {
 		accountPack.setStartDate(new Date());
 		accountPack.setStatus(true);
 		accountPackService.save(accountPack);
-		
+
 		httpSession.removeAttribute("packId");
 		
 		return "user/pricing/success";

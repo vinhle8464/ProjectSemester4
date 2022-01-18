@@ -22,6 +22,7 @@ public class AjaxUserController {
 
 	@RequestMapping(value = {"sessionpackid"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public void sessionPackId(@RequestParam("packId") int packId, HttpServletRequest request) {
+		
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("packId", packId);
 		
