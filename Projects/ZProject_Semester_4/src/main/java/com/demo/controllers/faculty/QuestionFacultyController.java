@@ -23,7 +23,6 @@ import com.demo.services.faculty.QuizServiceFaculty;
 @RequestMapping(value = { "faculty/question" })
 public class QuestionFacultyController {
 
-	
 	@Autowired
 	private QuestionServiceFaculty questionServiceFaculty;
 
@@ -43,39 +42,36 @@ public class QuestionFacultyController {
 	}
 
 	@RequestMapping(value = { "create" }, method = RequestMethod.POST)
-	public String create(@ModelAttribute("question") Question question,
-			HttpServletRequest request) {
+	public String create(@ModelAttribute("question") Question question, HttpServletRequest request) {
 
 		String[] answerTitle = request.getParameterValues("answerTitle");
 		String[] answerStatus = null;
-		
-		if(request.getParameterValues("answerStatusMultiple") != null) {
+
+		if (request.getParameterValues("answerStatusMultiple") != null) {
 			answerStatus = request.getParameterValues("answerStatusMultiple");
 			question.setTypeAnswerChoice("checkbox");
 		}
-		if(request.getParameterValues("answerStatusSingle") != null) {
+		if (request.getParameterValues("answerStatusSingle") != null) {
 			answerStatus = request.getParameterValues("answerStatusSingle");
 			question.setTypeAnswerChoice("radio");
 
 		}
-		
-		
+
 		// add question
 		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
 
 		question = questionServiceFaculty.create(question);
-		
+
 		// sort listanswerstatus again
-		int t = 0;		
+		int t = 0;
 		for (String string : answerStatus) {
-			if(string.equalsIgnoreCase("1")) {
+			if (string.equalsIgnoreCase("1")) {
 				answerStatus = ArrayUtils.remove(answerStatus, t - 1);
 				t--;
 			}
 			t++;
 		}
-		
 
 		// add list answers
 		int i = 0;
@@ -104,9 +100,18 @@ public class QuestionFacultyController {
 			HttpServletRequest request) {
 
 		String[] answerTitle = request.getParameterValues("answerTitle");
-		String[] answerStatus = request.getParameterValues("answerStatus");
-		
-		
+		String[] answerStatus = null;
+
+		if (request.getParameterValues("answerStatusMultiple") != null) {
+			answerStatus = request.getParameterValues("answerStatusMultiple");
+			question.setTypeAnswerChoice("checkbox");
+		}
+		if (request.getParameterValues("answerStatusSingle") != null) {
+			answerStatus = request.getParameterValues("answerStatusSingle");
+			question.setTypeAnswerChoice("radio");
+
+		}
+
 		// update question
 		question.setQuiz(quizServiceFaculty.findById(quizIdd));
 		question.setStatus(true);
@@ -114,16 +119,16 @@ public class QuestionFacultyController {
 		question = questionServiceFaculty.update(question);
 
 		// sort listanswerstatus again
-		int t = 0;		
+		int t = 0;
 		for (String string : answerStatus) {
-			if(string.equalsIgnoreCase("1")) {
+			if (string.equalsIgnoreCase("1")) {
 				answerStatus = ArrayUtils.remove(answerStatus, t - 1);
 				t--;
 			}
 			t++;
 		}
-		
-		// update answers		
+
+		// update answers
 		for (int i = 0; i < answerTitle.length; i++) {
 			Answer answer = new Answer();
 

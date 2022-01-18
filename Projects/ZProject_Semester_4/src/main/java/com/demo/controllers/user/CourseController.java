@@ -24,10 +24,12 @@ import com.demo.models.Answer;
 import com.demo.models.History;
 import com.demo.models.Question;
 import com.demo.models.Quiz;
+import com.demo.models.RatingComment;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
 import com.demo.services.user.CourseService;
+import com.demo.services.user.HistoryService;
 
 @Controller
 @RequestMapping(value = { "user/course" })
@@ -44,6 +46,9 @@ public class CourseController {
 
 	@Autowired
 	private QuizServiceFaculty quizServiceFaculty;
+
+	@Autowired
+	private HistoryService historyService;
 
 	private int categoryIdd;
 
@@ -77,6 +82,10 @@ public class CourseController {
 
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
+		// truyen doi tuong cho phan comment
+		RatingComment comment = new RatingComment();
+		modelMap.put("comment", comment);
+
 		return "user/course/quizdetails";
 	}
 
@@ -89,21 +98,21 @@ public class CourseController {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
-		
+
 		// Xu li Pack Khi Nhap Vao Lam Bai
 		Account account2 = (Account) session.getAttribute("account");
 		Date now = new Date();
 		boolean result = false;
 		Quiz quiz = quizServiceFaculty.findById(quizId);
-		if(quiz.isFee() == false){
+		if (quiz.isFee() == false) {
 			return "user/course/starttest";
 		} else {
-			if(account2.getAccountPacks().size() == 0) {
+			if (account2.getAccountPacks().size() == 0) {
 				return "user/pricing/index";
-			} else if(account2.getAccountPacks().size() > 0) {
-				for(AccountPack accountPack: account2.getAccountPacks()) {
+			} else if (account2.getAccountPacks().size() > 0) {
+				for (AccountPack accountPack : account2.getAccountPacks()) {
 					int number = now.getDate() - accountPack.getStartDate().getDate();
-					if(number >  accountPack.getPack().getExpiry() && accountPack.isStatus() == false) {
+					if (number > accountPack.getPack().getExpiry() && accountPack.isStatus() == false) {
 						System.out.println("Het han");
 						modelMap.put("result", result);
 						return "redirect:/user/pricing/index";
@@ -114,7 +123,7 @@ public class CourseController {
 				}
 			}
 		}
-		
+
 		return "user/course/starttest";
 	}
 
@@ -122,9 +131,11 @@ public class CourseController {
 	public String EndTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
 			HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
+		Account account2 = (Account) request.getSession().getAttribute("account");
+
 		System.out.println("timesubmit==============: " + request.getParameter("timersubmit"));
 		Account account = new Account();
-
 		// plus 1 time in times of quiz
 		Quiz quiz = quizServiceFaculty.findById(quizId);
 		quiz.setTimes(quiz.getTimes() + 1);
@@ -132,16 +143,20 @@ public class CourseController {
 
 		// create new history
 		History history = new History();
+
+		if (historyService.findHistoryByAccounIdAndQuizId(account2.getAccountId(), quizId) != null) {
+			history.setHistoryId(
+					historyService.findHistoryByAccounIdAndQuizId(account2.getAccountId(), quizId).getHistoryId());
+
+		}
 		history.setDate(new Date());
 		history.setQuiz(quizServiceFaculty.findById(quizId));
 
-		HttpSession session = request.getSession();
-		Account account2 = (Account) request.getSession().getAttribute("account");
 		history.setAccount(accountService.findById(account2.getAccountId()));
 		history.setStatus(true);
 		history.setListQuestionId(request.getParameterValues("questionId").toString());
 		// get list anserchoice
-		List<String> listAnswerChoice = new ArrayList<String>();
+		// List<String> listAnswerChoice = new ArrayList<String>();
 		List<String> listAnswerIdChoice = new ArrayList<String>();
 		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
@@ -150,65 +165,103 @@ public class CourseController {
 			// System.out.println("questionId: " + string);
 
 			String answer = "answer" + i;
-			String answerId = "answerId" + i;
+//
+//			System.out.println("answer: " + answer);
+//			System.out.println("answer this : " + request.getParameter(answer));
 
-			System.out.println("answer: " + answer);
-			System.out.println("answer this : " + request.getParameter(answer));
+			// listAnswerIdChoice.add(request.getParameter(answer).toString());
 
-			listAnswerIdChoice.add(request.getParameter(answerId).toString());
+			if (request.getParameterValues(answer) != null) {
 
-			if (request.getParameter(answer) != null) {
-				listAnswerChoice.add(request.getParameter(answer).toString());
-			} else {
-				listAnswerChoice.add("0");
+				for (String answerId : request.getParameterValues(answer)) {
+					if (answerId != "0") {
+						listAnswerIdChoice.add(answerId);
+					}
+				}
 			}
+			// else {
+//				listAnswerIdChoice.add("0");
+//			}
 
 			i++;
 		}
 
-		history.setListAnswerChoice(listAnswerChoice.toArray(new String[0]).toString());
+		history.setListAnswerChoice(listAnswerIdChoice.toArray(new String[0]).toString());
 		history.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
 
 		// get number of right answer_ choice
 //		List<Question> questions = (List<Question>) quiz.getQuestions();
-		int t = 0;
+		// int t = 0;
 		int rightAnswerChoice = 0;
 		for (String questionId : listQuestionId) {
 
 			for (Question question : quiz.getQuestions()) {
-
+				int numberRightCheckbox = 0;
+				
+				
 				if (Integer.parseInt(questionId) == question.getQuestionId()) {
-					System.out.println("questID: " + question.getQuestionId());
-					String answer = "answer" + i;
+					if (question.getTypeAnswerChoice().equalsIgnoreCase("radio")) {
+						for (Answer answer : question.getAnswers()) {
+							for (String answerIdChoice : listAnswerIdChoice) {
+								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
+										&& answer.isAnswerStatus()) {
+									System.out.println("radio: " + answer.getAnswerId());
+									rightAnswerChoice += 1;
 
-					System.out.println("caaaa: " + listAnswerChoice.toArray(new String[0])[t]);
-					int answerChoice = Integer.parseInt(listAnswerChoice.toArray(new String[0])[t]);
+								}
+							}
+						}
+					} else if (question.getTypeAnswerChoice().equalsIgnoreCase("checkbox")) {
+						
+						for (Answer answer : question.getAnswers()) {
+							for (String answerIdChoice : listAnswerIdChoice) {
 
-					List<String> answerTrue = new ArrayList<String>();
-					for (Answer answerr : question.getAnswers()) {
+								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
+										&& answer.isAnswerStatus()) {
+									System.out.println("checkbox: " + answer.getAnswerId());
+									numberRightCheckbox += 1;
 
-						System.out.println("questionID2: " + answerr.getQuestion().getQuestionId());
-						System.out.println("answerID2: " + answerr.getAnswerId());
-						answerTrue.add(String.valueOf(answerr.isAnswerStatus()));
-						System.out.println(String.valueOf(answerr.isAnswerStatus()));
+								}
+								System.out.println("rightcheckbox: " + numberRightCheckbox);
+								if (numberRightCheckbox >= 2) {
+									rightAnswerChoice += 1;
+									numberRightCheckbox = 0;
+								}
+							}
+						}
 					}
-
-//					if(answers.get(3)[0] == true) {
-//						
-//					}
 				}
 			}
-			String answer = "answer" + i;
-			listAnswerChoice.add(request.getParameter(answer));
-			t++;
+
+//			String answer = "answer" + i;
+//			listAnswerIdChoice.add(request.getParameter(answer));
+//			t++;
 		}
+		System.out.println("right andwer: " + rightAnswerChoice);
+		history.setNumberRightAnswer(rightAnswerChoice);
+
+		historyService.create(history);
 
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
-		return "redirect:/user/course/starttest?quizId=" + quizId;
+		return "redirect:/user/course/testresult?quizId=" + quizId;
+	}
+
+	// test result
+	@RequestMapping(value = { "testresult" }, method = RequestMethod.GET)
+	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+
+		Account account = new Account();
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+
+		return "user/course/testresult";
 	}
 
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)

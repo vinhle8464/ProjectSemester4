@@ -49,7 +49,7 @@ public class PricingController {
 	private CategoryServiceAdmin categoryServiceAdmin;
 	
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String register(ModelMap modelMap, Authentication authentication, HttpSession session) {
+	public String index(ModelMap modelMap, Authentication authentication, HttpSession session) {
 		String authtoken = environment.getProperty("paypal.authtoken");
 		String posturl = environment.getProperty("paypal.posturl");
 		String business = environment.getProperty("paypal.business");
@@ -61,7 +61,7 @@ public class PricingController {
 		modelMap.put("returnurl", returnurl);
 		
 		modelMap.put("packs", pricingService.findAll());
-		modelMap.put("account", accountService.findByUsername(authentication.getName()));
+		//modelMap.put("account", accountService.findByUsername(authentication.getName()));
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
 		modelMap.put("account", account);

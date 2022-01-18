@@ -49,4 +49,9 @@ public class HistoryServiceImpl implements HistoryService{
 		return historyRepository.findAllByAccountId(accountId);
 	}
 
+	@Override
+	public History findHistoryByAccounIdAndQuizId(int accountId, int quizId) {
+		return historyRepository.findHistoryByAccounIdAndQuizId(accountId, quizId);
+	}
+
 }

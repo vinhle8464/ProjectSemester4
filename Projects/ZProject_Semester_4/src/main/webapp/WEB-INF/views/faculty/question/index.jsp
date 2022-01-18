@@ -83,6 +83,15 @@
 							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
 							$("#answersEdit").append($div);
 						});
+		
+		$(document)
+		.on(
+				'click',
+				'.addAnswerEditSingle',
+				function() {
+					var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
+					$("#answersEdit").append($div);
+				});
 		/* 	function removeAnswerEdit(answerId){
 				alert(answerId);
 				$(this).parent('div').remove();
@@ -131,7 +140,7 @@
 										$answer += '<div><br><input style="width:70%;" name="answerTitle" value="'
 												+ result.answerAjaxs[i].title
 												+ '" required="required">'
-												+ ' &nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatus" value="0" />	 <input type="checkbox" name="answerStatus" value="1" checked>&nbsp;	&nbsp;	&nbsp;'
+												+ ' &nbsp;&nbsp;	&nbsp;&nbsp;	&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" />	 <input type="checkbox" name="answerStatusMultiple" value="1" checked>&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
 												+ result.answerAjaxs[i].answerId
 												+ '">'
@@ -140,7 +149,7 @@
 										$answer += '	<div><br><input style="width:70%;" name="answerTitle" value="'
 												+ result.answerAjaxs[i].title
 												+ '" required="required">'
-												+ '&nbsp;	&nbsp;	&nbsp; <input type="hidden" name="answerStatus" value="0" />	 <input type="checkbox" name="answerStatus" value="1">&nbsp;	&nbsp;	&nbsp;'
+												+ '&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;	&nbsp; <input type="hidden" name="answerStatusMultiple" value="0" />	 <input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 
 												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
 												+ result.answerAjaxs[i].answerId
@@ -153,14 +162,14 @@
 							}else if(result.questionAjax.typeAnswerChoice == "radio"){
 								
 								var $answer = '';
-								var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswer" value="+">';
+								var $buttonAddAnswerSingle = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEditSingle" value="+">';
 								for (var i = 0; i < result.answerAjaxs.length; i++) {
 
 									if (result.answerAjaxs[i].answerStatus) {
 										$answer += '<div><br><input style="width:70%;" name="answerTitle" value="'
 												+ result.answerAjaxs[i].title
 												+ '" required="required">'
-												+ ' &nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1" checked>&nbsp;	&nbsp;	&nbsp;'
+												+ ' &nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1" checked>&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;'
 												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
 												+ result.answerAjaxs[i].answerId
 												+ '">'
@@ -169,16 +178,15 @@
 										$answer += '	<div><br><input style="width:70%;" name="answerTitle" value="'
 												+ result.answerAjaxs[i].title
 												+ '" required="required">'
-												+ '&nbsp;	&nbsp;	&nbsp; <input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;'
+												+ '&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp; <input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 
 												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
 												+ result.answerAjaxs[i].answerId
 												+ '">'
 												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
 									}
-
 								}
-								$('#answersEdit').html($buttonAddAnswer + $answer);
+								$('#answersEdit').html($buttonAddAnswerSingle + $answer);
 							}
 							
 							
@@ -455,79 +463,12 @@
 					<input type="button" class="btn-default" id="singleChoice" value="single choice">	&nbsp;	&nbsp;	&nbsp;
 					 <input type="button" class="btn-default" id="multipleChoice" value="multiple choice">
 		  	<div id="answers">
-		  	<!-- ANSWERS: <input style="float: right;" type="button"
-													class="btn-default addAnswer" value="+">
-							<div>
-		  		<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		 <input type="hidden" name="answerStatus" value="0" />	
-				 <input type="checkbox" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;	
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div>
-		  	
-		  	<div>
-		  	<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		 <input type="hidden" name="answerStatus" value="0" />	
-				<input type="checkbox" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div>
-		  
-		  		<div>
-		  			<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		 <input type="hidden" name="answerStatus" value="0" />	
-				 <input type="checkbox" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;
- 		   	<input style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div> -->
+             
+            <!--  form single choice here -->		  	
 		  
 		  </div>
 		  <div id="answersMultiple">
-		  <!-- 	ANSWERS: <input style="float: right;" type="button"
-													class="btn-default addAnswerMultiple" value="+">
-							<div>
-		  		<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		 <input type="radio" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;	
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswerMultiple">
- 		   		</div>
-		  	
-		  	<div>
-		  	<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		 <input type="radio" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswerMultiple">
- 		   		</div>
-		  
-		  		<div>
-		  			<br>
-		  		<input style="width: 70%;" name="answerTitle" required="required">	
-		  		&nbsp;	&nbsp;	&nbsp;
- 		   		  <input type="radio" name="answerStatus" value="1">	
- 		   		&nbsp;	&nbsp;	&nbsp;
- 		   	<input style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswerMultiple">
- 		   		</div> -->
-		  
+		  <!--  form multiple choice here -->	
 		  </div>
 									
 				</div>
@@ -574,7 +515,7 @@
 				  	<div id="answersEdit">
 		  
 							
-		  </div>				
+		 			 </div>				
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"

@@ -89,15 +89,31 @@
 		         			</div>
 		         			<div>
 		         				  <c:forEach var="answer" items="${question.answers}"
-											varStatus="t">     
+											varStatus="t">   
+											<c:choose>
+									<c:when test="${question.typeAnswerChoice == 'checkbox' }">
+	     
+		         				<div>
+		         					<input type="checkbox" name="answer${i.index }"
+															value="${answer.answerId}"> ${answer.title }
+									
+		         				</div>
+		         				 	 	</c:when>
+		         				 	 	<c:when test="${question.typeAnswerChoice == 'radio' }">
+	     
 		         				<div>
 		         					<input type="radio" name="answer${i.index }"
-													value="${t.index + 1}"> ${answer.title }
-									<input type="hidden" name="answerId${i.index }"
-													value="${answer.answerId}">
+															value="${answer.answerId}"> ${answer.title }
+									
 		         				</div>
-		         				 </c:forEach>
-		         			</div>
+		         				 	 	</c:when>
+		        					
+		         				 	</c:choose>  
+        
+		         				 
+						</c:forEach>
+		         			
+				</div>
 		         			<hr> 
 		         		</div> 
 		         		           
@@ -106,7 +122,7 @@
 		           
 		            <div class="btn_submit">
 		             <input class="hover-btn-new orange" type="submit"
-								value="submit">
+				value="submit">
 		            </div>
 		           
 	            </form>

@@ -11,6 +11,8 @@ public interface HistoryService {
 
 	public History findById(int id);
 
+	public History findHistoryByAccounIdAndQuizId(int accountId, int quizId);
+	
 	public History create(History history);
 
 	public History update(History history);

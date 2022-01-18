@@ -31,8 +31,8 @@
 							</ul>
 						</div>
 						<div class="course-rating">
-								 <a style="color: black;" href="${pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
-										class="hover-btn-new orange"><span>Start Test</span></a> 						
+								 <a style="color: black;" href="${sessionScope.account == null  ?  '#' : pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
+										class="hover-btn-new orange" ${sessionScope.account == null ? 'data-toggle="modal" data-target="#login"' : '' }><span> Start Test</span></a> 						
 							</div>
 					</div>
                 </div>
