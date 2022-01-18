@@ -152,6 +152,33 @@
 								$('#answersEdit').html($buttonAddAnswer + $answer);
 							}else if(result.questionAjax.typeAnswerChoice == "radio"){
 								
+								var $answer = '';
+								var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswer" value="+">';
+								for (var i = 0; i < result.answerAjaxs.length; i++) {
+
+									if (result.answerAjaxs[i].answerStatus) {
+										$answer += '<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ ' &nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1" checked>&nbsp;	&nbsp;	&nbsp;'
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									} else {
+										$answer += '	<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ '&nbsp;	&nbsp;	&nbsp; <input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;'
+
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									}
+
+								}
+								$('#answersEdit').html($buttonAddAnswer + $answer);
 							}
 							
 							

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 17, 2022 at 03:54 PM
+-- Generation Time: Jan 18, 2022 at 09:32 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -60,18 +60,12 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 --
 
 CREATE TABLE `account_pack` (
+  `account_pack_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
   `pack_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account_pack`
---
-
-INSERT INTO `account_pack` (`account_id`, `pack_id`, `start_date`, `status`) VALUES
-(6, 5, '2022-01-08', b'01');
 
 -- --------------------------------------------------------
 
@@ -172,7 +166,19 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (58, 'qqqqqq', 25, b'01', b'01'),
 (60, 'sdf', 24, b'00', b'01'),
 (61, 'rrer', 24, b'00', b'01'),
-(62, 'gggeeee', 24, b'01', b'01');
+(62, 'gggeeee', 24, b'01', b'01'),
+(63, 'sdSDF', 28, b'01', b'01'),
+(64, 'sdf', 28, b'01', b'01'),
+(65, 'SADF', 28, b'00', b'01'),
+(66, 'sdf', 31, b'00', b'01'),
+(67, 'sdf', 31, b'01', b'01'),
+(68, 'sdf', 31, b'00', b'01'),
+(69, 'sdf', 32, b'01', b'01'),
+(70, 'sdf', 32, b'00', b'01'),
+(71, 'sdf', 32, b'01', b'01'),
+(72, 'new', 33, b'00', b'01'),
+(73, 'sdf', 33, b'01', b'01'),
+(74, 'new', 33, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -323,29 +329,33 @@ CREATE TABLE `question` (
   `title` varchar(250) NOT NULL,
   `explain_detail` text NOT NULL,
   `quiz_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `type_answer_choice` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`) VALUES
-(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01'),
-(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01'),
-(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01'),
-(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01'),
-(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01'),
-(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01'),
-(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01'),
-(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01'),
-(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01'),
-(21, 'tset', 'test', 11, b'01'),
-(22, 'con co co may chan', 'giagi thich', 13, b'01'),
-(23, 'aaaa', 'bbbb', 13, b'01'),
-(24, 'abcbcbc', 'assssss', 13, b'01'),
-(25, 'ggggg', 'tt', 13, b'01'),
-(26, 'sdf', 'sdf', 13, b'01');
+INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`, `type_answer_choice`) VALUES
+(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01', 'checkbox'),
+(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01', 'checkbox'),
+(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01', 'checkbox'),
+(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01', 'checkbox'),
+(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01', 'checkbox'),
+(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01', 'checkbox'),
+(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01', 'checkbox'),
+(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01', 'checkbox'),
+(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01', 'checkbox'),
+(21, 'tset', 'test', 11, b'01', 'checkbox'),
+(22, 'con co co may chan', 'giagi thich', 13, b'01', 'checkbox'),
+(23, 'aaaa', 'bbbb', 13, b'01', 'checkbox'),
+(24, 'abcbcbc', 'assssss', 13, b'01', 'checkbox'),
+(25, 'ggggg', 'tt', 13, b'01', 'checkbox'),
+(28, 'SDF', 'SDF', 13, b'01', 'checkbox'),
+(31, 'con cho', 'asdf', 13, b'01', 'radio'),
+(32, 'alibab', 'asdf', 13, b'01', 'checkbox'),
+(33, 'sdf', 'sdf', 13, b'01', 'radio');
 
 -- --------------------------------------------------------
 
@@ -450,7 +460,8 @@ ALTER TABLE `account`
 -- Indexes for table `account_pack`
 --
 ALTER TABLE `account_pack`
-  ADD PRIMARY KEY (`account_id`,`pack_id`),
+  ADD PRIMARY KEY (`account_pack_id`),
+  ADD KEY `account_id` (`account_id`),
   ADD KEY `pack_id` (`pack_id`);
 
 --
@@ -547,10 +558,16 @@ ALTER TABLE `account`
   MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
+-- AUTO_INCREMENT for table `account_pack`
+--
+ALTER TABLE `account_pack`
+  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -586,7 +603,7 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `quiz`
