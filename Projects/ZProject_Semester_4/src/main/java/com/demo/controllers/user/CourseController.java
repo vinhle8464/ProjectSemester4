@@ -24,6 +24,7 @@ import com.demo.models.Answer;
 import com.demo.models.History;
 import com.demo.models.Question;
 import com.demo.models.Quiz;
+import com.demo.models.RatingComment;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
@@ -77,6 +78,10 @@ public class CourseController {
 
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
+		// truyen doi tuong cho phan comment
+        RatingComment comment = new RatingComment();
+        modelMap.put("comment", comment);
+        
 		return "user/course/quizdetails";
 	}
 
@@ -141,7 +146,7 @@ public class CourseController {
 		history.setStatus(true);
 		history.setListQuestionId(request.getParameterValues("questionId").toString());
 		// get list anserchoice
-		List<String> listAnswerChoice = new ArrayList<String>();
+		//List<String> listAnswerChoice = new ArrayList<String>();
 		List<String> listAnswerIdChoice = new ArrayList<String>();
 		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
@@ -150,23 +155,22 @@ public class CourseController {
 			// System.out.println("questionId: " + string);
 
 			String answer = "answer" + i;
-			String answerId = "answerId" + i;
-
+		
 			System.out.println("answer: " + answer);
 			System.out.println("answer this : " + request.getParameter(answer));
 
-			listAnswerIdChoice.add(request.getParameter(answerId).toString());
+			//listAnswerIdChoice.add(request.getParameter(answer).toString());
 
 			if (request.getParameter(answer) != null) {
-				listAnswerChoice.add(request.getParameter(answer).toString());
+				listAnswerIdChoice.add(request.getParameter(answer).toString());
 			} else {
-				listAnswerChoice.add("0");
+				listAnswerIdChoice.add("0");
 			}
 
 			i++;
 		}
 
-		history.setListAnswerChoice(listAnswerChoice.toArray(new String[0]).toString());
+		history.setListAnswerChoice(listAnswerIdChoice.toArray(new String[0]).toString());
 		history.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
 
 		// get number of right answer_ choice
@@ -181,8 +185,8 @@ public class CourseController {
 					System.out.println("questID: " + question.getQuestionId());
 					String answer = "answer" + i;
 
-					System.out.println("caaaa: " + listAnswerChoice.toArray(new String[0])[t]);
-					int answerChoice = Integer.parseInt(listAnswerChoice.toArray(new String[0])[t]);
+					System.out.println("caaaa: " + listAnswerIdChoice.toArray(new String[0])[t]);
+					int answerIdChoice = Integer.parseInt(listAnswerIdChoice.toArray(new String[0])[t]);
 
 					List<String> answerTrue = new ArrayList<String>();
 					for (Answer answerr : question.getAnswers()) {
@@ -199,7 +203,7 @@ public class CourseController {
 				}
 			}
 			String answer = "answer" + i;
-			listAnswerChoice.add(request.getParameter(answer));
+			listAnswerIdChoice.add(request.getParameter(answer));
 			t++;
 		}
 
@@ -208,7 +212,22 @@ public class CourseController {
 		modelMap.put("course", true);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
-		return "redirect:/user/course/starttest?quizId=" + quizId;
+		return "redirect:/user/course/testresult?quizId=" + quizId;
+	}
+	
+	
+	// test result
+	@RequestMapping(value = { "testresult" }, method = RequestMethod.GET)
+	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+
+		Account account = new Account();
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+
+		return "user/course/testresult";
 	}
 
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)

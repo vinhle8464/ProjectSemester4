@@ -68,7 +68,7 @@ public class RatingComment implements java.io.Serializable {
 		this.quiz = quiz;
 	}
 
-	@Column(name = "star", nullable = false)
+	@Column(name = "star")
 	public byte getStar() {
 		return this.star;
 	}
@@ -77,7 +77,7 @@ public class RatingComment implements java.io.Serializable {
 		this.star = star;
 	}
 
-	@Column(name = "comment", nullable = false, length = 65535)
+	@Column(name = "comment", length = 65535)
 	public String getComment() {
 		return this.comment;
 	}
