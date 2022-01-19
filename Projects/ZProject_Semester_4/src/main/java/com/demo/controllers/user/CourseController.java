@@ -109,7 +109,7 @@ public class CourseController {
 			return "user/course/starttest";
 		} else {
 			if (account2.getAccountPacks().size() == 0) {
-				return "user/pricing/index";
+				return "redirect:/user/pricing/index";
 			} else if (account2.getAccountPacks().size() > 0) {
 				for (AccountPack accountPack : account2.getAccountPacks()) {
 					int number = now.getDate() - accountPack.getStartDate().getDate();
