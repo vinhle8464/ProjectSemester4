@@ -1,5 +1,7 @@
 package com.demo.controllers.admin;
 
+import java.util.Date;
+
 import javax.servlet.ServletContext;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -77,6 +79,7 @@ public class AccountAdminController implements ServletContextAware {
 			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
 			account.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt()));
 			account.setAvatar(fileNameUpload);
+			account.setCreateDate(new Date());
 			if (roles != null && roles.length > 0) {
 				for (int role : roles) {
 					account.getRoles().add(roleServiceAdmin.findById(role));

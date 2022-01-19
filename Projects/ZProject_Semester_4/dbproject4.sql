@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2022 at 09:32 AM
+-- Generation Time: Jan 19, 2022 at 09:53 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -38,20 +38,21 @@ CREATE TABLE `account` (
   `gender` bit(2) NOT NULL,
   `phone` varchar(250) DEFAULT NULL,
   `avatar` text NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `create_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`) VALUES
-(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephat8464@gmail.com', '2021-12-08', 'asdfasf', b'01', '23423234', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01'),
-(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'lephat8464@gmail.com', '2021-12-15', 'asdfasf', b'01', '234234234', '3c83adfb0bfe4c10bac147091d3888f3.png', b'01'),
-(3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', 'Photo28.jpg', b'01'),
-(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'Photo24.jpg', b'01'),
-(94, 'hehehe', '$2a$10$ECQuxj/7y.1yDH3Ix0pxKOAbZhAdpQy8WCZXpnmbj5kmgPAa9uI36', 'vinh', 'vinhkhung@gmail.com', '2021-12-01', 'tay ninh', b'01', '23423424', '822e27dd8557477486b79a78e35f4f3b.jpg', b'01'),
-(95, 'usertran', '$2a$10$13/qJ3Yh7ChXLKcR1PZ4L.GrK4Iq3Tcb/3ZpJD1LdfCvhdGj0xQai', 'User Ngoc Tran', 'usertran@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0888123456', 'Photo24.jpg', b'01');
+INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`, `create_date`) VALUES
+(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephat8464@gmail.com', '2021-12-08', 'asdfasf', b'01', '23423234', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08'),
+(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'lephat8464@gmail.com', '2021-12-15', 'asdfasf', b'01', '234234234', '3c83adfb0bfe4c10bac147091d3888f3.png', b'01', '2021-12-08'),
+(3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', 'Photo28.jpg', b'01', '2021-12-08'),
+(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'Photo24.jpg', b'01', '2021-12-08'),
+(94, 'hehehe', '$2a$10$ECQuxj/7y.1yDH3Ix0pxKOAbZhAdpQy8WCZXpnmbj5kmgPAa9uI36', 'vinh', 'vinhkhung@gmail.com', '2021-12-01', 'tay ninh', b'01', '23423424', '822e27dd8557477486b79a78e35f4f3b.jpg', b'01', '2021-12-08'),
+(95, 'usertran', '$2a$10$13/qJ3Yh7ChXLKcR1PZ4L.GrK4Iq3Tcb/3ZpJD1LdfCvhdGj0xQai', 'User Ngoc Tran', 'usertran@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0888123456', 'Photo24.jpg', b'01', '2021-12-08');
 
 -- --------------------------------------------------------
 
@@ -124,61 +125,38 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (15, '1m50', 15, b'01', b'01'),
 (16, '1m52', 15, b'00', b'01'),
 (17, '1m48', 15, b'00', b'01'),
-(18, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
-(19, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
-(20, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'01', b'01'),
+(18, '5', 16, b'00', b'01'),
+(19, '1', 16, b'00', b'01'),
+(20, '4', 16, b'00', b'01'),
 (21, '3', 16, b'00', b'01'),
-(22, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
+(22, '2', 16, b'01', b'01'),
 (23, '15', 17, b'00', b'01'),
 (24, '21', 17, b'01', b'01'),
-(25, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 17, b'00', b'01'),
+(25, '15', 17, b'00', b'01'),
 (26, '12', 17, b'00', b'01'),
 (27, '18', 17, b'00', b'01'),
-(28, '1', 18, b'00', b'01'),
-(29, '2', 18, b'00', b'01'),
-(30, '3', 18, b'01', b'01'),
-(31, '1', 19, b'00', b'01'),
-(32, '2', 19, b'00', b'01'),
-(33, '3', 19, b'00', b'01'),
-(34, '4', 19, b'01', b'01'),
-(35, '5', 19, b'01', b'01'),
-(36, 'vui', 20, b'01', b'01'),
-(37, 'buon', 20, b'00', b'01'),
-(38, 'kkhoc', 20, b'00', b'01'),
-(39, 'xiu', 20, b'00', b'01'),
 (40, '1', 21, b'01', b'01'),
 (41, '2', 21, b'00', b'01'),
 (42, '3', 21, b'00', b'01'),
-(43, '1 chan', 22, b'01', b'01'),
-(44, '2 chan', 22, b'00', b'01'),
-(45, '3 chan', 22, b'01', b'01'),
-(46, '4 chan', 22, b'00', b'01'),
-(48, 'asdf', 23, b'01', b'01'),
-(49, 'fdsa', 23, b'00', b'01'),
-(50, 'vvvvvv', 23, b'00', b'01'),
-(51, 'qqqq', 24, b'01', b'01'),
-(52, 'wwww', 24, b'00', b'01'),
-(53, 'eeeee', 24, b'00', b'01'),
-(54, 'rrrrrr', 24, b'01', b'01'),
-(55, 'rrrr', 25, b'00', b'01'),
-(56, 'eeee', 25, b'01', b'01'),
-(57, 'wwwww', 25, b'00', b'01'),
-(58, 'qqqqqq', 25, b'01', b'01'),
-(60, 'sdf', 24, b'00', b'01'),
-(61, 'rrer', 24, b'00', b'01'),
-(62, 'gggeeee', 24, b'01', b'01'),
-(63, 'sdSDF', 28, b'01', b'01'),
-(64, 'sdf', 28, b'01', b'01'),
-(65, 'SADF', 28, b'00', b'01'),
-(66, 'sdf', 31, b'00', b'01'),
-(67, 'sdf', 31, b'01', b'01'),
-(68, 'sdf', 31, b'00', b'01'),
-(69, 'sdf', 32, b'01', b'01'),
-(70, 'sdf', 32, b'00', b'01'),
-(71, 'sdf', 32, b'01', b'01'),
-(72, 'new', 33, b'00', b'01'),
-(73, 'sdf', 33, b'01', b'01'),
-(74, 'new', 33, b'00', b'01');
+(83, 'chu sao', 35, b'00', b'01'),
+(84, 'ai biet dau', 35, b'00', b'01'),
+(85, 'nguoi ta de thuong nao h ma', 35, b'01', b'01'),
+(86, 'z a ho', 35, b'00', b'01'),
+(87, 'ngai chet ha', 35, b'01', b'01'),
+(88, '4', 36, b'01', b'01'),
+(89, '3', 36, b'00', b'01'),
+(90, '2', 36, b'00', b'01'),
+(91, '1', 36, b'00', b'01'),
+(92, '4', 37, b'00', b'01'),
+(93, '3', 37, b'01', b'01'),
+(94, '2', 37, b'00', b'01'),
+(95, '1', 37, b'00', b'01'),
+(96, '0', 37, b'00', b'01'),
+(97, 'xanh ', 38, b'01', b'01'),
+(98, 'do ', 38, b'01', b'01'),
+(99, 'vang', 38, b'01', b'01'),
+(100, 'tim ', 38, b'00', b'01'),
+(101, 'den', 38, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -256,6 +234,15 @@ CREATE TABLE `history` (
   `time_done` int(11) NOT NULL,
   `number_right_answer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`history_id`, `date`, `quiz_id`, `account_id`, `status`, `list_question_id`, `list_answer_choice`, `time_done`, `number_right_answer`) VALUES
+(12, '2022-01-19', 12, 95, b'01', '[Ljava.lang.String;@4fb16162', '[Ljava.lang.String;@2927e741', 20, 5),
+(13, '2022-01-19', 11, 95, b'01', '[Ljava.lang.String;@21f3c148', '[Ljava.lang.String;@614a106', 3, 0),
+(14, '2022-01-19', 13, 95, b'01', '[Ljava.lang.String;@57416b6f', '[Ljava.lang.String;@4262093', 8, 3);
 
 -- --------------------------------------------------------
 
@@ -338,24 +325,17 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`, `type_answer_choice`) VALUES
-(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01', 'checkbox'),
-(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01', 'checkbox'),
-(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01', 'checkbox'),
-(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01', 'checkbox'),
-(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01', 'checkbox'),
-(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01', 'checkbox'),
-(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01', 'checkbox'),
-(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01', 'checkbox'),
-(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01', 'checkbox'),
+(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01', 'radio'),
+(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01', 'radio'),
+(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01', 'radio'),
+(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01', 'radio'),
+(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01', 'radio'),
+(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01', 'radio'),
 (21, 'tset', 'test', 11, b'01', 'checkbox'),
-(22, 'con co co may chan', 'giagi thich', 13, b'01', 'checkbox'),
-(23, 'aaaa', 'bbbb', 13, b'01', 'checkbox'),
-(24, 'abcbcbc', 'assssss', 13, b'01', 'checkbox'),
-(25, 'ggggg', 'tt', 13, b'01', 'checkbox'),
-(28, 'SDF', 'SDF', 13, b'01', 'checkbox'),
-(31, 'con cho', 'asdf', 13, b'01', 'radio'),
-(32, 'alibab', 'asdf', 13, b'01', 'checkbox'),
-(33, 'sdf', 'sdf', 13, b'01', 'radio');
+(35, 'sao be de thuong qua zay', 'ahihi', 12, b'01', 'checkbox'),
+(36, 'con cho co may chan', 'ddd', 13, b'01', 'radio'),
+(37, 'den giao thong co may mau', 'hhhh', 13, b'01', 'radio'),
+(38, 'mau nao la mau co ban', 'tttt', 13, b'01', 'checkbox');
 
 -- --------------------------------------------------------
 
@@ -391,9 +371,9 @@ INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_i
 (8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:11'),
 (9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:01'),
 (10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:04'),
-(11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 11, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
-(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 136, 1, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
-(13, 'Trac nghiem online', 'mo ta', 2, 8, 0, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
+(11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 12, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 168, 1, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
+(13, 'Trac nghiem online', 'mo ta', 2, 8, 16, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
 
 -- --------------------------------------------------------
 
@@ -407,7 +387,8 @@ CREATE TABLE `rating_comment` (
   `comment` text NOT NULL,
   `account_id` int(11) NOT NULL,
   `quiz_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -442,7 +423,7 @@ CREATE TABLE `salary` (
   `salary_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
   `salary` decimal(10,2) NOT NULL,
-  `date` date NOT NULL,
+  `create_date` datetime NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -567,7 +548,7 @@ ALTER TABLE `account_pack`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -585,7 +566,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pack`
@@ -603,7 +584,7 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `quiz`
