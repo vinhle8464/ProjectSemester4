@@ -30,4 +30,34 @@ public class DashboardAdminController {
 
 		return "admin/dashboard/index";
 	}
+	@RequestMapping(value = {  "rne" }, method = RequestMethod.GET)
+	public String rne(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("account");
+		System.out.println("bao");
+		System.out.println(account.getFullname());
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+
+		return "admin/dashboard/rne";
+	}
+	@RequestMapping(value = {  "nmb" }, method = RequestMethod.GET)
+	public String nmb(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("account");
+		System.out.println("bao");
+		System.out.println(account.getFullname());
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+
+		return "admin/dashboard/nmb";
+	}
+	@RequestMapping(value = {  "qal" }, method = RequestMethod.GET)
+	public String qal(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("account");
+		System.out.println("bao");
+		System.out.println(account.getFullname());
+		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+
+		return "admin/dashboard/qal";
+	}
 }
