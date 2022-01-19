@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 29, 2021, 9:30:54 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,14 +24,14 @@ public class Salary implements java.io.Serializable {
 
 	private Integer salaryId;
 	private Account account;
-	private BigDecimal salary;
+	private float salary;
 	private Date date;
 	private boolean status;
 
 	public Salary() {
 	}
 
-	public Salary(Account account, BigDecimal salary, Date date, boolean status) {
+	public Salary(Account account, float salary, Date date, boolean status) {
 		this.account = account;
 		this.salary = salary;
 		this.date = date;
@@ -60,12 +60,12 @@ public class Salary implements java.io.Serializable {
 		this.account = account;
 	}
 
-	@Column(name = "salary", nullable = false, precision = 10)
-	public BigDecimal getSalary() {
+	@Column(name = "salary", nullable = false, precision = 10, scale = 2)
+	public float getSalary() {
 		return this.salary;
 	}
 
-	public void setSalary(BigDecimal salary) {
+	public void setSalary(float salary) {
 		this.salary = salary;
 	}
 

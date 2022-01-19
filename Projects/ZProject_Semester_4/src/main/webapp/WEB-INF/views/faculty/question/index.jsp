@@ -13,54 +13,111 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
-		/* Add and remove answer in modal Add*/
+		
+		$(document).ready(function() {
+			$('#answers').css('display', 'none');
+			$('#answersMultiple').css('display', 'none');
+		});
+		
+		// show multiple choice
 		$(document)
 				.on(
 						'click',
+						'#multipleChoice',
+						function() {
+							
+							$("#answers").empty();
+							$('#answersMultiple').css('display', 'block');
+							var $div = ' ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerMultiple" value="+"><div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div><div><br><input style="width:70%;" name="answerTitle" required="required">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"> </div> <div> <br> <input style="width:70%;" name="answerTitle" required="required">&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" /><input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div>';
+							$("#answersMultiple").html($div);
+						});
+		
+		// show single choice
+		$(document)
+				.on(
+						'click',
+						'#singleChoice',
+						function() {
+							
+							$("#answersMultiple").empty();
+							$('#answers').css('display', 'block');
+							var $div = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswer" value="+"><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /> <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"> </div><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"> </div><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /><input type="radio" name="answerStatusSingle" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"></div>';
+							$("#answers").html($div);
+
+						});
+		
+		/* Add and remove answer in modal Add*/
+
+		//// multichoie
+		$(document).on('click',
+						'.addAnswerMultiple',
+						function() {
+							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div>';
+							$("#answersMultiple").append($div);
+						});
+
+		$(document).on('click', '.removeAnswerMultiple', function() {
+			$(this).parent('div').remove();
+		});
+		
+		//// single choice
+		$(document).on('click',
 						'.addAnswer',
 						function() {
-							var $div = ' <div><br><input name="answerTitle">	True: <input type="checkbox" name="answerStatus" value="1"> &nbsp; False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswer"></div>';
+							var $div = ' <div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /><input type="radio" name="answerStatusSingle" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"></div>';
 							$("#answers").append($div);
 						});
 
 		$(document).on('click', '.removeAnswer', function() {
 			$(this).parent('div').remove();
 		});
-		/* Add and remove answer in modal Add*/
 		
-				/* Add and remove answer in modal Edit*/
+		/* Add and remove answer in modal Add*/
+
+		/* Add and remove answer in modal Edit*/
 		$(document)
 				.on(
 						'click',
 						'.addAnswerEdit',
 						function() {
-							var $div = ' <div><br><input name="answerTitle" required="required">	True: <input type="checkbox" name="answerStatus" value="1"> &nbsp; False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
+							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
 							$("#answersEdit").append($div);
 						});
-	/* 	function removeAnswerEdit(answerId){
-			alert(answerId);
-			$(this).parent('div').remove();
-		} */
-		 $(document).on('click', '.removeAnswerEdit', function() {
-			
-			 $.ajax({
-					type : 'GET',
-					url : '${pageContext.request.contextPath }/faculty/ajax/deleteanswer',
-					data : {
-						answerId : this.id
-					}
-			 });
-			 
-			$(this).parent('div').remove();
-		});
+		
+		$(document)
+		.on(
+				'click',
+				'.addAnswerEditSingle',
+				function() {
+					var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
+					$("#answersEdit").append($div);
+				});
+		/* 	function removeAnswerEdit(answerId){
+				alert(answerId);
+				$(this).parent('div').remove();
+			} */
+		$(document)
+				.on(
+						'click',
+						'.removeAnswerEdit',
+						function() {
+							$.ajax({
+										type : 'GET',
+										url : '${pageContext.request.contextPath }/faculty/ajax/deleteanswer',
+										data : {
+											answerId : this.id
+										}
+									});
+							$(this).parent('div').remove();
+						});
 		/* Add and remove answer in modal Edit*/
-		
-		
+
 		function openDeleteModal(questionId) {
 			$('#questionID').val(questionId);
 		}
 		function openEditModal(questionId) {
-			$.ajax({
+			$
+					.ajax({
 						type : 'GET',
 						url : '${pageContext.request.contextPath }/faculty/ajax/findquestionandanswerbyid',
 						data : {
@@ -68,32 +125,71 @@
 
 						},
 						success : function(result) {
-							$('#questionId').val(result.questionAjax.questionId);
+							$('#questionId')
+									.val(result.questionAjax.questionId);
 							$('#titlee').val(result.questionAjax.title);
 							$('#explainDetaill').val(
 									result.questionAjax.explainDetail);
 							$('#status').val(result.questionAjax.status);
+							if(result.questionAjax.typeAnswerChoice == "checkbox"){
+								var $answer = '';
+								var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEdit" value="+">';
+								for (var i = 0; i < result.answerAjaxs.length; i++) {
 
-							var $answer = '';
-							var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEdit" value="+">';
-							for (var i = 0; i < result.answerAjaxs.length; i++) {
+									if (result.answerAjaxs[i].answerStatus) {
+										$answer += '<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ ' &nbsp;&nbsp;	&nbsp;&nbsp;	&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" />	 <input type="checkbox" name="answerStatusMultiple" value="1" checked>&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									} else {
+										$answer += '	<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ '&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;	&nbsp; <input type="hidden" name="answerStatusMultiple" value="0" />	 <input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 
-								if (result.answerAjaxs[i].answerStatus) {
-									$answer += '<div><br><input name="answerTitle" value="' + result.answerAjaxs[i].title + '" required="required">'
-											+ 'True: <input type="checkbox" name="answerStatus" value="1" checked> &nbsp;'
-											+ 'False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;'
-											+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="' + result.answerAjaxs[i].answerId + '">'
-											+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
-								} else {
-									$answer += '	<div><br><input name="answerTitle" value="' + result.answerAjaxs[i].title + '" required="required">'
-											+ 'True: <input type="checkbox" name="answerStatus" value="1" > &nbsp;'
-											+ 'False: <input type="checkbox" name="answerStatus" value="0" checked> &nbsp;	&nbsp;	&nbsp;'
-											+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="' + result.answerAjaxs[i].answerId + '">'
-											+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									}
+
 								}
+								$('#answersEdit').html($buttonAddAnswer + $answer);
+							}else if(result.questionAjax.typeAnswerChoice == "radio"){
+								
+								var $answer = '';
+								var $buttonAddAnswerSingle = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEditSingle" value="+">';
+								for (var i = 0; i < result.answerAjaxs.length; i++) {
 
+									if (result.answerAjaxs[i].answerStatus) {
+										$answer += '<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ ' &nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1" checked>&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;'
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									} else {
+										$answer += '	<div><br><input style="width:70%;" name="answerTitle" value="'
+												+ result.answerAjaxs[i].title
+												+ '" required="required">'
+												+ '&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp; <input type="hidden" name="answerStatusSingle" value="0" />	 <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+
+												+ '<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit" onclick="removeAnswerEdit(id);" id="'
+												+ result.answerAjaxs[i].answerId
+												+ '">'
+												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
+									}
+								}
+								$('#answersEdit').html($buttonAddAnswerSingle + $answer);
 							}
-							$('#answersEdit').html($buttonAddAnswer + $answer);
+							
+							
 						}
 					});
 		}
@@ -364,41 +460,15 @@
 					</div>				
 					<input name="quizId" type="hidden" value="${quizId }" />
 					<hr>
+					<input type="button" class="btn-default" id="singleChoice" value="single choice">	&nbsp;	&nbsp;	&nbsp;
+					 <input type="button" class="btn-default" id="multipleChoice" value="multiple choice">
 		  	<div id="answers">
-		  	ANSWERS: <input style="float: right;" type="button"
-													class="btn-default addAnswer" value="+">
-							<div>
-		  		<br>
-		  		<input name="answerTitle" required="required">	
-		  		
- 		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
- 		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div>
-		  	
-		  	<div>
-		  	<br>
-		  		<input name="answerTitle" required="required">	
-		  		
- 		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
- 		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   		<input
-														style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div>
+             
+            <!--  form single choice here -->		  	
 		  
-		  		<div>
-		  			<br>
-		  		<input name="answerTitle" required="required">	
-		  		
- 		   		True: <input type="checkbox" name="answerStatus" value="1"> &nbsp;	
- 		   		False: <input type="checkbox" name="answerStatus" value="0"> &nbsp;	&nbsp;	&nbsp;	
- 		   	<input style="color: red; border: none; background-color: white;"
-														type="button" value="X" class="removeAnswer">
- 		   		</div>
-		  
+		  </div>
+		  <div id="answersMultiple">
+		  <!--  form multiple choice here -->	
 		  </div>
 									
 				</div>
@@ -445,7 +515,7 @@
 				  	<div id="answersEdit">
 		  
 							
-		  </div>				
+		 			 </div>				
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal"

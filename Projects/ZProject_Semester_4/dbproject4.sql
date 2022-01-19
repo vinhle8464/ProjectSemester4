@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2022 at 12:04 PM
+-- Generation Time: Jan 18, 2022 at 09:32 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -60,18 +60,12 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 --
 
 CREATE TABLE `account_pack` (
+  `account_pack_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
   `pack_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account_pack`
---
-
-INSERT INTO `account_pack` (`account_id`, `pack_id`, `start_date`, `status`) VALUES
-(6, 5, '2022-01-08', b'01');
 
 -- --------------------------------------------------------
 
@@ -130,14 +124,14 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (15, '1m50', 15, b'01', b'01'),
 (16, '1m52', 15, b'00', b'01'),
 (17, '1m48', 15, b'00', b'01'),
-(18, '1', 16, b'00', b'01'),
-(19, '0', 16, b'00', b'01'),
-(20, '2', 16, b'01', b'01'),
+(18, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
+(19, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
+(20, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'01', b'01'),
 (21, '3', 16, b'00', b'01'),
-(22, '4', 16, b'00', b'01'),
+(22, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 16, b'00', b'01'),
 (23, '15', 17, b'00', b'01'),
 (24, '21', 17, b'01', b'01'),
-(25, '20', 17, b'00', b'01'),
+(25, '.btn_submit {\n    margin: auto;\n    text-align: center;\n    padding: 50px;\n}\n\n.btn_submit input {\n    color: white;\n    background-color: #eea412;\n    width: 200px;\n    font-size: 20px;\n    /* text-align: center; */\n    /* margin: auto; */\n}', 17, b'00', b'01'),
 (26, '12', 17, b'00', b'01'),
 (27, '18', 17, b'00', b'01'),
 (28, '1', 18, b'00', b'01'),
@@ -151,7 +145,40 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (36, 'vui', 20, b'01', b'01'),
 (37, 'buon', 20, b'00', b'01'),
 (38, 'kkhoc', 20, b'00', b'01'),
-(39, 'xiu', 20, b'00', b'01');
+(39, 'xiu', 20, b'00', b'01'),
+(40, '1', 21, b'01', b'01'),
+(41, '2', 21, b'00', b'01'),
+(42, '3', 21, b'00', b'01'),
+(43, '1 chan', 22, b'01', b'01'),
+(44, '2 chan', 22, b'00', b'01'),
+(45, '3 chan', 22, b'01', b'01'),
+(46, '4 chan', 22, b'00', b'01'),
+(48, 'asdf', 23, b'01', b'01'),
+(49, 'fdsa', 23, b'00', b'01'),
+(50, 'vvvvvv', 23, b'00', b'01'),
+(51, 'qqqq', 24, b'01', b'01'),
+(52, 'wwww', 24, b'00', b'01'),
+(53, 'eeeee', 24, b'00', b'01'),
+(54, 'rrrrrr', 24, b'01', b'01'),
+(55, 'rrrr', 25, b'00', b'01'),
+(56, 'eeee', 25, b'01', b'01'),
+(57, 'wwwww', 25, b'00', b'01'),
+(58, 'qqqqqq', 25, b'01', b'01'),
+(60, 'sdf', 24, b'00', b'01'),
+(61, 'rrer', 24, b'00', b'01'),
+(62, 'gggeeee', 24, b'01', b'01'),
+(63, 'sdSDF', 28, b'01', b'01'),
+(64, 'sdf', 28, b'01', b'01'),
+(65, 'SADF', 28, b'00', b'01'),
+(66, 'sdf', 31, b'00', b'01'),
+(67, 'sdf', 31, b'01', b'01'),
+(68, 'sdf', 31, b'00', b'01'),
+(69, 'sdf', 32, b'01', b'01'),
+(70, 'sdf', 32, b'00', b'01'),
+(71, 'sdf', 32, b'01', b'01'),
+(72, 'new', 33, b'00', b'01'),
+(73, 'sdf', 33, b'01', b'01'),
+(74, 'new', 33, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -223,7 +250,11 @@ CREATE TABLE `history` (
   `date` date NOT NULL,
   `quiz_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `list_question_id` text NOT NULL,
+  `list_answer_choice` text NOT NULL,
+  `time_done` int(11) NOT NULL,
+  `number_right_answer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -298,23 +329,33 @@ CREATE TABLE `question` (
   `title` varchar(250) NOT NULL,
   `explain_detail` text NOT NULL,
   `quiz_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `type_answer_choice` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`) VALUES
-(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01'),
-(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01'),
-(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01'),
-(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01'),
-(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01'),
-(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01'),
-(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01'),
-(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01'),
-(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01');
+INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`, `type_answer_choice`) VALUES
+(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01', 'checkbox'),
+(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01', 'checkbox'),
+(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01', 'checkbox'),
+(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01', 'checkbox'),
+(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01', 'checkbox'),
+(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01', 'checkbox'),
+(18, 'cau hoi 7 sai het roi ', 'nhieu data qua', 12, b'01', 'checkbox'),
+(19, 'cau 8 test lan cuoi', 'huhu ra di ', 12, b'01', 'checkbox'),
+(20, 'cau 9: thanh cong rui', 'vui qua di', 12, b'01', 'checkbox'),
+(21, 'tset', 'test', 11, b'01', 'checkbox'),
+(22, 'con co co may chan', 'giagi thich', 13, b'01', 'checkbox'),
+(23, 'aaaa', 'bbbb', 13, b'01', 'checkbox'),
+(24, 'abcbcbc', 'assssss', 13, b'01', 'checkbox'),
+(25, 'ggggg', 'tt', 13, b'01', 'checkbox'),
+(28, 'SDF', 'SDF', 13, b'01', 'checkbox'),
+(31, 'con cho', 'asdf', 13, b'01', 'radio'),
+(32, 'alibab', 'asdf', 13, b'01', 'checkbox'),
+(33, 'sdf', 'sdf', 13, b'01', 'radio');
 
 -- --------------------------------------------------------
 
@@ -332,25 +373,27 @@ CREATE TABLE `quiz` (
   `timer` tinyint(4) NOT NULL,
   `fee` bit(2) NOT NULL,
   `image` text NOT NULL,
-  `status` bit(2) NOT NULL
+  `status` bit(2) NOT NULL,
+  `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`) VALUES
-(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01'),
-(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', 'Photo24.jpg', b'01'),
-(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', 'Photo24.jpg', b'01'),
-(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', 'Photo24.jpg', b'01'),
-(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', 'Photo24.jpg', b'01'),
-(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00'),
-(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01'),
-(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00'),
-(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01'),
-(11, 'trac nghiem tinh cach', 'xao do ehe\r\nco cai nit', 2, 8, 11, 10, b'00', 'Photo24.jpg', b'01'),
-(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 10, 20, b'00', 'Photo24.jpg', b'01');
+INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`, `date_created`) VALUES
+(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:07'),
+(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 0, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:21'),
+(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 0, 45, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:11:14'),
+(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 0, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:16'),
+(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 0, 60, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:11:09'),
+(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:19'),
+(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 0, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:11'),
+(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 0, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:01'),
+(10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:04'),
+(11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 11, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
+(12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 136, 1, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
+(13, 'Trac nghiem online', 'mo ta', 2, 8, 0, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
 
 -- --------------------------------------------------------
 
@@ -417,7 +460,8 @@ ALTER TABLE `account`
 -- Indexes for table `account_pack`
 --
 ALTER TABLE `account_pack`
-  ADD PRIMARY KEY (`account_id`,`pack_id`),
+  ADD PRIMARY KEY (`account_pack_id`),
+  ADD KEY `account_id` (`account_id`),
   ADD KEY `pack_id` (`pack_id`);
 
 --
@@ -450,6 +494,7 @@ ALTER TABLE `email`
 -- Indexes for table `history`
 --
 ALTER TABLE `history`
+  ADD PRIMARY KEY (`history_id`),
   ADD KEY `account_id` (`account_id`),
   ADD KEY `quiz_id` (`quiz_id`);
 
@@ -513,10 +558,16 @@ ALTER TABLE `account`
   MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
+-- AUTO_INCREMENT for table `account_pack`
+--
+ALTER TABLE `account_pack`
+  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -529,6 +580,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `email`
   MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pack`
@@ -546,13 +603,13 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `rating_comment`

@@ -55,15 +55,9 @@ public class AccountAdminController implements ServletContextAware {
 
 	}
 	
-	
-	
-	
-
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Model model, Authentication authentication) {
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-
-		return pagination(1, 25, "accountId", modelMap, model, authentication);
+	public String index(ModelMap modelMap, Model model) {
+		return pagination(1, 25, "accountId", modelMap, model);
 
 	}
 
@@ -125,8 +119,8 @@ public class AccountAdminController implements ServletContextAware {
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage,
 			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
-			Model model, Authentication authentication) {
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
+			Model model) {
+		
 		int pageSizee = pageSize;
 
 		Page<Account> pages = accountServiceAdmin.getPage(currentPage, pageSizee, sort);

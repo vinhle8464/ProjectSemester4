@@ -24,8 +24,8 @@ public class TeacherController {
 
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-		account.setDob(new Date());
 		modelMap.put("account", account);
+		modelMap.put("teacher", true);
 		return "user/teacher/index";
 	}
 

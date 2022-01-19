@@ -1,5 +1,7 @@
 package com.demo.entites;
 
+import java.util.Date;
+
 public class QuizAjax {
 
 	private Integer quizId;
@@ -12,6 +14,22 @@ public class QuizAjax {
 	private boolean fee;
 	private String image;
 	private boolean status;
+	private Date dateCreated;
+	
+	
+	
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public Integer getQuizId() {
 		return quizId;
@@ -93,8 +111,10 @@ public class QuizAjax {
 		this.status = status;
 	}
 
+
+
 	public QuizAjax(Integer quizId, int categoryId, String categoryName, String title, String description, int times,
-			byte timer, boolean fee, String image, boolean status) {
+			byte timer, boolean fee, String image, boolean status, Date dateCreated) {
 		super();
 		this.quizId = quizId;
 		this.categoryId = categoryId;
@@ -106,6 +126,7 @@ public class QuizAjax {
 		this.fee = fee;
 		this.image = image;
 		this.status = status;
+		this.dateCreated = dateCreated;
 	}
 
 	public QuizAjax() {

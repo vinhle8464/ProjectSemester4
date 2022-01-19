@@ -1,8 +1,9 @@
 package com.demo.controllers.faculty;
 
+import java.util.Date;
+
 import javax.servlet.ServletContext;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -49,9 +50,7 @@ public class QuizFacultyController implements ServletContextAware{
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model, Authentication authentication) {
-
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-//		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		return pagination(1, 25, "quiz_id", modelMap, model, authentication);
 	}
 
@@ -66,6 +65,7 @@ public class QuizFacultyController implements ServletContextAware{
 		quiz.setImage(fileNameUpload);
 		quiz.setCategory(categoryServiceAdmin.findById(categoryId));
 		quiz.setAccount(accountService.findByUsername(authentication.getName()));
+		quiz.setDateCreated(new Date());
 		
 		quizServiceFaculty.create(quiz);
 
@@ -106,7 +106,6 @@ public class QuizFacultyController implements ServletContextAware{
 
 		Account account = accountService.findByUsername(authentication.getName());
 		
-		modelMap.put("accountUsername", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		int pageSizee = pageSize;
 

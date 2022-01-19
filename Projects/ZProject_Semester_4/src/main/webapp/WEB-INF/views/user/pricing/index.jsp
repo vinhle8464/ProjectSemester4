@@ -5,15 +5,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
-<mt:layout_user title="Teacher">
+<mt:layout_user title="Pricing">
 	
 	<jsp:attribute name="content">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
 		
 		 function getpackid(packID){
+			 
 			 var packId = packID;
 				$.ajax({
 					type: 'GET',
@@ -46,107 +47,131 @@
                 <h3>Choose Your Plan</h3>
                 <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="message-box">
-                        <ul class="nav nav-pills nav-stacked" id="myTabs">
-                            <li><a class="active" href="#tab1" data-toggle="pill">Monthly Subscription</a></li>
-                            <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>
-                        </ul>
-                    </div>
-                </div><!-- end col -->
-            </div>
-
-            <hr class="invis">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tab-content">
-                        <div class="tab-pane active fade show" id="tab1">
-                            <div class="row text-center">
-                            <c:forEach var="pack" items="${packs }" varStatus="i">
-                                <c:if test="${pack.expiry < 365 }">
-                                	<div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>${pack.fee }</h2>
-                                            <h3>${pack.title }</h3>
-                                            <h4 style="color: white;">${pack.description }</h4>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
-                                            <s:form method="post" action="${posturl }">
-												<input type="hidden" name="item_number_1" value="${pack.packId }">
-												<input type="hidden" name="item_name_1" value="${pack.title }">
-												<input type="hidden" name="amount_1" value="${pack.fee }">
-												<input type="hidden" name="quantity_1" value="1">
-												<br><br>
-												<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
-												<input type="hidden" name="upload" value="1" /> 
-												<input type="hidden" name="return" value="${returnurl }" /> 
-												<input type="hidden" name="cmd" value="_cart" /> 
-												<input type="hidden" name="business" value="${business }" />
-					                		</s:form>
-                                        </div>
-                                    </div>
-                                </div>
-                                </c:if>
-                               </c:forEach>
-                            </div><!-- end row -->
-                        </div><!-- end pane -->
-
-                        <div class="tab-pane fade" id="tab2">
-                            <div class="row text-center">
-                                <c:forEach var="pack" items="${packs }" varStatus="i">
-                                <c:if test="${pack.expiry >= 365 }">
-                                	<div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>${pack.fee }</h2>
-                                            <h3>${pack.title }</h3>
-                                            <h4 style="color: white;">${pack.description }</h4>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
-                                            <s:form method="post" action="${posturl }">
-												<input type="hidden" name="item_number_1" value="${pack.packId }">
-												<input type="hidden" name="item_name_1" value="${pack.title }">
-												<input type="hidden" name="amount_1" value="${pack.fee }">
-												<input type="hidden" name="quantity_1" value="1">
-												<br><br>
-												<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
-												<input type="hidden" name="upload" value="1" /> 
-												<input type="hidden" name="return" value="${returnurl }" /> 
-												<input type="hidden" name="cmd" value="_cart" /> 
-												<input type="hidden" name="business" value="${business }" />
-					                		</s:form>
-                                        </div>
-                                    </div>
-                                </div>
-                                </c:if>
-                               </c:forEach>
-                            </div><!-- end row -->
-                        </div><!-- end pane -->
-                    </div><!-- end content -->
-                </div><!-- end col -->
-            </div><!-- end row -->
+			<c:if test="${result == true }">
+				<h2>You usesing:</h2>
+				<div class="row text-center">
+					<div class="col-md-6">
+	                 <div class="pricing-table pricing-table-highlighted">
+	                      <div class="pricing-table-header grd1">
+	                           <h2>${accountPack.pack.fee }</h2>
+	                           <h3>${accountPack.pack.title }</h3>
+	                           <h4 style="color: white;">${accountPack.pack.description }</h4>
+	                      </div>
+	                      <div class="pricing-table-space"></div>
+	                      <div class="pricing-table-features">
+	                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+	                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+	                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+	                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
+	                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                      </div>
+	                  </div>
+	             </div>
+				</div>                 
+			</c:if>
+            <c:if test="${result == false }">
+            	<div class="row">
+	                <div class="col-md-6 offset-md-3">
+	                    <div class="message-box">
+	                        <ul class="nav nav-pills nav-stacked" id="myTabs">
+	                            <li><a class="active" href="#tab1" data-toggle="pill">Monthly Subscription</a></li>
+	                            <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>
+	                        </ul>
+	                    </div>
+	                </div><!-- end col -->
+	            </div>
+	
+	            <hr class="invis">
+	
+	            <div class="row">
+	                <div class="col-md-12">
+	                    <div class="tab-content">
+	                        <div class="tab-pane active fade show" id="tab1">
+	                            <div class="row text-center">
+	                            <c:forEach var="pack" items="${packs }" varStatus="i">
+	                                <c:if test="${pack.expiry < 365 }">
+	                                	<div class="col-md-4">
+	                                    <div class="pricing-table pricing-table-highlighted">
+	                                        <div class="pricing-table-header grd1">
+	                                            <h2>${pack.fee }</h2>
+	                                            <h3>${pack.title }</h3>
+	                                            <h4 style="color: white;">${pack.description }</h4>
+	                                        </div>
+	                                        <div class="pricing-table-space"></div>
+	                                        <div class="pricing-table-features">
+	                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+	                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+	                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+	                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
+	                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                                        </div>
+	                                        <div class="pricing-table-sign-up">
+	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
+	                                            <s:form method="post" action="${posturl }">
+													<input type="hidden" name="item_number_1" value="${pack.packId }">
+													<input type="hidden" name="item_name_1" value="${pack.title }">
+													<input type="hidden" name="amount_1" value="${pack.fee }">
+													<input type="hidden" name="quantity_1" value="1">
+													<br><br>
+													<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
+													<input type="hidden" name="upload" value="1" /> 
+													<input type="hidden" name="return" value="${returnurl }" /> 
+													<input type="hidden" name="cmd" value="_cart" /> 
+													<input type="hidden" name="business" value="${business }" />
+						                		</s:form>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                </c:if>
+	                               </c:forEach>
+	                            </div><!-- end row -->
+	                        </div><!-- end pane -->
+	
+	                        <div class="tab-pane fade" id="tab2">
+	                            <div class="row text-center">
+	                                <c:forEach var="pack" items="${packs }" varStatus="i">
+	                                <c:if test="${pack.expiry >= 365 }">
+	                                	<div class="col-md-4">
+	                                    <div class="pricing-table pricing-table-highlighted">
+	                                        <div class="pricing-table-header grd1">
+	                                            <h2>${pack.fee }</h2>
+	                                            <h3>${pack.title }</h3>
+	                                            <h4 style="color: white;">${pack.description }</h4>
+	                                        </div>
+	                                        <div class="pricing-table-space"></div>
+	                                        <div class="pricing-table-features">
+	                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+	                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+	                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+	                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
+	                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                                        </div>
+	                                        <div class="pricing-table-sign-up">
+	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
+	                                            <s:form method="post" action="${posturl }">
+													<input type="hidden" name="item_number_1" value="${pack.packId }">
+													<input type="hidden" name="item_name_1" value="${pack.title }">
+													<input type="hidden" name="amount_1" value="${pack.fee }">
+													<input type="hidden" name="quantity_1" value="1">
+													<br><br>
+													<input type="submit" value="Buy" style="background-color: black;" class="hover-btn-new orange" id="${pack.packId}"  onclick="getpackid(id);">
+													<input type="hidden" name="upload" value="1" /> 
+													<input type="hidden" name="return" value="${returnurl }" /> 
+													<input type="hidden" name="cmd" value="_cart" /> 
+													<input type="hidden" name="business" value="${business }" />
+						                		</s:form>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                </c:if>
+	                               </c:forEach>
+	                            </div><!-- end row -->
+	                        </div><!-- end pane -->
+	                    </div><!-- end content -->
+	                </div><!-- end col -->
+	            </div><!-- end row -->
+	        
+            </c:if>
         </div><!-- end container -->
     </div><!-- end section -->
 
@@ -240,32 +265,6 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-
-    <div class="parallax section dbcolor">
-        <div class="container">
-            <div class="row logos">
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_01.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_02.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_03.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_04.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_05.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_06.png" alt="" class="img-repsonsive"></a>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-
 
     
 	</jsp:attribute>

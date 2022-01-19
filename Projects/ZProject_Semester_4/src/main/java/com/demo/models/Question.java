@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Dec 29, 2021, 9:30:54 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 18, 2022, 12:54:17 AM by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,23 +26,27 @@ public class Question implements java.io.Serializable {
 	private String title;
 	private String explainDetail;
 	private boolean status;
+	private String typeAnswerChoice;
 	private Set<Answer> answers = new HashSet<Answer>(0);
 
 	public Question() {
 	}
 
-	public Question(Quiz quiz, String title, String explainDetail, boolean status) {
+	public Question(Quiz quiz, String title, String explainDetail, boolean status, String typeAnswerChoice) {
 		this.quiz = quiz;
 		this.title = title;
 		this.explainDetail = explainDetail;
 		this.status = status;
+		this.typeAnswerChoice = typeAnswerChoice;
 	}
 
-	public Question(Quiz quiz, String title, String explainDetail, boolean status, Set<Answer> answers) {
+	public Question(Quiz quiz, String title, String explainDetail, boolean status, String typeAnswerChoice,
+			Set<Answer> answers) {
 		this.quiz = quiz;
 		this.title = title;
 		this.explainDetail = explainDetail;
 		this.status = status;
+		this.typeAnswerChoice = typeAnswerChoice;
 		this.answers = answers;
 	}
 
@@ -79,7 +83,7 @@ public class Question implements java.io.Serializable {
 
 	@Column(name = "explain_detail", nullable = false, length = 65535)
 	public String getExplainDetail() {
-		return explainDetail;
+		return this.explainDetail;
 	}
 
 	public void setExplainDetail(String explainDetail) {
@@ -91,10 +95,17 @@ public class Question implements java.io.Serializable {
 		return this.status;
 	}
 
-
-
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Column(name = "type_answer_choice", nullable = false, length = 20)
+	public String getTypeAnswerChoice() {
+		return this.typeAnswerChoice;
+	}
+
+	public void setTypeAnswerChoice(String typeAnswerChoice) {
+		this.typeAnswerChoice = typeAnswerChoice;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
@@ -106,11 +117,4 @@ public class Question implements java.io.Serializable {
 		this.answers = answers;
 	}
 
-	@Override
-	public String toString() {
-		return "Question [questionId=" + questionId + ", quiz=" + quiz.getQuizId() + ", title=" + title + ", explainDetail=" + explainDetail
-				+ ", status=" + status + ", answers=" + answers + "]";
-	}
-
-	
 }

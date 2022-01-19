@@ -23,8 +23,9 @@ public class AboutController {
 	public String index(ModelMap modelMap) {
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		Account account = new Account();
-		account.setDob(new Date());
 		modelMap.put("account", account);
+		modelMap.put("about", true);
+		
 		return "user/about/index";
 		
 	}

@@ -41,10 +41,9 @@ public class EmailAdminController {
 	
 	
 	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
-	public String index(ModelMap modelMap, Model model, Authentication authentication) {
+	public String index(ModelMap modelMap, Model model) {
 		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		return pagination(1, 25, "emailId", modelMap, model, authentication);		
+		return pagination(1, 25, "emailId", modelMap, model);		
 	}
 	
 	
@@ -76,10 +75,8 @@ public class EmailAdminController {
 	
 	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
 	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model, Authentication authentication) {
-		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
-		
+			ModelMap modelMap, Model model) {
+
 		int pageSizee = pageSize;
 
 		Page<Email> pages = emailServiceAdmin.getPage(currentPage, pageSizee, sort);
@@ -98,9 +95,8 @@ public class EmailAdminController {
 	}
 	
 	@RequestMapping(value = "replyIndex", method = RequestMethod.GET)
-	public String reply_index(ModelMap modelMap, Model model, Authentication authentication, @RequestParam("emailId") int emailId) {
+	public String reply_index(ModelMap modelMap, Model model, @RequestParam("emailId") int emailId) {
 		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		modelMap.put("email", emailServiceAdmin.findById(emailId));
 		return "admin/email/replyIndex";		
 	}
@@ -108,8 +104,6 @@ public class EmailAdminController {
 	@RequestMapping(value = "replyEmail", method = RequestMethod.POST)
 	public String reply_email(ModelMap modelMap, Model model, Authentication authentication,@ModelAttribute("email") Email emailReply,
 			@RequestParam("subject") String subject) {
-		
-		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
 		
 		Email email = emailServiceAdmin.findById(emailReply.getEmailId());
 		

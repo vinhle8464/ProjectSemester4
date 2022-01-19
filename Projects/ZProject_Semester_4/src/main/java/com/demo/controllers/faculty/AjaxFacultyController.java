@@ -33,8 +33,7 @@ public class AjaxFacultyController {
 	@Autowired
 	private AnswerServiceFaculty answerServiceFaculty;
 
-	@RequestMapping(value = {
-			"findquizbyid" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = { "findquizbyid" }, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public QuizAjax findQuizById(@RequestParam("quizId") int quizId) {
 
 		return quizServiceFaculty.findByIdAjax(quizId);

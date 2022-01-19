@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
 import com.demo.models.Role;
 import com.demo.repositories.user.AccountRepositoryUser;
@@ -56,6 +57,11 @@ public class AccountSeviceUserImpl implements AccountServiceUser{
 	@Override
 	public long countAccountUser() {
 		return accountRepository.count();
+	}
+
+	@Override
+	public AccountAjax findByIdAjax(int id) {
+		return accountRepository.findByIdAjax(id);
 	}
 
 }

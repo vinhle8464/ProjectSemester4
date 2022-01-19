@@ -2,7 +2,7 @@ package com.demo.services.user;
 
 import java.util.List;
 
-
+import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
 
 public interface AccountServiceUser {
@@ -20,4 +20,6 @@ public interface AccountServiceUser {
 	public void delete(int id);
 
 	public long countAccountUser();
+	
+	public AccountAjax findByIdAjax(int id);
 }

@@ -1,11 +1,23 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="ss" uri="http://www.springframework.org/security/tags"%>
 
+<<<<<<< HEAD
 
+=======
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/styleComment.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script type="text/javascript">
+  	$( function() {
+	    $( "#dob" ).datepicker();
+	  } );
+  </script>
+>>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<!-- Modal -->
@@ -59,9 +71,13 @@
 							</form>
 						</div>
 						<div class="tab-pane" id="Registration">
+<<<<<<< HEAD
 							<s:form method="post" modelAttribute="account"
 								enctype="multipart/form-data"
 								action="${pageContext.request.contextPath }/user/account/register">
+=======
+							<s:form method="post" modelAttribute="account" enctype="multipart/form-data" action="${pageContext.request.contextPath }/user/account/register">
+>>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="username" class="form-control"
@@ -176,14 +192,14 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbars-host">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item ${home ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/home">Home</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${about ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/about">About Us</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="dropdown-a"
-					data-toggle="dropdown">Course </a>
-					<div class="dropdown-menu" aria-labelledby="dropdown-a">
+				<li class="nav-item ${course ? 'active' : '' } dropdown" ><a
+					class="nav-link disabled" href="${pageContext.request.contextPath}/user/course/index?categoryId=0" id="dropdown-a"
+				>Course </a>
+					<div class="dropdown-menu"  aria-labelledby="dropdown-a">
 						<c:forEach var="category" items="${categories }">
 							<a class="dropdown-item"
 								href="${pageContext.request.contextPath}/user/course/index?categoryId=${category.categoryId }">${category.title }
@@ -191,18 +207,95 @@
 						</c:forEach>
 
 					</div></li>
+<<<<<<< HEAD
 
 				<li class="nav-item"><a class="nav-link"
+=======
+			
+				<li class="nav-item ${teacher ? 'active' : '' }"><a class="nav-link"
+>>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 					href="${pageContext.request.contextPath}/user/teacher">Teachers</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${pricing ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/pricing">Pricing</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item ${contact ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/contact">Contact</a></li>
+				<c:if test="${sessionScope.account != null}">
+					<li class="nav-item dropdown">
+				        <a class="nav-link" data-toggle="dropdown" href="#">
+							<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
+								class="img-circle elevation-2" style="with: 30px;height: 30px;border-radius: 50%" >
+				        </a>
+				        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="width: 350px; border-radius: 5%">
+					        <div align="center">
+					        	<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
+									class="img-circle elevation-2" style="with: 85px;height: 85px;border-radius: 50%" >
+					        </div>
+					        <br>
+				            <div align="center">
+				              	<h3>${sessionScope.account.fullname }</h3>
+				              	<h4>${sessionScope.account.email }</h4>
+				              	<h4><a href="${pageContext.request.contextPath}/user/pricing">Pack</a></h4>
+				            </div>
+				            <!-- Message End -->
+				          <ss:authorize access="hasRole('ROLE_USER_FACULTY')">
+							<div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/faculty/dashboard" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									Dashboard
+					            </div>
+					            <!-- Message End -->
+					          </a>
+					       </ss:authorize>
+					       <ss:authorize access="hasRole('ROLE_ADMIN')">
+							<div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/admin/dashboard" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									Dashboard
+					            </div>
+					            <!-- Message End -->
+					          </a>
+					       </ss:authorize>
+					       <ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
+							<div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/user/history/index" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									History
+					            </div>
+					            <!-- Message End -->
+					          </a>
+					       </ss:authorize>
+				          <div class="dropdown-divider"></div>
+				          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
+				            <!-- Message Start -->
+				            <div class="media">
+				              	Profile
+				            </div>
+				            <!-- Message End -->
+				          </a>
+				          <div class="dropdown-divider"></div>
+				          <a href="${pageContext.request.contextPath}/user/account/logout" class="dropdown-item">
+				            <!-- Message Start -->
+				            <div class="media">
+				              	Logout
+				            </div>
+				            <!-- Message End -->
+				          </a>
+				          <div class="dropdown-divider"></div>
+				          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+				        </div>
+				 </li>
+				</c:if>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="hover-btn-new log orange" href="#"
-					data-toggle="modal" data-target="#login"><span>Book Now</span></a></li>
-			</ul>
+			<c:if test="${sessionScope.account == null}">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Book Now</span></a></li>
+				</ul>
+			</c:if>
+			
+				
 		</div>
 	</div>
 </nav>

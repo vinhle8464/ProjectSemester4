@@ -1,25 +1,21 @@
 package com.demo.controllers.user;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+//<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+//=======
+//>>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -40,20 +36,8 @@ import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
 import com.demo.services.user.AccountServiceUser;
-import com.demo.services.user.OAuth2LoginSuccessHandler;
 import com.demo.services.user.RoleServiceUser;
 import com.demo.validators.AccountValidator;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.LowLevelHttpRequest;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.drive.DriveScopes;
 
 @Controller
 @RequestMapping(value = { "user/account", "login/oauth2/code" })
