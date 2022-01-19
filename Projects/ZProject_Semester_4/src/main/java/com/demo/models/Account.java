@@ -36,6 +36,7 @@ public class Account implements java.io.Serializable {
 	private String phone;
 	private String avatar;
 	private boolean status;
+	private Date createDate;
 	private Set<Salary> salaries = new HashSet<Salary>(0);
 	private Set<AccountPack> accountPacks = new HashSet<AccountPack>(0);
 	private Set<RatingComment> ratingComments = new HashSet<RatingComment>(0);
@@ -48,7 +49,7 @@ public class Account implements java.io.Serializable {
 	}
 
 	public Account(String username, String password, String fullname, String email, String addr, boolean gender,
-			String avatar, boolean status) {
+			String avatar, boolean status, Date createDate) {
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -57,10 +58,11 @@ public class Account implements java.io.Serializable {
 		this.gender = gender;
 		this.avatar = avatar;
 		this.status = status;
+		this.createDate = createDate;
 	}
 
 	public Account(String username, String password, String fullname, String email, Date dob, String addr,
-			boolean gender, String phone, String avatar, boolean status, Set<Salary> salaries,
+			boolean gender, String phone, String avatar, boolean status, Date createDate, Set<Salary> salaries,
 			Set<AccountPack> accountPacks, Set<RatingComment> ratingComments, Set<History> histories, Set<Quiz> quizs,
 			Set<Role> roles, Set<Pay> pays) {
 		this.username = username;
@@ -73,6 +75,7 @@ public class Account implements java.io.Serializable {
 		this.phone = phone;
 		this.avatar = avatar;
 		this.status = status;
+		this.createDate = createDate;
 		this.salaries = salaries;
 		this.accountPacks = accountPacks;
 		this.ratingComments = ratingComments;
@@ -185,6 +188,16 @@ public class Account implements java.io.Serializable {
 		this.status = status;
 	}
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "create_date", nullable = false, length = 10)
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
 	public Set<Salary> getSalaries() {
 		return this.salaries;
