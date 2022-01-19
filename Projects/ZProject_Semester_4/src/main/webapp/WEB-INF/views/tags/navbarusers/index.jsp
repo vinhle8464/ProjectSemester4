@@ -5,9 +5,6 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="ss" uri="http://www.springframework.org/security/tags"%>
 
-<<<<<<< HEAD
-
-=======
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/css/styleComment.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -17,10 +14,9 @@
 	    $( "#dob" ).datepicker();
 	  } );
   </script>
->>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<!-- Modal -->
+<!-- Modal -->
 	<div class="modal fade" id="login" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-dialog-centered modal-lg"
@@ -59,8 +55,8 @@
 									<div class="col-sm-10">
 										<a
 											href="${pageContext.request.contextPath }/oauth2/authorization/google"
-											class="btn btn-light btn-radius btn-brd grd1"> Sign in
-											using Google </a>
+											class="btn btn-light btn-radius btn-brd grd1">  Sign in using Google
+										</a>
 										<button type="submit"
 											class="btn btn-light btn-radius btn-brd grd1">Sign
 											In</button>
@@ -71,102 +67,91 @@
 							</form>
 						</div>
 						<div class="tab-pane" id="Registration">
-<<<<<<< HEAD
-							<s:form method="post" modelAttribute="account"
-								enctype="multipart/form-data"
-								action="${pageContext.request.contextPath }/user/account/register">
-=======
 							<s:form method="post" modelAttribute="account" enctype="multipart/form-data" action="${pageContext.request.contextPath }/user/account/register">
->>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="username" class="form-control"
-											placeholder="User name" />
-										<s:errors path="username" cssClass="form-control" />
+										<s:input path="username"
+							class="form-control" placeholder="User name"/>
+								<s:errors path="username" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:password path="password" class="form-control"
-											placeholder="Password" />
-										<s:errors path="password" cssClass="form-control" />
+										<s:password path="password"
+							class="form-control" placeholder="Password"/>
+							<s:errors path="password" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input name="repassword" type="password" class="form-control"
-											placeholder="Retype password">
+							placeholder="Retype password">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="fullname" class="form-control"
-											placeholder="Full name" />
-										<s:errors path="fullname" cssClass="form-control" />
+										<s:input path="fullname" class="form-control" placeholder="Full name"/>
+						<s:errors path="fullname" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="addr" class="form-control"
-											placeholder="Address" />
-										<s:errors path="addr" cssClass="form-control" />
+										<s:input path="addr" class="form-control" placeholder="Address"/>
+						<s:errors path="addr" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:radiobutton value="true" path="gender" class="form-control" />
-										Male
-										<div class="input-group-append">
-											<div class="input-group-radio"></div>
-										</div>
-										<s:radiobutton value="false" path="gender"
-											class="form-control" />
-										Female
-										<div class="input-group-append">
-											<div class="input-group-radio"></div>
-										</div>
+						<div class="input-group-append">
+							<div class="input-group-radio">
+								<span class="fas fa-male">_Male </span>
+							</div>
+						</div>
+						<s:radiobutton value="false" path="gender" class="form-control"/>
+						<div class="input-group-append">
+							<div class="input-group-radio">
+								<span class="fas fa-female">_Female</span>
+							</div>
+						</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="dob" class="form-control" id="dob"
-											placeholder="Date of Birth" />
-										<s:errors path="dob" cssClass="form-control" />
+										<s:input path="dob" class="form-control" id="dob" placeholder="Date of Birth"/>
+						<s:errors path="dob" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="phone" class="form-control" placeholder="Phone" />
-										<s:errors path="phone" cssClass="form-control" />
+										<s:input path="phone" class="form-control" placeholder="Phone"/>
+						<s:errors path="phone" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="email" class="form-control" placeholder="Email" />
-										<s:errors path="email" cssClass="form-control" />
+										<s:input path="email" class="form-control" placeholder="Email"/>
+						<s:errors path="email" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<input class="form-control" type="file" name="file"
-											placeholder="Avatar">
-										<s:errors path="avatar" cssClass="form-control" />
+										<input class="form-control" type="file" name="file" placeholder="Avatar">
+						<s:errors path="avatar" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<input type="checkbox" id="agreeTerms" name="terms"
-										value="true"> <label for="agreeTerms"> I agree
-										to the <a href="#">terms</a>
-									</label>
-
+									value="true"> <label for="agreeTerms"> I agree
+									to the <a href="#">terms</a>
+								</label>
+									
 								</div>
 								<div class="row">
 									<div class="col-sm-10">
-										<input type="hidden" name="role" value="3"> <input
-											type="hidden" name="avatar" value="no ava"> <input
-											type="submit" class="btn btn-light btn-radius btn-brd grd1"
-											value="Save
-											&amp; Continue">
+										<button type="button"
+											class="btn btn-light btn-radius btn-brd grd1">Save
+											&amp; Continue</button>
 										<button type="button"
 											class="btn btn-light btn-radius btn-brd grd1">
 											Cancel</button>
@@ -207,13 +192,8 @@
 						</c:forEach>
 
 					</div></li>
-<<<<<<< HEAD
-
-				<li class="nav-item"><a class="nav-link"
-=======
 			
 				<li class="nav-item ${teacher ? 'active' : '' }"><a class="nav-link"
->>>>>>> 18b0a0865199bb8f160a6df834d1ff640e621545
 					href="${pageContext.request.contextPath}/user/teacher">Teachers</a></li>
 				<li class="nav-item ${pricing ? 'active' : '' }"><a class="nav-link"
 					href="${pageContext.request.contextPath}/user/pricing">Pricing</a></li>
