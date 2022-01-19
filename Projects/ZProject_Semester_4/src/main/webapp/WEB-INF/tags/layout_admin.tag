@@ -1,8 +1,10 @@
 <%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" uri="http://mytags.vn"%>
-<%@ attribute name="title" required="true" rtexprvalue="true" type="java.lang.String"%>
+<%@ attribute name="title" required="true" rtexprvalue="true"
+	type="java.lang.String"%>
 <%@ attribute name="content" fragment="true"%>
-<%@ taglib prefix="ss" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="ss"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
@@ -49,7 +51,7 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/admin/css/style.css">
-	
+
 <!-- 
   add new   -->
 </head>
@@ -68,16 +70,19 @@
 		<nav
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#" role="button"><i class="fas fa-bars"></i></a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a
-					href="${pageContext.request.contextPath}/user/home/"
-					class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
-			</ul>
+			<ss:authorize access="hasRole('ROLE_USER_FACULTY')">
 
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link"
+						data-widget="pushmenu" href="#" role="button"><i
+							class="fas fa-bars"></i></a></li>
+					<li class="nav-item d-none d-sm-inline-block"><a
+						href="${pageContext.request.contextPath}/user/home/"
+						class="nav-link">Home</a></li>
+					<li class="nav-item d-none d-sm-inline-block"><a href="#"
+						class="nav-link">Contact</a></li>
+				</ul>
+			</ss:authorize>
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
@@ -102,55 +107,51 @@
 							</div>
 						</form>
 					</div></li>
-				<li class="nav-item dropdown">
-				        <a class="nav-link" data-toggle="dropdown" href="#">
-							<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
-								class="img-circle elevation-2" style="with: 30px;height: 30px;border-radius: 50%" >
-				        </a>
-				        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="width: 350px; border-radius: 5%">
-					        <div align="center" style="padding-top: 25px;">
-					        	<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
-									class="img-circle elevation-2" style="with: 85px;height: 85px;border-radius: 50%" >
-					        </div>
-					        <br>
-				            <div align="center">
-				              	<div>${sessionScope.account.fullname }</div>
-				              	<div>${sessionScope.account.email }</div>
-				            </div>
-				            <!-- Message End -->
-				          <ss:authorize access="hasRole('ROLE_USER_FACULTY')">
-					          <div class="dropdown-divider"></div>
-					          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-					              	Profile
-					            </div>
-					            <!-- Message End -->
-					          </a>
-				          </ss:authorize>
-				          <ss:authorize access="hasRole('ROLE_ADMIN')">
-					          <div class="dropdown-divider"></div>
-					          <a href="${pageContext.request.contextPath}/admin/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-					              	Profile
-					            </div>
-					            <!-- Message End -->
-					          </a>
-				          </ss:authorize>
-				          <div class="dropdown-divider"></div>
-				          <a href="${pageContext.request.contextPath}/user/account/logout" class="dropdown-item">
-				            <!-- Message Start -->
-				            <div class="media">
-				              	Logout
-				            </div>
-				            <!-- Message End -->
-				          </a>
-				          <div class="dropdown-divider"></div>
-				          <p class="dropdown-item dropdown-footer">Login Memory Team</p>
-				        </div>
-				 </li>
-				
+				<li class="nav-item dropdown"><a class="nav-link"
+					data-toggle="dropdown" href="#"> <img
+						src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }"
+						class="img-circle elevation-2"
+						style="with: 30px; height: 30px; border-radius: 50%">
+				</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+						style="width: 350px; border-radius: 5%">
+						<div align="center" style="padding-top: 25px;">
+							<img
+								src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }"
+								class="img-circle elevation-2"
+								style="with: 85px; height: 85px; border-radius: 50%">
+						</div>
+						<br>
+						<div align="center">
+							<div>${sessionScope.account.fullname }</div>
+							<div>${sessionScope.account.email }</div>
+						</div>
+						<!-- Message End -->
+						<ss:authorize access="hasRole('ROLE_USER_FACULTY')">
+							<div class="dropdown-divider"></div>
+							<a
+								href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Profile</div> <!-- Message End -->
+							</a>
+						</ss:authorize>
+						<ss:authorize access="hasRole('ROLE_ADMIN')">
+							<div class="dropdown-divider"></div>
+							<a
+								href="${pageContext.request.contextPath}/admin/profile/index?accountId=${sessionScope.account.accountId }"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Profile</div> <!-- Message End -->
+							</a>
+						</ss:authorize>
+						<div class="dropdown-divider"></div>
+						<a href="${pageContext.request.contextPath}/user/account/logout"
+							class="dropdown-item"> <!-- Message Start -->
+							<div class="media">Logout</div> <!-- Message End -->
+						</a>
+						<div class="dropdown-divider"></div>
+						<p class="dropdown-item dropdown-footer">Login Memory Team</p>
+					</div></li>
+
 
 			</ul>
 		</nav>

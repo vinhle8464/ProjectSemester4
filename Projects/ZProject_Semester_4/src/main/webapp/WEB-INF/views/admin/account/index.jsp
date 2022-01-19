@@ -40,6 +40,7 @@
 										true);
 							}
 							$('#accPhone').val(account.phone);
+							$('#createDatee').val(account.createDate);
 							$('#accAvatar').attr("src", "/assets/uploads/" + account.avatar);
 						}
 					});
@@ -468,6 +469,11 @@
 						<label>Phone Number</label>
 						<s:input path="phone" type="text" id="accPhone"
 													class="form-control" required="required" />
+					</div>	
+					<div class="form-group">
+						<label>CreateDate</label>
+						<s:input path="createDate" type="text" id="createDatee"
+													class="form-control" required="required" disabled="true"/>
 					</div>	
 					<div class="form-group">
 						<label>Avatar</label>

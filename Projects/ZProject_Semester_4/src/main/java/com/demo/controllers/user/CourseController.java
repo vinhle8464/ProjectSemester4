@@ -228,8 +228,14 @@ public class CourseController {
 							}
 						}
 					} else if (question.getTypeAnswerChoice().equalsIgnoreCase("checkbox")) {
-						
+						int totalRightAnswerInDb = 0;
 						for (Answer answer : question.getAnswers()) {
+							if(answer.isAnswerStatus()) {
+								totalRightAnswerInDb += 1;
+							}
+						}
+						for (Answer answer : question.getAnswers()) {
+							
 							for (String answerIdChoice : listAnswerIdChoice) {
 
 								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
@@ -239,7 +245,7 @@ public class CourseController {
 
 								}
 								System.out.println("rightcheckbox: " + numberRightCheckbox);
-								if (numberRightCheckbox >= 2) {
+								if (numberRightCheckbox == totalRightAnswerInDb) {
 									rightAnswerChoice += 1;
 									numberRightCheckbox = 0;
 								}
