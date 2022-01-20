@@ -180,7 +180,7 @@ section.right_answer {
 		      <g class="circle-chart__info">
 		        <text class="circle-chart__percent" x="16.91549431" y="15.5"
 										alignment-baseline="central" text-anchor="middle"
-										font-size="7">${history.numberRightAnswer/quiz.questions.size()}</text>
+										font-size="7"><fmt:formatNumber type = "number" pattern = "##.##" value="${history.numberRightAnswer/quiz.questions.size()*100}"/></text>
 		        <text class="circle-chart__subline" x="16.91549431" y="20.5"
 										alignment-baseline="central" text-anchor="middle"
 										font-size="3">${history.numberRightAnswer }/ ${quiz.questions.size() }</text>
@@ -195,7 +195,12 @@ section.right_answer {
 							
 							<div>
 							<ul>	
-								<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${history.timeDone/60}" maxIntegerDigits="1"/>:${history.timeDone%60}</li>
+								<c:if test="${history.timeDone%60 <= 10}">
+									<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${Math.floor(history.timeDone/60)}" maxIntegerDigits="1"/>:0${history.timeDone%60}</li>
+								</c:if>
+								<c:if test="${history.timeDone%60 > 10}">
+									<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${Math.floor(history.timeDone/60)}" maxIntegerDigits="1"/>:${history.timeDone%60}</li>
+								</c:if>
 								<li><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Number of <span style="color: blue;">Right</span> Question:&nbsp;&nbsp; ${history.numberRightAnswer }/ ${quiz.questions.size() }</li>
 								<li><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Number of <span style="color: red;">Wrong</span> Question:&nbsp;&nbsp; ${quiz.questions.size() - history.numberRightAnswer}/${quiz.questions.size()} </p></li>
 							</ul>

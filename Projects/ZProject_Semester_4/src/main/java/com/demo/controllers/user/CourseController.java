@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,14 @@ import com.demo.models.Comment;
 import com.demo.models.History;
 import com.demo.models.Question;
 import com.demo.models.Quiz;
+import com.demo.models.Rating;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
 import com.demo.services.user.CommentServiceUser;
 import com.demo.services.user.CourseService;
 import com.demo.services.user.HistoryService;
+import com.demo.services.user.RatingServiceUser;
 
 @Controller
 @RequestMapping(value = { "user/course" })
@@ -53,6 +56,9 @@ public class CourseController {
 
 	@Autowired
 	private CommentServiceUser commentServiceUser;
+	
+	@Autowired
+	private RatingServiceUser ratingServiceUser;
 
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model) {
@@ -75,7 +81,7 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpSession session) {
 
 		Account account = new Account();
 		modelMap.put("account", account);
@@ -90,6 +96,17 @@ public class CourseController {
 
 		// Show tat ca comment
 		modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));
+		// Rating
+		double totalStar = 0;
+		double number = 0;
+		for(Rating rating : ratingServiceUser.findAllByQuizId(quizId)) {
+			totalStar += rating.getStar();
+			number += 1;
+		}
+		double avgStar = totalStar/number;
+		modelMap.put("avgStar", avgStar);
+		Account accountRating = (Account) session.getAttribute("account");
+		modelMap.put("rating", ratingServiceUser.findByAccountIdAndQuizId(accountRating.getAccountId(), quizId));
 
 		return "user/course/quizdetails";
 	}
@@ -148,7 +165,7 @@ public class CourseController {
 		// create new history
 		History history = new History();
 
-		if (historyService.findHistoryByAccounIdAndQuizId(account2.getAccountId(), quizId) != null) {
+		if (historyService.findHistoryByAccounIdAndQuizId(account2.getAccountId(), quizId) != null) 		{
 			history.setHistoryId(
 					historyService.findHistoryByAccounIdAndQuizId(account2.getAccountId(), quizId).getHistoryId());
 
@@ -158,10 +175,16 @@ public class CourseController {
 
 		history.setAccount(accountService.findById(account2.getAccountId()));
 		history.setStatus(true);
-		history.setListQuestionId(request.getParameterValues("questionId").toString());
+		
+		String listQuestionIdd = "";
+		for(String questionId : request.getParameterValues("questionId")) {
+			listQuestionIdd += questionId + " ";
+		}
+		history.setListQuestionId(listQuestionIdd);
 		// get list anserchoice
 
 		List<String> listAnswerIdChoice = new ArrayList<String>();
+		String listAnswerId = "";
 		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
 		for (String string : listQuestionId) {
@@ -173,6 +196,7 @@ public class CourseController {
 				for (String answerId : request.getParameterValues(answer)) {
 					if (answerId != "0") {
 						listAnswerIdChoice.add(answerId);
+						listAnswerId += answerId + " ";
 					}
 				}
 
@@ -181,7 +205,7 @@ public class CourseController {
 			i++;
 		}
 
-		history.setListAnswerChoice(listAnswerIdChoice.toArray(new String[0]).toString());
+		history.setListAnswerChoice(listAnswerId);
 		history.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
 
 		// get number of right answer_ choice
@@ -273,9 +297,27 @@ public class CourseController {
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-		modelMap.put("history", historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId));
+//		History history = historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId);
+////		//System.out.println("asdfasdf: " + Arrays.toString(history.getListAnswerChoice()));
+////		List<String> listAnswerId = new ArrayList<String>();
+////		listAnswerId = null;
+////				
+		String[] listQuestionId = historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId).getListQuestionId().split(" ", -1);
+		listQuestionId = ArrayUtils.remove(listQuestionId, listQuestionId.length - 1);
+		for (String string : listQuestionId) {
+			System.out.println("questionId : " + string);
+		}
+		
+		String[] listAnswerId = historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId).getListAnswerChoice().split(" ", -1);
+		listAnswerId = ArrayUtils.remove(listAnswerId, listAnswerId.length - 1);
+		for (String string : listAnswerId) {
+			System.out.println("questionId : " + string);
+		}
+		modelMap.put("listQuestionId", listQuestionId);
+		
+		modelMap.put("listAnswerId", listAnswerId);
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
-
+        
 		return "user/course/reviewtest";
 	}
 
