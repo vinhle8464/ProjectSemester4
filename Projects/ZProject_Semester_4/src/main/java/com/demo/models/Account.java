@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 17, 2022, 9:56:49 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 20, 2022, 7:37:22 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -38,8 +38,9 @@ public class Account implements java.io.Serializable {
 	private boolean status;
 	private Date createDate;
 	private Set<Salary> salaries = new HashSet<Salary>(0);
+	private Set<Comment> comments = new HashSet<Comment>(0);
 	private Set<AccountPack> accountPacks = new HashSet<AccountPack>(0);
-	private Set<RatingComment> ratingComments = new HashSet<RatingComment>(0);
+	private Set<Rating> ratings = new HashSet<Rating>(0);
 	private Set<History> histories = new HashSet<History>(0);
 	private Set<Quiz> quizs = new HashSet<Quiz>(0);
 	private Set<Role> roles = new HashSet<Role>(0);
@@ -63,8 +64,8 @@ public class Account implements java.io.Serializable {
 
 	public Account(String username, String password, String fullname, String email, Date dob, String addr,
 			boolean gender, String phone, String avatar, boolean status, Date createDate, Set<Salary> salaries,
-			Set<AccountPack> accountPacks, Set<RatingComment> ratingComments, Set<History> histories, Set<Quiz> quizs,
-			Set<Role> roles, Set<Pay> pays) {
+			Set<Comment> comments, Set<AccountPack> accountPacks, Set<Rating> ratings, Set<History> histories,
+			Set<Quiz> quizs, Set<Role> roles, Set<Pay> pays) {
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
@@ -77,8 +78,9 @@ public class Account implements java.io.Serializable {
 		this.status = status;
 		this.createDate = createDate;
 		this.salaries = salaries;
+		this.comments = comments;
 		this.accountPacks = accountPacks;
-		this.ratingComments = ratingComments;
+		this.ratings = ratings;
 		this.histories = histories;
 		this.quizs = quizs;
 		this.roles = roles;
@@ -197,7 +199,7 @@ public class Account implements java.io.Serializable {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
 	public Set<Salary> getSalaries() {
 		return this.salaries;
@@ -205,6 +207,15 @@ public class Account implements java.io.Serializable {
 
 	public void setSalaries(Set<Salary> salaries) {
 		this.salaries = salaries;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
@@ -217,12 +228,12 @@ public class Account implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-	public Set<RatingComment> getRatingComments() {
-		return this.ratingComments;
+	public Set<Rating> getRatings() {
+		return this.ratings;
 	}
 
-	public void setRatingComments(Set<RatingComment> ratingComments) {
-		this.ratingComments = ratingComments;
+	public void setRatings(Set<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")

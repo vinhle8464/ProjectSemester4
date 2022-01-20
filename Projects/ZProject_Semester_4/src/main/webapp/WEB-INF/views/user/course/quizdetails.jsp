@@ -80,9 +80,10 @@
 			<!-- end container -->
     </div>
 		<!-- end section -->
-	<c:if test="${sessionScope.account != null }">
+	
 		<!-- DIRECT CHAT -->
             <div class="card direct-chat direct-chat-primary container">
+            	<c:if test="${sessionScope.account != null }">
             	<div class="stars">
             		<input type="radio" class="star star-5" id="star-5" name="star"/>
             		<label class="star star-5" for="star-5"></label>
@@ -95,63 +96,47 @@
             		<input type="radio" class="star star-1" id="star-1" name="star"/>
             		<label class="star star-5" for="star-1"></label>
             	</div>
+            	</c:if>
               <div class="card-header">
                 <h3 class="card-title">Comment</h3>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages">
-                  <!-- Message. Default to the left -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
-                      <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="${pageContext.request.contextPath}/assets/uploads/Photo24.jpg" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      Is this template really for free? That's unbelievable!
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message. Default to the left -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="${pageContext.request.contextPath}/assets/uploads/Photo24.jpg" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                </div>
-                <!--/.direct-chat-messages-->
-
-              </div>
-              <!-- /.card-body -->
+              <c:if test="${sessionScope.account != null }">
               <div class="card-footer">
-                <s:form method="post" modelAttribute="comment" action="${pageContext.request.contextPath}/user/ratingcomment/sendComment" >
+                <form method="post" action="${pageContext.request.contextPath}/user/ratingcomment/sendComment" >
                   <div class="input-group">
-                    <s:input path="comment" type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                    <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                    <input type="hidden" value="${quiz.quizId}" name="quizIdComment">
                     <span class="input-group-append">
                       <button type="submit" class="btn btn-primary">Send</button>
                     </span>
                   </div>
-                </s:form>
+                </form>
               </div>
+              </c:if>
+              <div class="card-body">
+                <c:forEach var="comment" items="${comments }">
+                	<div class="direct-chat-messages">
+	                  <div class="direct-chat-msg">
+	                    <div class="direct-chat-infos clearfix">
+	                      <span class="direct-chat-name float-left">${comment.account.fullname }</span>
+	                      <span class="direct-chat-timestamp float-right">${comment.createDate }</span>
+	                    </div>
+	                    <img class="direct-chat-img" src="${pageContext.request.contextPath}/assets/uploads/${comment.account.avatar }" alt="message user image">
+	                    
+	                    <div class="direct-chat-text">
+	                      ${comment.comment }
+	                    </div>
+	                  </div>
+                </div>
+                </c:forEach>
+
+              </div>
+              <!-- /.card-body -->
+              
               <!-- /.card-footer-->
             </div>
             <!--/.direct-chat -->
-	</c:if>
+	
 	
 	</jsp:attribute>
 </mt:layout_user>

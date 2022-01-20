@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
-<<<<<<< HEAD
--- Generation Time: Jan 19, 2022 at 01:37 AM
-=======
 -- Generation Time: Jan 19, 2022 at 09:53 AM
->>>>>>> d0eac05f40c312d7e2e1ad546064cd7e414e07c0
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -245,12 +241,8 @@ CREATE TABLE `history` (
 
 INSERT INTO `history` (`history_id`, `date`, `quiz_id`, `account_id`, `status`, `list_question_id`, `list_answer_choice`, `time_done`, `number_right_answer`) VALUES
 (12, '2022-01-19', 12, 95, b'01', '[Ljava.lang.String;@4fb16162', '[Ljava.lang.String;@2927e741', 20, 5),
-<<<<<<< HEAD
-(13, '2022-01-19', 11, 95, b'01', '[Ljava.lang.String;@21f3c148', '[Ljava.lang.String;@614a106', 3, 0);
-=======
 (13, '2022-01-19', 11, 95, b'01', '[Ljava.lang.String;@21f3c148', '[Ljava.lang.String;@614a106', 3, 0),
 (14, '2022-01-19', 13, 95, b'01', '[Ljava.lang.String;@57416b6f', '[Ljava.lang.String;@4262093', 8, 3);
->>>>>>> d0eac05f40c312d7e2e1ad546064cd7e414e07c0
 
 -- --------------------------------------------------------
 
@@ -381,11 +373,7 @@ INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_i
 (10, 'ABC', 'TEST ABC', 6, 5, 0, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:04'),
 (11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 12, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
 (12, 'CAU HOI TRAC NGHIEM VE CO BE NAO DO', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 168, 1, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
-<<<<<<< HEAD
-(13, 'Trac nghiem online', 'mo ta', 2, 8, 9, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
-=======
 (13, 'Trac nghiem online', 'mo ta', 2, 8, 16, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
->>>>>>> d0eac05f40c312d7e2e1ad546064cd7e414e07c0
 
 -- --------------------------------------------------------
 
@@ -578,11 +566,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-<<<<<<< HEAD
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-=======
   MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
->>>>>>> d0eac05f40c312d7e2e1ad546064cd7e414e07c0
 
 --
 -- AUTO_INCREMENT for table `pack`
