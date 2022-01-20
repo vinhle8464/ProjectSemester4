@@ -7,10 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.demo.models.Account;
 import com.demo.models.AccountPack;
 import com.demo.models.Answer;
+import com.demo.models.Comment;
 import com.demo.models.History;
 import com.demo.models.Question;
 import com.demo.models.Quiz;
-import com.demo.models.RatingComment;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
 import com.demo.services.faculty.QuizServiceFaculty;
@@ -84,8 +82,11 @@ public class CourseController {
 
 		// truyen doi tuong cho phan comment
 
-		RatingComment comment = new RatingComment();
-		modelMap.put("comment", comment);
+				Comment comment = new Comment();
+				modelMap.put("comment", comment);
+				
+				// Show tat ca comment
+				//modelMap.put("comments", ratingCommentService.findAllByQuizId(quizId));
 
 		return "user/course/quizdetails";
 	}
@@ -93,6 +94,7 @@ public class CourseController {
 	@RequestMapping(value = { "starttest" }, method = RequestMethod.GET)
 	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpSession session) {
 
+		
 		Account account = new Account();
 
 		modelMap.put("account", account);
@@ -298,13 +300,15 @@ public class CourseController {
 		
 	// test result
 	@RequestMapping(value = { "testresult" }, method = RequestMethod.GET)
-	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpServletRequest request) {
 
+		HttpSession session = request.getSession();
+		Account accountt = (Account) session.getAttribute("account");
 		Account account = new Account();
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-
+		modelMap.put("history", historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId));
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		return "user/course/testresult";

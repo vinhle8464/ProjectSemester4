@@ -1,5 +1,5 @@
 package com.demo.models;
-// Generated Jan 17, 2022, 9:56:49 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 20, 2022, 7:37:22 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -35,7 +35,8 @@ public class Quiz implements java.io.Serializable {
 	private String image;
 	private boolean status;
 	private Date dateCreated;
-	private Set<RatingComment> ratingComments = new HashSet<RatingComment>(0);
+	private Set<Comment> comments = new HashSet<Comment>(0);
+	private Set<Rating> ratings = new HashSet<Rating>(0);
 	private Set<History> histories = new HashSet<History>(0);
 	private Set<Question> questions = new HashSet<Question>(0);
 
@@ -57,7 +58,7 @@ public class Quiz implements java.io.Serializable {
 	}
 
 	public Quiz(Account account, Category category, String title, String description, int times, byte timer,
-			boolean fee, String image, boolean status, Date dateCreated, Set<RatingComment> ratingComments,
+			boolean fee, String image, boolean status, Date dateCreated, Set<Comment> comments, Set<Rating> ratings,
 			Set<History> histories, Set<Question> questions) {
 		this.account = account;
 		this.category = category;
@@ -69,7 +70,8 @@ public class Quiz implements java.io.Serializable {
 		this.image = image;
 		this.status = status;
 		this.dateCreated = dateCreated;
-		this.ratingComments = ratingComments;
+		this.comments = comments;
+		this.ratings = ratings;
 		this.histories = histories;
 		this.questions = questions;
 	}
@@ -180,12 +182,21 @@ public class Quiz implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quiz")
-	public Set<RatingComment> getRatingComments() {
-		return this.ratingComments;
+	public Set<Comment> getComments() {
+		return this.comments;
 	}
 
-	public void setRatingComments(Set<RatingComment> ratingComments) {
-		this.ratingComments = ratingComments;
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quiz")
+	public Set<Rating> getRatings() {
+		return this.ratings;
+	}
+
+	public void setRatings(Set<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quiz")

@@ -166,7 +166,9 @@ public class AccountController implements ServletContextAware {
 		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
 			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
 			session.setAttribute("counta", accountServiceUser.countAccountUser());
-			return "redirect:/user/home/index";
+			
+			String referer = request.getHeader("Referer");
+		    return "redirect:"+ referer;
 		} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
 				"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
 			session.setAttribute("account", accountService.findByUsername((String) session.getAttribute("email")));
