@@ -18,14 +18,19 @@
         	<div class="test_body">
 	        	<div class="row"> 
 	         		<div class="quiz_title">
-	         			<h2>${quiz.title}</h2>
+	         			<h2>Review ${quiz.title}</h2>
 	         		</div>             
 	            </div>
 	            <input type="hidden" id="timer" value="${quiz.timer }">
 	            <form id="formquiz" method="post"
 						action="${pageContext.request.contextPath }/user/course/endtest?quizId=${quiz.quizId}">
-	            <c:forEach var="question" items="${quiz.questions}"
-							varStatus="i">
+					
+			<c:forEach var="questionId" items="${listQuestionId}" varStatus="i">	 
+	            <c:forEach var="question" items="${quiz.questions}">
+	            		<c:choose>
+		         				<c:when test="${question.questionId == questionId }">
+		         				
+		         		
 		            <div class="row"> 
 		           <input type="hidden" id="timersubmit" name="timersubmit">
 		         		<div class="quiz_content">
@@ -33,52 +38,80 @@
 		         				<h3>Question ${i.index + 1 }:</h3>
 		         				<p>${question.title}</p>
 		         				<input type="hidden" name="questionId"
-											value="${question.questionId }">
+														value="${question.questionId }">
 								
 		         			</div>
 		         			<div>
-		         				  <c:forEach var="answer" items="${question.answers}"
-											varStatus="t">   
+		         			 
+		         			<c:forEach var="answer" items="${question.answers}" varStatus="a">
+		         				<c:choose>
+	     															
+						 			<c:when test="${answer.answerId == listAnswerId[a.index] }">
+	     						
+	             				<div>
+	             				<input type="checkbox" name="answer${a.index }"
+														value="${answer.answerId}" checked> <span
+														class="${answer.answerStatus == true ? 'text-primary' : ''}">${answer.title }</span> &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</div> 
+									</c:when>
+									 <c:otherwise>
+       <div>
+	             				<input type="checkbox" name="answer${a.index }"
+														value="${answer.answerId}"> <span
+														class="${answer.answerStatus == true ? 'text-primary' : ''}">${answer.title }</span> &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</div> 
+    									</c:otherwise>
+								</c:choose>
+														
+														<%-- ${answer.answerId = answerId ? '<i class="fa fa-times" aria-hidden="true"></i>' : ''}  --%>
+							</c:forEach>	
+		         			</div>
+		         			<hr> 
+		         		</div>
+		         			
+		         			
+		         			
+		         		      
+		          
+		            </div>
+		            </c:when>
+		     </c:choose>
+		            </c:forEach>
+		           </c:forEach>
+		         				  <%-- <c:forEach var="answer" items="${question.answers}"
+											varStatus="t">  
+											 
 											<c:choose>
 									<c:when test="${question.typeAnswerChoice == 'checkbox' }">
-	     							<c:choose>	<c:when test="${answer.answerStatus == true }">
-	     
+	     							<c:forEach var="answeIdd" items="${listAnswerId}"
+														varStatus="i">
+														${answeIdd }
+							<c:choose>
+	     															
+						 			<c:when test="${answer.answerId == answeIdd }">
+	     							
 		         				<div>
 		         					<input type="checkbox" name="answer${i.index }"
-															value="${answer.answerId}"> <span class="text-primary">${answer.title }</span>  <i class="text-primary fa fa-check-square-o " aria-hidden="true"></i>
+																		value="${answer.answerId}" checked> <span
+																		class="${answer.answerStatus == true ? 'text-primary' : ''}" >${answer.title }</span>
+																		${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''} ${answer.answerId = answerId ? '<i class="fa fa-times" aria-hidden="true"></i>' : ''} 
 									
 		         				</div>
-		         				</c:when></c:choose> 
+		         					</c:when>
+		         					
+		         						</c:choose> 
+						</c:forEach>
+	     							
+		         				
 		         				 	 	</c:when>
-		         				 	 	<c:when test="${question.typeAnswerChoice == 'radio' }">
-	   <c:choose>
-		         				 	   <c:when test="${answer.answerStatus == true }">
-	     
-		         				<div>
-		         					<input type=radio name="answer${i.index }"
-															value="${answer.answerId}"> <span class="text-primary">${answer.title }</span> <i class="text-primary fa fa-check-square-o " aria-hidden="true"></i>
-									
-		         				</div>
-		         				</c:when>
-		         				</c:choose> 
-		         				 	 	</c:when>
+		         				 	 	
 		        					
 		         				 	</c:choose>  
         
 		         				 
-						</c:forEach>
+						</c:forEach> --%>
 		         			
-				</div>
-		         			<hr> 
-		         		</div> 
-		         		           
-		            </div>
-		            </c:forEach>
+				
 		           
-		            <div class="btn_submit">
-		             <input class="hover-btn-new orange" type="submit"
-				value="submit">
-		            </div>
+		          
 		           
 	            </form>
 						<!-- end col -->
