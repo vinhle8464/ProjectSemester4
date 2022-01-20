@@ -10,60 +10,9 @@
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-<script>
-	/* var sec = 0;
-	function pad(val) {
-		return val > 9 ? val : "00" + val;
-	} */
 
-	/* 	function animateValue(id){
-	 var current = 0;
 
-	 setInterval(function(){
-	 $('#timersubmit').val(current++);
-	 },1000);
-	 } */
-	/* setInterval(function() {
-		$("#seconds").html(pad(++sec % 60));
-		$("#minutes").html(pad(parseInt(sec / 60, 10)));
-	}, 1000); */
-
-	function startTimer(duration, display) {
-		var timer = duration, minutes, seconds;
-		var current = 0;
-
-		setInterval(function() {
-			minutes = parseInt(timer / 60, 10);
-			seconds = parseInt(timer % 60, 10);
-
-			minutes = minutes < 10 ? "0" + minutes : minutes;
-			seconds = seconds < 10 ? "0" + seconds : seconds;
-
-			display.textContent = minutes + ":" + seconds;
-			$('#timersubmit').val(current++);
-			if (--timer < 0) {
-				timer = duration;
-				document.getElementById('formquiz').submit();
-			}
-		}, 1000);
-	}
-
-	window.onload = function() {
-		var timer = document.getElementById('timer').value;
-		var Minutes = 60 * timer, display = document.querySelector('#timee');
-		startTimer(Minutes, display);
-
-	};
-</script>
-
-	<div
-			style="position: fixed; top: 6em; right: 1em; color: white; z-index: 9999999;">
 	
-<div
-				style="background-color: #eea412; padding: 5px; border-radius: 5px;">
-				<i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="timee">${quiz.timer }:00</span>
-			</div>
-	</div>
     <div id="overviews" class="section wb">
         <div class="container">
         	<div class="test_body">
@@ -92,20 +41,26 @@
 											varStatus="t">   
 											<c:choose>
 									<c:when test="${question.typeAnswerChoice == 'checkbox' }">
+	     							<c:choose>	<c:when test="${answer.answerStatus == true }">
 	     
 		         				<div>
 		         					<input type="checkbox" name="answer${i.index }"
-															value="${answer.answerId}"> ${answer.title }
+															value="${answer.answerId}"> <span class="text-primary">${answer.title }</span>  <i class="text-primary fa fa-check-square-o " aria-hidden="true"></i>
 									
 		         				</div>
+		         				</c:when></c:choose> 
 		         				 	 	</c:when>
 		         				 	 	<c:when test="${question.typeAnswerChoice == 'radio' }">
+	   <c:choose>
+		         				 	   <c:when test="${answer.answerStatus == true }">
 	     
 		         				<div>
-		         					<input type="radio" name="answer${i.index }"
-															value="${answer.answerId}"> ${answer.title }
+		         					<input type=radio name="answer${i.index }"
+															value="${answer.answerId}"> <span class="text-primary">${answer.title }</span> <i class="text-primary fa fa-check-square-o " aria-hidden="true"></i>
 									
 		         				</div>
+		         				</c:when>
+		         				</c:choose> 
 		         				 	 	</c:when>
 		        					
 		         				 	</c:choose>  

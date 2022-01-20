@@ -50,7 +50,7 @@ public class CourseController {
 	private HistoryService historyService;
 
 	private int categoryIdd;
-	
+
 	@Autowired
 	private CommentServiceUser commentServiceUser;
 
@@ -87,10 +87,9 @@ public class CourseController {
 		// truyen doi tuong cho phan comment
 		Comment comment = new Comment();
 		modelMap.put("comment", comment);
-				
-		// Show tat ca comment
-		modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));		
 
+		// Show tat ca comment
+		modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));
 
 		return "user/course/quizdetails";
 	}
@@ -98,7 +97,6 @@ public class CourseController {
 	@RequestMapping(value = { "starttest" }, method = RequestMethod.GET)
 	public String StartTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpSession session) {
 
-		
 		Account account = new Account();
 
 		modelMap.put("account", account);
@@ -138,7 +136,6 @@ public class CourseController {
 	public String EndTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
 			HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
 		Account account2 = (Account) request.getSession().getAttribute("account");
 
 		System.out.println("timesubmit==============: " + request.getParameter("timersubmit"));
@@ -164,20 +161,12 @@ public class CourseController {
 		history.setListQuestionId(request.getParameterValues("questionId").toString());
 		// get list anserchoice
 
-		//List<String> listAnswerChoice = new ArrayList<String>();
 		List<String> listAnswerIdChoice = new ArrayList<String>();
 		String[] listQuestionId = request.getParameterValues("questionId");
 		int i = 0;
-//		System.out.println("questionId size: " + questionId.length);
 		for (String string : listQuestionId) {
-			// System.out.println("questionId: " + string);
 
 			String answer = "answer" + i;
-//
-//			System.out.println("answer: " + answer);
-//			System.out.println("answer this : " + request.getParameter(answer));
-
-			// listAnswerIdChoice.add(request.getParameter(answer).toString());
 
 			if (request.getParameterValues(answer) != null) {
 
@@ -186,23 +175,8 @@ public class CourseController {
 						listAnswerIdChoice.add(answerId);
 					}
 				}
-//=======
-//		
-//			System.out.println("answer: " + answer);
-//			System.out.println("answer this : " + request.getParameter(answer));
-//
-//			//listAnswerIdChoice.add(request.getParameter(answer).toString());
-//
-//			if (request.getParameter(answer) != null) {
-//				listAnswerIdChoice.add(request.getParameter(answer).toString());
-//			} else {
-//				listAnswerIdChoice.add("0");
-//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
+
 			}
-		
-			// else {
-//				listAnswerIdChoice.add("0");
-//			}
 
 			i++;
 		}
@@ -211,17 +185,15 @@ public class CourseController {
 		history.setTimeDone(Integer.parseInt(request.getParameter("timersubmit")));
 
 		// get number of right answer_ choice
-//		List<Question> questions = (List<Question>) quiz.getQuestions();
-		// int t = 0;
+
 		int rightAnswerChoice = 0;
 		for (String questionId : listQuestionId) {
 
 			for (Question question : quiz.getQuestions()) {
 				int numberRightCheckbox = 0;
-				
-				
+
 				if (Integer.parseInt(questionId) == question.getQuestionId()) {
-//<<<<<<< HEAD
+
 					if (question.getTypeAnswerChoice().equalsIgnoreCase("radio")) {
 						for (Answer answer : question.getAnswers()) {
 							for (String answerIdChoice : listAnswerIdChoice) {
@@ -236,12 +208,12 @@ public class CourseController {
 					} else if (question.getTypeAnswerChoice().equalsIgnoreCase("checkbox")) {
 						int totalRightAnswerInDb = 0;
 						for (Answer answer : question.getAnswers()) {
-							if(answer.isAnswerStatus()) {
+							if (answer.isAnswerStatus()) {
 								totalRightAnswerInDb += 1;
 							}
 						}
 						for (Answer answer : question.getAnswers()) {
-							
+
 							for (String answerIdChoice : listAnswerIdChoice) {
 
 								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
@@ -257,35 +229,7 @@ public class CourseController {
 								}
 							}
 						}
-//=======
-//					System.out.println("questID: " + question.getQuestionId());
-//					String answer = "answer" + i;
-//
-//					System.out.println("caaaa: " + listAnswerIdChoice.toArray(new String[0])[t]);
-//					int answerIdChoice = Integer.parseInt(listAnswerIdChoice.toArray(new String[0])[t]);
-//
-//					List<String> answerTrue = new ArrayList<String>();
-//					for (Answer answerr : question.getAnswers()) {
-//
-//						System.out.println("questionID2: " + answerr.getQuestion().getQuestionId());
-//						System.out.println("answerID2: " + answerr.getAnswerId());
-//						answerTrue.add(String.valueOf(answerr.isAnswerStatus()));
-//						System.out.println(String.valueOf(answerr.isAnswerStatus()));
-//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
-//					}
-//				}
-//			}
-//<<<<<<< HEAD
-
-//			String answer = "answer" + i;
-//			listAnswerIdChoice.add(request.getParameter(answer));
-//			t++;
-//=======
-//			String answer = "answer" + i;
-//			listAnswerIdChoice.add(request.getParameter(answer));
-//			t++;
-//>>>>>>> acc7bc7a06b53f84956bf81cd060dd86933e1d78
-		}
+					}
 				}
 			}
 		}
@@ -301,10 +245,11 @@ public class CourseController {
 
 		return "redirect:/user/course/testresult?quizId=" + quizId;
 	}
-		
+
 	// test result
 	@RequestMapping(value = { "testresult" }, method = RequestMethod.GET)
-	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpServletRequest request) {
+	public String TestResult(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
 		Account accountt = (Account) session.getAttribute("account");
@@ -316,6 +261,22 @@ public class CourseController {
 		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
 
 		return "user/course/testresult";
+	}
+
+	// ReviewTest
+	@RequestMapping(value = { "reviewtest" }, method = RequestMethod.GET)
+	public String ReviewTest(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model,
+			HttpServletRequest request) {
+
+		Account accountt = (Account) request.getSession().getAttribute("account");
+		Account account = new Account();
+		modelMap.put("account", account);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		modelMap.put("course", true);
+		modelMap.put("history", historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId));
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+
+		return "user/course/reviewtest";
 	}
 
 	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
