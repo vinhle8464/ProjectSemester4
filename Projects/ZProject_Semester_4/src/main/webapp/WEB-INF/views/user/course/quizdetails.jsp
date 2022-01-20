@@ -10,10 +10,24 @@
 <mt:layout_user title="Course">
 
 	<jsp:attribute name="content">
-	<link rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+		function getRating(numberRating){
+			$.ajax({
+				type : 'GET',
+				url : '${pageContext.request.contextPath }/user/ajax/sendRating',
+				data : {
+					numberRating: numberRating
+				},
+				success: function(rating) {
+					location.reload();
+				}
+		 });
+	
+	}
+	</script>
 
     <div id="overviews" class="section wb">
         <div class="container">
@@ -31,9 +45,13 @@
 						<li><i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp; ${quiz.questions.size()} Questions</li>
 								<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp; ${quiz.timer}  Minutes &nbsp;</li>
 								<li><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.times} Times &nbsp;</li>
-								<li
-										style="${quiz.fee ? 'color:red;' : 'color:green;'} font-size: 20px;"><i
-										class="fa fa-dollar" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.fee ? "Purchase" : "Free"} </li>
+								<li style="${quiz.fee ? 'color:red;' : 'color:green;'} font-size: 20px;"><i class="fa fa-dollar" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.fee ? "Purchase" : "Free"} </li>
+								<c:if test="${avgStar != null}">
+									<span id="avg" style="font-size: 25px">Rating: <fmt:formatNumber type = "number" pattern = "#.#" value="${avgStar}"/> <i class="fa fa-star" style="font-size: 25px; color: #FD4"></i> </span>
+								</c:if>	
+								<c:if test="${avgStar == null}">
+									<span id="avg" style="font-size: 25px">Rating: 0 <i class="fa fa-star" style="font-size: 25px; color: #FD4"></i> </span>
+								</c:if>
 							</ul>
 						</div>
 						<c:if test="${sessionScope.account == null}">
@@ -106,23 +124,88 @@
 	
 		<!-- DIRECT CHAT -->
             <div class="card direct-chat direct-chat-primary container">
-            	<c:if test="${sessionScope.account != null }">
+            	<c:if test="${sessionScope.account != null && rating.star == 1}">
             	<div class="stars">
-            		<input type="radio" class="star star-5" id="star-5"
-						name="star" />
-            		<label class="star star-5" for="star-5"></label>
-            		<input type="radio" class="star star-4" id="star-4"
-						name="star" />
-            		<label class="star star-5" for="star-4"></label>
-            		<input type="radio" class="star star-3" id="star-3"
-						name="star" />
-            		<label class="star star-5" for="star-3"></label>
-            		<input type="radio" class="star star-2" id="star-2"
-						name="star" />
-            		<label class="star star-5" for="star-2"></label>
-            		<input type="radio" class="star star-1" id="star-1"
-						name="star" />
-            		<label class="star star-5" for="star-1"></label>
+            		<input type="radio" class="star star-5" id="star-5-1" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-5-1"></label>
+            		<input type="radio" class="star star-4" id="star-4-1" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-4-1"></label>
+            		<input type="radio" class="star star-3" id="star-3-1" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-3-1"></label>
+            		<input type="radio" class="star star-2" id="star-2-1" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-2-1"></label>
+            		<input type="radio" class="star star-1" id="star-1-1" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);" checked="checked"/>
+            		<label class="star star-5" for="star-1-1"></label>
+            	</div>
+            	</c:if>
+            	<c:if test="${sessionScope.account != null && rating.star == 2}">
+            	<div class="stars">
+            		<input type="radio" class="star star-5" id="star-5-2" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-5-2"></label>
+            		<input type="radio" class="star star-4" id="star-4-2" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-4-2"></label>
+            		<input type="radio" class="star star-3" id="star-3-2" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-3-2"></label>
+            		<input type="radio" class="star star-2" id="star-2-2" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);" checked="checked"/>
+            		<label class="star star-5" for="star-2-2"></label>
+            		<input type="radio" class="star star-1" id="star-1-2" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-1-2"></label>
+            	</div>
+            	</c:if>
+            	<c:if test="${sessionScope.account != null && rating.star == 3}">
+            	<div class="stars">
+            		<input type="radio" class="star star-5" id="star-5-3" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-5-3"></label>
+            		<input type="radio" class="star star-4" id="star-4-3" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-4-3"></label>
+            		<input type="radio" class="star star-3" id="star-3-3" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);" checked="checked"/>
+            		<label class="star star-5" for="star-3-3"></label>
+            		<input type="radio" class="star star-2" id="star-2-3" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-2-3"></label>
+            		<input type="radio" class="star star-1" id="star-1-3" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-1-3"></label>
+            	</div>
+            	</c:if>
+            	<c:if test="${sessionScope.account != null && rating.star == 4}">
+            	<div class="stars">
+            		<input type="radio" class="star star-5" id="star-5-4" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-5-4"></label>
+            		<input type="radio" class="star star-4" id="star-4-4" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);" checked="checked"/>
+            		<label class="star star-5" for="star-4-4"></label>
+            		<input type="radio" class="star star-3" id="star-3-4" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-3-4"></label>
+            		<input type="radio" class="star star-2" id="star-2-4" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-2-4"></label>
+            		<input type="radio" class="star star-1" id="star-1-4" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-1-4"></label>
+            	</div>
+            	</c:if>
+            	<c:if test="${sessionScope.account != null && rating.star == 5}">
+            	<div class="stars">
+            		<input type="radio" class="star star-5" id="star-5-5" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);" checked="checked"/>
+            		<label class="star star-5" for="star-5-5"></label>
+            		<input type="radio" class="star star-4" id="star-4-5" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-4-5"></label>
+            		<input type="radio" class="star star-3" id="star-3-5" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-3-5"></label>
+            		<input type="radio" class="star star-2" id="star-2-5" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-2-5"></label>
+            		<input type="radio" class="star star-1" id="star-1-5" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-1-5"></label>
+            	</div>
+            	</c:if>
+            	<c:if test="${sessionScope.account != null && rating.star == null}">
+            	<div class="stars">
+            		<input type="radio" class="star star-5" id="star-5-0" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-5-0"></label>
+            		<input type="radio" class="star star-4" id="star-4-0" name="4_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-4-0"></label>
+            		<input type="radio" class="star star-3" id="star-3-0" name="3_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-3-0"></label>
+            		<input type="radio" class="star star-2" id="star-2-0" name="2_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-2-0"></label>
+            		<input type="radio" class="star star-1" id="star-1-0" name="1_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
+            		<label class="star star-5" for="star-1-0"></label>
             	</div>
             	</c:if>
               <div class="card-header">

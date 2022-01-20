@@ -1,7 +1,6 @@
 package com.demo.controllers.user;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +31,7 @@ import com.demo.services.faculty.QuizServiceFaculty;
 import com.demo.services.user.CommentServiceUser;
 import com.demo.services.user.CourseService;
 import com.demo.services.user.HistoryService;
-import com.google.api.client.util.Lists;
+import com.demo.services.user.RatingServiceUser;
 
 @Controller
 @RequestMapping(value = { "user/course" })
@@ -58,6 +57,9 @@ public class CourseController {
 
 	@Autowired
 	private CommentServiceUser commentServiceUser;
+	
+	@Autowired
+	private RatingServiceUser ratingServiceUser;
 
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index(@RequestParam(name = "categoryId") int categoryId, ModelMap modelMap, Model model) {
@@ -80,7 +82,7 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpSession session) {
 
 		Account account = new Account();
 		modelMap.put("account", account);
@@ -93,10 +95,20 @@ public class CourseController {
         Comment comment = new Comment();
         modelMap.put("comment", comment);
 
-        // Show tat ca comment
-        modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));
-        // Rating
-       
+
+		// Show tat ca comment
+		modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));
+		// Rating
+		double totalStar = 0;
+		double number = 0;
+		for(Rating rating : ratingServiceUser.findAllByQuizId(quizId)) {
+			totalStar += rating.getStar();
+			number += 1;
+		}
+		double avgStar = totalStar/number;
+		modelMap.put("avgStar", avgStar);
+		Account accountRating = (Account) session.getAttribute("account");
+		modelMap.put("rating", 	ratingServiceUser.findByAccountIdAndQuizId(accountRating.getAccountId(), quizId));
 
 		return "user/course/quizdetails";
 	}

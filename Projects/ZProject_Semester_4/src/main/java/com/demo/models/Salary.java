@@ -70,7 +70,7 @@ public class Salary implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date", nullable = false, length = 10)
+	@Column(name = "create_date", nullable = false, length = 10)
 	public Date getDate() {
 		return this.date;
 	}

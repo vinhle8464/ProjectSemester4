@@ -46,7 +46,9 @@
 					});
 		}
 		
-		function getSwitch(accountId){
+		function getSwitch(id,accountId){
+			var id = id;
+			var resultId = 'result_' + id.replace('customSwitches_', '');
 			 $.ajax({
 					type : 'GET',
 					url : '${pageContext.request.contextPath }/admin/ajax/checkStatusAccount',
@@ -54,25 +56,26 @@
 						accountId: accountId
 					},
 					success: function(account) {
-						location.reload();
-						/* var result = '';
+						
+						var result = '';
 						if(account.status){
 							result += '<div class="custom-control custom-switch col-3">';
-							result += '<input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${account.accountId }" onchange="getSwitch(name);">';
-							result += '<label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label></div>';
+							result += '<input type="checkbox" class="custom-control-input switch-toggle" id="' + id + '" checked="checked" name="${account.accountId }" onchange="getSwitch(name);">';
+							result += '<label class="custom-control-label switch-toggle" for="' + id + '"></label></div>';
 							result +=		'<div class="col-1">'
 							result +=			'<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div></div>'
 							result +=		'<div class="col-8"><span>Active now</span></div>';
-							$('.result').val(result);
+							$('#'+resultId).html(result);
 						} else {
 							result += '<div class="custom-control custom-switch col-3">';
-							result += '<input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${account.accountId }" onchange="getSwitch(name);">';
-							result += '<label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label></div>';
+							result += '<input type="checkbox" class="custom-control-input switch-toggle" id="' + id + '" name="${account.accountId }" onchange="getSwitch(name);">';
+							result += '<label class="custom-control-label switch-toggle" for="' + id + '"></label></div>';
 							result +=		'<div class="col-1">'
 							result +=			'<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div></div>'
 							result +=		'<div class="col-8"><span>Unactive</span></div>';
-							$('.result').val(result);
-						} */
+							$('#'+resultId).html(result);
+						}
+						location.reload();
 					}
 			 });
 		}
@@ -164,9 +167,9 @@
 							</td>
 							<td>
 								<c:if test="${account.status == true }">
-									<div class="row result">
+									<div class="row" id="result_${i.index +1 }">
 										<div class="custom-control custom-switch col-3">
-										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${account.accountId }" onchange="getSwitch(name);">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${account.accountId }" onchange="getSwitch(id,name);">
 										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
 										</div>
 										<div class="col-1">
@@ -178,9 +181,9 @@
 									</div>
 								</c:if>
 								<c:if test="${account.status == false }">
-									<div class="row result">
+									<div class="row" id="result_${i.index +1 }">
 										<div class="custom-control custom-switch col-3">
-										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${account.accountId }" onchange="getSwitch(name);">
+										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${account.accountId }" onchange="getSwitch(id,name);">
 										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
 										</div>
 										<div class="col-1">

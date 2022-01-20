@@ -101,11 +101,25 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value = {"checkStatusAccount"}, method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public Account checkStatusAccount(@RequestParam("accountId") int accountId) {
+	public AccountAjax checkStatusAccount(@RequestParam("accountId") int accountId) {
 		
 		Account account = accountServiceAdmin.findById(accountId);
 		account.setStatus(!account.isStatus());
-		return accountServiceAdmin.update(account);
+		
+		account = accountServiceAdmin.update(account);
+		AccountAjax accountAjax = new AccountAjax();
+		accountAjax.setAccountId(account.getAccountId());
+		accountAjax.setUsername(account.getUsername());
+		accountAjax.setFullname(account.getFullname());
+		accountAjax.setPassword(account.getPassword());
+		accountAjax.setEmail(account.getEmail());
+		accountAjax.setDob(account.getDob());
+		accountAjax.setAddr(account.getAddr());
+		accountAjax.setGender(account.isGender());
+		accountAjax.setPhone(account.getPhone());
+		accountAjax.setAvatar(account.getAvatar());
+		accountAjax.setStatus(account.isStatus());
+		return accountAjax;
 		
 	}
 	

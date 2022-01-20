@@ -44,8 +44,12 @@
 										</div>
 										<div class="course-desc">
 											<h3>You had finished test: ${history.quiz.title }</h3> 
-											
-											<p><i class="fa fa-clock-o" aria-hidden="true"></i> Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${history.timeDone/60}" maxIntegerDigits="1"/>:${history.timeDone%60} minute</p>
+											<c:if test="${history.timeDone%60 <= 10}">
+												<p><i class="fa fa-clock-o" aria-hidden="true"></i> Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${Math.floor(history.timeDone/60)}" maxIntegerDigits="1"/>:0${history.timeDone%60}</p>
+											</c:if>
+											<c:if test="${history.timeDone%60 > 10}">
+												<p><i class="fa fa-clock-o" aria-hidden="true"></i> Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${Math.floor(history.timeDone/60)}" maxIntegerDigits="1"/>:${history.timeDone%60}</p>
+											</c:if>
 										</div>
 										<div class="course-rating">
 												<p>
