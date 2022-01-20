@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 19, 2022 at 09:53 AM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 20, 2022 at 01:27 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,7 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 (1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephat8464@gmail.com', '2021-12-08', 'asdfasf', b'01', '23423234', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08'),
 (2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'lephat8464@gmail.com', '2021-12-15', 'asdfasf', b'01', '234234234', '3c83adfb0bfe4c10bac147091d3888f3.png', b'01', '2021-12-08'),
 (3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', 'Photo28.jpg', b'01', '2021-12-08'),
-(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'Photo24.jpg', b'01', '2021-12-08'),
+(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'f56bb23b50c949fdad9d6ad09f5e4218.jpg', b'01', '2021-12-08'),
 (94, 'hehehe', '$2a$10$ECQuxj/7y.1yDH3Ix0pxKOAbZhAdpQy8WCZXpnmbj5kmgPAa9uI36', 'vinh', 'vinhkhung@gmail.com', '2021-12-01', 'tay ninh', b'01', '23423424', '822e27dd8557477486b79a78e35f4f3b.jpg', b'01', '2021-12-08'),
 (95, 'usertran', '$2a$10$13/qJ3Yh7ChXLKcR1PZ4L.GrK4Iq3Tcb/3ZpJD1LdfCvhdGj0xQai', 'User Ngoc Tran', 'usertran@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0888123456', 'Photo24.jpg', b'01', '2021-12-08');
 
@@ -67,6 +67,13 @@ CREATE TABLE `account_pack` (
   `start_date` date NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `account_pack`
+--
+
+INSERT INTO `account_pack` (`account_pack_id`, `account_id`, `pack_id`, `start_date`, `status`) VALUES
+(1, 95, 5, '2022-01-19', b'01');
 
 -- --------------------------------------------------------
 
@@ -184,6 +191,31 @@ INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
 (6, 'Geographic', 'About geographic', b'01'),
 (7, 'Technology', 'About technology', b'01'),
 (8, 'Information technology', 'About information technology', b'01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `quiz_id` int(11) NOT NULL,
+  `status` bit(2) NOT NULL,
+  `create_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `comment`, `account_id`, `quiz_id`, `status`, `create_date`) VALUES
+(1, 'Comment test thu lan 1', 95, 13, b'01', '2022-01-19 23:31:33'),
+(2, 'Comment test thu lan 2', 95, 13, b'01', '2022-01-19 23:31:48'),
+(3, 'COmment test thu lan 3', 6, 13, b'01', '2022-01-19 23:32:41'),
+(4, 'Hello Arigato', 95, 12, b'01', '2022-01-19 23:49:29');
 
 -- --------------------------------------------------------
 
@@ -378,17 +410,16 @@ INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating_comment`
+-- Table structure for table `rating`
 --
 
-CREATE TABLE `rating_comment` (
-  `rating_comment_id` int(11) NOT NULL,
-  `star` tinyint(4) NOT NULL,
-  `comment` text NOT NULL,
+CREATE TABLE `rating` (
+  `rating_id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
   `quiz_id` int(11) NOT NULL,
-  `status` bit(2) NOT NULL,
-  `create_date` datetime NOT NULL
+  `star` int(11) NOT NULL,
+  `created` date NOT NULL,
+  `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -466,6 +497,14 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `account_id` (`account_id`),
+  ADD KEY `quiz_id` (`quiz_id`);
+
+--
 -- Indexes for table `email`
 --
 ALTER TABLE `email`
@@ -508,10 +547,10 @@ ALTER TABLE `quiz`
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `rating_comment`
+-- Indexes for table `rating`
 --
-ALTER TABLE `rating_comment`
-  ADD PRIMARY KEY (`rating_comment_id`),
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`rating_id`),
   ADD KEY `account_id` (`account_id`),
   ADD KEY `quiz_id` (`quiz_id`);
 
@@ -542,7 +581,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `account_pack`
 --
 ALTER TABLE `account_pack`
-  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `answer`
@@ -555,6 +594,12 @@ ALTER TABLE `answer`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `email`
@@ -593,10 +638,10 @@ ALTER TABLE `quiz`
   MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `rating_comment`
+-- AUTO_INCREMENT for table `rating`
 --
-ALTER TABLE `rating_comment`
-  MODIFY `rating_comment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `rating`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -635,6 +680,13 @@ ALTER TABLE `answer`
   ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
 
 --
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
+
+--
 -- Constraints for table `history`
 --
 ALTER TABLE `history`
@@ -661,11 +713,11 @@ ALTER TABLE `quiz`
   ADD CONSTRAINT `quiz_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
--- Constraints for table `rating_comment`
+-- Constraints for table `rating`
 --
-ALTER TABLE `rating_comment`
-  ADD CONSTRAINT `rating_comment_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
-  ADD CONSTRAINT `rating_comment_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
 
 --
 -- Constraints for table `salary`

@@ -8,7 +8,6 @@
 
 	<jsp:attribute name="content">
 	<style>
-
 .circle-chart__circle {
 	animation: circle-chart-fill 2s reverse; /* 1 */
 	transform: rotate(-90deg); /* 2, 3 */
@@ -21,8 +20,8 @@
 
 .circle-chart__info {
 	animation: circle-chart-appear 2s forwards;
-	opacity: 0;
-	transform: translateY(0.3em);
+	opacity: 1;
+	/* transform: translateY(0.3em); */
 }
 
 @
@@ -57,8 +56,38 @@ html {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-*
-/
+
+/* ///===================== */
+.test_result {
+    margin-bottom: 50px;
+}
+
+.test_result div div {
+	padding: 10px;
+}
+
+.test_result .col-lg-3.col-md-3.col-3 {
+	text-align: center;
+	border-right: 2px solid #4babb1;
+}
+
+section.right_answer {
+    padding: 10px;
+}
+
+.test_result .course_note div ul li{
+	font-size: 16px;
+	font-weight: bold;
+    line-height: 35px;
+}
+
+.test_result .course-rating a:hover {
+    background-color: #eea412;
+}
+
+.test_result .course-rating a {
+    padding: 0px 40px;
+}
 </style>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -133,77 +162,54 @@ html {
 						
 						
 						<!-- ////////// chart result test -->
-						
-						 <div class="row">
-   	<div class="col-lg-4 col-md-4 col-4">
-   		<div class="grid">
-		  <section>
-		    <h2>Positive chart value</h2>
+						<div class="test_result">
+						 <div style="border: 1px solid #4babb1;" class="row">
+						 	
+   	<div class="col-lg-3 col-md-3 col-3 ">
+   				  <section class="right_answer">
+   				 
+		    <h2>Right Answer	</h2>
 		    <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862"
-							width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+									width="200" height="200" xmlns="http://www.w3.org/2000/svg">
 		      <circle class="circle-chart__background" stroke="#efefef"
-								stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431"
-								r="15.91549431" />
+										stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431"
+										r="15.91549431" />
 		      <circle class="circle-chart__circle" stroke="#00acc1"
-								stroke-width="2" stroke-dasharray="50" stroke-linecap="round"
-								fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+										stroke-width="2" stroke-dasharray="${history.numberRightAnswer/quiz.questions.size()}" stroke-linecap="round"
+										fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
 		      <g class="circle-chart__info">
 		        <text class="circle-chart__percent" x="16.91549431" y="15.5"
-								alignment-baseline="central" text-anchor="middle" font-size="8">50%</text>
+										alignment-baseline="central" text-anchor="middle"
+										font-size="7">${history.numberRightAnswer/quiz.questions.size()}</text>
 		        <text class="circle-chart__subline" x="16.91549431" y="20.5"
-								alignment-baseline="central" text-anchor="middle" font-size="2">10/20 progress!</text>
+										alignment-baseline="central" text-anchor="middle"
+										font-size="3">${history.numberRightAnswer }/ ${quiz.questions.size() }</text>
 		      </g>
 		    </svg>
+		    
 		  </section>
 
-		</div>
    	</div>
-   <div class="col-lg-4 col-md-4 col-4">
-   		<div class="grid">
-		  <section>
-		    <h2>Positive chart value</h2>
-		    <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862"
-							width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-		      <circle class="circle-chart__background" stroke="#efefef"
-								stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431"
-								r="15.91549431" />
-		      <circle class="circle-chart__circle" stroke="#00acc1"
-								stroke-width="2" stroke-dasharray="50" stroke-linecap="round"
-								fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-		      <g class="circle-chart__info">
-		        <text class="circle-chart__percent" x="16.91549431" y="15.5"
-								alignment-baseline="central" text-anchor="middle" font-size="8">50%</text>
-		        <text class="circle-chart__subline" x="16.91549431" y="20.5"
-								alignment-baseline="central" text-anchor="middle" font-size="2">10/20 progress!</text>
-		      </g>
-		    </svg>
-		  </section>
-
-		</div>
-   	</div>
-   	<div class="col-lg-4 col-md-4 col-4">
-   		<div class="grid">
-		  <section>
-		    <h2>Positive chart value</h2>
-		    <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862"
-							width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-		      <circle class="circle-chart__background" stroke="#efefef"
-								stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431"
-								r="15.91549431" />
-		      <circle class="circle-chart__circle" stroke="#00acc1"
-								stroke-width="2" stroke-dasharray="50" stroke-linecap="round"
-								fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-		      <g class="circle-chart__info">
-		        <text class="circle-chart__percent" x="16.91549431" y="15.5"
-								alignment-baseline="central" text-anchor="middle" font-size="8">50%</text>
-		        <text class="circle-chart__subline" x="16.91549431" y="20.5"
-								alignment-baseline="central" text-anchor="middle" font-size="2">10/20 progress!</text>
-		      </g>
-		    </svg>
-		  </section>
-
-		</div>
-   	</div>
+   		<div class="col-lg-9 col-md-9 col-9">
+   			<div class="course_note">
+							
+							<div>
+							<ul>	
+								<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${history.timeDone/60}" maxIntegerDigits="1"/>:${history.timeDone%60}</li>
+								<li><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Number of <span style="color: blue;">Right</span> Question:&nbsp;&nbsp; ${history.numberRightAnswer }/ ${quiz.questions.size() }</li>
+								<li><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Number of <span style="color: red;">Wrong</span> Question:&nbsp;&nbsp; ${quiz.questions.size() - history.numberRightAnswer}/${quiz.questions.size()} </p></li>
+							</ul>
+							
+							<div>
+								<div class="course-rating">
+								 <a style="color: black;"
+									href="${pageContext.request.contextPath}/user/course/reviewtest?quizId=${quiz.quizId}"
+									class="hover-btn-new orange"><span>Review Test</span></a> 						
+							</div>
+							</div>
+						</div>
+   </div>
+   </div>
    </div>
         </div>
 			<!-- end container -->

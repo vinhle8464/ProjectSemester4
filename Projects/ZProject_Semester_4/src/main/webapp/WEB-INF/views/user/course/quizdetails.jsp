@@ -2,14 +2,18 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="ss"
+	uri="http://www.springframework.org/security/tags"%>
 
 <mt:layout_user title="Course">
 
 	<jsp:attribute name="content">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <div id="overviews" class="section wb">
         <div class="container">
@@ -27,14 +31,33 @@
 						<li><i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp; ${quiz.questions.size()} Questions</li>
 								<li><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp; ${quiz.timer}  Minutes &nbsp;</li>
 								<li><i class="fa fa-users" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.times} Times &nbsp;</li>
-								<li style="${quiz.fee ? 'color:red;' : 'color:green;'} font-size: 20px;"><i
+								<li
+										style="${quiz.fee ? 'color:red;' : 'color:green;'} font-size: 20px;"><i
 										class="fa fa-dollar" aria-hidden="true"></i> &nbsp;&nbsp; ${quiz.fee ? "Purchase" : "Free"} </li>
 							</ul>
 						</div>
+						<c:if test="${sessionScope.account == null}">
 						<div class="course-rating">
-								 <a style="color: black;" href="${sessionScope.account == null  ?  '#' : pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
-										class="hover-btn-new orange" ${sessionScope.account == null ? 'data-toggle="modal" data-target="#login"' : '' }><span> Start Test</span></a> 						
+								 <a style="color: black;" href="#" class="hover-btn-new orange"
+										${sessionScope.account == null ? 'data-toggle="modal" data-target="#login"' : '' }><span> Start Test</span></a> 						
 							</div>
+						 </c:if>
+						<ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
+						<div class="course-rating">
+								 <a style="color: black;"
+										href="${sessionScope.account == null  ?  '#' : pageContext.request.contextPath}/user/course/starttest?quizId=${quiz.quizId}"
+										class="hover-btn-new orange"
+										${sessionScope.account == null ? 'data-toggle="modal" data-target="#login"' : '' }><span> Start Test</span></a> 						
+							</div>
+							</ss:authorize>
+							<ss:authorize
+								access="hasRole('ROLE_USER_FACULTY') or hasRole('ROLE_ADMIN')">
+						
+							<div class="course-rating">
+								 <a style="color: black;" href="#" class="hover-btn-new orange"
+										${sessionScope.account == null ? 'data-toggle="modal" data-target="#login"' : '' }><span> Start Test</span></a> 						
+							</div>
+							</ss:authorize>
 					</div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-9 padding_zero">
@@ -43,13 +66,13 @@
                 	<div class="course-br">
 							<div class="course-title">
 								<h2>
-											<a
-											href="#"
-											title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
+											<a href="#" title="">${quiz.title.length() > 130 ? quiz.title.substring(0, 130) += '...' :  quiz.title}</a>
 										</h2>
-										<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}" pattern="dd/MM/yyyy" />
+										<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}"
+										pattern="dd/MM/yyyy" />
 				
-						<li><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp;</li></ul>
+						<li><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp;</li>
+									</ul>
 							</div>
 							<div class="course-desc">
 								<p>${quiz.description.length() > 500 ? quiz.description.substring(0, 500) += '...' :  quiz.description}</p>
@@ -85,15 +108,20 @@
             <div class="card direct-chat direct-chat-primary container">
             	<c:if test="${sessionScope.account != null }">
             	<div class="stars">
-            		<input type="radio" class="star star-5" id="star-5" name="star"/>
+            		<input type="radio" class="star star-5" id="star-5"
+						name="star" />
             		<label class="star star-5" for="star-5"></label>
-            		<input type="radio" class="star star-4" id="star-4" name="star"/>
+            		<input type="radio" class="star star-4" id="star-4"
+						name="star" />
             		<label class="star star-5" for="star-4"></label>
-            		<input type="radio" class="star star-3" id="star-3" name="star"/>
+            		<input type="radio" class="star star-3" id="star-3"
+						name="star" />
             		<label class="star star-5" for="star-3"></label>
-            		<input type="radio" class="star star-2" id="star-2" name="star"/>
+            		<input type="radio" class="star star-2" id="star-2"
+						name="star" />
             		<label class="star star-5" for="star-2"></label>
-            		<input type="radio" class="star star-1" id="star-1" name="star"/>
+            		<input type="radio" class="star star-1" id="star-1"
+						name="star" />
             		<label class="star star-5" for="star-1"></label>
             	</div>
             	</c:if>
@@ -102,10 +130,13 @@
               </div>
               <c:if test="${sessionScope.account != null }">
               <div class="card-footer">
-                <form method="post" action="${pageContext.request.contextPath}/user/ratingcomment/sendComment" >
+                <form method="post"
+						action="${pageContext.request.contextPath}/user/ratingcomment/sendComment">
                   <div class="input-group">
-                    <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
-                    <input type="hidden" value="${quiz.quizId}" name="quizIdComment">
+                    <input type="text" name="message"
+								placeholder="Type Message ..." class="form-control" />
+                    <input type="hidden" value="${quiz.quizId}"
+								name="quizIdComment">
                     <span class="input-group-append">
                       <button type="submit" class="btn btn-primary">Send</button>
                     </span>
@@ -121,7 +152,9 @@
 	                      <span class="direct-chat-name float-left">${comment.account.fullname }</span>
 	                      <span class="direct-chat-timestamp float-right">${comment.createDate }</span>
 	                    </div>
-	                    <img class="direct-chat-img" src="${pageContext.request.contextPath}/assets/uploads/${comment.account.avatar }" alt="message user image">
+	                    <img class="direct-chat-img"
+								src="${pageContext.request.contextPath}/assets/uploads/${comment.account.avatar }"
+								alt="message user image">
 	                    
 	                    <div class="direct-chat-text">
 	                      ${comment.comment }

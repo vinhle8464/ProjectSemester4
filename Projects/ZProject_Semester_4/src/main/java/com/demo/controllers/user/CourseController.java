@@ -91,6 +91,7 @@ public class CourseController {
 		// Show tat ca comment
 		modelMap.put("comments", commentServiceUser.findAllByQuizId(quizId));		
 
+
 		return "user/course/quizdetails";
 	}
 
