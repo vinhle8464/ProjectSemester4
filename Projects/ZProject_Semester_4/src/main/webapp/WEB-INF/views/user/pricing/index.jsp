@@ -50,7 +50,7 @@
             </div>
 				<!-- end title -->
 			<c:if test="${result == true }">
-				<h2>You usesing:</h2>
+				<h2>You using:</h2>
 				<div class="row text-center">
 					<div class="col-md-6">
 	                 <div class="pricing-table pricing-table-highlighted">
@@ -130,7 +130,7 @@
 															class="pricing-table-sign-up">
 	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
 	                                            <s:form method="post"
-																action="${posturl }">
+																action="${pageContext.request.contextPath }/user/pricing/success">
 													<input type="hidden" name="item_number_1"
 																	value="${pack.packId }">
 													<input type="hidden" name="item_name_1"
@@ -194,11 +194,9 @@
 															class="pricing-table-sign-up">
 	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
 	                                            <s:form method="post"
-																action="${posturl }">
-													<input type="hidden" name="item_number_1"
-																	value="${pack.packId }">
-													<input type="hidden" name="item_name_1"
-																	value="${pack.title }">
+																action="${pageContext.request.contextPath }/user/pricing/success">
+													<input type="hidden" name="item_number_1" value="${pack.packId }">
+													<input type="hidden" name="item_name_1" value="${pack.title }">
 													<input type="hidden" name="amount_1" value="${pack.fee }">
 													<input type="hidden" name="quantity_1" value="1">
 													<br>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.models.Account;
 import com.demo.models.AccountPack;
@@ -100,8 +101,9 @@ public class PricingController {
 	}
 
 
-	@RequestMapping(value = "success", method = RequestMethod.GET)
-	public String success(HttpServletRequest request, Authentication authentication) {
+	@RequestMapping(value = "success", method = RequestMethod.POST)
+	public String success(HttpServletRequest request, Authentication authentication, @RequestParam("amount_1") float amount,
+			@RequestParam("item_name_1") String title) {
 		PayPalConfig payPalConfig = new PayPalConfig();
 		
 		HttpSession httpSession = request.getSession();
@@ -126,8 +128,10 @@ public class PricingController {
 		Pay pay = new Pay();
 		pay.setAccount(account);
 		pay.setPayment("PAYPAL");
-		pay.setTitle("PAYMENT PACK - CODE: " + request.getParameter("tx"));
-		pay.setFee(Float.parseFloat(request.getParameter("amt")));
+//		pay.setTitle("PAYMENT PACK - CODE: " + request.getParameter("tx"));
+//		pay.setFee(Float.parseFloat(request.getParameter("amt")));
+		pay.setTitle("PAYMENT PACK - CODE: " + title);
+		pay.setFee(amount);
 		pay.setDatePaid(new Date());
 		pay.setPayStatus(true);
 		payService.save(pay);

@@ -214,7 +214,6 @@
 				            <div align="center">
 				              	<h3>${sessionScope.account.fullname }</h3>
 				              	<h4>${sessionScope.account.email }</h4>
-				              	<h4><a href="${pageContext.request.contextPath}/user/pricing">Pack</a></h4>
 				            </div>
 				            <!-- Message End -->
 				          <ss:authorize access="hasRole('ROLE_USER_FACULTY')">
@@ -223,6 +222,14 @@
 					            <!-- Message Start -->
 					            <div class="media">
 									Dashboard
+					            </div>
+					            <!-- Message End -->
+					          </a>
+					          <div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/user/pricing" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									Pack
 					            </div>
 					            <!-- Message End -->
 					          </a>
@@ -246,6 +253,14 @@
 					            </div>
 					            <!-- Message End -->
 					          </a>
+					          <div class="dropdown-divider"></div>
+					          <a href="${pageContext.request.contextPath}/user/pricing" class="dropdown-item">
+					            <!-- Message Start -->
+					            <div class="media">
+									Pack
+					            </div>
+					            <!-- Message End -->
+					          </a>
 					       </ss:authorize>
 				          <div class="dropdown-divider"></div>
 				          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
@@ -264,7 +279,7 @@
 				            <!-- Message End -->
 				          </a>
 				          <div class="dropdown-divider"></div>
-				          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+				          <p class="dropdown-item dropdown-footer" style="text-align: center;">Login Memory Team</p>
 				        </div>
 				 </li>
 				</c:if>
