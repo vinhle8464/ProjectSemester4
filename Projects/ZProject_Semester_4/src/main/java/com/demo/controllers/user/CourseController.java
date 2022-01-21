@@ -107,7 +107,9 @@ public class CourseController {
 		}
 		double avgStar = totalStar/number;
 		modelMap.put("avgStar", avgStar);
+
 		Account accountRating = (Account) request.getAttribute("account");
+
 		if(accountRating != null) {
 			modelMap.put("rating", 	ratingServiceUser.findByAccountIdAndQuizId(accountRating.getAccountId(), quizId));
 		} else {
