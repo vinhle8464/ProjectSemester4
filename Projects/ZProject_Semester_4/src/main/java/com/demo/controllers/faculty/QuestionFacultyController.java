@@ -182,5 +182,13 @@ public class QuestionFacultyController {
 
 		return "faculty/question/index";
 	}
+	
+	@RequestMapping(value = "review", method = RequestMethod.GET)
+	public String review(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model) {
+		
+		modelMap.put("quiz", quizServiceFaculty.findById(quizId));
+		return "faculty/question/review";
+
+	}
 
 }

@@ -240,7 +240,7 @@
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
 												data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Question</span></a>
-											
+							<a href="${pageContext.request.contextPath}/faculty/question/review?quizId=${questions[0].quiz.quizId }" class="btn btn-warning"><span>Review</span></a>				
 						</div>
 					</div>
 				</div>
