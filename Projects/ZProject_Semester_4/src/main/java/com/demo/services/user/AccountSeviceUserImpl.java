@@ -64,4 +64,9 @@ public class AccountSeviceUserImpl implements AccountServiceUser{
 		return accountRepository.findByIdAjax(id);
 	}
 
+	@Override
+	public Account findByEmail(String email) {
+		return accountRepository.findByEmail(email);
+	}
+
 }

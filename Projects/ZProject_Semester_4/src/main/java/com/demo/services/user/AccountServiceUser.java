@@ -2,6 +2,8 @@ package com.demo.services.user;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
 
@@ -22,4 +24,6 @@ public interface AccountServiceUser {
 	public long countAccountUser();
 	
 	public AccountAjax findByIdAjax(int id);
+	
+	public Account findByEmail(String email);
 }

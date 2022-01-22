@@ -21,4 +21,6 @@ public interface AccountRepositoryUser extends CrudRepository<Account, Integer> 
 	@Query("select new com.demo.entites.AccountAjax(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status, createDate) from Account where accountId = :accountId")
 	public AccountAjax findByIdAjax(@Param("accountId") int accountId);
 	
+	@Query("from Account where email = :email")
+	public Account findByEmail(@Param("email") String email);
 }

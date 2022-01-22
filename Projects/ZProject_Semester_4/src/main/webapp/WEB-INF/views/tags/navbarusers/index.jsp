@@ -60,7 +60,7 @@
 										<button type="submit"
 											class="btn btn-light btn-radius btn-brd grd1">Sign
 											In</button>
-										<a class="for-pwd" href="javascript:;">Forgot your
+										<a class="for-pwd" href="${pageContext.request.contextPath }/user/forgotpassword">Forgot your
 											password?</a>
 									</div>
 								</div>
