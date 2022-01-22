@@ -6,6 +6,22 @@
 <mt:layout_user title="Course">
 
 	<jsp:attribute name="content">
+	
+	<style>
+		.explain_question h4 {
+			padding: 10px;
+			background-color: lightgray;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+		
+		.explain_question h3 {
+			padding: 10px;
+			background-color: cadetblue;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+</style>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -142,7 +158,7 @@
 							
 		         			
 				</div>
-		         			<div>
+		         			<div class="explain_question">
 		         			<br>
 		         				<h3>Explain:</h3>
 		         				<h4> &nbsp; + ${question.explainDetail}</h4>
