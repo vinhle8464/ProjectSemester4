@@ -81,7 +81,7 @@ public class Rating implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_date", nullable = false, length = 26)
+	@Column(name = "created", nullable = false, length = 26)
 	public Date getCreateDate() {
 		return this.createDate;
 	}

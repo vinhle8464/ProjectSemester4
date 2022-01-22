@@ -163,7 +163,6 @@ public class CourseController {
 
 		Account account2 = (Account) request.getSession().getAttribute("account");
 
-		System.out.println("timesubmit==============: " + request.getParameter("timersubmit"));
 		Account account = new Account();
 		// plus 1 time in times of quiz
 		Quiz quiz = quizServiceFaculty.findById(quizId);
@@ -223,41 +222,63 @@ public class CourseController {
 
 			for (Question question : quiz.getQuestions()) {
 				int numberRightCheckbox = 0;
+				int numberAnswerUserChecked = 0;
 
 				if (Integer.parseInt(questionId) == question.getQuestionId()) {
-
+					
+					
 					if (question.getTypeAnswerChoice().equalsIgnoreCase("radio")) {
 						for (Answer answer : question.getAnswers()) {
 							for (String answerIdChoice : listAnswerIdChoice) {
 								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
 										&& answer.isAnswerStatus()) {
-									System.out.println("radio: " + answer.getAnswerId());
 									rightAnswerChoice += 1;
 
 								}
 							}
 						}
 					} else if (question.getTypeAnswerChoice().equalsIgnoreCase("checkbox")) {
+						
+						// get total right answer in a question
 						int totalRightAnswerInDb = 0;
 						for (Answer answer : question.getAnswers()) {
 							if (answer.isAnswerStatus()) {
 								totalRightAnswerInDb += 1;
 							}
 						}
+					
+						// check right answer 
 						for (Answer answer : question.getAnswers()) {
 
+							// get number Answer User Checked
+							for (String answerIdChoice : listAnswerIdChoice) {
+
+								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)) {
+			
+									numberAnswerUserChecked += 1;
+
+								}
+							}
+							
+							
+							
+							// get number Right Checkbox 							
 							for (String answerIdChoice : listAnswerIdChoice) {
 
 								if (answer.getAnswerId() == Integer.parseInt(answerIdChoice)
 										&& answer.isAnswerStatus()) {
-									System.out.println("checkbox: " + answer.getAnswerId());
+			
 									numberRightCheckbox += 1;
 
 								}
-								System.out.println("rightcheckbox: " + numberRightCheckbox);
-								if (numberRightCheckbox == totalRightAnswerInDb) {
-									rightAnswerChoice += 1;
-									numberRightCheckbox = 0;
+									
+								if (totalRightAnswerInDb == numberAnswerUserChecked) {
+									if(numberRightCheckbox == totalRightAnswerInDb) {
+						
+										rightAnswerChoice += 1;
+										numberRightCheckbox = 0;
+									}
+									
 								}
 							}
 						}
@@ -305,11 +326,7 @@ public class CourseController {
 		modelMap.put("account", account);
 		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 		modelMap.put("course", true);
-//		History history = historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId);
-////		//System.out.println("asdfasdf: " + Arrays.toString(history.getListAnswerChoice()));
-////		List<String> listAnswerId = new ArrayList<String>();
-////		listAnswerId = null;
-////				
+			
 		String[] listQuestionId = historyService.findHistoryByAccounIdAndQuizId(accountt.getAccountId(), quizId).getListQuestionId().split(" ", -1);
 		listQuestionId = ArrayUtils.remove(listQuestionId, listQuestionId.length - 1);
 		for (String string : listQuestionId) {

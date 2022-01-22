@@ -180,7 +180,7 @@ section.right_answer {
 		      <g class="circle-chart__info">
 		        <text class="circle-chart__percent" x="16.91549431" y="15.5"
 										alignment-baseline="central" text-anchor="middle"
-										font-size="7"><fmt:formatNumber type = "number" pattern = "##.##" value="${history.numberRightAnswer/quiz.questions.size()*100}"/></text>
+										font-size="7"><fmt:formatNumber type = "number" pattern = "##.##" value="${history.numberRightAnswer/quiz.questions.size()*100}"/>%</text>
 		        <text class="circle-chart__subline" x="16.91549431" y="20.5"
 										alignment-baseline="central" text-anchor="middle"
 										font-size="3">${history.numberRightAnswer }/ ${quiz.questions.size() }</text>
