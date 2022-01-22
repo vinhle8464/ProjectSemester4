@@ -286,7 +286,7 @@
 			</ul>
 			<c:if test="${sessionScope.account == null}">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Book Now</span></a></li>
+					<li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Login / Register</span></a></li>
 				</ul>
 			</c:if>
 			
