@@ -55,8 +55,8 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Indexing</th>
-                      <th>Progress</th>
+                      <th>Title</th>
+                      
                       <th style="width: 40px">Label</th>
                     </tr>
                   </thead>
@@ -64,72 +64,38 @@
                     <tr>
                       <td>1.</td>
                       <td>Total New User in 2022</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger"
-														style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
+                      
+                      <td><span class="badge bg-danger">${totalnewuser }</span></td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>Faculty</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning"
-														style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
+                      
+                      <td><span class="badge bg-warning">${newfaculty }</span></td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>User</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary"
-														style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
+                      <td>Candidate</td>
+                      
+                      <td><span class="badge bg-primary">${newcandidate }</span></td>
                     </tr>
                     <tr>
                       <td>2.</td>
                       <td>Total User</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success"
-														style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
+                      
+                      <td><span class="badge bg-success">${totaluser }</span></td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>Faculty</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success"
-														style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
+                      
+                      <td><span class="badge bg-success">${totalfaculty }</span></td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>User</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success"
-														style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
+                      <td>Candidate</td>
+                      
+                      <td><span class="badge bg-success">${totalcandidate }</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -173,7 +139,7 @@
 			"balloonText" : "[[title]] of [[category]]:[[value]]",
 			"fillAlphas" : 1,
 			"id" : "AmGraph-1",
-			"title" : "User",
+			"title" : "Candidate",
 			"type" : "column",
 			"valueField" : "column-1"
 		}, {
@@ -203,54 +169,6 @@
 			"size" : 15,
 			"text" : "New member in 2022"
 		} ],
-		"dataProvider" : [ {
-			"category" : "January",
-			"column-1" : 1,
-			"column-2" : 3
-		}, {
-			"category" : "February",
-			"column-1" : 6,
-			"column-2" : 7
-		}, {
-			"category" : "March",
-			"column-1" : 2,
-			"column-2" : 3
-		}, {
-			"category" : "April",
-			"column-1" : "50",
-			"column-2" : "25"
-		}, {
-			"category" : "May",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "June",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "JuLy",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "August",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "September",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "October",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "November",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "December",
-			"column-1" : null,
-			"column-2" : null
-		} ]
+		"dataProvider" : ${categories}
 	});
 </script>
