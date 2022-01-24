@@ -49,8 +49,21 @@ public class DashboardAdminController {
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
-		int newfaculty1 = 0, newcandidate1 = 0, totalnewuser = 0, totaluser = 0, totalfaculty = 0, totalcandidate = 0;
+		int newfaculty1 = 0, newcandidate1 = 0, totalnewuser = 0, totaluser = 0, totalfaculty = 0, totalcandidate = 0,totalquiz=0;
 		HttpSession session = request.getSession();
+		List<Category> categories = categoryServiceAdmin.findAllCategory();
+		List<List<String>> qal = new ArrayList<List<String>>();
+		for (Category category : categories) {
+			int count = 0;
+			List<QuizAjax> quizs = quizServiceAdmin.findAjaxByCategoryId(category.getCategoryId());
+			for (QuizAjax quizAjax : quizs) {
+				totalquiz++;
+			}
+			List<String> a = new ArrayList<String>();
+			a.add("country: " + category.getTitle());
+			a.add(String.valueOf(count));
+			qal.add(a);
+		}
 		Account account = (Account) session.getAttribute("account");
 		List<Account> accounts = accountServiceAdmin.findAllAccount();
 		for (Account account2 : accounts) {
@@ -66,6 +79,7 @@ public class DashboardAdminController {
 			}
 		}
 		modelMap.put("sumuser", totaluser);
+		modelMap.put("sumquiz", totalquiz);
 		System.out.println("bao");
 		System.out.println(account.getFullname());
 		modelMap.put("accountUsername", accountService.findByUsername(authentication.getName()));
