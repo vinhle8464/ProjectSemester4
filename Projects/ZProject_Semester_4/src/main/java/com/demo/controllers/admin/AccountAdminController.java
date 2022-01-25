@@ -125,14 +125,41 @@ public class AccountAdminController implements ServletContextAware {
 			Model model) {
 		
 		int pageSizee = pageSize;
+			Page<Account> pages = accountServiceAdmin.getPage(currentPage, pageSizee, sort);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("accounts", pages.getContent());
 
-		Page<Account> pages = accountServiceAdmin.getPage(currentPage, pageSizee, sort);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("totalPages", pages.getTotalPages());
-		model.addAttribute("totalElements", pages.getTotalElements());
-		model.addAttribute("pageSize", pageSizee);
-		model.addAttribute("sort", sort);
-		model.addAttribute("accounts", pages.getContent());
+		Account account = new Account();
+		account.setGender(true);
+		modelMap.put("account", account);
+		modelMap.put("roles", roleServiceAdmin.findAllRole());
+		// nothing
+
+		return "admin/account/index";
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String fullname) {
+
+		return searchPagination(1, 25, "account_id", modelMap, model, fullname);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Account> pages = accountServiceAdmin.searchByFullname2(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("accounts", pages.getContent());
 
 		Account account = new Account();
 		account.setGender(true);

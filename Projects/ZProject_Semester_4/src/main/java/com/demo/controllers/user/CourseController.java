@@ -82,7 +82,8 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = { "quizdetails" }, method = RequestMethod.GET)
-	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpServletRequest request) {
+	public String QuizDetails(@RequestParam("quizId") int quizId, ModelMap modelMap, Model model, HttpServletRequest request,
+			HttpSession session) {
 
 		Account account = new Account();
 		modelMap.put("account", account);
@@ -108,7 +109,7 @@ public class CourseController {
 		double avgStar = totalStar/number;
 		modelMap.put("avgStar", avgStar);
 
-		Account accountRating = (Account) request.getAttribute("account");
+		Account accountRating = (Account) session.getAttribute("account");
 
 		if(accountRating != null) {
 			modelMap.put("rating", 	ratingServiceUser.findByAccountIdAndQuizId(accountRating.getAccountId(), quizId));

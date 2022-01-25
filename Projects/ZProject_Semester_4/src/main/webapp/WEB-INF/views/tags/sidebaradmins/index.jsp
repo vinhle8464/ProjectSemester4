@@ -118,10 +118,17 @@
 						</p>
 				</a></li>
 				<li class="nav-item"><a
-					href="${pageContext.request.contextPath}/admin/ratingandcomment"
+					href="${pageContext.request.contextPath}/admin/comment"
 					class="nav-link"> <i class="nav-icon fas fa-dollar-sign"></i>
 						<p>
-							Rating and Comment <span class="right badge badge-danger">New</span>
+							Comment <span class="right badge badge-danger">New</span>
+						</p>
+				</a></li>
+				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/admin/rating"
+					class="nav-link"> <i class="nav-icon fas fa-dollar-sign"></i>
+						<p>
+							Rating <span class="right badge badge-danger">New</span>
 						</p>
 				</a></li>
 			</s:authorize>

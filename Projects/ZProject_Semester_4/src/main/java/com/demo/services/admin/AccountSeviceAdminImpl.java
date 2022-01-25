@@ -68,4 +68,21 @@ public class AccountSeviceAdminImpl implements AccountServiceAdmin{
 			return this.accountRepositoryAdmin.findAll(pageable);
 	    }
 
+	@Override
+	public List<Account> searchByFullname(Pageable pageable, String fullname) {
+		return accountRepositoryAdmin.searchByFullname(pageable, fullname);
+	}
+
+	@Override
+	public Page<Account> getPageSearch(int currentPage, int pageSize, String sort, String fullname) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return (Page<Account>) this.accountRepositoryAdmin.searchByFullname(pageable, fullname);
+	}
+
+	@Override
+	public Page<Account> searchByFullname2(int currentPage, int pageSize, String sort, String fullname) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.accountRepositoryAdmin.searchByFullname2(fullname, pageable);
+	}
+
 }
