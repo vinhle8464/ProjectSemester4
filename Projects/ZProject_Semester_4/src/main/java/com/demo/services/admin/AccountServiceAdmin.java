@@ -3,6 +3,7 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 
 import com.demo.entites.AccountAjax;
 import com.demo.models.Account;
@@ -23,6 +24,7 @@ public interface AccountServiceAdmin {
 
 	public AccountAjax findByIdAjax(int accountId);
 	
+	public List<AccountAjax> findThisYear(int year,int month);
 
 	public Page<Account> getPage(int currentPage, int pageSize, String sort);
 

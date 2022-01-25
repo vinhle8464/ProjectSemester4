@@ -24,4 +24,7 @@ public interface HistoryRepository extends CrudRepository<History, Integer>{
 	@Query("from History where account.accountId = :accountId and quiz.quizId = :quizId")
 	public History findHistoryByAccounIdAndQuizId(@Param("accountId") int accountId, @Param("quizId") int quizId);
 	
+	@Query("from History where quiz.quizId = :quizId")
+	public List<History> findByQuizId(@Param("quizId") int quizId);
+	
 }

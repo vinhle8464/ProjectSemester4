@@ -68,4 +68,10 @@ public class AccountSeviceAdminImpl implements AccountServiceAdmin{
 			return this.accountRepositoryAdmin.findAll(pageable);
 	    }
 
+	@Override
+	public List<AccountAjax> findThisYear(int year,int month) {
+		// TODO Auto-generated method stub
+		return accountRepositoryAdmin.findThisYear(year,month);
+	}
+
 }

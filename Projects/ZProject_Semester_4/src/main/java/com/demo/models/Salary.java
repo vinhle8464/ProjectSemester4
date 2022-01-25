@@ -1,7 +1,6 @@
 package com.demo.models;
-// Generated Jan 15, 2022, 8:47:44 PM by Hibernate Tools 5.1.10.Final
+// Generated Jan 25, 2022, 3:09:40 PM by Hibernate Tools 5.1.10.Final
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,17 +24,22 @@ public class Salary implements java.io.Serializable {
 	private Integer salaryId;
 	private Account account;
 	private float salary;
-	private Date date;
+	private Date createDate;
 	private boolean status;
+	private int totalClickQuiz;
+	private boolean acceptPayment;
 
 	public Salary() {
 	}
 
-	public Salary(Account account, float salary, Date date, boolean status) {
+	public Salary(Account account, float salary, Date createDate, boolean status, int totalClickQuiz,
+			boolean acceptPayment) {
 		this.account = account;
 		this.salary = salary;
-		this.date = date;
+		this.createDate = createDate;
 		this.status = status;
+		this.totalClickQuiz = totalClickQuiz;
+		this.acceptPayment = acceptPayment;
 	}
 
 	@Id
@@ -69,14 +73,14 @@ public class Salary implements java.io.Serializable {
 		this.salary = salary;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "create_date", nullable = false, length = 10)
-	public Date getDate() {
-		return this.date;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", nullable = false, length = 26)
+	public Date getCreateDate() {
+		return this.createDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@Column(name = "status", nullable = false)
@@ -86,6 +90,24 @@ public class Salary implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Column(name = "total_click_quiz", nullable = false)
+	public int getTotalClickQuiz() {
+		return this.totalClickQuiz;
+	}
+
+	public void setTotalClickQuiz(int totalClickQuiz) {
+		this.totalClickQuiz = totalClickQuiz;
+	}
+
+	@Column(name = "accept_payment", nullable = false)
+	public boolean isAcceptPayment() {
+		return this.acceptPayment;
+	}
+
+	public void setAcceptPayment(boolean acceptPayment) {
+		this.acceptPayment = acceptPayment;
 	}
 
 }

@@ -126,7 +126,7 @@
 						<div class="footer-right">
 							<ul class="footer-links-soi">
 								<li><a
-									href="https://www.facebook.com/profile.php?id=100025109400686"><i
+									href="#"><i
 										class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-github"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -165,10 +165,10 @@
 
 						<ul class="footer-links">
 							<li><a href="mailto:#">appchateproject@gmail.com</a></li>
-							<li><a href="#">www.yoursite.com</a></li>
+							<li><a href="#">www.onlinequiz.com</a></li>
 							<li>Login Memory team 2021 Ho Chi Minh City Vietnam</li>
 							<li>appchateproject@gmail.com</li>
-							<li>+84 942 755 402</li>
+							<li>+84 123456789</li>
 						</ul>
 						<!-- end links -->
 					</div>
@@ -188,8 +188,7 @@
 			<div class="footer-distributed">
 				<div class="footer-center">
 					<p class="footer-company-name">
-						All Rights Reserved. &copy; 2018 <a href="#">SmartEDU</a> Design
-						By : <a href="https://html.design/">html design</a>
+						All Rights Reserved. &copy; 2022 <a href="#">Login Memory Online Quiz</a> 
 					</p>
 				</div>
 			</div>
