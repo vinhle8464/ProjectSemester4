@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.repository.query.Param;
 
 import com.demo.entites.AccountAjax;
@@ -25,6 +26,7 @@ public interface AccountServiceAdmin {
 
 	public AccountAjax findByIdAjax(int accountId);
 	
+	public List<AccountAjax> findThisYear(int year,int month);
 
 	public Page<Account> getPage(int currentPage, int pageSize, String sort);
 	public Page<Account> getPageSearch(int currentPage, int pageSize, String sort, String fullname);

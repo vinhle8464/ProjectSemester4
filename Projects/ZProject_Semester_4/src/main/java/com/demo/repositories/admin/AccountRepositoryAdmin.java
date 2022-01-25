@@ -19,15 +19,18 @@ public interface AccountRepositoryAdmin extends JpaRepository<Account, Integer> 
 
 	@Query("from Account where username = :username")
 	public Account findByUsername(@Param("username") String username);
-	
-	
+
 	@Query("select new com.demo.entites.AccountAjax(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status, createDate) from Account where accountId = :accountId")
 	public AccountAjax findByIdAjax(@Param("accountId") int accountId);
-	
+
 	@Query("from Account where fullname like %:fullname%")
 	public List<Account> searchByFullname(Pageable pageable, @Param("fullname") String fullname);
 	
 	@Query(value = "SELECT * FROM account q WHERE q.fullname like %?1%",
 		    nativeQuery = true)
 	public Page<Account> searchByFullname2(String fullname, Pageable pageable);
+
+	@Query("select new com.demo.entites.AccountAjax(accountId, username, password, fullname, email, dob, addr, gender, phone, avatar, status, createDate) from Account where year(createDate) = :year and month(createDate) = :month")
+	public List<AccountAjax> findThisYear(@Param("year") int year,@Param("month") int month);
+
 }

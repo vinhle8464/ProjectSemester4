@@ -83,6 +83,11 @@ public class AccountSeviceAdminImpl implements AccountServiceAdmin{
 	public Page<Account> searchByFullname2(int currentPage, int pageSize, String sort, String fullname) {
 		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 		return this.accountRepositoryAdmin.searchByFullname2(fullname, pageable);
+
+	}
+	public List<AccountAjax> findThisYear(int year,int month) {
+		// TODO Auto-generated method stub
+		return accountRepositoryAdmin.findThisYear(year,month);
 	}
 
 }

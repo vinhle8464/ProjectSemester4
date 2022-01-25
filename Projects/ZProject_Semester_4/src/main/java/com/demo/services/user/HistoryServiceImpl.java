@@ -54,4 +54,18 @@ public class HistoryServiceImpl implements HistoryService{
 		return historyRepository.findHistoryByAccounIdAndQuizId(accountId, quizId);
 	}
 
+	
+
+	@Override
+	public List<History> findAll() {
+		// TODO Auto-generated method stub
+		return (List<History>) historyRepository.findAll();
+	}
+
+	@Override
+	public List<History> findByQuizId(int quizId) {
+		// TODO Auto-generated method stub
+		return historyRepository.findByQuizId(quizId);
+	}
+
 }

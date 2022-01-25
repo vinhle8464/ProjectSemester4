@@ -43,7 +43,7 @@
 											<h1>${dateCreated}</h1>
 										</div>
 										<div class="course-desc">
-											<h3>You had finished test: ${history.quiz.title }</h3> 
+											<h3>You had finished test: <span style="color: #eea412; text-transform: uppercase; ">  ${history.quiz.title } </span></h3> 
 											<c:if test="${history.timeDone%60 <= 10}">
 												<p><i class="fa fa-clock-o" aria-hidden="true"></i> Completion time: <fmt:formatNumber type = "number" pattern = "#" value="${Math.floor(history.timeDone/60)}" maxIntegerDigits="1"/>:0${history.timeDone%60}</p>
 											</c:if>
@@ -55,7 +55,7 @@
 												<p>
 													<i class="fa fa-dollar" aria-hidden="true"></i> &nbsp;&nbsp; <span style="${history.quiz.fee ? 'color:red;' : 'color:green;'}">${history.quiz.fee ? "Purchase" : "Free"}</span> &nbsp; | &nbsp;
 													<i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; ${history.numberRightAnswer }/${history.quiz.questions.size() } &nbsp; | &nbsp;
-													<a href="#" class="btn btn-info" role="button">Details</a>
+													<a href="${pageContext.request.contextPath}/user/course/reviewtest?quizId=${history.quiz.quizId}" class="btn btn-info" role="button">Details</a>
 												</p>			
 										</div>	
 									</div>
@@ -69,30 +69,7 @@
         </div>       
     </div>
 	
-	<div class="parallax section dbcolor">
-        <div class="container">
-            <div class="row logos">
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_01.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_02.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_03.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_04.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_05.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="${pageContext.request.contextPath }/resources/user/images/logo_06.png" alt="" class="img-repsonsive"></a>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
+	
 	</jsp:attribute>
 </mt:layout_user>
 

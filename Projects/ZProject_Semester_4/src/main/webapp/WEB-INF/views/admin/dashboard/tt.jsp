@@ -28,7 +28,7 @@
 
     <!-- Main content -->
     <div id="chartdiv"
-							style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+			style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
      <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -130,7 +130,8 @@
 	src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript"
 	src="https://www.amcharts.com/lib/3/radar.js"></script>
-
+<script type="text/javascript"
+	src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 
 <!-- amCharts javascript code -->
@@ -141,6 +142,8 @@
 		"angle" : 30,
 		"depth3D" : 30,
 		"startDuration" : 1,
+		"fontSize" : 9,
+		"theme" : "light",
 		"categoryAxis" : {
 			"gridPosition" : "start"
 		},
@@ -149,24 +152,14 @@
 			"balloonText" : "[[title]] of [[category]]:[[value]]",
 			"fillAlphas" : 1,
 			"id" : "AmGraph-1",
-			"title" : "User",
+			"title" : "graph 1",
 			"type" : "column",
 			"valueField" : "column-1"
-		}, {
-			"balloonText" : "[[title]] of [[category]]:[[value]]",
-			"fillAlphas" : 1,
-			"id" : "AmGraph-2",
-			"title" : "Faculty",
-			"type" : "column",
-			"valueField" : "column-2"
-		}
-
-		],
+		}],
 		"guides" : [],
 		"valueAxes" : [ {
 			"id" : "ValueAxis-1",
-			"stackType" : "3d",
-			"title" : "Unit: USD"
+			"title" : "Axis title"
 		} ],
 		"allLabels" : [],
 		"balloon" : {},
@@ -177,57 +170,9 @@
 		"titles" : [ {
 			"id" : "Title-1",
 			"size" : 15,
-			"text" : "Revenue in 2022"
+			"text" : "Chart Title"
 		} ],
-		"dataProvider" : [ {
-			"category" : "January",
-			"column-1" : 1,
-			"column-2" : 3
-		}, {
-			"category" : "February",
-			"column-1" : 6,
-			"column-2" : 7
-		}, {
-			"category" : "March",
-			"column-1" : 2,
-			"column-2" : 3
-		}, {
-			"category" : "April",
-			"column-1" : "50",
-			"column-2" : "25"
-		}, {
-			"category" : "May",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "June",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "JuLy",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "August",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "September",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "October",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "November",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "December",
-			"column-1" : null,
-			"column-2" : null
-		} ]
+		"dataProvider" : ${categories}
 	});
 </script>
 <script type="text/javascript">
