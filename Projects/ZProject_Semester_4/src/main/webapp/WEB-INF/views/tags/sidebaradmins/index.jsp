@@ -97,6 +97,13 @@
 						</p>
 				</a></li>
 				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/admin/salary"
+					class="nav-link"> <i class="nav-icon fas fa-dollar-sign"></i>
+						<p>
+							Salarys <span class="right badge badge-danger">New</span>
+						</p>
+				</a></li>
+				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/admin/pack"
 					class="nav-link"> <i class="nav-icon fas fa-dollar-sign"></i>
 						<p>
@@ -140,6 +147,13 @@
 					class="nav-link"> <i class="nav-icon fas fa-user"></i>
 						<p>
 							Quizzes - Faculty <span class="right badge badge-danger">New</span>
+						</p>
+				</a></li>
+				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/faculty/salary"
+					class="nav-link"> <i class="nav-icon fas fa-user"></i>
+						<p>
+							Salary - Faculty <span class="right badge badge-danger">New</span>
 						</p>
 				</a></li>
 			</s:authorize>

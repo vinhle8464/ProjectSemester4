@@ -28,18 +28,20 @@ public class Salary implements java.io.Serializable {
 	private boolean status;
 	private int totalClickQuiz;
 	private boolean acceptPayment;
-
+	private int totalClickQuizMonth;
+	
 	public Salary() {
 	}
 
 	public Salary(Account account, float salary, Date createDate, boolean status, int totalClickQuiz,
-			boolean acceptPayment) {
+			boolean acceptPayment, int totalClickQuizMonth) {
 		this.account = account;
 		this.salary = salary;
 		this.createDate = createDate;
 		this.status = status;
 		this.totalClickQuiz = totalClickQuiz;
 		this.acceptPayment = acceptPayment;
+		this.totalClickQuizMonth = totalClickQuizMonth;
 	}
 
 	@Id
@@ -108,6 +110,15 @@ public class Salary implements java.io.Serializable {
 
 	public void setAcceptPayment(boolean acceptPayment) {
 		this.acceptPayment = acceptPayment;
+	}
+	
+	@Column(name = "total_click_quiz_month", nullable = false)
+	public int getTotalClickQuizMonth() {
+		return this.totalClickQuizMonth;
+	}
+
+	public void setTotalClickQuizMonth(int totalClickQuizMonth) {
+		this.totalClickQuizMonth = totalClickQuizMonth;
 	}
 
 }

@@ -104,7 +104,7 @@
 							<th> <a href="#">Username</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/salary/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=salary">Income</a></th>
 							<th><a href="${pageContext.request.contextPath}/admin/salary/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=createDate">Create date</a></th>
-							<th><a href="${pageContext.request.contextPath}/admin/salary/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=totalClickQuiz">Total Click Quiz</a></th>
+							<th><a href="${pageContext.request.contextPath}/admin/salary/pagination?currentPage=${currentPage}&pageSize=${pageSize}&sort=totalClickQuiz">Total Click Quiz Month</a></th>
 							<th><a href="#">Accept Transfer</a></th>
 						
 							<th>Actions</th>
@@ -119,39 +119,17 @@
 						<tr>
 							<td width="150px">${salary.salaryId }</td>
 							<td>${salary.account.username }</td>
-							<td>${salary.salary }</td>
+							<td> <span class="text-success">${salary.salary } $</span></td>
 							<td>${salary.createDate }</td>
-							<td>${salary.totalClickQuiz }</td>
+							<td>${salary.totalClickQuizMonth }</td>
 							<td>
-							${salary.acceptPayment ? "Pending" : "Transfered" }
-								<%-- <c:if test="${salary.acceptPayment == true }">
-									<div class="row result">
-										 <div class="custom-control custom-switch col-3">
-										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" checked="checked" name="${salary.acceptTransfer }" onchange="getSwitch(name);">
-										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
-										</div> 
-										<div class="col-1">
-											<div style="background: #31a24c; border-radius: 50%; height: 1em; width: 1em;"></div>
-										</div>
-										<div class="col-8">
-											<span>Pending</span>
-										</div>
-									</div>
+							
+								 <c:if test="${salary.acceptPayment == false }">
+									<span class="text-danger">${salary.acceptPayment ? "Pending" : "Transfered" } </span>
 								</c:if>
-								<c:if test="${salary.status == false }">
-									<div class="row result">
-										 <div class="custom-control custom-switch col-3">
-										  <input type="checkbox" class="custom-control-input switch-toggle" id="customSwitches_${i.index+1 }" name="${salary.acceptTransfer }" onchange="getSwitch(name);">
-										  <label class="custom-control-label switch-toggle" for="customSwitches_${i.index+1 }"></label>
-										</div> 
-										<div class="col-1">
-											<div style="background: gray; border-radius: 50%; height: 1em; width: 1em;"></div>
-										</div>
-										<div class="col-8">
-											<span>Transfered</span>
-										</div>
-									</div>
-								</c:if> --%>
+								<c:if test="${salary.acceptPayment == true }">
+									<span class="text-primary">${salary.acceptPayment ? "Pending" : "Transfered" } </span>
+								</c:if> 
 							</td>
 							<td>
 							<c:if test="${salary.acceptPayment == false }">

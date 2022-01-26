@@ -16,6 +16,6 @@ public interface SalaryRepositoryAdmin extends JpaRepository<Salary, Integer> {
 	@Query(value = "select * from Salary order by salary_id desc limit 1", nativeQuery = true)
 	public Salary findNewestSalary(); 
 	
-	@Query(value = "select * from Salary where accountId = :accountId order by salary_id desc limit 1", nativeQuery = true)
+	@Query(value = "select * from Salary where account_id = :accountId order by salary_id desc limit 1", nativeQuery = true)
 	public Salary findNewestSalaryByAccountId(@Param("accountId") int accountId); 
 }

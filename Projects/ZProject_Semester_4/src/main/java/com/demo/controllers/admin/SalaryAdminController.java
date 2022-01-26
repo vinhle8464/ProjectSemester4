@@ -1,9 +1,13 @@
 package com.demo.controllers.admin;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,111 +25,174 @@ import com.demo.models.Salary;
 import com.demo.services.admin.AccountServiceAdmin;
 import com.demo.services.admin.QuizServiceAdmin;
 import com.demo.services.admin.SalaryServiceAdmin;
+import com.google.api.client.util.DateTime;
 
 @Controller
-@RequestMapping(value = {"admin/salary"})
+@RequestMapping(value = { "admin/salary" })
 public class SalaryAdminController {
 
 	@Autowired
 	private SalaryServiceAdmin salaryServiceAdmin;
-	
+
 	@Autowired
 	private AccountServiceAdmin accountServiceAdmin;
-	
+
 	@Autowired
 	private QuizServiceAdmin quizServiceAdmin;
-	
-	
-	@RequestMapping(value = {"", "index"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap, Model model) {
-		
+
 		return pagination(1, 25, "createDate", modelMap, model);
-		
+
 	}
-	
-	@RequestMapping(value = { "checkNewSalary"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "checkNewSalary" }, method = RequestMethod.GET)
 	public String CheckNewSalary() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date defaultDate;
+
 		Salary salary = salaryServiceAdmin.findNewestSalary();
-		
-		Date date1 = salary.getCreateDate();
-		Date date2 = new Date();
-		if (date1.after(date2)) {
-		    System.out.println("Date1 is after Date2");
-		}
+		if (salary == null) {
+			Date date1 = new Date();
+			try {
+				defaultDate = simpleDateFormat.parse("0000-01-26");
+				Calendar cal1 = Calendar.getInstance();
+				Calendar cal2 = Calendar.getInstance();
+				cal1.setTime(date1);
+				cal2.setTime(defaultDate);
+				boolean sameDay = cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
 
-		if (date1.before(date2)) {
-		    System.out.println("Date1 is before Date2");
-		}
+				if (sameDay) {
+					List<Account> accounts = accountServiceAdmin.findAllAccount();
+					for (Account account : accounts) {
+						for (Role role : account.getRoles()) {
 
-		if (date1.equals(date2)) {
-		    System.out.println("Date1 is equal Date2");
-		}
-		
-		Calendar cal1 = Calendar.getInstance();
-		Calendar cal2 = Calendar.getInstance();
-		cal1.setTime(date1);
-		cal2.setTime(date2);
-		System.out.println("date1: " + cal1.get(Calendar.DAY_OF_MONTH));
-		System.out.println("date2: " + cal2.get(Calendar.DAY_OF_MONTH));
-		boolean sameDay = 
-		              cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
-		System.out.println("sameDay: "  + sameDay);
-		if(sameDay) {
-			List<Account> accounts = accountServiceAdmin.findAllAccount();
-			for (Account account : accounts) {
-				for (Role role : account.getRoles()) {
-					if(role.equals("ROLE_USER_FACULTY")) {
-						Salary salary2 = salaryServiceAdmin.findNewestSalaryByAccountId(account.getAccountId());
-						if(salary2 == null) {
-							Salary salary3 = new Salary();
-							salary3.setAccount(account);
-							salary3.setCreateDate(new Date());
-							salary3.setStatus(true);
-							salary3.setAcceptPayment(false);
-							
-							List<Quiz> quizs = quizServiceAdmin.findAllQuiz();
-							int totalClick = 0;
-							for (Quiz quiz : quizs) {
-								if(quiz.getAccount().getAccountId() == account.getAccountId()) {
-									totalClick += quiz.getTimes();
+							if (role.getRoleName().equals("ROLE_USER_FACULTY")) {
+
+								Salary salary3 = new Salary();
+								salary3.setAccount(account);
+								salary3.setCreateDate(new Date());
+								salary3.setStatus(true);
+								salary3.setAcceptPayment(false);
+
+								List<Quiz> quizs = quizServiceAdmin.findAllQuiz();
+								int totalClick = 0;
+								for (Quiz quiz : quizs) {
+									if (quiz.getAccount().getAccountId() == account.getAccountId()) {
+										totalClick += quiz.getTimes();
+									}
 								}
-							}
-							
-							salary3.setTotalClickQuiz(totalClick);
-							float income = (float) (totalClick * 0.001);
-							salary3.setSalary(income);
-							
-							salaryServiceAdmin.create(salary3);
-						}else {
-							Salary salary3 = new Salary();
-							salary3.setAccount(account);
-							salary3.setCreateDate(new Date());
-							salary3.setStatus(true);
-							salary3.setAcceptPayment(false);
-							
-							List<Quiz> quizs = quizServiceAdmin.findAllQuiz();
-							int totalClick = 0;
-							for (Quiz quiz : quizs) {
-								if(quiz.getAccount().getAccountId() == account.getAccountId()) {
-									totalClick += quiz.getTimes();
+
+								salary3.setTotalClickQuiz(totalClick);
+								float income = 0;
+								if (totalClick == 0) {
+									income = 0;
+								} else {
+									income = (float) (totalClick * 0.001);
 								}
+								salary3.setSalary(income);
+								salary3.setTotalClickQuizMonth(totalClick);
+								salaryServiceAdmin.create(salary3);
+
 							}
-							
-							salary3.setTotalClickQuiz(totalClick);
-							float income = (float) ((totalClick - salary2.getTotalClickQuiz()) * 0.001);
-							salary3.setSalary(income);
-							
-							salaryServiceAdmin.create(salary3);
 						}
+
 					}
 				}
-				
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			Date date1 = salary.getCreateDate();
+			Date date2 = new Date();
+
+			try {
+				defaultDate = simpleDateFormat.parse("0000-01-26");
+				Calendar cal1 = Calendar.getInstance();
+				Calendar cal2 = Calendar.getInstance();
+				cal1.setTime(date1);
+				cal2.setTime(defaultDate);
+				boolean sameDay = cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
+				if (!DateUtils.isSameDay(date1, date2) && sameDay) {
+					createNewSalary();
+				}
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+
 		return "redirect:/admin/salary/index";
 	}
 
-	@RequestMapping(value = { "transfer" }, method = RequestMethod.PUT)
+	private void createNewSalary() {
+		List<Account> accounts = accountServiceAdmin.findAllAccount();
+		for (Account account : accounts) {
+			for (Role role : account.getRoles()) {
+
+				if (role.getRoleName().equals("ROLE_USER_FACULTY")) {
+					Salary salary2 = salaryServiceAdmin.findNewestSalaryByAccountId(account.getAccountId());
+					if (salary2 == null) {
+						Salary salary3 = new Salary();
+						salary3.setAccount(account);
+						salary3.setCreateDate(new Date());
+						salary3.setStatus(true);
+						salary3.setAcceptPayment(false);
+
+						List<Quiz> quizs = quizServiceAdmin.findAllQuiz();
+						int totalClick = 0;
+						for (Quiz quiz : quizs) {
+							if (quiz.getAccount().getAccountId() == account.getAccountId()) {
+								totalClick += quiz.getTimes();
+							}
+						}
+
+						salary3.setTotalClickQuiz(totalClick);
+						float income = (float) (totalClick * 0.001);
+						salary3.setSalary(income);
+						salary3.setTotalClickQuizMonth(totalClick);
+
+						salaryServiceAdmin.create(salary3);
+					} else {
+						Salary salary3 = new Salary();
+						salary3.setAccount(account);
+						salary3.setCreateDate(new Date());
+						salary3.setStatus(true);
+						salary3.setAcceptPayment(false);
+
+						List<Quiz> quizs = quizServiceAdmin.findAllQuiz();
+						int totalClick = 0;
+						for (Quiz quiz : quizs) {
+
+							if (quiz.getAccount().getAccountId() == account.getAccountId()) {
+								totalClick += quiz.getTimes();
+							}
+						}
+
+						salary3.setTotalClickQuiz(totalClick);
+
+						float income = 0;
+						if (totalClick == 0) {
+							income = 0;
+						} else {
+							income = (float) ((totalClick - salary2.getTotalClickQuiz()) * 0.001);
+						}
+
+						salary3.setSalary(income);
+						salary3.setTotalClickQuizMonth(totalClick - salary2.getTotalClickQuiz());
+						salaryServiceAdmin.create(salary3);
+					}
+				}
+			}
+
+		}
+	}
+
+	@RequestMapping(value = { "transfer" }, method = RequestMethod.GET)
 	public String Transfer(@RequestParam("salaryId") int salaryId) {
 
 		Salary salary = salaryServiceAdmin.findById(salaryId);
@@ -135,12 +202,11 @@ public class SalaryAdminController {
 		return "redirect:/admin/salary/index";
 	}
 
+	@RequestMapping(value = { "pagination" }, method = RequestMethod.GET)
+	public String pagination(@RequestParam(name = "currentPage") int currentPage,
+			@RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort, ModelMap modelMap,
+			Model model) {
 
-	
-	@RequestMapping(value = {"pagination"}, method = RequestMethod.GET)
-	public String pagination(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort") String sort,
-			ModelMap modelMap, Model model) {
-		
 		int pageSizee = pageSize;
 
 		Page<Salary> pages = salaryServiceAdmin.getPage(currentPage, pageSizee, sort);
@@ -151,9 +217,8 @@ public class SalaryAdminController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("salarys", pages.getContent());
 
-		Salary salary = new Salary();		
+		Salary salary = new Salary();
 		modelMap.put("salary", salary);
-
 
 		return "admin/salary/index";
 	}
