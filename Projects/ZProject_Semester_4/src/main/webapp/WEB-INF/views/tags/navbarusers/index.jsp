@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="ss"
@@ -99,7 +98,7 @@
 											In</button>
 
 
-										<a
+										<%-- <a
 											href="${pageContext.request.contextPath}/user/account/login"><button
 												type="button" class="btn btn-light btn-radius btn-brd grd1">Not
 												A User?</button></a> <a class="for-pwd" href="javascript:;">Forgot
@@ -109,7 +108,7 @@
 
 
 										<a class="for-pwd" href="${pageContext.request.contextPath }/user/forgotpassword">Forgot your
-											password?</a>
+											password?</a> --%>
 
 									</div>
 								</div>
