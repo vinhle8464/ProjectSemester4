@@ -311,150 +311,16 @@
 									<div class="media">History</div> <!-- Message End -->
 								</a>
 							</ss:authorize>
-					<li class="nav-item dropdown">
-				        <a class="nav-link" data-toggle="dropdown" href="#">
-							<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
-								class="img-circle elevation-2" style="with: 30px;height: 30px;border-radius: 50%" >
-				        </a>
-				        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="width: 350px; border-radius: 5%">
-					        <div align="center">
-					        	<img src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }" 
-									class="img-circle elevation-2" style="with: 85px;height: 85px;border-radius: 50%" >
-					        </div>
-					        <br>
-				            <div align="center">
-				              	<h3>${sessionScope.account.fullname }</h3>
-				              	<h4>${sessionScope.account.email }</h4>
-				            </div>
-				            <!-- Message End -->
-				          <ss:authorize access="hasRole('ROLE_USER_FACULTY')">
-							<div class="dropdown-divider"></div>
-							<a
-								href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
-								class="dropdown-item"> <!-- Message Start -->
-								<div class="media">Profile</div> <!-- Message End -->
-							</a>
-
-							<li class="nav-item dropdown"><a class="nav-link"
-								data-toggle="dropdown" href="#"> <img
-									src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }"
-									class="img-circle elevation-2"
-									style="with: 30px; height: 30px; border-radius: 50%">
-							</a>
-								<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
-									style="width: 350px; border-radius: 5%">
-									<div align="center">
-										<img
-											src="${pageContext.request.contextPath}/assets/uploads/${sessionScope.account.avatar }"
-											class="img-circle elevation-2"
-											style="with: 85px; height: 85px; border-radius: 50%">
-									</div>
-									<br>
-									<div align="center">
-										<h3>${sessionScope.account.fullname }</h3>
-										<h4>${sessionScope.account.email }</h4>
-									</div>
-									<!-- Message End -->
-									<ss:authorize access="hasRole('ROLE_USER_FACULTY')">
-										<div class="dropdown-divider"></div>
-										<a href="${pageContext.request.contextPath}/faculty/dashboard"
-											class="dropdown-item"> <!-- Message Start -->
-											<div class="media">Dashboard</div> <!-- Message End -->
-										</a>
-										<div class="dropdown-divider"></div>
-										<a href="${pageContext.request.contextPath}/user/pricing"
-											class="dropdown-item"> <!-- Message Start -->
-											<div class="media">Pack</div> <!-- Message End -->
-										</a>
-									</ss:authorize>
-									<ss:authorize access="hasRole('ROLE_ADMIN')">
-
-										<div class="dropdown-divider"></div>
-										<a
-											href="${pageContext.request.contextPath}/user/account/logout"
-											class="dropdown-item"> <!-- Message Start -->
-											<div class="media">Logout</div> <!-- Message End -->
-										</a>
-										<div class="dropdown-divider"></div>
-
-										<a href="#" class="dropdown-item dropdown-footer">See All
-											Messages</a>
-								</div></li> <a href="${pageContext.request.contextPath}/user/history/index"
-								class="dropdown-item"> <!-- Message Start -->
-								<div class="media">History</div> <!-- Message End -->
-							</a>
-					          <a href="${pageContext.request.contextPath}/faculty/dashboard" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-									Dashboard
-					            </div>
-					            <!-- Message End -->
-					          </a>
-					          <div class="dropdown-divider"></div>
-					          <a href="${pageContext.request.contextPath}/user/pricing" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-									Pack
-					            </div>
-					            <!-- Message End -->
-					          </a>
-					       </ss:authorize>
-					       <ss:authorize access="hasRole('ROLE_ADMIN')">
-							<div class="dropdown-divider"></div>
-							<a href="${pageContext.request.contextPath}/user/pricing"
-								class="dropdown-item"> <!-- Message Start -->
-								<div class="media">Pack</div> <!-- Message End -->
-							</a>
-							</ss:authorize>
-							<div class="dropdown-divider"></div>
-
-							<a
-								href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
-								class="dropdown-item"> <!-- Message Start -->
-								<div class="media">Profile</div> <!-- Message End -->
-							</a>
-							<div class="dropdown-divider"></div>
-							<a href="${pageContext.request.contextPath}/user/account/logout"
-								class="dropdown-item"> <!-- Message Start -->
-								<div class="media">Logout</div> <!-- Message End -->
-							</a>
-							<div class="dropdown-divider"></div>
-							<p class="dropdown-item dropdown-footer"
-								style="text-align: center;">Login Memory Team</p>
-						</div></li>
-
-					          <a href="${pageContext.request.contextPath}/user/history/index" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-									History
-					            </div>
-					            <!-- Message End -->
-					          </a>
-					          <div class="dropdown-divider"></div>
-					          <a href="${pageContext.request.contextPath}/user/pricing" class="dropdown-item">
-					            <!-- Message Start -->
-					            <div class="media">
-									Pack
-					            </div>
-					            <!-- Message End -->
-					          </a>
-					       </ss:authorize>
-				          <div class="dropdown-divider"></div>
-				          <a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }" class="dropdown-item">
-				            <!-- Message Start -->
-				            <div class="media">
-				              	Profile
-				            </div>
-				            <!-- Message End -->
-				          </a>
-				          <div class="dropdown-divider"></div>
-				          <a href="${pageContext.request.contextPath}/user/account/logout" class="dropdown-item">
-				            <!-- Message Start -->
-				            <div class="media">
-				              	Logout
-				            </div>
-				            <!-- Message End -->
-				          </a>
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/profile/index"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">Profile</div> <!-- Message End -->
+								</a>
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/account/logout"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">Logout</div> <!-- Message End -->
+								</a>
 				          <div class="dropdown-divider"></div>
 				          <p class="dropdown-item dropdown-footer" style="text-align: center;">Login Memory Team</p>
 				        </div>
@@ -463,8 +329,6 @@
 			</ul>
 			<c:if test="${sessionScope.account == null}">
 				<ul class="nav navbar-nav navbar-right">
-
-				
 					<li><a class="hover-btn-new log orange" href="#"
 						data-toggle="modal" data-target="#login"><span>Login /
 								Register</span></a></li>

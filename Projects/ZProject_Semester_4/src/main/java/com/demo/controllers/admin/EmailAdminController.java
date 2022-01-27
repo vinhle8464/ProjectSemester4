@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.configurations.MyConstants;
+import com.demo.models.Account;
 import com.demo.models.Email;
 import com.demo.services.AccountService;
 import com.demo.services.admin.EmailServiceAdmin;
@@ -133,4 +134,28 @@ public class EmailAdminController {
 		return "admin/email/replyIndex";		
 	}
 
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String fullname) {
+
+		return searchPagination(1, 25, "email_id", modelMap, model, fullname);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Email> pages = emailServiceAdmin.searchByEmailUser(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("emails", pages.getContent());
+
+			Email email = new Email();		
+			modelMap.put("email", email);
+
+		return "admin/email/index";
+	}
 }
