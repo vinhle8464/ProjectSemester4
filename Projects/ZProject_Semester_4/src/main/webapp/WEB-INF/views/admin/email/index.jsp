@@ -90,7 +90,7 @@
 						</div>
 						
 						<div class="col-sm-7">
-							<input type="text" class="form-control" placeholder="Fullname..." name="keyword">
+							<input type="text" class="form-control" placeholder="Email user..." name="keyword">
 							
 						</div>
 						<div class="col-sm-1">

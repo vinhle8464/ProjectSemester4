@@ -22,7 +22,7 @@ public interface SalaryRepositoryAdmin extends JpaRepository<Salary, Integer> {
 	@Query(value = "select * from Salary where account_id = :accountId order by salary_id desc limit 1", nativeQuery = true)
 	public Salary findNewestSalaryByAccountId(@Param("accountId") int accountId); 
 	
-	@Query(value = "Select * From salary b inner join account u on b.account_id = u.account_id where u.username like %:username%",
+	@Query(value = "Select * From salary b inner join account a on b.account_id = a.account_id where a.username like %:username%",
 			nativeQuery = true)
 	public Page<Salary> searchByUsername(String username, Pageable pageable);
 }

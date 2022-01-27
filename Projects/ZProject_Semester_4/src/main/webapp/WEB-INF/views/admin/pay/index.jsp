@@ -76,15 +76,26 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
+				<form method="get" action="${pageContext.request.contextPath}/admin/pay/search">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-2">
 							<h2>Manage <b>Pays</b>
 											</h2>
 						</div>
-						<div class="col-sm-6">
+						
+						<div class="col-sm-7">
+							<input type="text" class="form-control" placeholder="Username..." name="keyword">
+							
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="Search" class="btn btn-primary">
+						</div>
+						
+						<div class="col-sm-2">
 										
 						</div>
 					</div>
+				</form>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
