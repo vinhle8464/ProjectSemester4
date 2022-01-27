@@ -71,4 +71,10 @@ public class SalaryServiceAdminImpl implements SalaryServiceAdmin{
 		return salaryRepositoryAdmin.findNewestSalaryByAccountId(accountId);
 	}
 
+	@Override
+	public Page<Salary> searchByUsername(int currentPage, int pageSize, String sort, String username) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.salaryRepositoryAdmin.searchByUsername(username, pageable);
+	}
+
 }

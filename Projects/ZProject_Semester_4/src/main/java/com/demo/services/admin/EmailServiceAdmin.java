@@ -3,6 +3,7 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.demo.entites.EmailAjax;
 import com.demo.models.Email;
@@ -22,5 +23,7 @@ public interface EmailServiceAdmin {
 	
 
 	public Page<Email> getPage(int currentPage, int pageSize, String sort);
+	
+	public Page<Email> searchByEmailUser(int currentPage, int pageSize, String sort, String emailUser);
 		
 }
