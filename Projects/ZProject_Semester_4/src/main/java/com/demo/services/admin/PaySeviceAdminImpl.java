@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.entites.PayAjax;
 import com.demo.models.Pay;
+import com.demo.models.Salary;
 import com.demo.repositories.admin.PayRepositoryAdmin;
 
 @Service
@@ -61,6 +62,12 @@ public class PaySeviceAdminImpl implements PayServiceAdmin{
 		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 			return this.payRepositoryAdmin.findAll(pageable);
 	    }
+
+	@Override
+	public Page<Pay> searchByUsername(int currentPage, int pageSize, String sort, String username) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.payRepositoryAdmin.searchByUsername(username, pageable);
+	}
 
 	
 	

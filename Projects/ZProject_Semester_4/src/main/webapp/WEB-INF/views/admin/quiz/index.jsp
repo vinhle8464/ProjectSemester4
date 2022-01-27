@@ -126,15 +126,25 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
+				<form method="get" action="${pageContext.request.contextPath}/admin/quiz/search">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-2">
 							<h2>Manage <b>Quizs</b></h2>
 						</div>
-						<div class="col-sm-4">
+						
+						<div class="col-sm-5">
+							<input type="text" class="form-control" placeholder="Title or Username" name="keyword">
+							
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="Search" class="btn btn-primary">
+						</div>
+						
+						<div class="col-sm-2">
 							<a href="#" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Quiz</span></a>
 							
 						</div>
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-2">
 							<select class="form-control" id="cbbCategory">
 								<option value="all">All</option>
 								<c:forEach var="category" items="${categories }">
@@ -143,6 +153,7 @@
 							 </select>
 						</div>		
 					</div>
+				</form>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>

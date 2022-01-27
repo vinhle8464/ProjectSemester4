@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.models.Account;
 import com.demo.models.Quiz;
 import com.demo.models.Role;
 import com.demo.services.AccountService;
@@ -53,6 +54,31 @@ public class QuizController {
 		Quiz quiz = new Quiz();		
 		modelMap.put("quiz", quiz);
 
+
+		return "admin/quiz/index";
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String fullname) {
+
+		return searchPagination(1, 25, "account_id", modelMap, model, fullname);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Quiz> pages = quizServiceAdmin.searchByKeyword(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("quizs", pages.getContent());
+
+			Quiz quiz = new Quiz();		
+			modelMap.put("quiz", quiz);
 
 		return "admin/quiz/index";
 	}
