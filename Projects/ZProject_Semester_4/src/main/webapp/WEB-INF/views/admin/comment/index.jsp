@@ -110,7 +110,9 @@
 							<td>${comment.account.fullname }</td>
 							<td>${comment.quiz.title }</td>
 							<td width="200px">${comment.comment }</td>
-							<td width="330px">${comment.createDate }</td>
+							<td width="330px"><fmt:formatDate var="createDate" value="${comment.createDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${createDate }</td>
 							
 						</tr>
 						</c:forEach>
