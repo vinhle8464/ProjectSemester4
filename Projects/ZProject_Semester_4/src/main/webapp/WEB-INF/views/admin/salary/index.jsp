@@ -129,7 +129,9 @@
 							<td width="150px">${salary.salaryId }</td>
 							<td>${salary.account.username }</td>
 							<td> <span class="text-success">${salary.salary } $</span></td>
-							<td>${salary.createDate }</td>
+							<td><fmt:formatDate var="createDate" value="${salary.createDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${createDate }</td>
 							<td>${salary.totalClickQuizMonth }</td>
 							<td>
 							

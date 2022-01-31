@@ -30,7 +30,8 @@
 							$('#paymentt').val(pay.payment);
 							$('#titlee').val(pay.title);
 							$('#feee').val(pay.fee);
-							$('#datePaidd').val(pay.datePaid);
+							$('#datePaidd').val(pay.datePaid); 
+							
 							$('#payStatuss').val(pay.payStatus);
 						}
 					});

@@ -23,10 +23,10 @@
 
 <!-- Site Icons -->
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/user/images/favicon.ico"
+	href="${pageContext.request.contextPath}/resources/user/images/logosite.png"
 	type="image/x-icon" />
 <link rel="apple-touch-icon"
-	href="${pageContext.request.contextPath}/resources/user/images/apple-touch-icon.png">
+	href="${pageContext.request.contextPath}/resources/user/images/logosite.png">
 
 <!-- Bootstrap CSS -->
 <!-- Latest compiled and minified CSS -->
