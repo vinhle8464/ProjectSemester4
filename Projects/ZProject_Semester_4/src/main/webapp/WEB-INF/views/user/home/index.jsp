@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
 <mt:layout_user title="Home">
 	
@@ -246,149 +249,113 @@
             </div><!-- end title -->
 
             <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="message-box">
-                        <ul class="nav nav-pills nav-stacked" id="myTabs">
-                            <li><a class="active" href="#tab1" data-toggle="pill">Monthly Subscription</a></li>
-                            <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>
-                        </ul>
-                    </div>
-                </div><!-- end col -->
-            </div>
-
-            <hr class="invis">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tab-content">
-                        <div class="tab-pane active fade show" id="tab1">
-                            <div class="row text-center">
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$45</h2>
-                                            <h3>per month</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$59</h2>
-                                            <h3>per month</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$85</h2>
-                                            <h3>per month</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end row -->
-                        </div><!-- end pane -->
-
-                        <div class="tab-pane fade" id="tab2">
-                            <div class="row text-center">
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$477</h2>
-                                            <h3>Year</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$485</h2>
-                                            <h3>Year</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="pricing-table pricing-table-highlighted">
-                                        <div class="pricing-table-header grd1">
-                                            <h2>$500</h2>
-                                            <h3>Year</h3>
-                                        </div>
-                                        <div class="pricing-table-space"></div>
-                                        <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                        </div>
-                                        <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end row -->
-                        </div><!-- end pane -->
-                    </div><!-- end content -->
-                </div><!-- end col -->
-            </div><!-- end row -->
+	                <div class="col-md-6 offset-md-3">
+	                    <div class="message-box">
+	                        <ul class="nav nav-pills nav-stacked"
+									id="myTabs">
+	                            <li><a class="active" href="#tab1"
+										data-toggle="pill">Monthly Subscription</a></li>
+	                            <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+						<!-- end col -->
+	            </div>
+	
+	            <hr class="invis">
+	
+	            <div class="row">
+	                <div class="col-md-12">
+	                    <div class="tab-content">
+	                        <div class="tab-pane active fade show"
+									id="tab1">
+	                            <div class="row text-center">
+	                            <c:forEach var="pack" items="${packs }"
+											varStatus="i">
+	                                <c:if test="${pack.expiry < 365 }">
+	                                	<div class="col-md-4">
+	                                    <div
+														class="pricing-table pricing-table-highlighted">
+	                                        <div
+															class="pricing-table-header grd1">
+	                                            <h2>${pack.fee }</h2>
+	                                            <h3>${pack.title }</h3>
+	                                            <h4 style="color: white;">${pack.description }</h4>
+	                                        </div>
+	                                        <div
+															class="pricing-table-space"></div>
+	                                        <div
+															class="pricing-table-features">
+	                                            <p>
+																<i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+	                                            <p>
+																<i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+	                                            <p>
+																<i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+	                                            <p>
+																<i class="fa fa-link"></i> <strong>60</strong> Domains</p>
+	                                            <p>
+																<i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                                        </div>
+	                                        <div
+															class="pricing-table-sign-up">
+	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                </c:if>
+	                               </c:forEach>
+	                            </div>
+									<!-- end row -->
+	                        </div>
+								<!-- end pane -->
+	
+	                        <div class="tab-pane fade" id="tab2">
+	                            <div class="row text-center">
+	                                <c:forEach var="pack" items="${packs }"
+											varStatus="i">
+	                                <c:if test="${pack.expiry >= 365 }">
+	                                	<div class="col-md-4">
+	                                    <div
+														class="pricing-table pricing-table-highlighted">
+	                                        <div
+															class="pricing-table-header grd1">
+	                                            <h2>${pack.fee }</h2>
+	                                            <h3>${pack.title }</h3>
+	                                            <h4 style="color: white;">${pack.description }</h4>
+	                                        </div>
+	                                        <div
+															class="pricing-table-space"></div>
+	                                        <div
+															class="pricing-table-features">
+	                                            <p>
+																<i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+	                                            <p>
+																<i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+	                                            <p>
+																<i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+	                                            <p>
+																<i class="fa fa-link"></i> <strong>60</strong> Domains</p>
+	                                            <p>
+																<i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                                        </div>
+	                                        <div
+															class="pricing-table-sign-up">
+	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                </c:if>
+	                               </c:forEach>
+	                            </div>
+									<!-- end row -->
+	                        </div>
+								<!-- end pane -->
+	                    </div>
+							<!-- end content -->
+	                </div>
+						<!-- end col -->
+	            </div>
         </div><!-- end container -->
     </div><!-- end section -->
 

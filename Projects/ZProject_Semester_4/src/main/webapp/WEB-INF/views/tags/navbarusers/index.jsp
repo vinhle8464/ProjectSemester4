@@ -285,9 +285,7 @@
 							<div align="center">
 								<h3>${sessionScope.account.fullname }</h3>
 								<h4>${sessionScope.account.email }</h4>
-								<h4>
-									<a href="${pageContext.request.contextPath}/user/pricing">Pack</a>
-								</h4>
+								${sessionScope.result }
 							</div>
 							<!-- Message End -->
 							<ss:authorize access="hasRole('ROLE_USER_FACULTY')">
@@ -312,7 +310,7 @@
 								</a>
 							</ss:authorize>
 								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/profile/index"
+								<a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">Profile</div> <!-- Message End -->
 								</a>

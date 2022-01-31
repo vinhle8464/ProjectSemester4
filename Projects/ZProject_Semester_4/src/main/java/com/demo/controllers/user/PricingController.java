@@ -83,7 +83,7 @@ public class PricingController {
 				int number = now.getDate() - accountPack.getStartDate().getDate();
 				System.out.println("number: " + number);
 				System.out.println("expiry: " +  accountPack.getPack().getExpiry());
-				if(number >  accountPack.getPack().getExpiry()) {
+				if(number >=  accountPack.getPack().getExpiry()) {
 					System.out.println("Het han");
 				} else {
 					System.out.println("Con han");

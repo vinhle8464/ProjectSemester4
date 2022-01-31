@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.demo.models.Account;
 import com.demo.services.AccountService;
 import com.demo.services.admin.CategoryServiceAdmin;
+import com.demo.services.user.PricingService;
 import com.demo.services.user.RoleServiceUser;
 
 @Controller
@@ -26,6 +27,8 @@ public class HomeController {
 	private RoleServiceUser roleServiceUser;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private PricingService pricingService;
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String register(ModelMap modelMap) {
@@ -34,6 +37,7 @@ public class HomeController {
 		
 		modelMap.put("account", account);
 		modelMap.put("home", true);
+		modelMap.put("packs", pricingService.findAll());
 		
 		return "user/home/index";
 	}
