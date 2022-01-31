@@ -142,6 +142,11 @@
 								class="dropdown-item"> <!-- Message Start -->
 								<div class="media">Profile</div> <!-- Message End -->
 							</a>
+							<div class="dropdown-divider"></div>
+							<a href="${pageContext.request.contextPath}/user/payment/index"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Payment</div> <!-- Message End -->
+							</a>
 						</ss:authorize>
 						<ss:authorize access="hasRole('ROLE_ADMIN')">
 							<div class="dropdown-divider"></div>
