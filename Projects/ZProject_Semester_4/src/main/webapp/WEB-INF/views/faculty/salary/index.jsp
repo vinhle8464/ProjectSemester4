@@ -63,7 +63,10 @@
 									
 									<td>${i.index + 1 }</td>
 									<td> <span class="text-primary">${salary.salary } $</span></td>
-									<td>${salary.createDate }</td>
+									<td><fmt:formatDate var="createDate" value="${salary.createDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${createDate }
+								</td>
 									<td>${salary.totalClickQuizMonth }</td>
 									
 								</tr>

@@ -129,8 +129,12 @@
 								<td><strong>${email.emailUser }</strong></td>
 								<td><strong>${email.title }</strong></td>
 								<td><strong>${email.phoneNumber }</strong></td>
-								<td><strong>${email.sendDate }</strong></td>
-								<td><strong>${email.replyDate }</strong></td>
+								<td><strong><fmt:formatDate var="sendDate" value="${email.sendDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${sendDate }</strong></td>
+								<td><strong><fmt:formatDate var="replyDate" value="${email.replyDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${replyDate }</strong></td>
 								<td><strong>${email.checked ? "Yes" : "No" }</strong></td>
 							</tr>
 					</c:if>
@@ -141,8 +145,12 @@
 								<td>${email.emailUser }</td>
 								<td>${email.title }</td>
 								<td>${email.phoneNumber }</td>
-								<td>${email.sendDate }</td>
-								<td>${email.replyDate }</td>
+								<td><strong><fmt:formatDate var="sendDate" value="${email.sendDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${sendDate }</strong></td>
+								<td><strong><fmt:formatDate var="replyDate" value="${email.replyDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${replyDate }</strong></td>
 								<td>${email.checked ? "Yes" : "No" }</td>
 								
 							</tr>

@@ -7,10 +7,8 @@
 <!-- Brand Logo -->
 <a href="${pageContext.request.contextPath}/admin/dashboard"
 	class="brand-link"> <img
-	src="${pageContext.request.contextPath}/resources/admin/dist/img/AdminLTELogo.png"
-	alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-	style="opacity: .8"> <span class="brand-text font-weight-light">AdminLTE
-		3</span>
+	src="${pageContext.request.contextPath}/resources/admin/images/logoquiz2.png"
+	alt="AdminLTE Logo" width="100%"> <span class="brand-text font-weight-light"></span>
 </a>
 
 <!-- Sidebar -->
@@ -33,10 +31,8 @@
 <!-- Brand Logo -->
 <a href="${pageContext.request.contextPath}/faculty/dashboard"
 	class="brand-link"> <img
-	src="${pageContext.request.contextPath}/resources/admin/dist/img/AdminLTELogo.png"
-	alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-	style="opacity: .8"> <span class="brand-text font-weight-light">AdminLTE
-		3</span>
+	src="${pageContext.request.contextPath}/resources/admin/images/logoquiz2.png"
+	alt="AdminLTE Logo" width="100%"> <span class="brand-text font-weight-light"></span>
 </a>
 
 <!-- Sidebar -->
