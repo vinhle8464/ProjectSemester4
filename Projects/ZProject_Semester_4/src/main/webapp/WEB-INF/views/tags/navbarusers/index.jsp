@@ -294,6 +294,11 @@
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">Dashboard</div> <!-- Message End -->
 								</a>
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/payment/index"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">Payment</div> <!-- Message End -->
+								</a>
 							</ss:authorize>
 							<ss:authorize access="hasRole('ROLE_ADMIN')">
 								<div class="dropdown-divider"></div>
@@ -302,18 +307,24 @@
 									<div class="media">Dashboard</div> <!-- Message End -->
 								</a>
 							</ss:authorize>
-							<ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
-								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/history/index"
-									class="dropdown-item"> <!-- Message Start -->
-									<div class="media">History</div> <!-- Message End -->
-								</a>
-							</ss:authorize>
+							
 								<div class="dropdown-divider"></div>
 								<a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">Profile</div> <!-- Message End -->
 								</a>
+								<ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/history/index"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">History</div> <!-- Message End -->
+								</a>
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/payment/index"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">Payment</div> <!-- Message End -->
+								</a>
+								</ss:authorize>
 								<div class="dropdown-divider"></div>
 								<a href="${pageContext.request.contextPath}/user/account/logout"
 									class="dropdown-item"> <!-- Message Start -->

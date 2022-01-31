@@ -77,10 +77,13 @@ public class QuizFacultyController implements ServletContextAware{
 			@RequestParam(value = "categoryId") int categoryId, @RequestParam(value = "file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
 
+		Quiz quiz2 = quizServiceFaculty.findById(quiz.getQuizId());
 		Account account = accountService.findByUsername(authentication.getName());
 		Category category = categoryServiceAdmin.findById(categoryId);
 		quiz.setCategory(category);
 		quiz.setAccount(account);
+		quiz.setDateCreated(quiz2.getDateCreated());
+		quiz.setTimer(quiz2.getTimer());
 		String fileNameUpload = UploadHelper.upload(servletContext, file);
 		if (fileNameUpload != null) {
 			redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
