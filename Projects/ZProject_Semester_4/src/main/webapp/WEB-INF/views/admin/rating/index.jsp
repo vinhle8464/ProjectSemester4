@@ -108,7 +108,9 @@
 							<td>${rating.account.fullname }</td>
 							<td>${rating.quiz.title }</td>
 							<td width="200px">${rating.star }</td>
-							<td width="330px">${rating.createDate }</td>
+							<td width="330px"><fmt:formatDate var="createDate" value="${rating.createDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${createDate }</td>
 						</tr>
 						</c:forEach>
 						  </c:when>
