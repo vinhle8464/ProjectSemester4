@@ -26,6 +26,7 @@ public interface SalaryServiceAdmin {
 
 //	public SalaryAjax findByIdAjax(int SalaryId);
 //	
+	public double sumfacultysalarybyyearandmonth(int year,int month);
 
 	public Page<Salary> getPage(int currentPage, int pageSize, String sort);
 

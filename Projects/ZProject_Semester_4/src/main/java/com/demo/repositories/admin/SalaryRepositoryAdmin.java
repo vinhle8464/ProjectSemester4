@@ -1,5 +1,7 @@
 package com.demo.repositories.admin;
 
+import java.util.List;
+
 import javax.websocket.server.PathParam;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +20,10 @@ public interface SalaryRepositoryAdmin extends JpaRepository<Salary, Integer> {
 	
 	@Query(value = "select * from Salary where account_id = :accountId order by salary_id desc limit 1", nativeQuery = true)
 	public Salary findNewestSalaryByAccountId(@Param("accountId") int accountId); 
+	
+	@Query("select sum(salary) from Salary where year(createDate) = :year and month(createDate) = :month")
+	public double sumfacultysalarybyyearandmonth(@Param("year") int year,@Param("month") int month);
+	
+	@Query("from Salary where account_id = :accountId and year(createDate) = :year and month(createDate) = :month")
+	public List<Salary> facultysalarybyyearandmonth(@Param("accountId") int accountId,@Param("year") int year,@Param("month") int month);
 }

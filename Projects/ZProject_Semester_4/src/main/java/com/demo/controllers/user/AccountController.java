@@ -44,7 +44,7 @@ import com.demo.services.user.RoleServiceUser;
 import com.demo.validators.AccountValidator;
 
 @Controller
-@RequestMapping(value = { "user/account", "login/oauth2/code" })
+@RequestMapping(value = { "user/account","login/oauth2/code" })
 public class AccountController implements ServletContextAware {
 	@Autowired
 	private AccountValidator accountValidator;
@@ -117,6 +117,7 @@ public class AccountController implements ServletContextAware {
 		}
 
 	}
+
 	public void Changepasswordbymail(Account account, String hash) {
 
 		String email = MyConstants.MY_EMAIL;
@@ -162,16 +163,17 @@ public class AccountController implements ServletContextAware {
 
 	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, ModelMap modelMap) {
-
+			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request,
+			ModelMap modelMap) {
+		HttpSession session = request.getSession();
 		if (error != null) {
-			modelMap.put("msg", "Invalid!");
+			session.setAttribute("msg", "<script>alert('Invalid')</script>");
 		}
 		if (logout != null) {
-			modelMap.put("msg", "Logout Successfully!");
+			session.setAttribute("msg", "<script>alert('Logout Successfully!')</script>");
 		}
 
-		return "user/account/login";
+		return "redirect:/user/home/index";
 	}
 
 	@RequestMapping(value = { "process-login" }, method = RequestMethod.GET)
@@ -203,33 +205,39 @@ public class AccountController implements ServletContextAware {
 	public String register(ModelMap modelMap, @RequestParam(value = "terms", required = false) boolean terms,
 			@ModelAttribute("account") @Valid Account account, @RequestParam("role") int[] roles,
 			@RequestParam(value = "file") MultipartFile file, @RequestParam("repassword") String repassword,
-			RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+			RedirectAttributes redirectAttributes, BindingResult bindingResult, HttpServletRequest request) {
 		accountValidator.validate(account, bindingResult);
+		HttpSession session = request.getSession();
 		if (bindingResult.hasErrors()) {
 			return "user/account/register";
 		}
 		if (terms) {
 			if (account.getPassword().equalsIgnoreCase(repassword)) {
-				String hash = new BCryptPasswordEncoder().encode(account.getPassword());
-				account.setPassword(hash);
-				String fileNameUpload = UploadHelper.upload(servletContext, file);
-				redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
-				account.setAvatar(fileNameUpload);
-				if (roles != null && roles.length > 0) {
-					for (int role : roles) {
-						account.getRoles().add(roleServiceUser.find(role));
+				try {
+					String hash = new BCryptPasswordEncoder().encode(account.getPassword());
+					account.setPassword(hash);
+					String fileNameUpload = UploadHelper.upload(servletContext, file);
+					redirectAttributes.addFlashAttribute("fileName", fileNameUpload);
+					account.setAvatar(fileNameUpload);
+					if (roles != null && roles.length > 0) {
+						for (int role : roles) {
+							account.getRoles().add(roleServiceUser.find(role));
+						}
 					}
-				}
 
-				Date date;
-				ZoneId defaultZoneId = ZoneId.systemDefault();
-				LocalDate localDate = LocalDate.now();
-				date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
-				account.setCreateDate(date);
-				String hash2 = new BCryptPasswordEncoder().encode(account.getEmail());
-				sendMail(account, hash2);
-				accountService.save(account);
-				return "user/home/index";
+					Date date;
+					ZoneId defaultZoneId = ZoneId.systemDefault();
+					LocalDate localDate = LocalDate.now();
+					date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+					account.setCreateDate(date);
+					String hash2 = new BCryptPasswordEncoder().encode(account.getEmail());
+					sendMail(account, hash2);
+					accountService.save(account);
+					return "user/home/index";
+				} catch (Exception e) {
+					session.setAttribute("msg", "<script>alert('" + e.getMessage() + "')</script>");
+					return "redirect:/user/home/index";
+				}
 			} else {
 				modelMap.put("msg", "Retype Password Is Not Correct! ");
 				return "redirect:/user/home/index";
@@ -241,32 +249,39 @@ public class AccountController implements ServletContextAware {
 
 	}
 
+	
+
 	@RequestMapping(value = "welcome", method = RequestMethod.GET)
 	public String welcome(Authentication authentication, HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 
 		Account account = accountService.findByUsername(authentication.getName());
+		if(account==null) {
+			account=accountService.findByUsername((String)session.getAttribute("email"));
+		}
+		System.out.println(account.isStatus());
 		if (account.isStatus()) {
 
-		if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
-			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
-			return "redirect:/admin/dashboard/index";
-		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_FACULTY]")) {
-			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
-			return "redirect:/faculty/dashboard/index";
-		} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
-			session.setAttribute("account", accountService.findByUsername(authentication.getName()));
-			session.setAttribute("counta", accountServiceUser.countAccountUser());
-			
-			String referer = request.getHeader("Referer");
-		    return "redirect:"+ referer;
-		} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
-				"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
-			session.setAttribute("account", accountService.findByUsername((String) session.getAttribute("email")));
-			return "redirect:/user/home/index";
+			if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
+				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+				return "redirect:/admin/dashboard/index";
+			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_FACULTY]")) {
+				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+				return "redirect:/faculty/dashboard/index";
+			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
+				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+				session.setAttribute("counta", accountServiceUser.countAccountUser());
+
+				String referer = request.getHeader("Referer");
+				return "redirect:" + referer;
+			} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
+					"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
+				session.setAttribute("account", accountService.findByUsername((String) session.getAttribute("email")));
+				return "redirect:/user/home/index";
+			}
 		}
-		}
-		return "404/index";
+		session.setAttribute("msg", "<script>alert('Account not Activated! Please Check Your Mail!')</script>");
+		return "redirect:/user/home/index";
 	}
 
 	@RequestMapping(value = "accessDenied", method = RequestMethod.GET)
@@ -277,39 +292,43 @@ public class AccountController implements ServletContextAware {
 
 	@RequestMapping(value = "ActivateAccount", method = RequestMethod.GET)
 	public String ActivateAccount(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		Account account = accountService.findByUsername(request.getParameter("key1"));
 		if (BCrypt.checkpw(account.getEmail(), request.getParameter("key2"))) {
 			account.setStatus(true);
 			accountService.save(account);
+			session.setAttribute("msg", "<script>alert('Account activation successfully!')</script>");
 			return "redirect:/user/home/index";
 		} else {
 			return "404/index";
 		}
 
 	}
+
 	@RequestMapping(value = "forgetpassword", method = RequestMethod.POST)
-	public String forgetpassword(@RequestParam("accountname") String name ,@RequestParam("email") String email,@RequestParam("newpassword") String newpassword,ModelMap modelMap) {
+	public String forgetpassword(@RequestParam("accountname") String name, @RequestParam("email") String email,
+			@RequestParam("newpassword") String newpassword, ModelMap modelMap) {
 		Account account = accountService.findByUsername(name);
 		if (!account.getEmail().equalsIgnoreCase(email)) {
 			modelMap.put("msg", "Wrong Email!");
 			return "redirect:/user/home/index";
 		} else {
 			String hash2 = new BCryptPasswordEncoder().encode(newpassword);
-			sendMail(account, hash2);
+			Changepasswordbymail(account, hash2);
 			modelMap.put("msg", "Pleasw Check your email!");
 			return "redirect:/user/home/index";
 		}
 	}
+
 	@RequestMapping(value = "forgetpassword", method = RequestMethod.GET)
-	public String forgetpassword(HttpServletRequest request,ModelMap modelMap) {
+	public String forgetpassword(HttpServletRequest request, ModelMap modelMap) {
 		Account account = accountService.findByUsername(request.getParameter("key1"));
 		modelMap.put("msg", "Change password successfully!");
-			account.setPassword(request.getParameter("key2"));
-			accountService.save(account);
-			
-			return "redirect:/user/home/index";
-	
-		}
+		account.setPassword(request.getParameter("key2"));
+		accountService.save(account);
 
-	
+		return "redirect:/user/home/index";
+
+	}
+
 }

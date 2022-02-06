@@ -1,5 +1,7 @@
 package com.demo.controllers.user;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,12 +40,12 @@ public class HomeController {
 		return "user/home/index";
 	}
 
-	@RequestMapping(value = "googlelogin", method = RequestMethod.GET)
-	public String google(ModelMap modelMap, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "google", method = RequestMethod.GET)
+	public String google(ModelMap modelMap, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
 		if (accountService.findByUsername(email) == null) {
-			int[] roles = { 2 };
+			int[] roles = { 3 };
 			Account account = new Account();
 			account.setUsername((String) session.getAttribute("email"));
 			String hash = new BCryptPasswordEncoder().encode((String) session.getAttribute("email"));
@@ -51,8 +53,15 @@ public class HomeController {
 			account.setEmail((String) session.getAttribute("email"));
 			account.setFullname((String) session.getAttribute("name"));
 			account.setAddr("no");
+
+			Date date;
+			ZoneId defaultZoneId = ZoneId.systemDefault();
+			LocalDate localDate = LocalDate.now();
+			date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+			account.setDob(date);
+			account.setCreateDate(date);
 			account.setGender(true);
-			account.setAvatar((String) session.getAttribute("picture"));
+			account.setAvatar("4a20e5edeb464f5f864da72c5d2878f3.png");
 			account.setStatus(true);
 			if (roles != null && roles.length > 0) {
 				for (int role : roles) {
@@ -60,11 +69,9 @@ public class HomeController {
 				}
 			}
 			accountService.save(account);
-		} else {
-
 		}
-
-		modelMap.put("msg", "Login As Google Account " + session.getAttribute("name"));
+		session.setAttribute("email", email);
+		session.setAttribute("msg", "<script>alert('Login As Google Accountt!')</script>");
 		return "redirect:/user/account/welcome";
 
 	}

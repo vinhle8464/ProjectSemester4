@@ -62,6 +62,18 @@ public class PaySeviceAdminImpl implements PayServiceAdmin{
 			return this.payRepositoryAdmin.findAll(pageable);
 	    }
 
+	@Override
+	public List<PayAjax> findThisYear(int year, int month) {
+		// TODO Auto-generated method stub
+		return payRepositoryAdmin.findThisYear(year, month);
+	}
+
+	@Override
+	public double sumadminsalarybyyearandmonth(int year, int month) {
+		// TODO Auto-generated method stub
+		return payRepositoryAdmin.sumadminsalarybyyearandmonth(year, month);
+	}
+
 	
 	
 	

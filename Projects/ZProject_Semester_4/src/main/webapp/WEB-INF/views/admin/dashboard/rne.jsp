@@ -28,7 +28,7 @@
 
     <!-- Main content -->
     <div id="chartdiv"
-							style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+			style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
      <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -43,58 +43,35 @@
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Indexing</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
+                      <th style="width: 10px"></th>
+                      <th>Title</th>
+                      <th style="width: 40px">Value</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>1.</td>
                       <td>Total income in 2022</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger"
-														style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
+                    
+                      <td><span class="badge bg-danger">${totalincome }</span></td>
                     </tr>
                     <tr>
                       <td>2.</td>
                       <td>Total income in this month</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning"
-														style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
+                    
+                      <td><span class="badge bg-warning">${totalincomethismonth }</span></td>
                     </tr>
                     <tr>
                       <td>3.</td>
                       <td>Total expenditure in 2022</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary"
-														style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
+                     
+                      <td><span class="badge bg-primary">${totalept }</span></td>
                     </tr>
                     <tr>
                       <td>4.</td>
                       <td>Total expenditure in this month</td>
-                      <td>
-                        <div
-													class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success"
-														style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
+                     
+                      <td><span class="badge bg-success">${totaleptthsmonth }</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -149,14 +126,14 @@
 			"balloonText" : "[[title]] of [[category]]:[[value]]",
 			"fillAlphas" : 1,
 			"id" : "AmGraph-1",
-			"title" : "User",
+			"title" : "Admin Net Revenue",
 			"type" : "column",
 			"valueField" : "column-1"
 		}, {
 			"balloonText" : "[[title]] of [[category]]:[[value]]",
 			"fillAlphas" : 1,
 			"id" : "AmGraph-2",
-			"title" : "Faculty",
+			"title" : "Faculty Net Revenue",
 			"type" : "column",
 			"valueField" : "column-2"
 		}
@@ -179,55 +156,7 @@
 			"size" : 15,
 			"text" : "Revenue in 2022"
 		} ],
-		"dataProvider" : [ {
-			"category" : "January",
-			"column-1" : 1,
-			"column-2" : 3
-		}, {
-			"category" : "February",
-			"column-1" : 6,
-			"column-2" : 7
-		}, {
-			"category" : "March",
-			"column-1" : 2,
-			"column-2" : 3
-		}, {
-			"category" : "April",
-			"column-1" : "50",
-			"column-2" : "25"
-		}, {
-			"category" : "May",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "June",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "JuLy",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "August",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "September",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "October",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "November",
-			"column-1" : null,
-			"column-2" : null
-		}, {
-			"category" : "December",
-			"column-1" : null,
-			"column-2" : null
-		} ]
+		"dataProvider" :${category}
 	});
 </script>
 <script type="text/javascript">
@@ -253,42 +182,6 @@
 		"allLabels" : [],
 		"balloon" : {},
 		"titles" : [],
-		"dataProvider" : [ {
-			"country" : "January",
-			"litres" : 156.9
-		}, {
-			"country" : "Febuary",
-			"litres" : 131.1
-		}, {
-			"country" : "March",
-			"litres" : 115.8
-		}, {
-			"country" : "April",
-			"litres" : 109.9
-		}, {
-			"country" : "May",
-			"litres" : 108.3
-		}, {
-			"country" : "June",
-			"litres" : 99
-		}, {
-			"country" : "July",
-			"litres" : null
-		}, {
-			"country" : "August",
-			"litres" : null
-		}, {
-			"country" : "September",
-			"litres" : null
-		}, {
-			"country" : "October",
-			"litres" : null
-		}, {
-			"country" : "November",
-			"litres" : null
-		}, {
-			"country" : "December",
-			"litres" : null
-		} ]
+		"dataProvider" : ${category2}
 	});
 </script>

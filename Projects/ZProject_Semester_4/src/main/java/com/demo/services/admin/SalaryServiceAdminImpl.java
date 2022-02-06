@@ -71,4 +71,10 @@ public class SalaryServiceAdminImpl implements SalaryServiceAdmin{
 		return salaryRepositoryAdmin.findNewestSalaryByAccountId(accountId);
 	}
 
+	@Override
+	public double sumfacultysalarybyyearandmonth(int year, int month) {
+		// TODO Auto-generated method stub
+		return salaryRepositoryAdmin.sumfacultysalarybyyearandmonth(year, month);
+	}
+
 }

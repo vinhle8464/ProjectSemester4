@@ -45,7 +45,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		request.getSession().setAttribute("name", name);
 		request.getSession().setAttribute("picture", picture);
 		request.getSession().setAttribute("code", request.getParameter("code").toString());
-		redirectStrategy.sendRedirect(request, response, "/googlelogin");
+		redirectStrategy.sendRedirect(request, response, "/google");
 
 		super.onAuthenticationSuccess(request, response, authentication);
 
