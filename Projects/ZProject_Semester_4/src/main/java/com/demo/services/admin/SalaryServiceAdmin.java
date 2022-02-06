@@ -3,6 +3,8 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
+
 import com.demo.models.Salary;
 
 public interface SalaryServiceAdmin {
@@ -30,4 +32,5 @@ public interface SalaryServiceAdmin {
 	
 	public Page<Salary> searchByUsername(int currentPage, int pageSize, String sort, String username);
 
+	public List<Salary> facultysalarybyyearandmonth(int accountId, int year, int month);
 }

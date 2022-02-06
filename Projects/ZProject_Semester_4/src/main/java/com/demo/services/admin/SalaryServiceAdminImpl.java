@@ -81,4 +81,10 @@ public class SalaryServiceAdminImpl implements SalaryServiceAdmin{
 		return this.salaryRepositoryAdmin.searchByUsername(username, pageable);
 	}
 
+	@Override
+	public List<Salary> facultysalarybyyearandmonth(int accountId, int year, int month) {
+		// TODO Auto-generated method stub
+		return salaryRepositoryAdmin.facultysalarybyyearandmonth(accountId, year, month);
+	}
+
 }

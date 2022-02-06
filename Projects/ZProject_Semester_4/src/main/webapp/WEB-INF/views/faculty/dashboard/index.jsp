@@ -42,7 +42,7 @@
                     <tr>
                       <th style="width: 10px"></th>
                       <th>Title</th>
-                      <th style="width: 40px">Value</th>
+                      <th style="width: 40px">USD</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,24 +52,14 @@
                     
                       <td><span class="badge bg-danger">${totalincome }</span></td>
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Total income in this month</td>
-                    
-                      <td><span class="badge bg-warning">${totalincomethismonth }</span></td>
-                    </tr>
+                   
                     <tr>
                       <td>3.</td>
-                      <td>Total expenditure in 2022</td>
+                      <td>Total times do test in 2022</td>
                      
-                      <td><span class="badge bg-primary">${totalept }</span></td>
+                      <td><span class="badge bg-primary">${totaldotest}</span></td>
                     </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Total expenditure in this month</td>
-                     
-                      <td><span class="badge bg-success">${totaleptthsmonth }</span></td>
-                    </tr>
+                   
                   </tbody>
                 </table>
                  
@@ -81,7 +71,8 @@
               <div class="col-md-6">
             <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Expenditure in 2022</h3>
+                <h3 class="card-title">
+Number of exams in 2022</h3>
               </div>
               <div class="card-body p-0">
                <div class="card" id="chartdiv2"
@@ -104,7 +95,8 @@
 	src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript"
 	src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
-
+<script type="text/javascript"
+	src="https://www.amcharts.com/lib/3/radar.js"></script>
 
 <!-- amCharts javascript code -->
 <script type="text/javascript">
@@ -124,7 +116,7 @@
 							"balloonText": "[[title]] of [[category]]:[[value]]",
 							"fillAlphas": 1,
 							"id": "AmGraph-1",
-							"title": "graph 1",
+							"title": "Net Value",
 							"type": "column",
 							"valueField": "column-1"
 						}
@@ -134,7 +126,7 @@
 						{
 							"id": "ValueAxis-1",
 							"stackType": "3d",
-							"title": "Axis title"
+							"title": "USD"
 						}
 					],
 					"allLabels": [],
@@ -147,23 +139,10 @@
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "Chart Title"
+							"text": ${year}
 						}
 					],
-					"dataProvider": [
-						{
-							"category": "category 1",
-							"column-1": 1
-						},
-						{
-							"category": "category 2",
-							"column-1": 6
-						},
-						{
-							"category": "category 3",
-							"column-1": 2
-						}
-					]
+					"dataProvider": ${category}
 				}
 			);
 		</script>
@@ -173,7 +152,7 @@
 		"categoryField" : "country",
 		"startDuration" : 2,
 		"graphs" : [ {
-			"balloonText" : "[[value]] litres of beer per year",
+			"balloonText" : "[[value]] Clicks in thish month",
 			"bullet" : "round",
 			"id" : "AmGraph-1",
 			"valueField" : "litres"

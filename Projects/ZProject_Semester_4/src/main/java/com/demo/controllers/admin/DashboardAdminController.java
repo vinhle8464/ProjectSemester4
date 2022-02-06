@@ -246,6 +246,8 @@ public class DashboardAdminController {
 		modelMap.put("totaleptthsmonth", totaleptthismonth);
 		modelMap.put("category", json);
 		modelMap.put("category2", json2);
+		String year="\"Revenue in "+java.time.LocalDateTime.now().getYear()+"\"";
+		modelMap.put("year", year);
 		return "admin/dashboard/rne";
 	}
 
