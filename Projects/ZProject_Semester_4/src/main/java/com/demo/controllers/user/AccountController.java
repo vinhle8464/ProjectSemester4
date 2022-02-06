@@ -314,7 +314,7 @@ public class AccountController implements ServletContextAware {
 				return "redirect:/faculty/dashboard/index";
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
 				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
-				session.setAttribute("counta", accountServiceUser.countAccountUser());
+//				session.setAttribute("counta", accountServiceUser.countAccountUser());
 				String referer = request.getHeader("Referer");
 
 				// Check Pack Of Account
