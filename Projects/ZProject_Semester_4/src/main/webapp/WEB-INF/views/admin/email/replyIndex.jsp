@@ -145,13 +145,17 @@
 			              <!-- /.mailbox-controls -->
 			              <div class="mailbox-read-message with-border">
 			                <h5>YOU: ${email.content }</h5>
-			                <span class="mailbox-read-time">${email.sendDate }</span>
+			                <span class="mailbox-read-time"><fmt:formatDate var="sendDate" value="${email.sendDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${sendDate }</span>
 			              </div>
 			              <!-- /.mailbox-read-message -->
 			              <c:if test="${email.replyContent != null }">
 			              	<div class="mailbox-read-message with-border">
 			                	<h5>ME: ${email.replyContent }</h5>
-			                	<span class="mailbox-read-time">${email.replyDate }</span>
+			                	<span class="mailbox-read-time"><fmt:formatDate var="replyDate" value="${email.replyDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${replyDate }</span>
 			              	</div>
 			              </c:if>
 			            </div>

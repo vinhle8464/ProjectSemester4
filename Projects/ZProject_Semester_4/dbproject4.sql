@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 26, 2022 at 04:15 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 31, 2022 at 09:50 AM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,13 +47,14 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`, `create_date`) VALUES
-(1, 'vinh', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'vinh phat', 'lephat8464@gmail.com', '2021-12-08', 'asdfasf', b'01', '23423234', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08'),
-(2, 'user', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Faculty User', 'lephat8464@gmail.com', '2021-12-15', 'asdfasf', b'01', '234234234', '3c83adfb0bfe4c10bac147091d3888f3.png', b'01', '2021-12-08'),
-(3, 'ngoctrantran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0987654321', 'Photo28.jpg', b'01', '2021-12-08'),
-(6, 'ngoctran', '$2a$10$msWcvnVP4KhL7HqtUq6ndOhDsC8iWiQUmPKXPeMhxHubJFLwvcO.W', 'Ngoc Tran', 'ngoctran@gmail.com', '2001-01-04', 'Tay Ninh', b'00', '0999123456', 'f56bb23b50c949fdad9d6ad09f5e4218.jpg', b'01', '2021-12-08'),
-(95, 'usertran', '$2a$10$13/qJ3Yh7ChXLKcR1PZ4L.GrK4Iq3Tcb/3ZpJD1LdfCvhdGj0xQai', 'User Ngoc Tran', 'usertran@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0888123456', 'Photo24.jpg', b'01', '2021-12-08'),
-(96, 'vinhuser', '$2a$10$RXJJ75SwpeW9XAWSK8lm7OzcOati1Zpoo52TkZ6pcg8zVwPFs0kqe', 'Vinh Le', 'lephat8464@gmail.com', '2021-12-30', 'Tay ninh', b'01', '0942755402', '7f4cc922b5134084870bd66aae82e97a.png', b'00', '2022-01-25'),
-(97, 'ad', '$2a$10$Hu5DzKD1ynx8cPxMUBSe9uEmugjD2yXce9im.0xrcelPMnqoZQyZS', 'Vinh Le', 'lephat8464@gmail.com', '2021-12-30', 'Tay ninh', b'01', '0942755402', '3be55ececb5d492480422c97f7723ca3.png', b'00', '2022-01-25');
+(98, 'admin', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Admin Nguyen', 'adminnguyen.123@gmail.com', '1995-01-01', 'Tp HCM', b'00', '0999999999', '7ae495b8454a4fa18ce205e45d19cc1f.jpg', b'01', '2022-01-31'),
+(99, 'ngoctran', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0765716380', 'd817a1cee4314c58a141d5094be6a954.jpg', b'01', '2022-01-31'),
+(100, 'faculty', '$2a$04$fRTvF4CbQsOyPVix5QE5TeaoQAc34OjQ/RYfcmEfDaQRDCVZL0spK', 'Faculty John', 'tranmini0401@gmail.com', '1992-01-01', 'Binh Duong', b'01', '0999123456', '6b751578e8ca40f2ac687be9fb6ebd85.jpg', b'01', '2022-01-31'),
+(101, 'chuongnau', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chu Ong Nau', 'lephat8464@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0942755402', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
+(102, 'chiongngaongo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Ngao Ngo', 'chiongngaongo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0111111111', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
+(103, 'chionglotomo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Lo To Mo', 'chionglotomo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0123456123', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
+(104, 'chiongxanhle', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Xanh Le', 'chiongxanhle@gmail.com', '2001-06-14', 'Tay Ninh', b'00', '0888555222', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
+(105, 'faculty2', '$2a$10$iOhJsUia8lMgO5gSV5wMuehX5rRng.WmptNr2gJfntrOubbvn0dPi', 'Faculty Marry', 'marry@gmail.com', '1993-01-07', 'Dong Nai', b'00', '0133156555', 'd008449ac37b4531a065b2a37911e568.jpg', b'01', '2022-01-31');
 
 -- --------------------------------------------------------
 
@@ -68,14 +69,6 @@ CREATE TABLE `account_pack` (
   `start_date` date NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account_pack`
---
-
-INSERT INTO `account_pack` (`account_pack_id`, `account_id`, `pack_id`, `start_date`, `status`) VALUES
-(1, 95, 5, '2022-01-19', b'01'),
-(2, 95, 2, '2022-01-25', b'01');
 
 -- --------------------------------------------------------
 
@@ -93,13 +86,14 @@ CREATE TABLE `account_role` (
 --
 
 INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 1),
-(6, 2),
-(95, 3),
-(96, 3),
-(97, 3);
+(98, 1),
+(99, 3),
+(100, 2),
+(101, 3),
+(102, 3),
+(103, 3),
+(104, 3),
+(105, 2);
 
 -- --------------------------------------------------------
 
@@ -120,60 +114,46 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `status`) VALUES
-(2, 'Ngoc', 12, b'00', b'01'),
-(3, 'Lan', 12, b'00', b'01'),
-(4, 'Han', 12, b'00', b'01'),
-(5, 'Tran', 12, b'01', b'01'),
-(6, 'Sai gon', 13, b'00', b'01'),
-(7, 'Da Nang', 13, b'00', b'01'),
-(8, 'Tay Ninh', 13, b'01', b'01'),
-(9, 'Ha Noi', 13, b'00', b'01'),
-(10, 'Roi', 14, b'00', b'01'),
-(11, 'Chua', 14, b'00', b'01'),
-(12, 'Khong muon an com', 14, b'00', b'01'),
-(13, 'Dang giam can k an com dau', 14, b'01', b'01'),
-(14, '1m70', 15, b'00', b'01'),
-(15, '1m50', 15, b'01', b'01'),
-(16, '1m52', 15, b'00', b'01'),
-(17, '1m48', 15, b'00', b'01'),
-(18, '5', 16, b'00', b'01'),
-(19, '1', 16, b'00', b'01'),
-(20, '4', 16, b'00', b'01'),
-(21, '3', 16, b'00', b'01'),
-(22, '2', 16, b'01', b'01'),
-(23, '15', 17, b'00', b'01'),
-(24, '21', 17, b'01', b'01'),
-(25, '15', 17, b'00', b'01'),
-(26, '12', 17, b'00', b'01'),
-(27, '18', 17, b'00', b'01'),
-(40, '1', 21, b'01', b'01'),
-(41, '2', 21, b'00', b'01'),
-(42, '3', 21, b'00', b'01'),
-(83, 'chu sao', 35, b'00', b'01'),
-(84, 'ai biet dau', 35, b'00', b'01'),
-(85, 'nguoi ta de thuong nao h ma', 35, b'01', b'01'),
-(86, 'z a ho', 35, b'00', b'01'),
-(87, 'ngai chet ha', 35, b'01', b'01'),
-(88, '4', 36, b'01', b'01'),
-(89, '3', 36, b'00', b'01'),
-(90, '2', 36, b'00', b'01'),
-(91, '1', 36, b'00', b'01'),
-(92, '4', 37, b'00', b'01'),
-(93, '3', 37, b'01', b'01'),
-(94, '2', 37, b'00', b'01'),
-(95, '1', 37, b'00', b'01'),
-(96, '0', 37, b'00', b'01'),
-(97, 'xanh ', 38, b'01', b'01'),
-(98, 'do ', 38, b'01', b'01'),
-(99, 'vang', 38, b'01', b'01'),
-(100, 'tim ', 38, b'00', b'01'),
-(101, 'den', 38, b'00', b'01'),
-(102, '1', 39, b'00', b'01'),
-(103, '2', 39, b'01', b'01'),
-(104, '3', 39, b'00', b'01'),
-(105, '4', 39, b'01', b'01'),
-(106, '5', 39, b'00', b'01'),
-(107, '6', 39, b'00', b'01');
+(108, 'has walked', 40, b'01', b'01'),
+(109, 'was walking', 40, b'00', b'01'),
+(110, 'walked', 40, b'00', b'01'),
+(111, 'is walking', 40, b'00', b'01'),
+(112, 'religious   ', 41, b'00', b'01'),
+(113, 'performance   ', 41, b'00', b'01'),
+(114, 'miserable    ', 41, b'01', b'01'),
+(115, 'including   ', 41, b'00', b'01'),
+(116, 'Science    ', 42, b'00', b'01'),
+(117, 'Geography    ', 42, b'01', b'01'),
+(118, 'History          ', 42, b'00', b'01'),
+(119, 'Technology  ', 42, b'00', b'01'),
+(120, 'put up ', 43, b'00', b'01'),
+(121, 'put off   ', 43, b'00', b'01'),
+(122, 'put out   ', 43, b'01', b'01'),
+(123, 'put on', 43, b'00', b'01'),
+(124, 'in order to', 44, b'00', b'01'),
+(125, 'though ', 44, b'00', b'01'),
+(126, 'so that', 44, b'01', b'01'),
+(127, 'unless', 44, b'00', b'01'),
+(128, '999999', 45, b'00', b'01'),
+(129, '78388', 45, b'01', b'01'),
+(130, '73288', 45, b'00', b'01'),
+(131, '824566', 45, b'00', b'01'),
+(132, '456131540', 46, b'00', b'01'),
+(133, '454121155', 46, b'00', b'01'),
+(134, '454345364', 46, b'00', b'01'),
+(135, '695232192', 46, b'01', b'01'),
+(136, '5', 47, b'00', b'01'),
+(137, '3', 47, b'00', b'01'),
+(138, '4', 47, b'00', b'01'),
+(139, '6', 47, b'00', b'01'),
+(140, '1000000000', 48, b'01', b'01'),
+(141, '10000000000', 48, b'00', b'01'),
+(142, '100000000000', 48, b'00', b'01'),
+(143, '1000000000000', 48, b'00', b'01'),
+(144, '20', 49, b'00', b'01'),
+(145, '19', 49, b'00', b'01'),
+(146, '22', 49, b'00', b'01'),
+(147, '21', 49, b'01', b'01');
 
 -- --------------------------------------------------------
 
@@ -200,7 +180,8 @@ INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
 (5, 'Literature', 'About literature', b'01'),
 (6, 'Geographic', 'About geographic', b'01'),
 (7, 'Technology', 'About technology', b'01'),
-(8, 'Information technology', 'About information technology', b'01');
+(8, 'Information technology', 'About information technology', b'01'),
+(9, 'English', 'english', b'01');
 
 -- --------------------------------------------------------
 
@@ -216,24 +197,6 @@ CREATE TABLE `comment` (
   `status` bit(2) NOT NULL,
   `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`comment_id`, `comment`, `account_id`, `quiz_id`, `status`, `create_date`) VALUES
-(1, 'Comment test thu lan 1', 95, 13, b'01', '2022-01-19 23:31:33'),
-(2, 'Comment test thu lan 2', 95, 13, b'01', '2022-01-19 23:31:48'),
-(3, 'COmment test thu lan 3', 6, 13, b'01', '2022-01-19 23:32:41'),
-(4, 'Hello Arigato', 95, 12, b'01', '2022-01-19 23:49:29'),
-(5, 'tran khung tran lun ', 1, 13, b'01', '2022-01-20 20:20:53'),
-(6, 'ahihi de ec', 95, 12, b'01', '2022-01-20 20:27:08'),
-(7, 'mam tran', 95, 12, b'01', '2022-01-20 20:27:18'),
-(8, 'test hehehe', 95, 6, b'01', '2022-01-20 20:28:19'),
-(9, 'tran lun', 95, 13, b'01', '2022-01-21 07:39:42'),
-(10, 'asdlfjkjsdf', 95, 13, b'01', '2022-01-21 07:42:45'),
-(11, 'tran de thuong', 95, 11, b'01', '2022-01-21 21:16:11'),
-(12, 'adsf', 95, 13, b'01', '2022-01-21 23:16:40');
 
 -- --------------------------------------------------------
 
@@ -265,7 +228,8 @@ INSERT INTO `email` (`email_id`, `title`, `email_user`, `fullname`, `phone_numbe
 (3, 'hhhh', 'hhh@gmail.com', 'hhhhhh', '000000000', 'hhahahahahahahahahahahaha', NULL, '2021-12-13 20:55:02', NULL, b'00', b'00'),
 (4, 'Test', 'ngoctran.04012001@gmail.com', 'ngoc tran', '0911111111', 'Test duoc roi ne !!!', 'TEST LAN NUA NHA BAN IU', '2021-12-16 22:50:45', '2022-01-10 00:01:58', b'01', b'01'),
 (5, 'alo', 'ngoctran.04012001@gmail.com', 'trantran', '0111111111', 'alo alo alo haa', NULL, '2021-12-16 23:06:12', NULL, b'00', b'00'),
-(6, 'aaaa', 'ngoctran.04012001@gmail.com', 'aaaa', '90000000', 'hello alo ahaha', NULL, '2021-12-16 23:44:10', NULL, b'00', b'00');
+(6, 'aaaa', 'ngoctran.04012001@gmail.com', 'aaaa', '90000000', 'hello alo ahaha', NULL, '2021-12-16 23:44:10', NULL, b'00', b'00'),
+(7, 'abc', 'tran@gmail.com', 'tran', '0123456789', 'pla pla pla pla pla pla pla pla pla pla pla pla', NULL, '2022-01-31 15:19:55', NULL, b'00', b'00');
 
 -- --------------------------------------------------------
 
@@ -284,15 +248,6 @@ CREATE TABLE `history` (
   `time_done` int(11) NOT NULL,
   `number_right_answer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `history`
---
-
-INSERT INTO `history` (`history_id`, `date`, `quiz_id`, `account_id`, `status`, `list_question_id`, `list_answer_choice`, `time_done`, `number_right_answer`) VALUES
-(12, '2022-01-25', 12, 95, b'01', '15 13 17 16 35 12 14 ', '', 1, 0),
-(13, '2022-01-21', 11, 95, b'01', '21 ', '40 ', 1, 1),
-(14, '2022-01-22', 13, 95, b'01', '36 37 39 38 ', '103 105 107 98 97 99 ', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -314,11 +269,12 @@ CREATE TABLE `pack` (
 --
 
 INSERT INTO `pack` (`pack_id`, `title`, `expiry`, `fee`, `description`, `status`) VALUES
-(1, 'Pack 1 month', 30, '5.32', 'You have 1 month to use the service', b'01'),
-(2, 'Pack 3 months', 90, '13.23', 'You have 3 months to use the service', b'01'),
-(3, 'Pack 1 year', 365, '49.00', 'You have 1 year to use the service', b'01'),
-(5, 'Pack 1 day', 1, '1.00', 'You have 1 day to use the service', b'01'),
-(6, 'Pack 2 years', 730, '95.00', 'You have 2 years use the service', b'01');
+(1, 'Pack 1 month', 30, '0.99', 'You have 1 month to use the service', b'01'),
+(2, 'Pack 3 months', 90, '2.99', 'You have 3 months to use the service', b'01'),
+(3, 'Pack 1 year', 365, '11.99', 'You have 1 year to use the service', b'01'),
+(6, 'Pack 2 years', 730, '23.99', 'You have 2 years use the service', b'01'),
+(7, 'Pack 9 months', 270, '8.99', 'You have 9 months to use the service', b'01'),
+(8, 'Pack 3 years', 1095, '35.99', 'You have 3 years use the service', b'01');
 
 -- --------------------------------------------------------
 
@@ -335,26 +291,6 @@ CREATE TABLE `pay` (
   `date_paid` datetime NOT NULL,
   `pay_status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pay`
---
-
-INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
-(1, 2, 'cash', 'oke con de', '120.43', '2021-12-10 22:36:39', b'01'),
-(2, 2, 'credit card', 'asdfsda', '200.23', '2021-12-12 16:37:30', b'01'),
-(3, 2, 'credit card', 'hhhhh', '2000.43', '2021-12-12 16:37:30', b'01'),
-(4, 3, 'card', 'fee', '15.23', '2021-12-16 20:32:56', b'01'),
-(5, 3, 'card', '0.52', '15.00', '2021-12-16 20:39:23', b'01'),
-(6, 3, 'card', '0.52', '15.00', '2021-12-16 23:44:54', b'01'),
-(7, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 14:59:25', b'01'),
-(8, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:00:05', b'01'),
-(9, 95, 'PAYPAL', 'PAYMENT PACK', '10.00', '2022-01-04 15:09:25', b'01'),
-(10, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 20:59:15', b'01'),
-(11, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:09:17', b'01'),
-(12, 1, 'PAYPAL', 'PAYMENT PACK', '11.00', '2022-01-06 21:10:44', b'01'),
-(13, 6, 'PAYPAL', 'PAYMENT PACK - CODE: 6US04340G0361683A', '1.00', '2022-01-08 16:00:13', b'01'),
-(14, 95, 'PAYPAL', 'PAYMENT PACK - CODE: Pack 3 months', '13.23', '2022-01-25 14:44:54', b'01');
 
 -- --------------------------------------------------------
 
@@ -376,18 +312,16 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`, `type_answer_choice`) VALUES
-(12, 'cau hoi 1: em ten gi', 'hehe', 12, b'01', 'radio'),
-(13, 'cau hoi 2: em nha o dau the', 'keke', 12, b'01', 'radio'),
-(14, 'cau hoi 3: em an com chua', 'hihi', 12, b'01', 'radio'),
-(15, 'cau hoi 4: em cao bn the', 'hoho', 12, b'01', 'radio'),
-(16, 'cau hoi 5: humm em la con thu may trong gia dinh ay nhi', 'huhu', 12, b'01', 'radio'),
-(17, 'cau hoi 6: em bao nhieu tuoi roii', 'hic', 12, b'01', 'radio'),
-(21, 'tset', 'test', 11, b'01', 'checkbox'),
-(35, 'sao be de thuong qua zay', 'ahihi', 12, b'01', 'checkbox'),
-(36, 'con cho co may chan', 'ddd', 13, b'01', 'radio'),
-(37, 'den giao thong co may mau', 'hhhh', 13, b'01', 'radio'),
-(38, 'mau nao la mau co ban', 'tttt', 13, b'01', 'checkbox'),
-(39, 'ban hoc lop may', 'tetetetete', 13, b'01', 'checkbox');
+(40, 'When the old man____past the park, he saw some children playing football', 'explain pla pla pla', 14, b'01', 'radio'),
+(41, 'Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of the primary stress in each of the following questions. ', 'Câu C trọng âm 1, còn lại trọng âm 2.', 14, b'01', 'radio'),
+(42, '_______ is the study of the Earth\'s physical features and the people, plants, and animals that live in different regions of the world.', 'Câu này dịch như sau: Địa lí là môn ngành nghiên cứu những sự vật vật lí trên Trái Đất và con người, cây cối, động vật sống ở những khu vực khác nhau trên Thế Giới. ', 14, b'01', 'radio'),
+(43, 'As it was getting late, the boys decided to _______ the campfire and crept into their sleeping bags.', 'Câu này dịch là: Vì đã muộn rồi, những cậu con trai quyết định tắt lửa trại và chui vào túi ngủ của chúng', 14, b'01', 'radio'),
+(44, 'The student took that course ______ he could improve his English.', 'Câu này dịch như sau: Cậu học sinh đã tham gia khóa học đó để anh ta có thể cải thiện khả năng tiếng Anh của anh ta. \r\nMệnh đề trước và mệnh đề sau mang nghĩa tương đồng => nối nhau bằng so that. \r\n', 14, b'01', 'radio'),
+(45, '65842 + 12546  = ?', 'pla pla', 15, b'01', 'radio'),
+(46, '1524632 * 456 = ?', 'pla pla', 15, b'01', 'radio'),
+(47, '100 / 25', 'pla pla', 15, b'01', 'radio'),
+(48, '123456789 + 876543211 = ?', 'pla pla ', 15, b'01', 'radio'),
+(49, '2022 - 2001 = ?', 'pla pla', 15, b'01', 'radio');
 
 -- --------------------------------------------------------
 
@@ -414,18 +348,8 @@ CREATE TABLE `quiz` (
 --
 
 INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`, `date_created`) VALUES
-(1, '50 câu trắc nghiệm cơ bản về tích phân 12', 'trắc nghiêhm tích phân 12', 2, 1, 12, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:07'),
-(2, '45 cau trac nghiem nang cao mon vat ly', 'Vat Li', 6, 2, 101100, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:21'),
-(3, 'trắc nghiệm về văn học', 'trắc nghiệm văn học', 2, 5, 1000, 45, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:11:14'),
-(5, 'Trắc nghiệm về vật lí', 'trắc nghiệm vật lí', 2, 2, 100, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:16'),
-(6, 'trắc nghiệm về .NET', 'trắc nghiệm .NET', 2, 8, 100100, 60, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:11:09'),
-(7, 'trắc nghiệm về địa lí 12', 'trắc nghiệm địa lí\r\nde et ha', 2, 6, 44, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:19'),
-(8, '50 câu trắc nghiệm về phenol', 'trắc nghiệm hóa học', 2, 3, 9000, 60, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:11'),
-(9, 'trắc nghiệm về môn sinh 12', 'tắc nghiệm sinh học', 2, 4, 900, 50, b'00', 'Photo24.jpg', b'00', '2021-12-08 21:11:01'),
-(10, 'ABC', 'TEST ABC', 6, 5, 10000, 45, b'00', 'Photo24.jpg', b'01', '2021-12-08 21:11:04'),
-(11, 'trac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cachtrac nghiem tinh cach trac nghiem tinh cachtrac nghiem tinh cach', 'xa\nde ec \nkhong co j het\n khong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j het\nkhong kho\nde ec \nkhong co j hj het\n', 2, 8, 14, 10, b'00', '4a20e5edeb464f5f864da72c5d2878f3.png', b'01', '2021-12-08 21:11:24'),
-(12, 'CAU HOI TRAC NGHIEM ', 'khong kho\r\nde ec \r\nkhong co j het\r\n', 2, 8, 171, 1, b'01', 'Photo24.jpg', b'01', '2021-12-08 21:10:55'),
-(13, 'Trac nghiem online', 'mo ta', 2, 8, 53, 30, b'00', 'd4b401c35b514e0a804875b1f32e5f9f.png', b'01', '2022-01-17 07:35:55');
+(14, 'Test English 12', 'english 12', 100, 9, 0, 45, b'00', 'd151813aba814344a3d4c3a4079d9194.jfif', b'01', '2022-01-31 14:32:26'),
+(15, 'Test Math 12', 'math 12', 100, 1, 0, 45, b'00', 'e86b97497bba4ac787efec1ffa0c3b74.jpg', b'01', '2022-01-31 15:04:14');
 
 -- --------------------------------------------------------
 
@@ -441,15 +365,6 @@ CREATE TABLE `rating` (
   `created` datetime NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `rating`
---
-
-INSERT INTO `rating` (`rating_id`, `account_id`, `quiz_id`, `star`, `created`, `status`) VALUES
-(1, 95, 13, 3, '2022-01-21 23:16:44', b'01'),
-(2, 95, 10, 5, '2022-01-21 21:16:53', b'01'),
-(3, 95, 12, 4, '2022-01-25 16:21:07', b'01');
 
 -- --------------------------------------------------------
 
@@ -489,20 +404,6 @@ CREATE TABLE `salary` (
   `accept_payment` bit(2) NOT NULL,
   `total_click_quiz_month` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `salary`
---
-
-INSERT INTO `salary` (`salary_id`, `account_id`, `salary`, `create_date`, `status`, `total_click_quiz`, `accept_payment`, `total_click_quiz_month`) VALUES
-(24, 2, '1.39', '2021-01-26 21:36:51', b'01', 1394, b'01', 1390),
-(25, 6, '1.10', '2021-01-26 21:36:51', b'01', 1100, b'01', 1100),
-(26, 2, '1.00', '2021-02-26 21:37:41', b'01', 2394, b'01', 1000),
-(27, 6, '1.00', '2021-02-26 21:37:41', b'01', 2100, b'01', 1000),
-(28, 2, '9.00', '2021-03-26 21:38:29', b'01', 11394, b'01', 9000),
-(29, 6, '9.00', '2021-03-26 21:38:29', b'01', 11100, b'01', 9000),
-(30, 2, '100.00', '2022-01-26 21:44:20', b'01', 111394, b'01', 100000),
-(31, 6, '100.00', '2022-01-26 21:44:20', b'01', 111100, b'01', 100000);
 
 --
 -- Indexes for dumped tables
@@ -621,7 +522,7 @@ ALTER TABLE `salary`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `account_pack`
@@ -633,13 +534,13 @@ ALTER TABLE `account_pack`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -651,7 +552,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
-  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `history`
@@ -663,7 +564,7 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT for table `pack`
 --
 ALTER TABLE `pack`
-  MODIFY `pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pay`
@@ -675,13 +576,13 @@ ALTER TABLE `pay`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rating`

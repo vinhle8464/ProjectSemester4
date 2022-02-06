@@ -74,7 +74,11 @@ public class SalaryServiceAdminImpl implements SalaryServiceAdmin{
 	@Override
 	public double sumfacultysalarybyyearandmonth(int year, int month) {
 		// TODO Auto-generated method stub
-		return salaryRepositoryAdmin.sumfacultysalarybyyearandmonth(year, month);
+		return salaryRepositoryAdmin.sumfacultysalarybyyearandmonth(year, month);}
+	
+	public Page<Salary> searchByUsername(int currentPage, int pageSize, String sort, String username) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.salaryRepositoryAdmin.searchByUsername(username, pageable);
 	}
 
 }

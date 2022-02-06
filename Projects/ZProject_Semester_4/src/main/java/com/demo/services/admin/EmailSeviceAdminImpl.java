@@ -62,6 +62,12 @@ public class EmailSeviceAdminImpl implements EmailServiceAdmin{
 			return this.emailRepositoryAdmin.findAll(pageable);
 	    }
 
+	@Override
+	public Page<Email> searchByEmailUser(int currentPage, int pageSize, String sort, String emailUser) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.emailRepositoryAdmin.searchByEmailUser(emailUser, pageable);
+	}
+
 	
 	
 	

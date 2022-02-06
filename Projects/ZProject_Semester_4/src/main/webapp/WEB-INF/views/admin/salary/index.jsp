@@ -87,15 +87,24 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
+				<form method="get" action="${pageContext.request.contextPath}/admin/salary/search">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-2">
 							<h2>Manage <b>Salarys</b></h2>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-7">
+							<input type="text" class="form-control" placeholder="Username..." name="keyword">
+							
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="Search" class="btn btn-primary">
+						</div>
+						<div class="col-sm-2">
 							<a href="${pageContext.request.contextPath}/admin/salary/checkNewSalary" class="btn btn-success" > <span>Check New Salary</span></a>
 													
 						</div>
 					</div>
+				</form>	
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
@@ -120,7 +129,9 @@
 							<td width="150px">${salary.salaryId }</td>
 							<td>${salary.account.username }</td>
 							<td> <span class="text-success">${salary.salary } $</span></td>
-							<td>${salary.createDate }</td>
+							<td><fmt:formatDate var="createDate" value="${salary.createDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${createDate }</td>
 							<td>${salary.totalClickQuizMonth }</td>
 							<td>
 							

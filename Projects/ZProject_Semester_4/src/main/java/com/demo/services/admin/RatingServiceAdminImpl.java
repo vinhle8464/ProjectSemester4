@@ -42,5 +42,11 @@ public class RatingServiceAdminImpl implements RatingServiceAdmin{
 			return this.ratingRepositoryAdmin.findAll(pageable);
 	}
 
+	@Override
+	public Page<Rating> searchByKeyword(int currentPage, int pageSize, String sort, String keyword) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.ratingRepositoryAdmin.searchByKeyword(keyword, pageable);
+	}
+
 	
 }

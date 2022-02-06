@@ -38,13 +38,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.demo.configurations.MyConstants;
 import com.demo.helpers.UploadHelper;
 import com.demo.models.Account;
+import com.demo.models.AccountPack;
 import com.demo.services.AccountService;
+import com.demo.services.user.AccountPackService;
 import com.demo.services.user.AccountServiceUser;
 import com.demo.services.user.RoleServiceUser;
 import com.demo.validators.AccountValidator;
 
 @Controller
-@RequestMapping(value = { "user/account","login/oauth2/code" })
+@RequestMapping(value = { "user/account", "login/oauth2/code" })
 public class AccountController implements ServletContextAware {
 	@Autowired
 	private AccountValidator accountValidator;
@@ -57,6 +59,8 @@ public class AccountController implements ServletContextAware {
 
 	@Autowired
 	private AccountServiceUser accountServiceUser;
+	@Autowired
+	private AccountPackService accountPackService;
 
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -249,39 +253,131 @@ public class AccountController implements ServletContextAware {
 
 	}
 
-	
-
 	@RequestMapping(value = "welcome", method = RequestMethod.GET)
 	public String welcome(Authentication authentication, HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 
 		Account account = accountService.findByUsername(authentication.getName());
-		if(account==null) {
-			account=accountService.findByUsername((String)session.getAttribute("email"));
+		if (account == null) {
+			account = accountService.findByUsername((String) session.getAttribute("email"));
 		}
 		System.out.println(account.isStatus());
 		if (account.isStatus()) {
 
+//<<<<<<< HEAD
+//			if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
+//				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+//				return "redirect:/admin/dashboard/index";
+//			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_FACULTY]")) {
+//				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+//				return "redirect:/faculty/dashboard/index";
+//			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
+//				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+//				session.setAttribute("counta", accountServiceUser.countAccountUser());
+//
+//				String referer = request.getHeader("Referer");
+//				return "redirect:" + referer;
+//			} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
+//					"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
+//				session.setAttribute("account", accountService.findByUsername((String) session.getAttribute("email")));
+//				return "redirect:/user/home/index";
+//			}
+//=======
 			if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_ADMIN]")) {
 				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
 				return "redirect:/admin/dashboard/index";
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_FACULTY]")) {
 				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
+				// Check Pack Of Account
+				Account account2 = (Account) session.getAttribute("account");
+				Date now = new Date();
+				boolean result = false;
+				if (account2 == null) {
+					result = false;
+				} else if (account2.getAccountPacks().size() == 0 && account2 != null) {
+					System.out.println("Khong co goi");
+				} else {
+					for (AccountPack accountPack : account2.getAccountPacks()) {
+						int number = now.getDate() - accountPack.getStartDate().getDate();
+						if (number >= accountPack.getPack().getExpiry()) {
+							System.out.println("Het han");
+							accountPack.setStatus(false);
+							accountPackService.save(accountPack);
+							result = false;
+						} else {
+							System.out.println("Con han");
+							result = true;
+						}
+					}
+				}
+				modelMap.put("result", result);
 				return "redirect:/faculty/dashboard/index";
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
 				session.setAttribute("account", accountService.findByUsername(authentication.getName()));
 				session.setAttribute("counta", accountServiceUser.countAccountUser());
-
 				String referer = request.getHeader("Referer");
+
+				// Check Pack Of Account
+				Account account2 = (Account) session.getAttribute("account");
+				Date now = new Date();
+				boolean result = false;
+				if (account2 == null) {
+					result = false;
+				} else if (account2.getAccountPacks().size() == 0 && account2 != null) {
+					System.out.println("Khong co goi");
+				} else {
+					for (AccountPack accountPack : account2.getAccountPacks()) {
+						int number = now.getDate() - accountPack.getStartDate().getDate();
+						if (number >= accountPack.getPack().getExpiry()) {
+							System.out.println("Het han");
+							accountPack.setStatus(false);
+							accountPackService.save(accountPack);
+						} else if (accountPack.isStatus() == true) {
+							session.setAttribute("result", "<h4 style='color: #ffbc00;'>VIP</h4>");
+							break;
+						} else if (accountPack.isStatus() == false) {
+							session.setAttribute("result", "<h4 style='color: green;'>FREE</h4>");
+							break;
+						}
+					}
+				}
 				return "redirect:" + referer;
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
 					"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
 				session.setAttribute("account", accountService.findByUsername((String) session.getAttribute("email")));
+				// Check Pack Of Account
+				Account account2 = (Account) session.getAttribute("account");
+				Date now = new Date();
+				boolean result = false;
+				if (account2 == null) {
+					result = false;
+				} else if (account2.getAccountPacks().size() == 0 && account2 != null) {
+					System.out.println("Khong co goi");
+				} else {
+					for (AccountPack accountPack : account2.getAccountPacks()) {
+						int number = now.getDate() - accountPack.getStartDate().getDate();
+						if (number >= accountPack.getPack().getExpiry()) {
+							System.out.println("Het han");
+							accountPack.setStatus(false);
+							accountPackService.save(accountPack);
+							result = false;
+						} else if (accountPack.isStatus() == true) {
+							result = true;
+							break;
+						} else {
+							System.out.println("Con han");
+
+						}
+					}
+				}
+				modelMap.put("result", result);
 				return "redirect:/user/home/index";
+
 			}
+			session.setAttribute("msg", "<script>alert('Account not Activated! Please Check Your Mail!')</script>");
+			return "redirect:/user/home/index";
 		}
-		session.setAttribute("msg", "<script>alert('Account not Activated! Please Check Your Mail!')</script>");
-		return "redirect:/user/home/index";
+		return "404/index";
 	}
 
 	@RequestMapping(value = "accessDenied", method = RequestMethod.GET)

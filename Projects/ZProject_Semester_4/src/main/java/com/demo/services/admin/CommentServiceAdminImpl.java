@@ -44,4 +44,10 @@ public class CommentServiceAdminImpl implements CommentServiceAdmin{
 		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 			return this.commentRepositoryAdmin.findAll(pageable);
 	}
+
+	@Override
+	public Page<Comment> searchByKeyword(int currentPage, int pageSize, String sort, String keyword) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.commentRepositoryAdmin.searchByKeyword(keyword, pageable);
+	}
 }

@@ -13,6 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title }</title>
 
+<!-- Site Icons -->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/admin/images/logosite.png"
+	type="image/x-icon" />
+<link rel="apple-touch-icon"
+	href="${pageContext.request.contextPath}/resources/admin/images/logosite.png">
+
+
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -62,8 +70,8 @@
 		<div
 			class="preloader flex-column justify-content-center align-items-center">
 			<img class="animation__shake"
-				src="${pageContext.request.contextPath}/resources/admin/dist/img/AdminLTELogo.png"
-				alt="AdminLTELogo" height="60" width="60">
+				src="${pageContext.request.contextPath}/resources/admin/images/logoquiz2.png"
+				alt="AdminLTELogo" height="60" width="200">
 		</div>
 
 		<!-- Navbar -->
@@ -134,6 +142,11 @@
 								class="dropdown-item"> <!-- Message Start -->
 								<div class="media">Profile</div> <!-- Message End -->
 							</a>
+							<div class="dropdown-divider"></div>
+							<a href="${pageContext.request.contextPath}/user/payment/index"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Payment</div> <!-- Message End -->
+							</a>
 						</ss:authorize>
 						<ss:authorize access="hasRole('ROLE_ADMIN')">
 							<div class="dropdown-divider"></div>
@@ -172,11 +185,11 @@
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
-			<strong>Copyright &copy; 2014-2021 <a
-				href="https://adminlte.io">AdminLTE.io</a>.
+			<strong>Copyright &copy; 2022 <a
+				href="https://adminlte.io">Login Memory</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
-				<b>Version</b> 3.1.0
+				<b>Version</b> 1.0
 			</div>
 		</footer>
 

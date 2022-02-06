@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.models.Account;
 import com.demo.models.Comment;
 import com.demo.models.Rating;
 import com.demo.repositories.admin.RatingRepositoryAdmin;
@@ -48,6 +49,31 @@ public class RatingController {
 		Rating rating = new Rating();		
 		modelMap.put("rating", rating);
 
+
+		return "admin/rating/index";
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String fullname) {
+
+		return searchPagination(1, 25, "rating_id", modelMap, model, fullname);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Rating> pages = ratingServiceAdmin.searchByKeyword(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("ratings", pages.getContent());
+
+			Rating rating = new Rating();		
+			modelMap.put("rating", rating);
 
 		return "admin/rating/index";
 	}

@@ -83,14 +83,25 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
+				<form method="get" action="${pageContext.request.contextPath}/admin/email/search">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-2">
 							<h2>Manage <b>Emails</b></h2>
 						</div>
-						<div class="col-sm-6">
+						
+						<div class="col-sm-7">
+							<input type="text" class="form-control" placeholder="Email user..." name="keyword">
+							
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="Search" class="btn btn-primary">
+						</div>
+						
+						<div class="col-sm-2">
 							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Email</span></a>					
 						</div>
 					</div>
+				</form>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
@@ -118,8 +129,12 @@
 								<td><strong>${email.emailUser }</strong></td>
 								<td><strong>${email.title }</strong></td>
 								<td><strong>${email.phoneNumber }</strong></td>
-								<td><strong>${email.sendDate }</strong></td>
-								<td><strong>${email.replyDate }</strong></td>
+								<td><strong><fmt:formatDate var="sendDate" value="${email.sendDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${sendDate }</strong></td>
+								<td><strong><fmt:formatDate var="replyDate" value="${email.replyDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${replyDate }</strong></td>
 								<td><strong>${email.checked ? "Yes" : "No" }</strong></td>
 							</tr>
 					</c:if>
@@ -130,8 +145,12 @@
 								<td>${email.emailUser }</td>
 								<td>${email.title }</td>
 								<td>${email.phoneNumber }</td>
-								<td>${email.sendDate }</td>
-								<td>${email.replyDate }</td>
+								<td><strong><fmt:formatDate var="sendDate" value="${email.sendDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${sendDate }</strong></td>
+								<td><strong><fmt:formatDate var="replyDate" value="${email.replyDate}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${replyDate }</strong></td>
 								<td>${email.checked ? "Yes" : "No" }</td>
 								
 							</tr>

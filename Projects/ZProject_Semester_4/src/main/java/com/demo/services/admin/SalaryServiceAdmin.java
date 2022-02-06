@@ -3,8 +3,6 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
-
 import com.demo.models.Salary;
 
 public interface SalaryServiceAdmin {
@@ -29,5 +27,7 @@ public interface SalaryServiceAdmin {
 	public double sumfacultysalarybyyearandmonth(int year,int month);
 
 	public Page<Salary> getPage(int currentPage, int pageSize, String sort);
+	
+	public Page<Salary> searchByUsername(int currentPage, int pageSize, String sort, String username);
 
 }

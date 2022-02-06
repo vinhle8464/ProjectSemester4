@@ -50,31 +50,29 @@
             </div>
 				<!-- end title -->
 			<c:if test="${result == true }">
-				<h2>You using:</h2>
-				<div class="row text-center">
-					<div class="col-md-6">
-	                 <div class="pricing-table pricing-table-highlighted">
+				
+				<div style="margin: auto; text-align: center;" class="col-md-6">
+					 <div class="pricing-table pricing-table-highlighted">
 	                      <div class="pricing-table-header grd1">
-	                           <h2>${accountPack.pack.fee }</h2>
+	                           <h2>${accountPack.pack.fee } $</h2>
 	                           <h3>${accountPack.pack.title }</h3>
 	                           <h4 style="color: white;">${accountPack.pack.description }</h4>
 	                      </div>
 	                      <div class="pricing-table-space"></div>
 	                      <div class="pricing-table-features">
 	                            <p>
-										<i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
+										<i class="fa fa-envelope-o"></i> <strong>Unlimited test</strong> </p>
 	                            <p>
-										<i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
+										<i class="fa fa-rocket"></i> <strong>More Details of Quiz</strong></p>
 	                            <p>
-										<i class="fa fa-database"></i> <strong>140</strong> Databases</p>
+										<i class="fa fa-database"></i> <strong>High Income(Faculty)</strong> </p>
 	                            <p>
-										<i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-	                            <p>
-										<i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+										<i class="fa fa-link"></i> <strong>FeedBack to Admin</strong></p>
+	                           
 	                      </div>
 	                  </div>
 	             </div>
-				</div>                 
+				            
 			</c:if>
             <c:if test="${result == false }">
             	<div class="row">
@@ -107,7 +105,7 @@
 														class="pricing-table pricing-table-highlighted">
 	                                        <div
 															class="pricing-table-header grd1">
-	                                            <h2>${pack.fee }</h2>
+	                                            <h2>${pack.fee } $</h2>
 	                                            <h3>${pack.title }</h3>
 	                                            <h4 style="color: white;">${pack.description }</h4>
 	                                        </div>
@@ -115,16 +113,15 @@
 															class="pricing-table-space"></div>
 	                                        <div
 															class="pricing-table-features">
-	                                            <p>
-																<i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-	                                            <p>
-																<i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-	                                            <p>
-																<i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-	                                            <p>
-																<i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-	                                            <p>
-																<i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+	                                           <p>
+										<i class="fa fa-envelope-o"></i> <strong>Unlimited test</strong> </p>
+	                            <p>
+										<i class="fa fa-rocket"></i> <strong>More Details of Quiz</strong></p>
+	                            <p>
+										<i class="fa fa-database"></i> <strong>High Income(Faculty)</strong> </p>
+	                            <p>
+										<i class="fa fa-link"></i> <strong>FeedBack to Admin</strong></p>
+	                           
 	                                        </div>
 	                                        <div
 															class="pricing-table-sign-up">
@@ -171,7 +168,7 @@
 														class="pricing-table pricing-table-highlighted">
 	                                        <div
 															class="pricing-table-header grd1">
-	                                            <h2>${pack.fee }</h2>
+	                                            <h2>${pack.fee } $</h2>
 	                                            <h3>${pack.title }</h3>
 	                                            <h4 style="color: white;">${pack.description }</h4>
 	                                        </div>
@@ -180,15 +177,14 @@
 	                                        <div
 															class="pricing-table-features">
 	                                            <p>
-																<i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-	                                            <p>
-																<i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-	                                            <p>
-																<i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-	                                            <p>
-																<i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-	                                            <p>
-																<i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+										<i class="fa fa-envelope-o"></i> <strong>Unlimited test</strong> </p>
+	                            <p>
+										<i class="fa fa-rocket"></i> <strong>More Details of Quiz</strong></p>
+	                            <p>
+										<i class="fa fa-database"></i> <strong>High Income(Faculty)</strong> </p>
+	                            <p>
+										<i class="fa fa-link"></i> <strong>FeedBack to Admin</strong></p>
+	                           
 	                                        </div>
 	                                        <div
 															class="pricing-table-sign-up">

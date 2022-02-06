@@ -16,6 +16,6 @@ public interface SalaryRepositoryFaculty extends JpaRepository<Salary, Integer> 
 
 
 	
-	@Query("from Salary where account.accountId = :accountId order by createDate desc")
+	@Query("from Salary where account.accountId = :accountId and acceptPayment = 1 order by createDate desc")
 	public List<Salary> findAllSalaryByAccountId(@Param("accountId") int accountId); 
 }

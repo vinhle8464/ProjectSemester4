@@ -3,6 +3,7 @@ package com.demo.services.admin;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.demo.entites.QuizAjax;
@@ -28,5 +29,7 @@ public interface QuizServiceAdmin {
 	public List<QuizAjax> findAllAjaxByCategoryId();
 	
 	public List<QuizAjax> findAjaxByCategoryId(int categoryId);
+	
+	public Page<Quiz> searchByKeyword(int currentPage, int pageSize, String sort, String keyword);
 
 }

@@ -138,7 +138,7 @@
 							<i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 						</div>
 					</div>
-					</form>
+				</form>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>

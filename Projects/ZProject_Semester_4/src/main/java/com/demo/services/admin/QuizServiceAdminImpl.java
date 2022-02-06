@@ -71,5 +71,11 @@ public class QuizServiceAdminImpl implements QuizServiceAdmin{
 		return quizRepositoryAdmin.findAjaxByCategoryId(categoryId);
 	}
 
+	@Override
+	public Page<Quiz> searchByKeyword(int currentPage, int pageSize, String sort, String keyword) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepositoryAdmin.searchByKeyword(keyword, pageable);
+	}
+
 
 }

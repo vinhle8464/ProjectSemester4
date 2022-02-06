@@ -142,7 +142,10 @@
 							
 							<td>${quiz.title }</td>
 							<td>${quiz.category.title }</td>
-							<td>${quiz.dateCreated }</td>
+							<td>
+							<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}"
+														pattern="dd/MM/yyyy HH:mm:ss" />
+									${dateCreated }</td>
 							
 							<c:if test="${quiz.fee == true}">
 								<td style="color: green;"><strong>${quiz.fee }</strong></td>
