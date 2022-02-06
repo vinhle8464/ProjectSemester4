@@ -355,7 +355,7 @@
 					<div class="form-group">
 						<label>Password</label>
 						<s:input path="password" type="password" class="form-control"
-													required="required" />
+													required="required" minlength="8" />
 					
 					</div>
 					<div class="form-group">
@@ -398,7 +398,9 @@
 						<label>Role</label>
 						<br>
 						<c:forEach var="role" items="${roles }">
+						<c:if test="${role.roleName != 'ROLE_ADMIN' }">
 						<input type="checkbox" name="role" value="${role.roleId }">${role.roleName }<br>
+						</c:if>
 					</c:forEach>
 					</div>
 				

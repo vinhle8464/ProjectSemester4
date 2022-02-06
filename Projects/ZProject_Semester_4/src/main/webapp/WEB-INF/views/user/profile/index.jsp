@@ -152,11 +152,11 @@
 				                        <div class="col-sm-8">
 				                          ${accountProfile.username}
 				                        </div>
-				                        <div class="col-sm-1">
+				                       <!--  <div class="col-sm-1">
 				                        	<a data-toggle="collapse" data-target="#editUsername"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-				                        </div>
+				                        </div> -->
 				                      </div>
-				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileUsername" enctype="multipart/form-data">
+				                      <%-- <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileUsername" enctype="multipart/form-data">
 				                      	<div class="form-group row collapse" id="editUsername">
 										   <label for="inputName" class="col-sm-3 col-form-label"></label>
 					                       <div class="col-sm-8">
@@ -165,7 +165,7 @@
 					                         <input type="submit" value="Change" class="btn btn-danger">
 					                       </div>
 				                      	</div>
-				                      </form>
+				                      </form> --%>
 				                      
 				                      <div class="form-group row">
 				                        <label for="inputEmail" class="col-sm-3 col-form-label">Fullname:</label>
@@ -191,11 +191,11 @@
 				                        <div class="col-sm-8">
 				                          ${accountProfile.email}
 				                        </div>
-				                        <div class="col-sm-1">
+				                       <!--  <div class="col-sm-1">
 				                        	<a data-toggle="collapse" data-target="#editEmail"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-				                        </div>
+				                        </div> -->
 				                      </div>
-				                      <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileEmail" enctype="multipart/form-data">
+				                      <%-- <form method="post" action="${pageContext.request.contextPath}/user/profile/editProfileEmail" enctype="multipart/form-data">
 					                      <div class="form-group row collapse" id="editEmail">
 											   <label for="inputName" class="col-sm-3 col-form-label"></label>
 						                       <div class="col-sm-8">
@@ -204,7 +204,7 @@
 						                         <input type="submit" value="Change" class="btn btn-danger">
 						                       </div>
 					                      </div>
-					                  </form>
+					                  </form> --%>
 				                      
 				                      <div class="form-group row">
 				                        <label for="inputExperience" class="col-sm-3 col-form-label">Birthday:</label>
@@ -281,21 +281,21 @@
 				                      <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Current password</label>
 				                        <div class="col-sm-10">
-				                          <input type="password" class="form-control" placeholder="Current password" name="currentPassword" id="currentPassword">
+				                          <input type="password" class="form-control" placeholder="Current password" name="currentPassword" id="currentPassword" minlength="8" required="required">
 				                        </div>
 				                      </div>
 				                      
 				                      <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">New password</label>
 				                        <div class="col-sm-10">
-				                          <input type="password" class="form-control" placeholder="New password" name="newPassword" id="newPassword">
+				                          <input type="password" class="form-control" placeholder="New password" name="newPassword" id="newPassword" minlength="8" required="required">
 				                        </div>
 				                      </div>
 				                      
 				                      <div class="form-group row">
 				                        <label for="inputName" class="col-sm-2 col-form-label">Confirm password</label>
 				                        <div class="col-sm-10">
-				                          <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword">
+				                          <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" minlength="8" required="required">
 				                        </div>
 				                      </div>
 				                      
