@@ -8,11 +8,12 @@
 
 	<jsp:attribute name="content">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+			href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <style>
-	.quiz_title {
-    text-align: center;
-    margin: auto;
+.quiz_title {
+	text-align: center;
+	margin: auto;
 }
 
 .quiz_title h2 {
@@ -48,8 +49,7 @@
 	height: 23px;
 	width: 50px;
 	vertical-align: middle;
-	
-}	
+}
 </style>	
 			
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -91,38 +91,52 @@
 							        	<div class="row"> 
 							         		<div class="quiz_title col-sm-12">
 							         			<h2>${quiz.title}</h2>
-							         			<hr style="border: 1px solid black;"/>      
+							         			<hr style="border: 1px solid black;" />      
 							         		</div>   
 							         		    
 							            </div>
-							            <input type="hidden" id="timer" value="${quiz.timer }">
+							            <input type="hidden" id="timer"
+									value="${quiz.timer }">
 							            <c:forEach var="question" items="${quiz.questions}"
-													varStatus="i">
+									varStatus="i">
 								            <div class="row">
 								         		<div class="quiz_content col-sm-12">
 								         			<div>
 								         				<h3>Question ${i.index + 1 }:</h3>
 								         				<p>${question.title}</p>
-								         				<input type="hidden" name="questionId" value="${question.questionId }">
+								         				<input type="hidden" name="questionId"
+													value="${question.questionId }">
 								         			</div>
 								         			<div>
-								         				  <c:forEach var="answer" items="${question.answers}" varStatus="t">   
+								         			<ol type="A">
+								         				  <c:forEach var="answer"
+														items="${question.answers}" varStatus="t">   
 														  		<c:choose>
-																	<c:when test="${question.typeAnswerChoice == 'checkbox' }">
+																	<c:when
+																test="${question.typeAnswerChoice == 'checkbox' }">
 							     										<div>
-								         									<input type="checkbox" name="answer${i.index }"
-																					value="${answer.answerId}"> ${answer.title }
+							     										
+								         									<input type="checkbox"
+																		name="answer${i.index }" value="${answer.answerId}"
+																		style="float: left; margin-right: 20px;"> 
+  <li>${answer.title }</li>
+  
+
 															
 								         								</div>
 								         				 	 		</c:when>
-								         				 	 		<c:when test="${question.typeAnswerChoice == 'radio' }">
+								         				 	 		<c:when
+																test="${question.typeAnswerChoice == 'radio' }">
 							     										<div>
 								         									<input type="radio" name="answer${i.index }"
-																					value="${answer.answerId}"> ${answer.title }
+																		value="${answer.answerId}"
+																		style="float: left; margin-right: 20px;"> <li>${answer.title }</li>
+  
 																		</div>
 								         				 	 		</c:when>
 								         				 		</c:choose>  
 							        						</c:forEach>
+							        						</ol> 
 							        						<hr style="border: 1px dashed black;"> 
 														</div>
 								         			</div>
