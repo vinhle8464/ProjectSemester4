@@ -25,4 +25,5 @@ public interface QuizRepositoryFaculty extends JpaRepository<Quiz, Integer> {
 	public Page<Quiz> getAllQuizByAccountId(int account_id, Pageable pageable);
 	
 	
+	
 }

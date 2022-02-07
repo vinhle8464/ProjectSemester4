@@ -15,11 +15,11 @@ public interface QuizRepository extends CrudRepository<Quiz, Integer>{
 //	@Query("from Quiz where category.categoryId=:categoryId")
 //	public List<Quiz> findAllQuizByCategoryId(@Param("categoryId") int categoryId);
 //	
-	@Query(value = "SELECT * FROM quiz q WHERE q.category_id = ?1",
+	@Query(value = "SELECT * FROM quiz q WHERE q.category_id = ?1 and q.status = true",
 		    nativeQuery = true)
 	public Page<Quiz> getAllQuizByCategoryId(int category_id, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM quiz",
+	@Query(value = "SELECT * FROM quiz q WHERE q.status = true",
 		    nativeQuery = true)
 	public Page<Quiz> findAll(Pageable pageable);
 	

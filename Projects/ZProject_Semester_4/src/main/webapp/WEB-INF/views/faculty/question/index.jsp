@@ -13,43 +13,44 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script type="text/javascript">
-		
 		$(document).ready(function() {
 			$('#answers').css('display', 'none');
 			$('#answersMultiple').css('display', 'none');
 		});
-		
+
 		// show multiple choice
 		$(document)
 				.on(
 						'click',
 						'#multipleChoice',
 						function() {
-							
+
 							$("#answers").empty();
 							$('#answersMultiple').css('display', 'block');
 							var $div = ' ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerMultiple" value="+"><div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div><div><br><input style="width:70%;" name="answerTitle" required="required">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"> </div> <div> <br> <input style="width:70%;" name="answerTitle" required="required">&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;<input type="hidden" name="answerStatusMultiple" value="0" /><input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div>';
 							$("#answersMultiple").html($div);
 						});
-		
+
 		// show single choice
 		$(document)
 				.on(
 						'click',
 						'#singleChoice',
 						function() {
-							
+
 							$("#answersMultiple").empty();
 							$('#answers').css('display', 'block');
 							var $div = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswer" value="+"><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /> <input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"> </div><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"> </div><div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /><input type="radio" name="answerStatusSingle" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"></div>';
 							$("#answers").html($div);
 
 						});
-		
+
 		/* Add and remove answer in modal Add*/
 
 		//// multichoie
-		$(document).on('click',
+		$(document)
+				.on(
+						'click',
 						'.addAnswerMultiple',
 						function() {
 							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswerMultiple"></div>';
@@ -59,9 +60,11 @@
 		$(document).on('click', '.removeAnswerMultiple', function() {
 			$(this).parent('div').remove();
 		});
-		
+
 		//// single choice
-		$(document).on('click',
+		$(document)
+				.on(
+						'click',
 						'.addAnswer',
 						function() {
 							var $div = ' <div><br><input style="width: 70%;" name="answerTitle" required="required">	&nbsp;&nbsp;	&nbsp;	&nbsp;&nbsp;&nbsp;<input type="hidden" name="answerStatusSingle" value="0" /><input type="radio" name="answerStatusSingle" value="1">	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border: none; background-color: white;" type="button" value="X" class="removeAnswer"></div>';
@@ -71,7 +74,7 @@
 		$(document).on('click', '.removeAnswer', function() {
 			$(this).parent('div').remove();
 		});
-		
+
 		/* Add and remove answer in modal Add*/
 
 		/* Add and remove answer in modal Edit*/
@@ -83,15 +86,15 @@
 							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusMultiple" value="0" />	<input type="checkbox" name="answerStatusMultiple" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
 							$("#answersEdit").append($div);
 						});
-		
+
 		$(document)
-		.on(
-				'click',
-				'.addAnswerEditSingle',
-				function() {
-					var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
-					$("#answersEdit").append($div);
-				});
+				.on(
+						'click',
+						'.addAnswerEditSingle',
+						function() {
+							var $div = '<div><br><input style="width:70%;" name="answerTitle" required="required">	&nbsp;&nbsp;&nbsp;	&nbsp;	&nbsp;<input  type="hidden" name="answerStatusSingle" value="0" />	<input type="radio" name="answerStatusSingle" value="1">&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;<input style="color: red; border:none; background-color: white;" type="button" value="X" class="removeAnswerEdit"></div>';
+							$("#answersEdit").append($div);
+						});
 		/* 	function removeAnswerEdit(answerId){
 				alert(answerId);
 				$(this).parent('div').remove();
@@ -101,7 +104,8 @@
 						'click',
 						'.removeAnswerEdit',
 						function() {
-							$.ajax({
+							$
+									.ajax({
 										type : 'GET',
 										url : '${pageContext.request.contextPath }/faculty/ajax/deleteanswer',
 										data : {
@@ -131,7 +135,7 @@
 							$('#explainDetaill').val(
 									result.questionAjax.explainDetail);
 							$('#status').val(result.questionAjax.status);
-							if(result.questionAjax.typeAnswerChoice == "checkbox"){
+							if (result.questionAjax.typeAnswerChoice == "checkbox") {
 								var $answer = '';
 								var $buttonAddAnswer = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEdit" value="+">';
 								for (var i = 0; i < result.answerAjaxs.length; i++) {
@@ -158,9 +162,10 @@
 									}
 
 								}
-								$('#answersEdit').html($buttonAddAnswer + $answer);
-							}else if(result.questionAjax.typeAnswerChoice == "radio"){
-								
+								$('#answersEdit').html(
+										$buttonAddAnswer + $answer);
+							} else if (result.questionAjax.typeAnswerChoice == "radio") {
+
 								var $answer = '';
 								var $buttonAddAnswerSingle = 'ANSWERS: <input style="float: right;" type="button" class="btn-default addAnswerEditSingle" value="+">';
 								for (var i = 0; i < result.answerAjaxs.length; i++) {
@@ -186,10 +191,10 @@
 												+ '<input type="hidden" name="answerId" value="' + result.answerAjaxs[i].answerId + '"></div>';
 									}
 								}
-								$('#answersEdit').html($buttonAddAnswerSingle + $answer);
+								$('#answersEdit').html(
+										$buttonAddAnswerSingle + $answer);
 							}
-							
-							
+
 						}
 					});
 		}
@@ -240,7 +245,11 @@
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success"
 												data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Question</span></a>
-							<a href="${pageContext.request.contextPath}/faculty/question/review?quizId=${questions[0].quiz.quizId }" class="btn btn-warning"><span>Review</span></a>				
+								 <c:if test="${questions.size() > 0 }">				
+							<a
+													href="${pageContext.request.contextPath}/faculty/question/review?quizId=${questions[0].quiz.quizId }"
+													class="btn btn-warning"><span>Review</span></a>		
+							</c:if>		
 						</div>
 					</div>
 				</div>
@@ -448,20 +457,22 @@
 					<div class="form-group">
 					<span style="color: red;">${msg==""?"": msg }</span> <br />
 						<label>Question Title</label>
-						<s:input path="title" type="text" class="form-control"
-													required="required" />
+						<s:textarea path="title" type="text" class="form-control"
+													required="required" cols="2" rows="2"/>
 				
 					</div>
 					<div class="form-group">
 						<label>Explain Detail</label>
 						<s:textarea path="explainDetail" type="text" class="form-control"
-													required="required" />
+													required="required" cols="5" rows="5" />
 					
 					</div>				
 					<input name="quizId" type="hidden" value="${quizId }" />
 					<hr>
-					<input type="button" class="btn-default" id="singleChoice" value="single choice">	&nbsp;	&nbsp;	&nbsp;
-					 <input type="button" class="btn-default" id="multipleChoice" value="multiple choice">
+					<input type="button" class="btn-default" id="singleChoice"
+												value="single choice">	&nbsp;	&nbsp;	&nbsp;
+					 <input type="button" class="btn-default" id="multipleChoice"
+												value="multiple choice">
 		  	<div id="answers">
              
             <!--  form single choice here -->		  	
@@ -500,15 +511,15 @@
 			
 					<div class="form-group">
 						<label>Title</label>
-						<s:input path="title" id="titlee" type="text" class="form-control"
-													required="required" />
+						<s:textarea path="title" id="titlee" type="text" class="form-control"
+													required="required" cols="2" rows="2" />
 				
 					</div>
 				
 					<div class="form-group">
 						<label>explainDetail</label>
-						<s:input path="explainDetail" id="explainDetaill" type="text"
-													class="form-control" required="required" />				
+						<s:textarea path="explainDetail" id="explainDetaill" type="text"
+													class="form-control" required="required" cols="5" rows="5" />				
 					</div>	
 					<s:input path="questionId" type="hidden" />
 				

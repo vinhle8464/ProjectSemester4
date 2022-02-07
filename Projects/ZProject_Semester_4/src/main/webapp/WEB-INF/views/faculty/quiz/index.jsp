@@ -52,6 +52,7 @@
 							}
 							$('#dateCreated').val($.datepicker.formatDate('mm/dd/yy', new Date()));
 							$('#imgQuiz').attr("src", "/assets/uploads/" + quiz.image);
+							$('#image').val(quiz.image);
 						}
 					});
 
@@ -155,10 +156,10 @@
 							</c:if>
 							
 							<c:if test="${quiz.status == true}">
-								<td style="color: green;"><strong>${quiz.status }</strong></td>
+								<td style="color: green;"><strong>Active</strong></td>
 							</c:if>
 							<c:if test="${quiz.status == false}">
-								<td style="color: red;"><strong>${quiz.status }</strong></td>
+								<td style="color: red;"><strong>Inactive</strong></td>
 							</c:if>
 							
 							<td>
@@ -427,8 +428,8 @@
 					</div>
 					<div class="form-group">
 						<label>Status</label> <br />
-						<s:radiobutton path="status" class="status" value="true" /> True &nbsp; &nbsp;
-						<s:radiobutton path="status" class="status" value="false" /> False
+						<s:radiobutton path="status" class="status" value="true" /> Active &nbsp; &nbsp;
+						<s:radiobutton path="status" class="status" value="false" /> Inactive
 					</div>	
 					
 					<s:input path="quizId" id="quizIdEdit" type="hidden" />
@@ -443,6 +444,7 @@
 						<label>Image</label>
 						<input type="file" name="file" class="form-control" />
 						<img src="" id="imgQuiz" width="100%" height="100%">
+						<s:hidden path="image" id="image"></s:hidden>
 					</div>			
 				</div>
 				<div class="modal-footer">

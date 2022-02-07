@@ -121,7 +121,7 @@
 					"startDuration": 2,
 					"graphs": [
 						{
-							"balloonText": "[[value]] litres of beer per year",
+							"balloonText": "[[value]] quiz",
 							"bullet": "round",
 							"id": "AmGraph-1",
 							"valueField": "litres"
