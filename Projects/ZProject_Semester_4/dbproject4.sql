@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2022 at 09:11 AM
+-- Generation Time: Feb 07, 2022 at 02:56 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -54,7 +54,7 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`
 (102, 'chiongngaongo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Ngao Ngo', 'chiongngaongo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0111111111', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
 (103, 'chionglotomo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Lo To Mo', 'chionglotomo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0123456123', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
 (104, 'chiongxanhle', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Xanh Le', 'chiongxanhle@gmail.com', '2001-06-14', 'Tay Ninh', b'00', '0888555222', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
-(105, 'faculty2', '$2a$10$iOhJsUia8lMgO5gSV5wMuehX5rRng.WmptNr2gJfntrOubbvn0dPi', 'Faculty Marry', 'marry@gmail.com', '1993-01-07', 'Dong Nai', b'00', '0133156555', 'd008449ac37b4531a065b2a37911e568.jpg', b'01', '2022-01-31');
+(105, 'faculty2', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Faculty Marry', 'marry@gmail.com', '1993-01-07', 'Dong Nai', b'00', '0133156555', 'd008449ac37b4531a065b2a37911e568.jpg', b'01', '2022-01-31');
 
 -- --------------------------------------------------------
 
@@ -69,6 +69,13 @@ CREATE TABLE `account_pack` (
   `start_date` date NOT NULL,
   `status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `account_pack`
+--
+
+INSERT INTO `account_pack` (`account_pack_id`, `account_id`, `pack_id`, `start_date`, `status`) VALUES
+(3, 99, 1, '2022-02-07', b'01');
 
 -- --------------------------------------------------------
 
@@ -431,7 +438,147 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 (428, ' A straight ruler with an offset of 1.5m and a vertical line of 1cm', 125, b'00', b'01'),
 (429, 'A tape measure with a height of 1m and a length of 0.5cm', 125, b'01', b'01'),
 (430, 'Ruler with offset 20cm and DC 1mm', 125, b'00', b'01'),
-(431, 'Ruler with 2m offset and 1cm', 125, b'00', b'01');
+(431, 'Ruler with 2m offset and 1cm', 125, b'00', b'01'),
+(432, 'Meters', 126, b'00', b'01'),
+(433, 'Kilometers', 126, b'00', b'01'),
+(434, ' Cubic meter', 126, b'01', b'01'),
+(435, 'Decimeter', 126, b'00', b'01'),
+(436, 'Select the appropriate measuring instrument.', 127, b'00', b'01'),
+(437, 'Choose the appropriate measure.', 127, b'01', b'01'),
+(438, 'Measure length for accuracy.', 127, b'00', b'01'),
+(439, ' There is a way to set the eyes properly.', 127, b'00', b'01'),
+(440, 'Customer buys 1.4 liters', 128, b'00', b'01'),
+(441, 'Customer buys 3.5 liters', 128, b'01', b'01'),
+(442, 'Customer buys 2.7 liters ', 128, b'00', b'01'),
+(443, 'Customer buys 3.2 liters', 128, b'00', b'01'),
+(444, ' Set your eyes to the same height as the liquid level in the tank', 129, b'01', b'01'),
+(445, 'Place the graduated cylinder horizontally', 129, b'00', b'01'),
+(446, 'Place the eye obliquely at the height of the liquid level in the tank', 129, b'00', b'01'),
+(447, 'Place the eye perpendicular to the height of the liquid level in the tank', 129, b'00', b'01'),
+(448, ' 100 liters; 10000 ml', 130, b'00', b'01'),
+(449, '100 liters; 1000000 ml', 130, b'00', b'01'),
+(450, '1000 liters; 100000 ml', 130, b'00', b'01'),
+(451, '1000 liters; 1000000 ml', 130, b'01', b'01'),
+(452, ' 0.00015 m 3  = 0.15l', 131, b'01', b'01'),
+(453, '  0.00015 m 3  = 0.015l', 131, b'00', b'01'),
+(454, '0.000015 m 3  = 0.15l', 131, b'00', b'01'),
+(455, ' 0.0015 m 3  = 0.015l', 131, b'00', b'01'),
+(456, 'meters (m)', 132, b'00', b'01'),
+(457, 'kilogram (kg)', 132, b'00', b'01'),
+(458, 'cubic meters (m3) and liters (l).', 132, b'01', b'01'),
+(459, 'square meter (m2)', 132, b'00', b'01'),
+(460, '11', 133, b'00', b'01'),
+(461, '12', 133, b'00', b'01'),
+(462, '13', 133, b'00', b'01'),
+(463, '14', 133, b'01', b'01'),
+(464, 'Drinking cup.', 134, b'00', b'01'),
+(465, 'Rice bowl.', 134, b'00', b'01'),
+(466, 'Kettle for cooking water.', 134, b'00', b'01'),
+(467, 'Graduated flask.', 134, b'01', b'01'),
+(468, 'The volume of milk in the box is 200ml.', 135, b'01', b'01'),
+(469, ' Weight of the milk carton.', 135, b'00', b'01'),
+(470, 'Weight of milk in the can.', 135, b'00', b'01'),
+(471, 'The volume of the milk carton is 200ml.', 135, b'00', b'01'),
+(472, 'The force of the ballpoint pen\'s spring acting on the pen nib ', 136, b'00', b'01'),
+(473, 'The force of the ball on the wall when the ball collides with the wall ', 136, b'00', b'01'),
+(474, 'The force of the motorcycle shock absorber acting on the motorcycle frame ', 136, b'00', b'01'),
+(475, 'The force acting on the wing when the plane is in motion ', 136, b'01', b'01'),
+(476, ' In two cases springs have different lengths: in the case of the longer spring, the elastic force is stronger ', 137, b'00', b'01'),
+(477, 'The smaller the deformation of the spring, the smaller the elastic force ', 137, b'00', b'01'),
+(478, 'The greater the length of the spring when stretched, the smaller the elastic force ', 137, b'01', b'01'),
+(479, 'The smaller the length of the spring when compressed, the smaller the elastic force ', 137, b'00', b'01'),
+(480, ' Gravity of a weight', 138, b'00', b'01'),
+(481, 'The force of attraction of a magnet on a piece of iron', 138, b'00', b'01'),
+(482, 'Thrust of the spring under the saddle', 138, b'01', b'01'),
+(483, 'Adhesion force between a sheet of paper glued on the board and the board surface', 138, b'00', b'01'),
+(484, 'Department of Clay', 139, b'00', b'01'),
+(485, 'Copper wire', 139, b'00', b'01'),
+(486, 'Rubber rope', 139, b'01', b'01'),
+(487, 'Ripe guava', 139, b'00', b'01'),
+(488, 'A lump of clay', 140, b'00', b'01'),
+(489, 'A stone', 140, b'00', b'01'),
+(490, 'A small piece of copper wire', 140, b'00', b'01'),
+(491, 'A rubber ball', 140, b'01', b'01'),
+(492, 'Bridges, machines, light bulbs ', 141, b'00', b'01'),
+(493, 'Cup, bottle, blade', 141, b'00', b'01'),
+(494, 'Cup, bridge, bottle', 141, b'00', b'01'),
+(495, 'Bridges, machines, blades', 141, b'01', b'01'),
+(496, 'Insoluble in water', 142, b'00', b'01'),
+(497, 'Smelly', 142, b'00', b'01'),
+(498, 'White', 142, b'01', b'01'),
+(499, 'Liquids', 142, b'00', b'01'),
+(500, 'Both are insoluble in water', 143, b'00', b'01'),
+(501, 'Both taste sweet', 143, b'00', b'01'),
+(502, 'Both are soluble in water', 143, b'01', b'01'),
+(503, ' Both are liquids', 143, b'00', b'01'),
+(504, 'Solubility', 144, b'00', b'01'),
+(505, 'Combustibility', 144, b'00', b'01'),
+(506, 'Color', 144, b'01', b'01'),
+(507, 'Smell', 144, b'00', b'01'),
+(508, 'Distilled water is colorless, natural water is cloudy', 145, b'00', b'01'),
+(509, ' Distilled water is odorless, natural water has an odor', 145, b'00', b'01'),
+(510, ' Distilled water has one substance, natural water has many substances', 145, b'01', b'01'),
+(511, 'Distilled water has no taste, natural water has a taste', 145, b'00', b'01'),
+(512, 'Possible weight loss', 166, b'00', b'01'),
+(513, ' Capable of resizing', 166, b'00', b'01'),
+(514, 'Being able to reproduce', 166, b'01', b'01'),
+(515, 'All options given', 166, b'00', b'01'),
+(516, 'Wishing tree     ', 167, b'01', b'01'),
+(517, 'Broom', 167, b'00', b'01'),
+(518, 'Scissors', 167, b'00', b'01'),
+(519, 'Golden tree', 167, b'00', b'01'),
+(520, ' Fish swell and wash up on the beach', 168, b'00', b'01'),
+(521, 'Young shoots rise above the ground', 168, b'01', b'01'),
+(522, 'The ball increases in size when blown', 168, b'00', b'01'),
+(523, 'The table is rotten', 168, b'00', b'01'),
+(524, 'Bees', 169, b'00', b'01'),
+(525, 'Squirrel', 169, b'00', b'01'),
+(526, 'Shuttle', 169, b'01', b'01'),
+(527, 'Rabbit', 169, b'00', b'01'),
+(528, 'Undernutrition', 170, b'01', b'01'),
+(529, 'Lack of carbon dioxide', 170, b'00', b'01'),
+(530, 'Excess oxygen', 170, b'00', b'01'),
+(531, 'Just enough light', 170, b'00', b'01'),
+(532, '2', 190, b'01', b'01'),
+(533, '3', 190, b'00', b'01'),
+(534, '4', 190, b'00', b'01'),
+(535, '5', 190, b'00', b'01'),
+(536, 'Protection', 191, b'00', b'01'),
+(537, 'Sneaky', 191, b'01', b'01'),
+(538, 'Sword and spear', 191, b'00', b'01'),
+(539, 'Tired', 191, b'00', b'01'),
+(540, 'Word is a meaningful linguistic element', 192, b'00', b'01'),
+(541, 'Word is the smallest linguistic element used to create sentences', 192, b'00', b'01'),
+(542, 'Words are meaningful linguistic elements, used independently, to create sentences.', 192, b'01', b'01'),
+(543, 'Words are made up of one syllable.', 192, b'00', b'01'),
+(544, 'gloating', 193, b'00', b'01'),
+(545, 'withered', 193, b'00', b'01'),
+(546, 'customers', 193, b'01', b'01'),
+(547, ' have fun', 193, b'00', b'01'),
+(548, 'English', 194, b'01', b'01'),
+(549, 'From', 194, b'00', b'01'),
+(550, 'Letters', 194, b'00', b'01'),
+(551, 'Vowels', 194, b'00', b'01'),
+(552, 'Round shape', 215, b'00', b'01'),
+(553, 'Square', 215, b'00', b'01'),
+(554, 'Spherical', 215, b'01', b'01'),
+(555, 'Oval shape', 215, b'00', b'01'),
+(556, 'Is the meridian to the left of the prime meridian.', 216, b'01', b'01'),
+(557, ' Is the meridian to the right of the prime meridian.', 216, b'00', b'01'),
+(558, 'Located below the equator.', 216, b'00', b'01'),
+(559, 'Located above the equator.', 216, b'00', b'01'),
+(560, '3th place', 217, b'01', b'01'),
+(561, '5th place', 217, b'00', b'01'),
+(562, '9th place', 217, b'00', b'01'),
+(563, '7th place', 217, b'00', b'01'),
+(564, 'Northern Hemisphere and Western Hemisphere', 218, b'00', b'01'),
+(565, 'Southern Hemisphere and Eastern Hemisphere', 218, b'00', b'01'),
+(566, 'Northern Hemisphere and Eastern Hemisphere.', 218, b'01', b'01'),
+(567, 'Southern Hemisphere and Western Hemisphere', 218, b'00', b'01'),
+(568, 'Longitude', 219, b'00', b'01'),
+(569, ' Prime Meridian.', 219, b'00', b'01'),
+(570, 'Latitude', 219, b'01', b'01'),
+(571, 'Prime latitude.', 219, b'00', b'01');
 
 -- --------------------------------------------------------
 
@@ -457,7 +604,6 @@ INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
 (4, 'Biological', 'About biological', b'01'),
 (5, 'Literature', 'About literature', b'01'),
 (6, 'Geographic', 'About geographic', b'01'),
-(7, 'Technology', 'About technology', b'01'),
 (8, 'Information technology', 'About information technology', b'01'),
 (9, 'English', 'english', b'01');
 
@@ -481,7 +627,16 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`comment_id`, `comment`, `account_id`, `quiz_id`, `status`, `create_date`) VALUES
-(13, 'greate', 99, 15, b'01', '2022-02-06 22:14:02');
+(13, 'greate', 99, 15, b'01', '2022-02-06 22:14:02'),
+(14, 'Great', 99, 53, b'01', '2022-02-07 17:27:32'),
+(15, 'Great', 99, 52, b'01', '2022-02-07 17:28:43'),
+(16, 'Great', 99, 51, b'01', '2022-02-07 17:29:15'),
+(17, 'Great', 99, 50, b'01', '2022-02-07 17:30:09'),
+(18, 'Great', 99, 46, b'01', '2022-02-07 17:30:22'),
+(19, 'Great', 99, 43, b'01', '2022-02-07 17:30:36'),
+(20, 'Helpful', 99, 43, b'01', '2022-02-07 17:30:47'),
+(21, 'Helpful', 99, 53, b'01', '2022-02-07 17:31:00'),
+(22, 'Helpful', 99, 52, b'01', '2022-02-07 17:31:13');
 
 -- --------------------------------------------------------
 
@@ -539,7 +694,8 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`history_id`, `date`, `quiz_id`, `account_id`, `status`, `list_question_id`, `list_answer_choice`, `time_done`, `number_right_answer`) VALUES
-(15, '2022-02-06', 15, 99, b'01', '46 47 48 49 45 ', '', 2, 0);
+(15, '2022-02-06', 15, 99, b'01', '46 47 48 49 45 ', '', 2, 0),
+(16, '2022-02-07', 29, 99, b'01', '116 119 118 117 120 ', '', 11, 0);
 
 -- --------------------------------------------------------
 
@@ -583,6 +739,13 @@ CREATE TABLE `pay` (
   `date_paid` datetime NOT NULL,
   `pay_status` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pay`
+--
+
+INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
+(15, 99, 'PAYPAL', 'PAYMENT PACK - CODE: Pack 1 month', '0.99', '2022-02-07 17:27:57', b'01');
 
 -- --------------------------------------------------------
 
@@ -687,7 +850,121 @@ INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `st
 (122, 'The measuring limit (GHD) of the ruler is:', ' The maximum length indicated on the ruler.', 30, b'01', 'radio'),
 (123, 'Which of the following rulers is the most suitable to measure the length of your school yard?', ' The tape measure has a height of 5m and a length of 5mm.', 30, b'01', 'radio'),
 (124, 'Choose an appropriate ruler to measure the thickness of the book Physics 6:', 'Ruler with offset 20cm and DC 1mm', 30, b'01', 'radio'),
-(125, 'Choose the appropriate ruler to measure the circumference of the cup mouth', 'A tape measure with a height of 1m and a length of 0.5cm', 30, b'01', 'radio');
+(125, 'Choose the appropriate ruler to measure the circumference of the cup mouth', 'A tape measure with a height of 1m and a length of 0.5cm', 30, b'01', 'radio'),
+(126, 'Choose FALSE option. The unit of length is', ' Cubic meter', 31, b'01', 'radio'),
+(127, 'Before measuring the length of an object, it is necessary to estimate the length to be measured\r\n\r\n', 'Choose the appropriate measure.', 31, b'01', 'radio'),
+(128, 'An oil seller only has a 0.5 liter can and a 1 liter can. Which of the following customers can he only sell oil to?', 'Customer buys 3.5 liters', 31, b'01', 'radio'),
+(129, 'When measuring the volume of a liquid, it is necessary to:', ' Set your eyes to the same height as the liquid level in the tank', 31, b'01', 'radio'),
+(130, 'Fill in the appropriate number: 1 m 3  = ........liter = ........ml', '1000 liters; 1000000 ml', 31, b'01', 'radio'),
+(131, 'Fill in the blanks: 150ml = ............m 3  = ........ .. l', ' 0.00015 m 3  = 0.15l', 32, b'01', 'radio'),
+(132, 'The most commonly used unit of volume measurement is:', 'cubic meters (m3) and liters (l).', 32, b'01', 'radio'),
+(133, 'People want to store 20 liters of water in small cans marked with 1.5 liters. How many cans should be used at least?', '14', 32, b'01', 'radio'),
+(134, 'To measure the volume of a liquid, people use the tool:', 'Graduated flask.', 32, b'01', 'radio'),
+(135, 'On a box of fresh milk, 200ml is written. That number says:', 'The volume of milk in the box is 200ml.', 32, b'01', 'radio'),
+(136, 'Which of the following is not an elastic force?', 'The force acting on the wing when the plane is in motion ', 33, b'01', 'radio'),
+(137, 'Which of the following statements about spring force is true?', 'The greater the length of the spring when stretched, the smaller the elastic force ', 33, b'01', 'radio'),
+(138, 'Which of the following is an elastic force?', 'Thrust of the spring under the saddle', 33, b'01', 'radio'),
+(139, 'The deformation of which of the objects below is elastic deformation?', 'Rubber rope', 33, b'01', 'radio'),
+(140, 'Which of the following objects is elastic?', 'A rubber ball', 33, b'01', 'radio'),
+(141, 'Iron is used to make which of the following objects:', 'Bridges, machines, blades', 34, b'01', 'radio'),
+(142, 'One of the properties of table salt is:', 'White', 34, b'01', 'radio'),
+(143, 'The similarities of sugar and salt are:', 'Both are soluble in water', 34, b'01', 'radio'),
+(144, 'Iron powder and sulfur powder can be distinguished based on:', 'Color', 34, b'01', 'radio'),
+(145, 'The difference between distilled water and natural water is:', ' Distilled water has one substance, natural water has many substances', 34, b'01', 'radio'),
+(146, 'Iron is used to make which of the following objects:', 'Bridges, machines, blades', 35, b'01', 'radio'),
+(147, 'One of the properties of table salt is:', 'White', 35, b'01', 'radio'),
+(148, 'The similarities of sugar and salt are:', 'Both are soluble in water', 35, b'01', 'radio'),
+(149, 'Iron powder and sulfur powder can be distinguished based on:', 'Color', 35, b'01', 'radio'),
+(150, 'The difference between distilled water and natural water is:', ' Distilled water has one substance, natural water has many substances', 35, b'01', 'radio'),
+(151, 'Iron is used to make which of the following objects:', 'Bridges, machines, blades', 36, b'01', 'radio'),
+(152, 'One of the properties of table salt is:', 'White', 36, b'01', 'radio'),
+(153, 'The similarities of sugar and salt are:', 'Both are soluble in water', 36, b'01', 'radio'),
+(154, 'Iron powder and sulfur powder can be distinguished based on:', 'Color', 36, b'01', 'radio'),
+(155, 'The difference between distilled water and natural water is:', ' Distilled water has one substance, natural water has many substances', 36, b'01', 'radio'),
+(156, 'Iron is used to make which of the following objects:', 'Bridges, machines, blades', 37, b'01', 'radio'),
+(157, 'One of the properties of table salt is:', 'White', 37, b'01', 'radio'),
+(158, 'The similarities of sugar and salt are:', 'Both are soluble in water', 37, b'01', 'radio'),
+(159, 'Iron powder and sulfur powder can be distinguished based on:', 'Color', 37, b'01', 'radio'),
+(160, 'The difference between distilled water and natural water is:', ' Distilled water has one substance, natural water has many substances', 37, b'01', 'radio'),
+(161, 'Iron is used to make which of the following objects:', 'Bridges, machines, blades', 38, b'01', 'radio'),
+(162, 'One of the properties of table salt is:', 'White', 38, b'01', 'radio'),
+(163, 'The similarities of sugar and salt are:', 'Both are soluble in water', 38, b'01', 'radio'),
+(164, 'Iron powder and sulfur powder can be distinguished based on:', 'Color', 38, b'01', 'radio'),
+(165, 'The difference between distilled water and natural water is:', ' Distilled water has one substance, natural water has many substances', 38, b'01', 'radio'),
+(166, 'Living things are different from non-living things in which of the following?', 'Being able to reproduce', 39, b'01', 'radio'),
+(167, 'Which of the following is a living organism?', 'Wishing tree     ', 39, b'01', 'radio'),
+(168, 'Which of the following phenomena reflects life?', 'Young shoots rise above the ground', 39, b'01', 'radio'),
+(169, 'The existence of the following objects does not require the presence of air? ', 'Shuttle', 39, b'01', 'radio'),
+(170, 'A living thing can become a non-living thing if it grows under which of the following conditions?', 'Undernutrition', 39, b'01', 'radio'),
+(171, 'Living things are different from non-living things in which of the following?', 'Being able to reproduce', 40, b'01', 'radio'),
+(172, 'Which of the following is a living organism?', 'Wishing tree     ', 40, b'01', 'radio'),
+(173, 'Which of the following phenomena reflects life?', 'Young shoots rise above the ground', 40, b'01', 'radio'),
+(174, 'The existence of the following objects does not require the presence of air? ', 'Shuttle', 40, b'01', 'radio'),
+(175, 'A living thing can become a non-living thing if it grows under which of the following conditions?', 'Undernutrition', 40, b'01', 'radio'),
+(176, 'A living thing can become a non-living thing if it grows under which of the following conditions?', 'Undernutrition', 42, b'01', 'radio'),
+(177, 'A living thing can become a non-living thing if it grows under which of the following conditions?', 'Undernutrition', 43, b'01', 'radio'),
+(178, 'The existence of the following objects does not require the presence of air? ', 'Shuttle', 41, b'01', 'radio'),
+(179, 'The existence of the following objects does not require the presence of air? ', 'Shuttle', 42, b'01', 'radio'),
+(180, 'The existence of the following objects does not require the presence of air? ', 'Shuttle', 43, b'01', 'radio'),
+(181, 'Which of the following phenomena reflects life?', 'Young shoots rise above the ground', 41, b'01', 'radio'),
+(182, 'Which of the following phenomena reflects life?', 'Young shoots rise above the ground', 42, b'01', 'radio'),
+(183, 'Which of the following phenomena reflects life?', 'Young shoots rise above the ground', 43, b'01', 'radio'),
+(184, 'Which of the following is a living organism?', 'Wishing tree     ', 41, b'01', 'radio'),
+(185, 'Which of the following is a living organism?', 'Wishing tree     ', 42, b'01', 'radio'),
+(186, 'Which of the following is a living organism?', 'Wishing tree     ', 43, b'01', 'radio'),
+(187, 'Living things are different from non-living things in which of the following?', 'Being able to reproduce', 41, b'01', 'radio'),
+(188, 'Living things are different from non-living things in which of the following?', 'Being able to reproduce', 42, b'01', 'radio'),
+(189, 'Living things are different from non-living things in which of the following?', 'Being able to reproduce', 43, b'01', 'radio'),
+(190, 'Vietnamese words are divided into how many types?', '2', 44, b'01', 'radio'),
+(191, 'Which of the following words is a compound word?', 'Sneaky', 44, b'01', 'radio'),
+(192, ' The most accurate and complete concept of the word?\r\n\r\n', 'Words are meaningful linguistic elements, used independently, to create sentences.', 44, b'01', 'radio'),
+(193, 'Which words are often used to describe laughter?\r\n\r\n', 'customers', 44, b'01', 'radio'),
+(194, 'What is a word forming unit?', 'English', 44, b'01', 'radio'),
+(195, 'Vietnamese words are divided into how many types?', '2', 45, b'01', 'radio'),
+(196, 'Vietnamese words are divided into how many types?', '2', 46, b'01', 'radio'),
+(197, 'Vietnamese words are divided into how many types?', '2', 47, b'01', 'radio'),
+(198, 'Vietnamese words are divided into how many types?', '2', 48, b'01', 'radio'),
+(199, 'Which of the following words is a compound word?', 'Sneaky', 45, b'01', 'radio'),
+(200, 'Which of the following words is a compound word?', 'Sneaky', 46, b'01', 'radio'),
+(201, 'Which of the following words is a compound word?', 'Sneaky', 47, b'01', 'radio'),
+(202, 'Which of the following words is a compound word?', 'Sneaky', 48, b'01', 'radio'),
+(203, ' The most accurate and complete concept of the word?\r\n\r\n', 'Words are meaningful linguistic elements, used independently, to create sentences.', 45, b'01', 'radio'),
+(204, ' The most accurate and complete concept of the word?\r\n\r\n', 'Words are meaningful linguistic elements, used independently, to create sentences.', 46, b'01', 'radio'),
+(205, ' The most accurate and complete concept of the word?\r\n\r\n', 'Words are meaningful linguistic elements, used independently, to create sentences.', 47, b'01', 'radio'),
+(206, ' The most accurate and complete concept of the word?\r\n\r\n', 'Words are meaningful linguistic elements, used independently, to create sentences.', 48, b'01', 'radio'),
+(207, 'Which words are often used to describe laughter?\r\n\r\n', 'customers', 45, b'01', 'radio'),
+(208, 'Which words are often used to describe laughter?\r\n\r\n', 'customers', 46, b'01', 'radio'),
+(209, 'Which words are often used to describe laughter?\r\n\r\n', 'customers', 47, b'01', 'radio'),
+(210, 'Which words are often used to describe laughter?\r\n\r\n', 'customers', 48, b'01', 'radio'),
+(211, 'What is a word forming unit?', 'English', 45, b'01', 'radio'),
+(212, 'What is a word forming unit?', 'English', 46, b'01', 'radio'),
+(213, 'What is a word forming unit?', 'English', 47, b'01', 'radio'),
+(214, 'What is a word forming unit?', 'English', 48, b'01', 'radio'),
+(215, 'What is the shape of the Earth?', 'Spherical', 49, b'01', 'radio'),
+(216, 'The West meridian is:', 'Is the meridian to the left of the prime meridian.', 49, b'01', 'radio'),
+(217, ' In the solar system, in what position is the Earth in order of increasing distance from the Sun?', '3th place', 49, b'01', 'radio'),
+(218, 'On Earth, our country is located in:', 'Northern Hemisphere and Eastern Hemisphere.', 49, b'01', 'radio'),
+(219, ' The circles on the globe perpendicular to the meridians are the lines:\r\n\r\n', 'Latitude', 49, b'01', 'radio'),
+(220, 'What is the shape of the Earth?', 'Spherical', 50, b'01', 'radio'),
+(221, 'What is the shape of the Earth?', 'Spherical', 51, b'01', 'radio'),
+(222, 'What is the shape of the Earth?', 'Spherical', 52, b'01', 'radio'),
+(223, 'What is the shape of the Earth?', 'Spherical', 53, b'01', 'radio'),
+(224, 'The West meridian is:', 'Is the meridian to the left of the prime meridian.', 50, b'01', 'radio'),
+(225, 'The West meridian is:', 'Is the meridian to the left of the prime meridian.', 51, b'01', 'radio'),
+(226, 'The West meridian is:', 'Is the meridian to the left of the prime meridian.', 52, b'01', 'radio'),
+(227, 'The West meridian is:', 'Is the meridian to the left of the prime meridian.', 53, b'01', 'radio'),
+(228, ' In the solar system, in what position is the Earth in order of increasing distance from the Sun?', '3th place', 50, b'01', 'radio'),
+(229, ' In the solar system, in what position is the Earth in order of increasing distance from the Sun?', '3th place', 51, b'01', 'radio'),
+(230, ' In the solar system, in what position is the Earth in order of increasing distance from the Sun?', '3th place', 52, b'01', 'radio'),
+(231, ' In the solar system, in what position is the Earth in order of increasing distance from the Sun?', '3th place', 53, b'01', 'radio'),
+(232, 'On Earth, our country is located in:', 'Northern Hemisphere and Eastern Hemisphere.', 50, b'01', 'radio'),
+(233, 'On Earth, our country is located in:', 'Northern Hemisphere and Eastern Hemisphere.', 51, b'01', 'radio'),
+(234, 'On Earth, our country is located in:', 'Northern Hemisphere and Eastern Hemisphere.', 52, b'01', 'radio'),
+(235, 'On Earth, our country is located in:', 'Northern Hemisphere and Eastern Hemisphere.', 53, b'01', 'radio'),
+(236, ' The circles on the globe perpendicular to the meridians are the lines:\r\n\r\n', 'Latitude', 50, b'01', 'radio'),
+(237, ' The circles on the globe perpendicular to the meridians are the lines:\r\n\r\n', 'Latitude', 51, b'01', 'radio'),
+(238, ' The circles on the globe perpendicular to the meridians are the lines:\r\n\r\n', 'Latitude', 52, b'01', 'radio'),
+(239, ' The circles on the globe perpendicular to the meridians are the lines:\r\n\r\n', 'Latitude', 53, b'01', 'radio');
 
 -- --------------------------------------------------------
 
@@ -729,8 +1006,31 @@ INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_i
 (26, 'TEST ENGLISH 2', 'Learn about english 2', 100, 9, 0, 40, b'00', '2a50462ca0934f29b7263d92b4528de0.png', b'01', '2022-02-07 14:23:51'),
 (27, 'TEST ENGLISH 3', 'Learn about English 3', 100, 9, 0, 15, b'01', '17d13abb89fe4dafafa550b4bb5b4aae.png', b'01', '2022-02-07 14:30:19'),
 (28, 'TEST ENGLISH 4', 'Learn about English 4', 100, 9, 0, 45, b'01', 'a1989d8b15884e58bd7ee03826caa825.jpeg', b'01', '2022-02-07 14:43:26'),
-(29, 'Physics quiz 6 ', 'Physics quiz 6 ', 100, 2, 0, 30, b'00', '011f65feae2e4d8ab2de638bf47b2280.jpeg', b'01', '2022-02-07 14:59:17'),
-(30, 'Physics quiz 7', 'Physics quiz 7', 100, 2, 0, 40, b'01', 'cda9d3e8a53943578bd04f6d60170c35.jpeg', b'01', '2022-02-07 15:04:17');
+(29, 'Physics quiz 6 ', 'Physics quiz 6 ', 100, 2, 1, 30, b'00', '011f65feae2e4d8ab2de638bf47b2280.jpeg', b'01', '2022-02-07 14:59:17'),
+(30, 'Physics quiz 7', 'Physics quiz 7', 100, 2, 0, 40, b'01', 'cda9d3e8a53943578bd04f6d60170c35.jpeg', b'01', '2022-02-07 15:04:17'),
+(31, 'Physics quiz 8', 'Physics quiz 8', 100, 2, 0, 45, b'01', 'fbb523dfe7384d798fbac333a1c355dc.jpeg', b'01', '2022-02-07 15:16:28'),
+(32, 'Physics quiz 9', 'Physics quiz 9', 100, 2, 0, 35, b'01', 'b0151405daa349a6bde2a38f4bccc36e.jpeg', b'01', '2022-02-07 15:30:27'),
+(33, 'Physics quiz 10', 'Physics quiz 10', 100, 2, 0, 40, b'01', '412ea1c6a1f74d35a36857ca7e054fce.jpeg', b'01', '2022-02-07 15:58:04'),
+(34, 'Chemistry test ', 'Chemistry test ', 105, 3, 0, 20, b'00', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
+(35, 'Chemistry test 1', 'Chemistry test 1', 105, 3, 0, 20, b'01', 'd7d3c94850174fbbb8463127cb45d752.png', b'01', '2022-02-07 16:25:09'),
+(36, 'Chemistry test 2', 'Chemistry test 2', 105, 3, 0, 20, b'01', '24d41a284a47472581bb9b843bb5ed2c.jpeg', b'01', '2022-02-07 16:25:09'),
+(37, 'Chemistry test 3', 'Chemistry test 3', 105, 3, 0, 20, b'01', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
+(38, 'Chemistry test 4', 'Chemistry test 4', 105, 3, 0, 20, b'01', 'b2e429aa05c64de8b66b87148e17c279.png', b'01', '2022-02-07 16:25:09'),
+(39, 'Biology Quiz', 'Biology Quiz', 105, 4, 0, 15, b'00', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
+(40, 'Biology Quiz 1', 'Biology Quiz 1', 105, 4, 0, 15, b'01', '35f19550492d49f8bc6f15034ae386a2.jpeg', b'01', '2022-02-07 16:38:25'),
+(41, 'Biology Quiz 2', 'Biology Quiz 2', 105, 4, 0, 15, b'01', '3957ce404e4c4aa0b0bf6d7db6646631.jpeg', b'01', '2022-02-07 16:38:25'),
+(42, 'Biology Quiz 3', 'Biology Quiz 3', 105, 4, 0, 15, b'01', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
+(43, 'Biology Quiz 4', 'Biology Quiz 4', 105, 4, 0, 15, b'01', '0c17dbff446f4fcfb6ae20733c0bbb0f.jpeg', b'01', '2022-02-07 16:38:25'),
+(44, 'Grammar test : Vietnamese words and word structure', 'Grammar test : Vietnamese words and word structure', 105, 5, 0, 30, b'00', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
+(45, 'Grammar test 1 : Vietnamese words and word structure', 'Grammar test 1: Vietnamese words and word structure', 105, 5, 0, 30, b'01', 'f2777431433446de94ca35d9dd6d8ae4.jpeg', b'01', '2022-02-07 16:51:09'),
+(46, 'Grammar test 2: Vietnamese words and word structure', 'Grammar test 2: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '9eac4f37286c4ccda96ddf86130d1a27.jpeg', b'01', '2022-02-07 16:51:09'),
+(47, 'Grammar test 3: Vietnamese words and word structure', 'Grammar test 3: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
+(48, 'Grammar test 4: Vietnamese words and word structure', 'Grammar test 4: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '10ebbda53b48499396d0d8ece4211bcb.jpeg', b'01', '2022-02-07 16:51:09'),
+(49, 'Geography quiz ', 'Geography quiz ', 105, 6, 0, 20, b'00', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
+(50, 'Geography quiz 1', 'Geography quiz 1', 105, 6, 0, 20, b'01', '8b84c80130bc49dba42f63cd695ace56.jpeg', b'01', '2022-02-07 17:03:04'),
+(51, 'Geography quiz 2', 'Geography quiz 2', 105, 6, 0, 20, b'01', 'a6b7b73d0b78496992ae3973dafe1c2d.jpeg', b'01', '2022-02-07 17:03:04'),
+(52, 'Geography quiz 3', 'Geography quiz 3', 105, 6, 0, 20, b'01', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
+(53, 'Geography quiz 4', 'Geography quiz 4', 105, 6, 0, 20, b'01', '2722897f6e474d348d1a3375215deb78.jpeg', b'01', '2022-02-07 17:03:04');
 
 -- --------------------------------------------------------
 
@@ -754,7 +1054,13 @@ CREATE TABLE `rating` (
 INSERT INTO `rating` (`rating_id`, `account_id`, `quiz_id`, `star`, `created`, `status`) VALUES
 (4, 99, 15, 5, '2022-02-06 22:14:08', b'01'),
 (5, 99, 14, 4, '2022-02-06 22:23:11', b'01'),
-(6, 100, 22, 5, '2022-02-07 11:59:55', b'01');
+(6, 100, 22, 5, '2022-02-07 11:59:55', b'01'),
+(7, 99, 53, 5, '2022-02-07 17:27:23', b'01'),
+(8, 99, 52, 4, '2022-02-07 17:28:34', b'01'),
+(9, 99, 51, 3, '2022-02-07 17:29:05', b'01'),
+(10, 99, 50, 5, '2022-02-07 17:30:04', b'01'),
+(11, 99, 46, 4, '2022-02-07 17:30:18', b'01'),
+(12, 99, 43, 5, '2022-02-07 17:30:32', b'01');
 
 -- --------------------------------------------------------
 
@@ -918,13 +1224,13 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `account_pack`
 --
 ALTER TABLE `account_pack`
-  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=572;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -936,7 +1242,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `email`
@@ -948,7 +1254,7 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pack`
@@ -960,25 +1266,25 @@ ALTER TABLE `pack`
 -- AUTO_INCREMENT for table `pay`
 --
 ALTER TABLE `pay`
-  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `role`
