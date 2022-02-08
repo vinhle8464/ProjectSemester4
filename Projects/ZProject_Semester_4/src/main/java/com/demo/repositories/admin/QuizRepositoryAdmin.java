@@ -29,4 +29,8 @@ public interface QuizRepositoryAdmin extends JpaRepository<Quiz, Integer> {
 			nativeQuery = true)
 	public Page<Quiz> searchByKeyword(String keyword, Pageable pageable);
 	
+	@Query(value = "Select * From quiz q inner join category c on q.category_id = c.category_id where q.category_id = ?1",
+			nativeQuery = true)
+	public Page<Quiz> sortByCategory(int categoryId, Pageable pageable);
+	
 }

@@ -150,7 +150,7 @@ public class EmailAdminController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "emailId");
 			model.addAttribute("emails", pages.getContent());
 
 			Email email = new Email();		

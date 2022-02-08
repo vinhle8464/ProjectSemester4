@@ -66,7 +66,7 @@ public class CommentController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "commentId");
 			model.addAttribute("comments", pages.getContent());
 
 			Comment comment = new Comment();		

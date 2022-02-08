@@ -98,7 +98,7 @@ public class PayAdminController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "payId");
 			model.addAttribute("pays", pages.getContent());
 
 			Pay pay = new Pay();		
