@@ -175,7 +175,7 @@ section.right_answer {
 										stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431"
 										r="15.91549431" />
 		      <circle class="circle-chart__circle" stroke="#00acc1"
-										stroke-width="2" stroke-dasharray="${history.numberRightAnswer/quiz.questions.size() * 100}" stroke-linecap="round"
+										stroke-width="2" stroke-dasharray="0" stroke-linecap="round"
 										fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
 		      <g class="circle-chart__info">
 		        <text class="circle-chart__percent" x="16.91549431" y="15.5"

@@ -31,5 +31,7 @@ public interface QuizServiceAdmin {
 	public List<QuizAjax> findAjaxByCategoryId(int categoryId);
 	
 	public Page<Quiz> searchByKeyword(int currentPage, int pageSize, String sort, String keyword);
+	
+	public Page<Quiz> sortByCategory(int currentPage, int pageSize, String sort, int categoryId);
 
 }

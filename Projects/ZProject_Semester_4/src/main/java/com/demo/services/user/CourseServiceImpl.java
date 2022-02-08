@@ -33,6 +33,32 @@ public class CourseServiceImpl implements CourseService {
 
 	}
 
+
+	@Override
+	public Page<Quiz> searchByTitle(int currentPage, int pageSize, String sort, String title) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepository.searchByTitle(title, pageable);
+
+	}
+
+
+	@Override
+	public Page<Quiz> getAllQuizByCategoryIdFee(int currentPage, int pageSize, String sort, int categoryId,
+			boolean fee) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepository.getAllQuizByCategoryIdFee(categoryId, fee, pageable);
+	}
+
+
+	@Override
+	public Page<Quiz> getPageFee(int currentPage, int pageSize, String sort, boolean fee) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepository.findAllFee(fee, pageable);
+	}
+
+
+	
+
 //	@Override
 //	public List<Quiz> findAllQuizByCategoryId(int categoryId) {
 //		return courseRepository.findAllQuizByCategoryId(categoryId);

@@ -192,6 +192,7 @@
 
 
 								</div>
+
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="dob" class="form-control" id="dob"
@@ -227,10 +228,27 @@
 									</label>
 
 								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6" style="padding: 0px 35px;">
+											<h3 style="display: inline-block;">Candidate:</h3>
+											<input type="radio" value="3" name="role"
+												class="form-control"
+												style="width: 50px; height: 25px; margin: 0px; padding: 0px; display: inline-block; position: absolute; bottom: 10px;" />
+										</div>
+										<div class="col-sm-6" style="padding: 0px 35px;">
+											<h3 style="display: inline-block;">Faculty:</h3>
+											<input type="radio" value="2" name="role"
+												class="form-control"
+												style="width: 50px; height: 25px; margin: 0px; padding: 0px; display: inline-block; position: absolute; bottom: 10px;" />
+										</div>
+									</div>
+
+
+								</div>
 								<div class="row">
 									<div class="col-sm-10">
-										<input type="hidden" name="role" value="3"> <input
-											type="hidden" name="avatar" value="none"> <input
+										<input type="hidden" name="avatar" value="none"> <input
 											type="hidden" name="status" value="false">
 										<button type="submit"
 											class="btn btn-light btn-radius btn-brd grd1">Save
@@ -249,7 +267,9 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<a class="navbar-brand" href="index.html" style="width: 45%;"> <img
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath}/user/home/index"
+			style="width: 45%;"> <img
 			src="${pageContext.request.contextPath}/resources/user/images/logoquiz2.png"
 			alt="" width="40%" />
 		</a>

@@ -74,12 +74,37 @@ public class QuizController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "quizId");
 			model.addAttribute("quizs", pages.getContent());
 
 			Quiz quiz = new Quiz();		
 			modelMap.put("quiz", quiz);
+			modelMap.put("categories", categoryServiceAdmin.findAllCategory());
 
 		return "admin/quiz/index";
 	}
+	
+	@RequestMapping(value = "sortCategory", method = RequestMethod.GET)
+	public String sortCategory(@RequestParam(name = "currentPage") int currentPage, @RequestParam(name = "pageSize") int pageSize, @RequestParam(name = "sort1") String sort1,
+			ModelMap modelMap, Model model, @RequestParam(name = "categoryId") int categoryId) {
+		
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		int pageSizee = pageSize;
+
+		Page<Quiz> pages = quizServiceAdmin.sortByCategory(currentPage, pageSizee, sort1, categoryId);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPages", pages.getTotalPages());
+		model.addAttribute("totalElements", pages.getTotalElements());
+		model.addAttribute("pageSize", pageSizee);
+		model.addAttribute("sort1", sort1);
+		model.addAttribute("sort", "quizId");
+		model.addAttribute("quizs", pages.getContent());
+
+		Quiz quiz = new Quiz();		
+		modelMap.put("quiz", quiz);
+		modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+		
+		return "admin/quiz/index";
+	}
+	
 }

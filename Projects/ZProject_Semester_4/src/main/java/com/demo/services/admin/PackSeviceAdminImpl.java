@@ -49,7 +49,7 @@ public class PackSeviceAdminImpl implements PackServiceAdmin{
 	@Override
 	public List<Pack> findAllPack() {
 		
-		return (List<Pack>) packRepositoryAdmin.findAll();
+		return  packRepositoryAdmin.fillAll();
 
 	}
 
@@ -63,6 +63,8 @@ public class PackSeviceAdminImpl implements PackServiceAdmin{
 		 Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
 			return this.packRepositoryAdmin.findAll(pageable);
 	    }
+
+	
 
 	
 	

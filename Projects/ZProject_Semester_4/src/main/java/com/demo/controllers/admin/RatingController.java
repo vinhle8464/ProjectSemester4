@@ -69,7 +69,7 @@ public class RatingController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "ratingId");
 			model.addAttribute("ratings", pages.getContent());
 
 			Rating rating = new Rating();		

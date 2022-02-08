@@ -377,4 +377,67 @@ public class CourseController {
 		return "user/course/index";
 	}
 
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String keyword) {
+
+		return searchPagination(1, 15, "quiz_id", modelMap, model, keyword);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Quiz> pages = courseService.searchByTitle(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("quizs", pages.getContent());
+
+			Account account = new Account();
+
+			modelMap.put("account", account);
+			modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+
+
+		return "user/course/index";
+	}
+	
+	@RequestMapping(value = "filter", method = RequestMethod.GET)
+	public String Filter(ModelMap modelMap, Model model, @RequestParam("fee") boolean fee) {
+
+		return FilterPagination(1, 15, "quiz_id", modelMap, model, fee);
+	}
+	
+	public String FilterPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, boolean fee) {
+		
+		int pageSizee = pageSize;
+
+		Page<Quiz> pages = null;
+		if (categoryIdd > 0) {
+			pages = courseService.getAllQuizByCategoryIdFee(currentPage, pageSizee, sort, categoryIdd, fee);
+		} else {
+
+			pages = courseService.getPageFee(currentPage, pageSizee, sort, fee);
+		}
+			
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("quizs", pages.getContent());
+
+			Account account = new Account();
+
+			modelMap.put("account", account);
+			modelMap.put("categories", categoryServiceAdmin.findAllCategory());
+
+
+		return "user/course/index";
+	}
 }

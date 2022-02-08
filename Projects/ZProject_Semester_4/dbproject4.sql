@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 07, 2022 at 02:56 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th2 08, 2022 lúc 07:29 PM
+-- Phiên bản máy phục vụ: 10.4.20-MariaDB
+-- Phiên bản PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbproject4`
+-- Cơ sở dữ liệu: `dbproject4`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -43,23 +43,24 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `fullname`, `email`, `dob`, `addr`, `gender`, `phone`, `avatar`, `status`, `create_date`) VALUES
-(98, 'admin', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Admin Nguyen', 'adminnguyen.123@gmail.com', '1995-01-01', 'Tp HCM', b'00', '0999999999', '7ae495b8454a4fa18ce205e45d19cc1f.jpg', b'01', '2022-01-31'),
+(98, 'admin', '$2a$10$Zb46DGKBhqyHdWged86JteLDMDRXohrsjCUQTSjK9qbWWSLCvMhxS', 'Admin Nguyen', 'tbao1810@gmail.com', '1995-01-01', 'Tp HCM', b'00', '0999999999', '7ae495b8454a4fa18ce205e45d19cc1f.jpg', b'01', '2022-01-31'),
 (99, 'ngoctran', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Nguyen H Ngoc Tran', 'ngoctran.04012001@gmail.com', '2001-04-01', 'Tay Ninh', b'00', '0765716380', 'd817a1cee4314c58a141d5094be6a954.jpg', b'01', '2022-01-31'),
 (100, 'faculty', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Faculty John', 'tranmini0401@gmail.com', '1992-01-01', 'Binh Duong', b'01', '0999123456', '6b751578e8ca40f2ac687be9fb6ebd85.jpg', b'01', '2022-01-31'),
 (101, 'chuongnau', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chu Ong Nau', 'lephat8464@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0942755402', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
 (102, 'chiongngaongo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Ngao Ngo', 'chiongngaongo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0111111111', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
 (103, 'chionglotomo', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Lo To Mo', 'chionglotomo@gmail.com', '2001-06-14', 'Tay Ninh', b'01', '0123456123', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
 (104, 'chiongxanhle', '$2a$10$V0/brp1iAprBWyXfTH9UQejZc64w//XYaKYGCUp273FtIzS01jsMm', 'Chi Ong Xanh Le', 'chiongxanhle@gmail.com', '2001-06-14', 'Tay Ninh', b'00', '0888555222', 'bac2667253044015ad123d7aab6b63b3.jpg', b'01', '2022-01-31'),
-(105, 'faculty2', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Faculty Marry', 'marry@gmail.com', '1993-01-07', 'Dong Nai', b'00', '0133156555', 'd008449ac37b4531a065b2a37911e568.jpg', b'01', '2022-01-31');
+(105, 'faculty2', '$2a$10$cCcdzCmcV8gEdY5M1HfdJ.o2t4IS2NezqD9kZC0nAmQ52VIxTtcAu', 'Faculty Marry', 'marry@gmail.com', '1993-01-07', 'Dong Nai', b'00', '0133156555', 'd008449ac37b4531a065b2a37911e568.jpg', b'01', '2022-01-31'),
+(106, 'ad', '$2a$10$PnW.x8vhMf.V9zbuf2K7YeiiGm.l0wxiz8SBUopxLXOlM1DiasnQC', 'vuvo', 'tbao1810@gmail.com', '2022-01-12', 'ba123', b'01', '01235765954', '349ec5fde0444bf68c2fa59a1b9d1a52.jpg', b'01', '2022-02-09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_pack`
+-- Cấu trúc bảng cho bảng `account_pack`
 --
 
 CREATE TABLE `account_pack` (
@@ -71,7 +72,7 @@ CREATE TABLE `account_pack` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `account_pack`
+-- Đang đổ dữ liệu cho bảng `account_pack`
 --
 
 INSERT INTO `account_pack` (`account_pack_id`, `account_id`, `pack_id`, `start_date`, `status`) VALUES
@@ -80,7 +81,7 @@ INSERT INTO `account_pack` (`account_pack_id`, `account_id`, `pack_id`, `start_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_role`
+-- Cấu trúc bảng cho bảng `account_role`
 --
 
 CREATE TABLE `account_role` (
@@ -89,7 +90,7 @@ CREATE TABLE `account_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `account_role`
+-- Đang đổ dữ liệu cho bảng `account_role`
 --
 
 INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
@@ -100,12 +101,13 @@ INSERT INTO `account_role` (`account_id`, `role_id`) VALUES
 (102, 3),
 (103, 3),
 (104, 3),
-(105, 2);
+(105, 2),
+(106, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answer`
+-- Cấu trúc bảng cho bảng `answer`
 --
 
 CREATE TABLE `answer` (
@@ -117,7 +119,7 @@ CREATE TABLE `answer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `answer`
+-- Đang đổ dữ liệu cho bảng `answer`
 --
 
 INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `status`) VALUES
@@ -583,7 +585,7 @@ INSERT INTO `answer` (`answer_id`, `title`, `question_id`, `answer_status`, `sta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Cấu trúc bảng cho bảng `category`
 --
 
 CREATE TABLE `category` (
@@ -594,7 +596,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `category`
+-- Đang đổ dữ liệu cho bảng `category`
 --
 
 INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
@@ -610,7 +612,7 @@ INSERT INTO `category` (`category_id`, `title`, `description`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Cấu trúc bảng cho bảng `comment`
 --
 
 CREATE TABLE `comment` (
@@ -623,7 +625,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `comment`
+-- Đang đổ dữ liệu cho bảng `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `comment`, `account_id`, `quiz_id`, `status`, `create_date`) VALUES
@@ -636,12 +638,38 @@ INSERT INTO `comment` (`comment_id`, `comment`, `account_id`, `quiz_id`, `status
 (19, 'Great', 99, 43, b'01', '2022-02-07 17:30:36'),
 (20, 'Helpful', 99, 43, b'01', '2022-02-07 17:30:47'),
 (21, 'Helpful', 99, 53, b'01', '2022-02-07 17:31:00'),
-(22, 'Helpful', 99, 52, b'01', '2022-02-07 17:31:13');
+(22, 'Helpful', 99, 52, b'01', '2022-02-07 17:31:13'),
+(23, 'good', 99, 21, b'01', '2022-02-09 00:38:52'),
+(24, 'me my self', 99, 15, b'01', '2022-02-09 00:39:20'),
+(25, 'fine', 99, 48, b'01', '2022-02-09 00:40:09'),
+(26, 'good', 99, 47, b'01', '2022-02-09 00:40:23'),
+(27, 'fine', 99, 42, b'01', '2022-02-09 00:40:57'),
+(28, 'bad', 99, 41, b'01', '2022-02-09 00:41:09'),
+(29, 'good', 99, 40, b'01', '2022-02-09 00:41:59'),
+(30, 'fine', 99, 39, b'01', '2022-02-09 00:42:20'),
+(31, 'good', 99, 38, b'01', '2022-02-09 00:42:35'),
+(32, 'a', 99, 32, b'01', '2022-02-09 00:43:20'),
+(33, 's', 99, 31, b'01', '2022-02-09 00:43:30'),
+(34, 'good', 99, 30, b'01', '2022-02-09 00:43:52'),
+(35, 'good', 99, 29, b'01', '2022-02-09 00:44:05'),
+(36, 'good', 99, 36, b'01', '2022-02-09 00:44:30'),
+(37, 'good', 99, 35, b'01', '2022-02-09 00:44:43'),
+(38, 'me my self', 99, 34, b'01', '2022-02-09 00:45:02'),
+(39, 'good', 99, 49, b'01', '2022-02-09 00:45:44'),
+(40, 'fine', 99, 20, b'01', '2022-02-09 00:45:55'),
+(41, 'fine', 99, 19, b'01', '2022-02-09 00:46:03'),
+(42, 'good', 99, 18, b'01', '2022-02-09 00:46:15'),
+(43, 'bad', 99, 17, b'01', '2022-02-09 00:46:24'),
+(44, 'bad', 99, 16, b'01', '2022-02-09 00:46:33'),
+(45, 'good', 99, 28, b'01', '2022-02-09 00:46:42'),
+(46, 'fine', 99, 27, b'01', '2022-02-09 00:46:53'),
+(47, 'fine', 99, 26, b'01', '2022-02-09 00:47:05'),
+(48, 'fine', 99, 25, b'01', '2022-02-09 00:47:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email`
+-- Cấu trúc bảng cho bảng `email`
 --
 
 CREATE TABLE `email` (
@@ -659,7 +687,7 @@ CREATE TABLE `email` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `email`
+-- Đang đổ dữ liệu cho bảng `email`
 --
 
 INSERT INTO `email` (`email_id`, `title`, `email_user`, `fullname`, `phone_number`, `content`, `reply_content`, `send_date`, `reply_date`, `checked`, `status`) VALUES
@@ -674,7 +702,7 @@ INSERT INTO `email` (`email_id`, `title`, `email_user`, `fullname`, `phone_numbe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Cấu trúc bảng cho bảng `history`
 --
 
 CREATE TABLE `history` (
@@ -690,17 +718,20 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `history`
+-- Đang đổ dữ liệu cho bảng `history`
 --
 
 INSERT INTO `history` (`history_id`, `date`, `quiz_id`, `account_id`, `status`, `list_question_id`, `list_answer_choice`, `time_done`, `number_right_answer`) VALUES
 (15, '2022-02-06', 15, 99, b'01', '46 47 48 49 45 ', '', 2, 0),
-(16, '2022-02-07', 29, 99, b'01', '116 119 118 117 120 ', '', 11, 0);
+(16, '2022-02-07', 29, 99, b'01', '116 119 118 117 120 ', '', 11, 0),
+(17, '2022-02-09', 53, 99, b'01', '227 231 239 223 235 ', '', 4, 0),
+(18, '2022-02-09', 24, 99, b'01', '96 95 97 99 98 ', '312 307 316 319 321 318 317 320 328 323 ', 7, 0),
+(19, '2022-02-09', 23, 99, b'01', '90 93 91 92 94 ', '288 300 292 299 306 305 303 304 ', 24, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pack`
+-- Cấu trúc bảng cho bảng `pack`
 --
 
 CREATE TABLE `pack` (
@@ -713,7 +744,7 @@ CREATE TABLE `pack` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pack`
+-- Đang đổ dữ liệu cho bảng `pack`
 --
 
 INSERT INTO `pack` (`pack_id`, `title`, `expiry`, `fee`, `description`, `status`) VALUES
@@ -727,7 +758,7 @@ INSERT INTO `pack` (`pack_id`, `title`, `expiry`, `fee`, `description`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pay`
+-- Cấu trúc bảng cho bảng `pay`
 --
 
 CREATE TABLE `pay` (
@@ -741,7 +772,7 @@ CREATE TABLE `pay` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pay`
+-- Đang đổ dữ liệu cho bảng `pay`
 --
 
 INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid`, `pay_status`) VALUES
@@ -750,7 +781,7 @@ INSERT INTO `pay` (`pay_id`, `account_id`, `payment`, `title`, `fee`, `date_paid
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Cấu trúc bảng cho bảng `question`
 --
 
 CREATE TABLE `question` (
@@ -763,7 +794,7 @@ CREATE TABLE `question` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `question`
+-- Đang đổ dữ liệu cho bảng `question`
 --
 
 INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `status`, `type_answer_choice`) VALUES
@@ -969,7 +1000,7 @@ INSERT INTO `question` (`question_id`, `title`, `explain_detail`, `quiz_id`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+-- Cấu trúc bảng cho bảng `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -987,55 +1018,55 @@ CREATE TABLE `quiz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `quiz`
+-- Đang đổ dữ liệu cho bảng `quiz`
 --
 
 INSERT INTO `quiz` (`quiz_id`, `title`, `description`, `account_id`, `category_id`, `times`, `timer`, `fee`, `image`, `status`, `date_created`) VALUES
-(14, 'Test English 12', 'english 12', 100, 9, 0, 45, b'00', 'd151813aba814344a3d4c3a4079d9194.jfif', b'01', '2022-01-31 14:32:26'),
-(15, 'Test Math 12', 'math 12', 100, 1, 2, 45, b'00', 'e86b97497bba4ac787efec1ffa0c3b74.jpg', b'01', '2022-01-31 15:04:14'),
-(16, 'HTML Quiz', 'Learn about HTML', 100, 8, 1, 15, b'00', 'c52e82a8dd3c4b13b48fe6a5fe4b70bb.png', b'01', '2022-02-06 22:52:24'),
-(17, 'CSS Quiz', 'Learn about CSS', 100, 8, 0, 10, b'00', 'c130901af5ab4a7189cfc50b0afd0e2e.png', b'01', '2022-02-06 23:21:32'),
-(18, 'JavaScript Quiz', 'Learn about JavaScript', 100, 8, 0, 10, b'00', '44d9a0f557c343dc9e31e8cd16d430ca.png', b'01', '2022-02-07 11:13:03'),
-(19, 'SQL Quiz', 'Learn about SQL', 100, 8, 0, 5, b'00', '99f40b5c1a75410795906cc4a95c6674.png', b'01', '2022-02-07 11:29:04'),
-(20, 'PHP Quiz ', 'Learn about PHP', 100, 8, 0, 5, b'00', '1af96038945c40daa7575c89932be6cd.jpeg', b'01', '2022-02-07 11:39:39'),
-(21, 'TEST MATH 5', 'Test Math 5', 100, 1, 0, 10, b'01', '5a0347fbcee4491997377876588ea3b8.jpeg', b'01', '2022-02-07 11:46:34'),
-(22, 'TEST MATH 6', 'Test Math 6', 100, 1, 0, 10, b'01', '46ea5b48cda14da69e9a2aaa97107970.jpeg', b'01', '2022-02-07 11:56:42'),
-(23, 'TEST MATH 1', 'Learn about math', 100, 1, 0, 20, b'00', '81198c7d454d4b448543a0dcc8643075.jpeg', b'01', '2022-02-07 13:42:20'),
-(24, 'TEST MATH 2', 'Learn about math 2', 100, 1, 0, 30, b'00', '6a88e68e800b4e96aa3c0daa9afb9efd.jpeg', b'01', '2022-02-07 13:46:41'),
-(25, 'TEST ENGLISH 1', 'Learn about english 1', 100, 9, 0, 5, b'01', '4d3bfe7460fa46b7a089209a4786c755.jpeg', b'01', '2022-02-07 13:54:20'),
-(26, 'TEST ENGLISH 2', 'Learn about english 2', 100, 9, 0, 40, b'00', '2a50462ca0934f29b7263d92b4528de0.png', b'01', '2022-02-07 14:23:51'),
-(27, 'TEST ENGLISH 3', 'Learn about English 3', 100, 9, 0, 15, b'01', '17d13abb89fe4dafafa550b4bb5b4aae.png', b'01', '2022-02-07 14:30:19'),
-(28, 'TEST ENGLISH 4', 'Learn about English 4', 100, 9, 0, 45, b'01', 'a1989d8b15884e58bd7ee03826caa825.jpeg', b'01', '2022-02-07 14:43:26'),
-(29, 'Physics quiz 6 ', 'Physics quiz 6 ', 100, 2, 1, 30, b'00', '011f65feae2e4d8ab2de638bf47b2280.jpeg', b'01', '2022-02-07 14:59:17'),
-(30, 'Physics quiz 7', 'Physics quiz 7', 100, 2, 0, 40, b'01', 'cda9d3e8a53943578bd04f6d60170c35.jpeg', b'01', '2022-02-07 15:04:17'),
-(31, 'Physics quiz 8', 'Physics quiz 8', 100, 2, 0, 45, b'01', 'fbb523dfe7384d798fbac333a1c355dc.jpeg', b'01', '2022-02-07 15:16:28'),
-(32, 'Physics quiz 9', 'Physics quiz 9', 100, 2, 0, 35, b'01', 'b0151405daa349a6bde2a38f4bccc36e.jpeg', b'01', '2022-02-07 15:30:27'),
-(33, 'Physics quiz 10', 'Physics quiz 10', 100, 2, 0, 40, b'01', '412ea1c6a1f74d35a36857ca7e054fce.jpeg', b'01', '2022-02-07 15:58:04'),
-(34, 'Chemistry test ', 'Chemistry test ', 105, 3, 0, 20, b'00', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
-(35, 'Chemistry test 1', 'Chemistry test 1', 105, 3, 0, 20, b'01', 'd7d3c94850174fbbb8463127cb45d752.png', b'01', '2022-02-07 16:25:09'),
-(36, 'Chemistry test 2', 'Chemistry test 2', 105, 3, 0, 20, b'01', '24d41a284a47472581bb9b843bb5ed2c.jpeg', b'01', '2022-02-07 16:25:09'),
-(37, 'Chemistry test 3', 'Chemistry test 3', 105, 3, 0, 20, b'01', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
-(38, 'Chemistry test 4', 'Chemistry test 4', 105, 3, 0, 20, b'01', 'b2e429aa05c64de8b66b87148e17c279.png', b'01', '2022-02-07 16:25:09'),
-(39, 'Biology Quiz', 'Biology Quiz', 105, 4, 0, 15, b'00', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
-(40, 'Biology Quiz 1', 'Biology Quiz 1', 105, 4, 0, 15, b'01', '35f19550492d49f8bc6f15034ae386a2.jpeg', b'01', '2022-02-07 16:38:25'),
-(41, 'Biology Quiz 2', 'Biology Quiz 2', 105, 4, 0, 15, b'01', '3957ce404e4c4aa0b0bf6d7db6646631.jpeg', b'01', '2022-02-07 16:38:25'),
-(42, 'Biology Quiz 3', 'Biology Quiz 3', 105, 4, 0, 15, b'01', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
-(43, 'Biology Quiz 4', 'Biology Quiz 4', 105, 4, 0, 15, b'01', '0c17dbff446f4fcfb6ae20733c0bbb0f.jpeg', b'01', '2022-02-07 16:38:25'),
-(44, 'Grammar test : Vietnamese words and word structure', 'Grammar test : Vietnamese words and word structure', 105, 5, 0, 30, b'00', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
-(45, 'Grammar test 1 : Vietnamese words and word structure', 'Grammar test 1: Vietnamese words and word structure', 105, 5, 0, 30, b'01', 'f2777431433446de94ca35d9dd6d8ae4.jpeg', b'01', '2022-02-07 16:51:09'),
-(46, 'Grammar test 2: Vietnamese words and word structure', 'Grammar test 2: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '9eac4f37286c4ccda96ddf86130d1a27.jpeg', b'01', '2022-02-07 16:51:09'),
-(47, 'Grammar test 3: Vietnamese words and word structure', 'Grammar test 3: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
-(48, 'Grammar test 4: Vietnamese words and word structure', 'Grammar test 4: Vietnamese words and word structure', 105, 5, 0, 30, b'01', '10ebbda53b48499396d0d8ece4211bcb.jpeg', b'01', '2022-02-07 16:51:09'),
-(49, 'Geography quiz ', 'Geography quiz ', 105, 6, 0, 20, b'00', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
-(50, 'Geography quiz 1', 'Geography quiz 1', 105, 6, 0, 20, b'01', '8b84c80130bc49dba42f63cd695ace56.jpeg', b'01', '2022-02-07 17:03:04'),
-(51, 'Geography quiz 2', 'Geography quiz 2', 105, 6, 0, 20, b'01', 'a6b7b73d0b78496992ae3973dafe1c2d.jpeg', b'01', '2022-02-07 17:03:04'),
-(52, 'Geography quiz 3', 'Geography quiz 3', 105, 6, 0, 20, b'01', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
-(53, 'Geography quiz 4', 'Geography quiz 4', 105, 6, 0, 20, b'01', '2722897f6e474d348d1a3375215deb78.jpeg', b'01', '2022-02-07 17:03:04');
+(14, 'Test English 12', 'english 12', 100, 9, 340000, 45, b'00', 'd151813aba814344a3d4c3a4079d9194.jfif', b'01', '2022-01-31 14:32:26'),
+(15, 'Test Math 12', 'math 12', 100, 1, 2300, 45, b'00', 'e86b97497bba4ac787efec1ffa0c3b74.jpg', b'01', '2022-01-31 15:04:14'),
+(16, 'HTML Quiz', 'Learn about HTML', 100, 8, 1200, 15, b'00', 'c52e82a8dd3c4b13b48fe6a5fe4b70bb.png', b'01', '2022-02-06 22:52:24'),
+(17, 'CSS Quiz', 'Learn about CSS', 100, 8, 6000, 10, b'00', 'c130901af5ab4a7189cfc50b0afd0e2e.png', b'01', '2022-02-06 23:21:32'),
+(18, 'JavaScript Quiz', 'Learn about JavaScript', 100, 8, 300, 10, b'00', '44d9a0f557c343dc9e31e8cd16d430ca.png', b'01', '2022-02-07 11:13:03'),
+(19, 'SQL Quiz', 'Learn about SQL', 100, 8, 400, 5, b'00', '99f40b5c1a75410795906cc4a95c6674.png', b'01', '2022-02-07 11:29:04'),
+(20, 'PHP Quiz ', 'Learn about PHP', 100, 8, 500, 5, b'00', '1af96038945c40daa7575c89932be6cd.jpeg', b'01', '2022-02-07 11:39:39'),
+(21, 'TEST MATH 5', 'Test Math 5', 100, 1, 200, 10, b'01', '5a0347fbcee4491997377876588ea3b8.jpeg', b'01', '2022-02-07 11:46:34'),
+(22, 'TEST MATH 6', 'Test Math 6', 100, 1, 300, 10, b'01', '46ea5b48cda14da69e9a2aaa97107970.jpeg', b'01', '2022-02-07 11:56:42'),
+(23, 'TEST MATH 1', 'Learn about math', 100, 1, 100, 20, b'00', '81198c7d454d4b448543a0dcc8643075.jpeg', b'01', '2022-02-07 13:42:20'),
+(24, 'TEST MATH 2', 'Learn about math 2', 100, 1, 400, 30, b'00', '6a88e68e800b4e96aa3c0daa9afb9efd.jpeg', b'01', '2022-02-07 13:46:41'),
+(25, 'TEST ENGLISH 1', 'Learn about english 1', 100, 9, 500, 5, b'01', '4d3bfe7460fa46b7a089209a4786c755.jpeg', b'01', '2022-02-07 13:54:20'),
+(26, 'TEST ENGLISH 2', 'Learn about english 2', 100, 9, 170, 40, b'00', '2a50462ca0934f29b7263d92b4528de0.png', b'01', '2022-02-07 14:23:51'),
+(27, 'TEST ENGLISH 3', 'Learn about English 3', 100, 9, 400, 15, b'01', '17d13abb89fe4dafafa550b4bb5b4aae.png', b'01', '2022-02-07 14:30:19'),
+(28, 'TEST ENGLISH 4', 'Learn about English 4', 100, 9, 200, 45, b'01', 'a1989d8b15884e58bd7ee03826caa825.jpeg', b'01', '2022-02-07 14:43:26'),
+(29, 'Physics quiz 6 ', 'Physics quiz 6 ', 100, 2, 180, 30, b'00', '011f65feae2e4d8ab2de638bf47b2280.jpeg', b'01', '2022-02-07 14:59:17'),
+(30, 'Physics quiz 7', 'Physics quiz 7', 100, 2, 300, 40, b'01', 'cda9d3e8a53943578bd04f6d60170c35.jpeg', b'01', '2022-02-07 15:04:17'),
+(31, 'Physics quiz 8', 'Physics quiz 8', 100, 2, 200, 45, b'01', 'fbb523dfe7384d798fbac333a1c355dc.jpeg', b'01', '2022-02-07 15:16:28'),
+(32, 'Physics quiz 9', 'Physics quiz 9', 100, 2, 126, 35, b'01', 'b0151405daa349a6bde2a38f4bccc36e.jpeg', b'01', '2022-02-07 15:30:27'),
+(33, 'Physics quiz 10', 'Physics quiz 10', 100, 2, 600, 40, b'01', '412ea1c6a1f74d35a36857ca7e054fce.jpeg', b'00', '2022-02-07 15:58:04'),
+(34, 'Chemistry test ', 'Chemistry test ', 105, 3, 3000, 20, b'00', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
+(35, 'Chemistry test 1', 'Chemistry test 1', 105, 3, 300, 20, b'01', 'd7d3c94850174fbbb8463127cb45d752.png', b'01', '2022-02-07 16:25:09'),
+(36, 'Chemistry test 2', 'Chemistry test 2', 105, 3, 400, 20, b'01', '24d41a284a47472581bb9b843bb5ed2c.jpeg', b'01', '2022-02-07 16:25:09'),
+(37, 'Chemistry test 3', 'Chemistry test 3', 105, 3, 500, 20, b'01', '6a071d9ed6d646d5ae20a9e195341aa1.jpeg', b'01', '2022-02-07 16:25:09'),
+(38, 'Chemistry test 4', 'Chemistry test 4', 105, 3, 300, 20, b'01', 'b2e429aa05c64de8b66b87148e17c279.png', b'01', '2022-02-07 16:25:09'),
+(39, 'Biology Quiz', 'Biology Quiz', 105, 4, 600, 15, b'00', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
+(40, 'Biology Quiz 1', 'Biology Quiz 1', 105, 4, 280, 15, b'01', '35f19550492d49f8bc6f15034ae386a2.jpeg', b'01', '2022-02-07 16:38:25'),
+(41, 'Biology Quiz 2', 'Biology Quiz 2', 105, 4, 500, 15, b'01', '3957ce404e4c4aa0b0bf6d7db6646631.jpeg', b'01', '2022-02-07 16:38:25'),
+(42, 'Biology Quiz 3', 'Biology Quiz 3', 105, 4, 470, 15, b'01', 'c3d2e099c66848fe8289c453e2851747.jpeg', b'01', '2022-02-07 16:38:25'),
+(43, 'Biology Quiz 4', 'Biology Quiz 4', 105, 4, 360, 15, b'01', '0c17dbff446f4fcfb6ae20733c0bbb0f.jpeg', b'01', '2022-02-07 16:38:25'),
+(44, 'Grammar test : Vietnamese words and word structure', 'Grammar test : Vietnamese words and word structure', 105, 5, 260, 30, b'00', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
+(45, 'Grammar test 1 : Vietnamese words and word structure', 'Grammar test 1: Vietnamese words and word structure', 105, 5, 770, 30, b'01', 'f2777431433446de94ca35d9dd6d8ae4.jpeg', b'01', '2022-02-07 16:51:09'),
+(46, 'Grammar test 2: Vietnamese words and word structure', 'Grammar test 2: Vietnamese words and word structure', 105, 5, 670, 30, b'01', '9eac4f37286c4ccda96ddf86130d1a27.jpeg', b'01', '2022-02-07 16:51:09'),
+(47, 'Grammar test 3: Vietnamese words and word structure', 'Grammar test 3: Vietnamese words and word structure', 105, 5, 870, 30, b'01', '15091275d7714d0992c3835e3212a4c5.jpeg', b'01', '2022-02-07 16:51:09'),
+(48, 'Grammar test 4: Vietnamese words and word structure', 'Grammar test 4: Vietnamese words and word structure', 105, 5, 600, 30, b'01', '10ebbda53b48499396d0d8ece4211bcb.jpeg', b'01', '2022-02-07 16:51:09'),
+(49, 'Geography quiz ', 'Geography quiz ', 105, 6, 400, 20, b'00', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
+(50, 'Geography quiz 1', 'Geography quiz 1', 105, 6, 200, 20, b'01', '8b84c80130bc49dba42f63cd695ace56.jpeg', b'01', '2022-02-07 17:03:04'),
+(51, 'Geography quiz 2', 'Geography quiz 2', 105, 6, 190, 20, b'01', 'a6b7b73d0b78496992ae3973dafe1c2d.jpeg', b'01', '2022-02-07 17:03:04'),
+(52, 'Geography quiz 3', 'Geography quiz 3', 105, 6, 260, 20, b'01', '6cf4d5f2d4ff43dfbef0d856e6e80d51.jpeg', b'01', '2022-02-07 17:03:04'),
+(53, 'Geography quiz 4', 'Geography quiz 4', 105, 6, 140, 20, b'01', '2722897f6e474d348d1a3375215deb78.jpeg', b'01', '2022-02-07 17:03:04');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating`
+-- Cấu trúc bảng cho bảng `rating`
 --
 
 CREATE TABLE `rating` (
@@ -1048,7 +1079,7 @@ CREATE TABLE `rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `rating`
+-- Đang đổ dữ liệu cho bảng `rating`
 --
 
 INSERT INTO `rating` (`rating_id`, `account_id`, `quiz_id`, `star`, `created`, `status`) VALUES
@@ -1060,12 +1091,39 @@ INSERT INTO `rating` (`rating_id`, `account_id`, `quiz_id`, `star`, `created`, `
 (9, 99, 51, 3, '2022-02-07 17:29:05', b'01'),
 (10, 99, 50, 5, '2022-02-07 17:30:04', b'01'),
 (11, 99, 46, 4, '2022-02-07 17:30:18', b'01'),
-(12, 99, 43, 5, '2022-02-07 17:30:32', b'01');
+(12, 99, 43, 5, '2022-02-07 17:30:32', b'01'),
+(13, 99, 24, 5, '2022-02-09 00:38:26', b'01'),
+(14, 99, 23, 5, '2022-02-09 00:38:38', b'01'),
+(15, 99, 21, 5, '2022-02-09 00:38:44', b'01'),
+(16, 99, 48, 4, '2022-02-09 00:40:05', b'01'),
+(17, 99, 47, 4, '2022-02-09 00:40:19', b'01'),
+(18, 99, 42, 4, '2022-02-09 00:40:40', b'01'),
+(19, 99, 41, 1, '2022-02-09 00:41:05', b'01'),
+(20, 99, 40, 4, '2022-02-09 00:41:57', b'01'),
+(21, 99, 39, 4, '2022-02-09 00:42:17', b'01'),
+(22, 99, 38, 3, '2022-02-09 00:42:33', b'01'),
+(23, 99, 32, 3, '2022-02-09 00:43:17', b'01'),
+(24, 99, 31, 3, '2022-02-09 00:43:28', b'01'),
+(25, 99, 30, 3, '2022-02-09 00:43:49', b'01'),
+(26, 99, 29, 4, '2022-02-09 00:44:02', b'01'),
+(27, 99, 36, 3, '2022-02-09 00:44:26', b'01'),
+(28, 99, 35, 2, '2022-02-09 00:44:39', b'01'),
+(29, 99, 34, 5, '2022-02-09 00:44:58', b'01'),
+(30, 99, 49, 3, '2022-02-09 00:45:41', b'01'),
+(31, 99, 20, 3, '2022-02-09 00:45:52', b'01'),
+(32, 99, 19, 1, '2022-02-09 00:46:01', b'01'),
+(33, 99, 18, 5, '2022-02-09 00:46:12', b'01'),
+(34, 99, 17, 3, '2022-02-09 00:46:21', b'01'),
+(35, 99, 16, 1, '2022-02-09 00:46:30', b'01'),
+(36, 99, 28, 4, '2022-02-09 00:46:39', b'01'),
+(37, 99, 27, 4, '2022-02-09 00:46:49', b'01'),
+(38, 99, 26, 1, '2022-02-09 00:47:03', b'01'),
+(39, 99, 25, 3, '2022-02-09 00:47:13', b'01');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Cấu trúc bảng cho bảng `role`
 --
 
 CREATE TABLE `role` (
@@ -1076,7 +1134,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `role`
+-- Đang đổ dữ liệu cho bảng `role`
 --
 
 INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
@@ -1087,7 +1145,7 @@ INSERT INTO `role` (`role_id`, `role_name`, `description`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salary`
+-- Cấu trúc bảng cho bảng `salary`
 --
 
 CREATE TABLE `salary` (
@@ -1102,17 +1160,29 @@ CREATE TABLE `salary` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `salary`
+--
+
+INSERT INTO `salary` (`salary_id`, `account_id`, `salary`, `create_date`, `status`, `total_click_quiz`, `accept_payment`, `total_click_quiz_month`) VALUES
+(32, 100, '6.17', '2021-12-09 01:09:06', b'01', 6166, b'01', 6166),
+(33, 105, '8.37', '2021-12-09 01:09:06', b'01', 8370, b'01', 8370),
+(35, 100, '11.61', '2022-01-09 01:15:07', b'01', 17776, b'01', 11610),
+(36, 105, '2.70', '2022-01-09 01:15:07', b'01', 11070, b'01', 2700),
+(39, 100, '336.60', '2022-02-09 01:17:10', b'01', 354376, b'00', 336600),
+(40, 105, '0.00', '2022-02-09 01:17:10', b'01', 11070, b'00', 0);
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`);
 
 --
--- Indexes for table `account_pack`
+-- Chỉ mục cho bảng `account_pack`
 --
 ALTER TABLE `account_pack`
   ADD PRIMARY KEY (`account_pack_id`),
@@ -1120,27 +1190,27 @@ ALTER TABLE `account_pack`
   ADD KEY `pack_id` (`pack_id`);
 
 --
--- Indexes for table `account_role`
+-- Chỉ mục cho bảng `account_role`
 --
 ALTER TABLE `account_role`
   ADD PRIMARY KEY (`account_id`,`role_id`),
   ADD KEY `ac_role_pk_2` (`role_id`);
 
 --
--- Indexes for table `answer`
+-- Chỉ mục cho bảng `answer`
 --
 ALTER TABLE `answer`
   ADD PRIMARY KEY (`answer_id`),
   ADD KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `category`
+-- Chỉ mục cho bảng `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `comment`
+-- Chỉ mục cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`),
@@ -1148,13 +1218,13 @@ ALTER TABLE `comment`
   ADD KEY `quiz_id` (`quiz_id`);
 
 --
--- Indexes for table `email`
+-- Chỉ mục cho bảng `email`
 --
 ALTER TABLE `email`
   ADD PRIMARY KEY (`email_id`);
 
 --
--- Indexes for table `history`
+-- Chỉ mục cho bảng `history`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`history_id`),
@@ -1162,27 +1232,27 @@ ALTER TABLE `history`
   ADD KEY `quiz_id` (`quiz_id`);
 
 --
--- Indexes for table `pack`
+-- Chỉ mục cho bảng `pack`
 --
 ALTER TABLE `pack`
   ADD PRIMARY KEY (`pack_id`);
 
 --
--- Indexes for table `pay`
+-- Chỉ mục cho bảng `pay`
 --
 ALTER TABLE `pay`
   ADD PRIMARY KEY (`pay_id`),
   ADD KEY `FK_pay_account` (`account_id`);
 
 --
--- Indexes for table `question`
+-- Chỉ mục cho bảng `question`
 --
 ALTER TABLE `question`
   ADD PRIMARY KEY (`question_id`),
   ADD KEY `quiz_id` (`quiz_id`);
 
 --
--- Indexes for table `quiz`
+-- Chỉ mục cho bảng `quiz`
 --
 ALTER TABLE `quiz`
   ADD PRIMARY KEY (`quiz_id`),
@@ -1190,7 +1260,7 @@ ALTER TABLE `quiz`
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `rating`
+-- Chỉ mục cho bảng `rating`
 --
 ALTER TABLE `rating`
   ADD PRIMARY KEY (`rating_id`),
@@ -1198,172 +1268,172 @@ ALTER TABLE `rating`
   ADD KEY `quiz_id` (`quiz_id`);
 
 --
--- Indexes for table `role`
+-- Chỉ mục cho bảng `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `salary`
+-- Chỉ mục cho bảng `salary`
 --
 ALTER TABLE `salary`
   ADD PRIMARY KEY (`salary_id`),
   ADD KEY `account_id` (`account_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- AUTO_INCREMENT for table `account_pack`
+-- AUTO_INCREMENT cho bảng `account_pack`
 --
 ALTER TABLE `account_pack`
   MODIFY `account_pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `answer`
+-- AUTO_INCREMENT cho bảng `answer`
 --
 ALTER TABLE `answer`
   MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=572;
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `email`
+-- AUTO_INCREMENT cho bảng `email`
 --
 ALTER TABLE `email`
   MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `history`
+-- AUTO_INCREMENT cho bảng `history`
 --
 ALTER TABLE `history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `pack`
+-- AUTO_INCREMENT cho bảng `pack`
 --
 ALTER TABLE `pack`
   MODIFY `pack_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `pay`
+-- AUTO_INCREMENT cho bảng `pay`
 --
 ALTER TABLE `pay`
   MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `question`
+-- AUTO_INCREMENT cho bảng `question`
 --
 ALTER TABLE `question`
   MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
--- AUTO_INCREMENT for table `quiz`
+-- AUTO_INCREMENT cho bảng `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT for table `rating`
+-- AUTO_INCREMENT cho bảng `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT cho bảng `role`
 --
 ALTER TABLE `role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `salary`
+-- AUTO_INCREMENT cho bảng `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `account_pack`
+-- Các ràng buộc cho bảng `account_pack`
 --
 ALTER TABLE `account_pack`
   ADD CONSTRAINT `account_pack_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `account_pack_ibfk_2` FOREIGN KEY (`pack_id`) REFERENCES `pack` (`pack_id`);
 
 --
--- Constraints for table `account_role`
+-- Các ràng buộc cho bảng `account_role`
 --
 ALTER TABLE `account_role`
   ADD CONSTRAINT `ac_role_pk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `ac_role_pk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 
 --
--- Constraints for table `answer`
+-- Các ràng buộc cho bảng `answer`
 --
 ALTER TABLE `answer`
   ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
 
 --
--- Constraints for table `comment`
+-- Các ràng buộc cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
 
 --
--- Constraints for table `history`
+-- Các ràng buộc cho bảng `history`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
 
 --
--- Constraints for table `pay`
+-- Các ràng buộc cho bảng `pay`
 --
 ALTER TABLE `pay`
   ADD CONSTRAINT `FK_pay_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
--- Constraints for table `question`
+-- Các ràng buộc cho bảng `question`
 --
 ALTER TABLE `question`
   ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
 
 --
--- Constraints for table `quiz`
+-- Các ràng buộc cho bảng `quiz`
 --
 ALTER TABLE `quiz`
   ADD CONSTRAINT `quiz_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `quiz_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
--- Constraints for table `rating`
+-- Các ràng buộc cho bảng `rating`
 --
 ALTER TABLE `rating`
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`quiz_id`);
 
 --
--- Constraints for table `salary`
+-- Các ràng buộc cho bảng `salary`
 --
 ALTER TABLE `salary`
   ADD CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
