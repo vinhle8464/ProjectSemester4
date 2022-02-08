@@ -139,7 +139,7 @@ section.right_answer {
 							</div>
 							
 						</div>
-						<div class="course_note">
+						<div class="course_note" style="height: 197px !important;">
 							
 							<div>
 								<h4> Task time:</h4>

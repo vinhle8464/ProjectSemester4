@@ -29,26 +29,21 @@
 				<!-- end title -->
 			<div class="row">
       			<div class="col-md-6">
-        			<input class="search form-control" placeholder="Search" />
+      			<form method="get" action="${pageContext.request.contextPath}/user/course/search">
+      			<input type="text" class="form-control" placeholder="Quiz..." name="keyword">
+      			<!-- <input type="submit" value="Search" class="btn btn-primary"> -->
+      			</form>
         			
         			
         			
-  </div>
-  <div class="col-md-4">
-        			<select  class="form-control" style="color: #566787;" name="pageSize"
-								onchange="location = this.value;">
-			 <option value="">Categories</option>
-			 <option value="${pageContext.request.contextPath}/user/course?fee=0">load category len day nha</option>
-			 <option value="${pageContext.request.contextPath}/user/course?fee=1">Purchase</option>
-			
-			</select>
-        			</div>
+  				</div>
+  
   <div class="col-md-2">
         			<select  class="form-control" style="color: #566787;" name="pageSize"
 								onchange="location = this.value;">
 			 <option value="">Fee</option>
-			 <option value="${pageContext.request.contextPath}/user/course?fee=0">Free</option>
-			 <option value="${pageContext.request.contextPath}/user/course?fee=1">Purchase</option>
+			 <option value="${pageContext.request.contextPath}/user/course/filter?fee=false">Free</option>
+			 <option value="${pageContext.request.contextPath}/user/course/filter?fee=true">Purchase</option>
 			
 			</select>
         			</div>
