@@ -27,7 +27,32 @@
                 </div>
             </div>
 				<!-- end title -->
-
+			<div class="row">
+      			<div class="col-md-6">
+        			<input class="search form-control" placeholder="Search" />
+        			
+        			
+        			
+  </div>
+  <div class="col-md-4">
+        			<select  class="form-control" style="color: #566787;" name="pageSize"
+								onchange="location = this.value;">
+			 <option value="">Categories</option>
+			 <option value="${pageContext.request.contextPath}/user/course?fee=0">load category len day nha</option>
+			 <option value="${pageContext.request.contextPath}/user/course?fee=1">Purchase</option>
+			
+			</select>
+        			</div>
+  <div class="col-md-2">
+        			<select  class="form-control" style="color: #566787;" name="pageSize"
+								onchange="location = this.value;">
+			 <option value="">Fee</option>
+			 <option value="${pageContext.request.contextPath}/user/course?fee=0">Free</option>
+			 <option value="${pageContext.request.contextPath}/user/course?fee=1">Purchase</option>
+			
+			</select>
+        			</div>
+  </div>
             <hr class="invis"> 
              <c:choose>
    <c:when test="${quizs.size() > 0 }">
@@ -65,7 +90,8 @@
 										<fmt:formatDate var="dateCreated" value="${quiz.dateCreated}"
 													pattern="dd/MM/yyyy" />
 			
-										<p><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp; | &nbsp;
+										<p>
+													<i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp; ${dateCreated} &nbsp; | &nbsp;
 											<i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; ${quiz.questions.size()} Questions</p>			
 							</div>
 						</div>
@@ -218,5 +244,7 @@
 		<!-- end section -->
 
 
+	
+	
 	</jsp:attribute>
 </mt:layout_user>
