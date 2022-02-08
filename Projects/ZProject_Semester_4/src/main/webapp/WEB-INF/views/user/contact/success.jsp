@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/stylePayment.css">
 <title>Success</title>
 </head>
 <body>

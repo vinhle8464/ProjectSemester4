@@ -24,5 +24,5 @@ public interface QuizServiceFaculty {
 
 	public Page<Quiz> getAllQuizByAccountId(int currentPage, int pageSize, String sort, int accountId);
 	
-	
+	public Page<Quiz> searchByKeyword(int currentPage, int pageSize, String sort, String keyword);
 }

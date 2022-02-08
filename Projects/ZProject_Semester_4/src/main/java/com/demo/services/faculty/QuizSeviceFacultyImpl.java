@@ -63,5 +63,11 @@ public class QuizSeviceFacultyImpl implements QuizServiceFaculty{
 		return this.quizRepositoryFaculty.getAllQuizByAccountId(accountId, pageable);
 	}
 
+	@Override
+	public Page<Quiz> searchByKeyword(int currentPage, int pageSize, String sort, String keyword) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepositoryFaculty.searchByKeyword(keyword, pageable);
+	}
+
 	
 }

@@ -133,7 +133,7 @@
 						</div>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" placeholder="Title or Username" name="keyword">
+							<input type="text" class="form-control" placeholder="Title or Username..." name="keyword">
 							
 						</div>
 						<div class="col-sm-1">
