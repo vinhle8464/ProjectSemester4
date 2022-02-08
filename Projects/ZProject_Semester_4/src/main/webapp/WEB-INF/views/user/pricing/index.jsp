@@ -126,8 +126,9 @@
 	                                        <div
 															class="pricing-table-sign-up">
 	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
-	                                            <s:form method="post"
-																action="${pageContext.request.contextPath }/user/pricing/success">
+	                                            <s:form method="get"
+																action="${posturl }">
+																<!-- ${pageContext.request.contextPath }/user/pricing/success -->
 													<input type="hidden" name="item_number_1"
 																	value="${pack.packId }">
 													<input type="hidden" name="item_name_1"
@@ -189,8 +190,8 @@
 	                                        <div
 															class="pricing-table-sign-up">
 	                                            <%-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --%>
-	                                            <s:form method="post"
-																action="${pageContext.request.contextPath }/user/pricing/success">
+	                                            <s:form method="get"
+																action="${posturl }">
 													<input type="hidden" name="item_number_1" value="${pack.packId }">
 													<input type="hidden" name="item_name_1" value="${pack.title }">
 													<input type="hidden" name="amount_1" value="${pack.fee }">

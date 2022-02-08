@@ -344,11 +344,6 @@
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">History</div> <!-- Message End -->
 								</a>
-								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/payment/index"
-									class="dropdown-item"> <!-- Message Start -->
-									<div class="media">Payment</div> <!-- Message End -->
-								</a>
 							</ss:authorize>
 							<div class="dropdown-divider"></div>
 							<a href="${pageContext.request.contextPath}/user/account/logout"

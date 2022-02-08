@@ -29,7 +29,7 @@
                     <div class="contact_form">
                         <div id="message"></div>
                         <p style="color: yellow;">* Please enter your correct email, if it is wrong, you will not receive a feedback letter, thank you !!!</p>
-                        <s:form method="post" modelAttribute="email" action="${pageContext.request.contextPath }/user/contact/sendContact">
+                        <s:form method="post" modelAttribute="email" action="${pageContext.request.contextPath }/user/contact/success">
                             <div class="row row-fluid">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <s:input path="fullname" class="form-control" placeholder="Fullname"/>

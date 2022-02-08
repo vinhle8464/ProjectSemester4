@@ -44,10 +44,18 @@ public class ContactController {
 		
 		return "user/contact/index";
 	}
+	
+	//@ResponseBody
+	@RequestMapping(value = "success", method = RequestMethod.POST)
+	public String success(@ModelAttribute("email") Email email) {
 
-	@ResponseBody
-	@RequestMapping(value = "sendContact", method = RequestMethod.POST)
-	public String sendContact(ModelMap modelMap, @ModelAttribute("email") Email email) {
+		sendContact(email);
+		return "user/contact/success";
+	}
+
+//	@ResponseBody
+//	@RequestMapping(value = "sendContact", method = RequestMethod.POST)
+	public void sendContact(Email email) {
 		
 		SimpleMailMessage message = new SimpleMailMessage();
         
@@ -60,24 +68,18 @@ public class ContactController {
         message.setSubject(email.getTitle());
         message.setText(fullname + "\n" + emailUser + "\n" + phone + "\n" + content);
 
-        
      // Send Message!
         javaMailSender.send(message);
-		
 		email.setSendDate(new Date());
-		mailService.save(email);
-		if(mailService.save(email) != null) {
-			modelMap.put("msg", "Thank you for sending feedback");
-		} else {
-			modelMap.put("msg", "Sending feedback fail");
-		}
 		
-		return "redirect:/user/contact/success";
+		mailService.save(email);
+		
+//		if(mailService.save(email) != null) {
+//			modelMap.put("msg", "Thank you for sending feedback");
+//		} else {
+//			modelMap.put("msg", "Sending feedback fail");
+//		}
+		
 	}
 	
-	@RequestMapping(value = "success", method = RequestMethod.POST)
-	public String success() {
-
-		return "user/contact/success";
-	}
 }

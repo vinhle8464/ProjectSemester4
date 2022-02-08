@@ -9,6 +9,7 @@
 <body>
 	<div>
 		<h2>Payment success</h2>
+		<a href="${pageContext.request.contextPath }/user/home/index">Back to home</a>
 	</div>
 </body>
 </html>
