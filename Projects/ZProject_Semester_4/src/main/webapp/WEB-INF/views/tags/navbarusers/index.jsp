@@ -249,7 +249,7 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<a class="navbar-brand" href="index.html" style="width: 45%;"> <img
+		<a class="navbar-brand" href="index" style="width: 45%;"> <img
 			src="${pageContext.request.contextPath}/resources/user/images/logoquiz2.png"
 			alt="" width="40%" />
 		</a>

@@ -16,7 +16,7 @@ public class PricingServiceImpl implements PricingService{
 	
 	@Override
 	public Iterable<Pack> findAll() {
-		return pricingRepository.findAll();
+		return pricingRepository.fillAll();
 	}
 
 	@Override

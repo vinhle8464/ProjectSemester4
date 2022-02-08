@@ -310,6 +310,7 @@ public class AccountController implements ServletContextAware {
 						}
 					}
 				}
+				session.removeAttribute("msg");
 				modelMap.put("result", result);
 				return "redirect:/faculty/dashboard/index";
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase("[ROLE_USER_CANDIDATE]")) {
@@ -341,6 +342,7 @@ public class AccountController implements ServletContextAware {
 						}
 					}
 				}
+				session.removeAttribute("msg");
 				return "redirect:" + referer;
 			} else if (authentication.getAuthorities().toString().equalsIgnoreCase(
 					"[ROLE_USER, SCOPE_https://www.googleapis.com/auth/userinfo.email, SCOPE_https://www.googleapis.com/auth/userinfo.profile, SCOPE_openid]")) {
@@ -371,6 +373,7 @@ public class AccountController implements ServletContextAware {
 					}
 				}
 				modelMap.put("result", result);
+				session.removeAttribute("msg");
 				return "redirect:/user/home/index";
 
 			}
