@@ -45,7 +45,7 @@
                     <tr>
                       <th style="width: 10px"></th>
                       <th>Title</th>
-                      <th style="width: 40px">Value</th>
+                      <th style="width: 40px">USD</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -154,7 +154,7 @@
 		"titles" : [ {
 			"id" : "Title-1",
 			"size" : 15,
-			"text" : "Revenue in 2022"
+			"text" : ${year}
 		} ],
 		"dataProvider" :${category}
 	});

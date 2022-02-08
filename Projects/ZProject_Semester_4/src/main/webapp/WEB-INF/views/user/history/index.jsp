@@ -28,7 +28,9 @@
 	            			<div >
 				            	<div class="course-item">
 									<div class="image-blog">
-										<img src="${pageContext.request.contextPath}/assets/uploads/${history.quiz.image}" alt="" class="img-fluid">
+										<img src="${pageContext.request.contextPath}/assets/uploads/${history.quiz.image}" alt="" class="img-fluid" style="
+    height: 204px;
+">
 									</div>
 								</div>
 				            </div>

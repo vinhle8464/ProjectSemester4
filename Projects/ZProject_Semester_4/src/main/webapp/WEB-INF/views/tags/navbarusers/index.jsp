@@ -44,19 +44,21 @@
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" name="accountname"
-											placeholder="Your Account Name" type="text">
+											placeholder="Your Account Name" type="text"
+											required="required">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" name="email"
-											placeholder="Your Email" type="text">
+											placeholder="Your Email" type="text" required="required">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" name="newpassword"
-											placeholder="New Password" type="password">
+											placeholder="New Password" type="password" minlength="8"
+											required="required">
 									</div>
 								</div>
 								<div class="row">
@@ -78,13 +80,14 @@
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" name="username"
-											placeholder="Username" type="text">
+											placeholder="Username" type="text" required="required">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" name="password"
-											placeholder="Password" type="password">
+											placeholder="Password" type="password" minlength="8"
+											required="required">
 									</div>
 								</div>
 								<div class="row">
@@ -121,50 +124,69 @@
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="username" class="form-control"
-											placeholder="User name" />
+											placeholder="User name" required="required" />
 										<s:errors path="username" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:password path="password" class="form-control"
-											placeholder="Password" />
+											placeholder="Password" required="required" minlength="8" />
 										<s:errors path="password" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input name="repassword" type="password" class="form-control"
-											placeholder="Retype password">
+											placeholder="Retype password" minlength="8"
+											required="required">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="fullname" class="form-control"
-											placeholder="Full name" />
+											placeholder="Full name" required="required" />
 										<s:errors path="fullname" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="addr" class="form-control"
-											placeholder="Address" />
+											placeholder="Address" required="required" />
 										<s:errors path="addr" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row">
-										<div class="col-sm-6">
+										<div class="col-sm-6" style="padding: 0px 35px;">
+											<h3 style="display: inline-block;">Male:</h3>
 											<s:radiobutton value="true" path="gender"
-												class="form-control" />
-
-											Male
+												class="form-control"
+												style="
+    width: 50px;
+    height: 25px;
+   
+    margin: 0px;
+    padding: 0px;
+        display: inline-block;
+        position: absolute;
+    bottom: 10px;
+" />
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-6" style="padding: 0px 35px;">
+											<h3 style="display: inline-block;">Female:</h3>
 											<s:radiobutton value="false" path="gender"
-												class="form-control" />
-
-											Female
+												class="form-control"
+												style="
+    width: 50px;
+    height: 25px;
+    
+    margin: 0px;
+    padding: 0px;
+        display: inline-block;
+        position: absolute;
+    bottom: 10px;
+" />
 										</div>
 									</div>
 
@@ -173,26 +195,28 @@
 								<div class="form-group">
 									<div class="col-sm-12">
 										<s:input path="dob" class="form-control" id="dob"
-											placeholder="Date of Birth" />
+											placeholder="Date of Birth" required="required" />
 										<s:errors path="dob" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="phone" class="form-control" placeholder="Phone" />
+										<s:input path="phone" class="form-control" placeholder="Phone"
+											required="required" />
 										<s:errors path="phone" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-										<s:input path="email" class="form-control" placeholder="Email" />
+										<s:input path="email" class="form-control" placeholder="Email"
+											required="required" />
 										<s:errors path="email" cssClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<input class="form-control" type="file" name="file"
-											placeholder="Avatar">
+											placeholder="Avatar" required="required">
 										<s:errors path="avatar" cssClass="form-control" />
 									</div>
 								</div>
@@ -307,33 +331,29 @@
 									<div class="media">Dashboard</div> <!-- Message End -->
 								</a>
 							</ss:authorize>
-							
-								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
-									class="dropdown-item"> <!-- Message Start -->
-									<div class="media">Profile</div> <!-- Message End -->
-								</a>
-								<ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
+
+							<div class="dropdown-divider"></div>
+							<a
+								href="${pageContext.request.contextPath}/user/profile/index?accountId=${sessionScope.account.accountId }"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Profile</div> <!-- Message End -->
+							</a>
+							<ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
 								<div class="dropdown-divider"></div>
 								<a href="${pageContext.request.contextPath}/user/history/index"
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">History</div> <!-- Message End -->
 								</a>
-								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/payment/index"
-									class="dropdown-item"> <!-- Message Start -->
-									<div class="media">Payment</div> <!-- Message End -->
-								</a>
-								</ss:authorize>
-								<div class="dropdown-divider"></div>
-								<a href="${pageContext.request.contextPath}/user/account/logout"
-									class="dropdown-item"> <!-- Message Start -->
-									<div class="media">Logout</div> <!-- Message End -->
-								</a>
-				          <div class="dropdown-divider"></div>
-				          <p class="dropdown-item dropdown-footer" style="text-align: center;">Login Memory Team</p>
-				        </div>
-				 </li>
+							</ss:authorize>
+							<div class="dropdown-divider"></div>
+							<a href="${pageContext.request.contextPath}/user/account/logout"
+								class="dropdown-item"> <!-- Message Start -->
+								<div class="media">Logout</div> <!-- Message End -->
+							</a>
+							<div class="dropdown-divider"></div>
+							<p class="dropdown-item dropdown-footer"
+								style="text-align: center;">Login Memory Team</p>
+						</div></li>
 				</c:if>
 			</ul>
 			<c:if test="${sessionScope.account == null}">

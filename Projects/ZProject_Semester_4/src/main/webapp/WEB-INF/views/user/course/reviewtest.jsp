@@ -105,6 +105,7 @@
 							
 							<!-- show answer type radio -->
 							<!-- Show all answer in a question -->
+								<ol type="A">
 							<c:forEach var="answer" items="${question.answers}" varStatus="a">
 		         		<!-- get answerId type radio -->
 		         		<c:set var="existTrue" value="" />
@@ -116,9 +117,9 @@
 	             				<input type="radio" name="answer${i.index }"
 																		value="${answer.answerId}"
 																		${answer.answerId == answerIdRadio ? 'checked' : '' }
-																		disabled> <span
-																		class="${answer.answerStatus == true ? 'text-primary' : ''}">${answer.title }</span> &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</div> 
-									</c:when>
+																		disabled  style="float: left; margin-right: 20px;"> <span
+																		class="${answer.answerStatus == true ? 'text-primary' : ''}"> <li>${answer.title } &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</li> </span> </div> 
+									</c:when>  
 							<c:when test="${question.typeAnswerChoice == 'checkbox' }">
 		         				<c:forEach var="answerID" items="${listAnswerId}"
 																	varStatus="answerid">
@@ -129,8 +130,8 @@
 		         			
 							<div>
 	             				<input type="checkbox" name="answer${i.index }"
-																					value="${answer.answerId}" checked disabled> <span
-																					class="${answer.answerStatus == true ? 'text-primary' : ''}">${answer.title }</span> &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</div>
+																					value="${answer.answerId}" checked disabled  style="float: left; margin-right: 20px;"> <span
+																					class="${answer.answerStatus == true ? 'text-primary' : ''}"> <li>${answer.title } &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</li> </span> </div>
 							
 					<c:set var="existTrue" value="${answerID}" />
 		     							
@@ -142,8 +143,8 @@
 		         			<div>
 							
 	             				<input type="checkbox" name="answer${i.index }"
-																				value="${answer.answerId}" disabled> <span
-																				class="${answer.answerStatus == true ? 'text-primary' : ''}">${answer.title }</span> &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}
+																				value="${answer.answerId}" disabled  style="float: left; margin-right: 20px;"> <span
+																				class="${answer.answerStatus == true ? 'text-primary' : ''}" > <li>${answer.title }  &nbsp; ${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''}</li></span> 
 																</div>
 									</c:when>
 									</c:choose>									
@@ -154,6 +155,7 @@
 							
 							
 							</c:forEach>	
+								</ol>
 							<!-- Show all answer in a question -->
 							
 		         			
@@ -175,41 +177,7 @@
 		     </c:choose>
 		            </c:forEach>
 		           </c:forEach>
-		         				  <%-- <c:forEach var="answer" items="${question.answers}"
-											varStatus="t">  
-											 
-											<c:choose>
-									<c:when test="${question.typeAnswerChoice == 'checkbox' }">
-	     							<c:forEach var="answeIdd" items="${listAnswerId}"
-														varStatus="i">
-														${answeIdd }
-							<c:choose>
-	     															
-						 			<c:when test="${answer.answerId == answeIdd }">
-	     							
-		         				<div>
-		         					<input type="checkbox" name="answer${i.index }"
-																		value="${answer.answerId}" checked> <span
-																		class="${answer.answerStatus == true ? 'text-primary' : ''}" >${answer.title }</span>
-																		${answer.answerStatus == true ? '<i class="text-primary fa fa-check" aria-hidden="true"></i>' : ''} ${answer.answerId = answerId ? '<i class="fa fa-times" aria-hidden="true"></i>' : ''} 
-									
-		         				</div>
-		         					</c:when>
-		         					
-		         						</c:choose> 
-						</c:forEach>
-	     							
 		         				
-		         				 	 	</c:when>
-		         				 	 	
-		        					
-		         				 	</c:choose>  
-        
-		         				 
-						</c:forEach> --%>
-		         			
-				
-		           
 		          
 		           
 	            </form>

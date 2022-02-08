@@ -4046,6 +4046,7 @@ span.m_1 {
 .image-blog img {
 	padding: 0 !important;
 	width: 100%;
+    height: 284px;
 	margin: 0 !important;
 	opacity: 1;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";

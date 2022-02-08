@@ -246,6 +246,8 @@ public class DashboardAdminController {
 		modelMap.put("totaleptthsmonth", totaleptthismonth);
 		modelMap.put("category", json);
 		modelMap.put("category2", json2);
+		String year="\"Revenue in "+java.time.LocalDateTime.now().getYear()+"\"";
+		modelMap.put("year", year);
 		return "admin/dashboard/rne";
 	}
 
@@ -334,11 +336,10 @@ public class DashboardAdminController {
 			int counthis = 0;
 			List<QuizAjax> quizs2 = quizServiceAdmin.findAjaxByCategoryId(category.getCategoryId());
 			for (QuizAjax quizAjax : quizs2) {
-				List<History> histories = historyService.findByQuizId(quizAjax.getQuizId());
-				for (History history : histories) {
-					counthis++;
-					totaltimedotest++;
-				}
+				
+					counthis=quizAjax.getTimes();
+					totaltimedotest+=quizAjax.getTimes();
+				
 			}
 
 			List<String> a = new ArrayList<String>();

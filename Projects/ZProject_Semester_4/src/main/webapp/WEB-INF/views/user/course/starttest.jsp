@@ -88,6 +88,7 @@
 								
 		         			</div>
 		         			<div>
+		         			<ol type="A">
 		         				  <c:forEach var="answer" items="${question.answers}"
 											varStatus="t">   
 											<c:choose>
@@ -95,7 +96,7 @@
 	     
 		         				<div>
 		         					<input type="checkbox" name="answer${i.index }"
-															value="${answer.answerId}"> ${answer.title }
+															value="${answer.answerId}" style="float: left; margin-right: 20px;"> <li>${answer.title }</li>
 									
 		         				</div>
 		         				 	 	</c:when>
@@ -103,7 +104,7 @@
 	     
 		         				<div>
 		         					<input type="radio" name="answer${i.index }"
-															value="${answer.answerId}"> ${answer.title }
+															value="${answer.answerId}" style="float: left; margin-right: 20px;"> <li>${answer.title }</li>
 									
 		         				</div>
 		         				 	 	</c:when>
@@ -112,7 +113,7 @@
         
 		         				 
 						</c:forEach>
-		         			
+		         			</ol>
 				</div>
 		         			<hr> 
 		         		</div> 

@@ -123,7 +123,9 @@
 		<!-- end section -->
 	
 		<!-- DIRECT CHAT -->
-            <div class="card direct-chat direct-chat-primary container">
+		    <div class="card direct-chat direct-chat-primary container">
+		     <ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
+        
             	<c:if test="${sessionScope.account != null && rating.star == 1}">
             	<div class="stars">
             		<input type="radio" class="star star-5" id="star-5-1" name="5_${quiz.quizId}_${sessionScope.account.accountId}" onchange="getRating(name);"/>
@@ -208,10 +210,12 @@
             		<label class="star star-5" for="star-1-0"></label>
             	</div>
             	</c:if>
+            	</ss:authorize>
               <div class="card-header">
                 <h3 class="card-title">Comment</h3>
               </div>
               <c:if test="${sessionScope.account != null }">
+              <ss:authorize access="hasRole('ROLE_USER_CANDIDATE')">
               <div class="card-footer">
                 <form method="post"
 						action="${pageContext.request.contextPath}/user/ratingcomment/sendComment">
@@ -226,6 +230,7 @@
                   </div>
                 </form>
               </div>
+              </ss:authorize>
               </c:if>
               <div class="card-body">
                 <c:forEach var="comment" items="${comments }">
