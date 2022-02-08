@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.demo.entites.QuizAjax;
+import com.demo.models.Email;
 import com.demo.models.Quiz;
 
 @Repository
@@ -24,6 +25,9 @@ public interface QuizRepositoryFaculty extends JpaRepository<Quiz, Integer> {
 		    nativeQuery = true)
 	public Page<Quiz> getAllQuizByAccountId(int account_id, Pageable pageable);
 	
+	@Query(value = "Select * From quiz q inner join account a on q.account_id = a.account_id where a.username like %:keyword% || q.title like %:keyword%",
+			nativeQuery = true)
+	public Page<Quiz> searchByKeyword(String keyword, Pageable pageable);
 	
 	
 }

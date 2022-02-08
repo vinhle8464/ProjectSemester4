@@ -125,5 +125,30 @@ public class QuizFacultyController implements ServletContextAware{
 
 		return "faculty/quiz/index";
 	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(ModelMap modelMap, Model model, @RequestParam("keyword") String fullname) {
+
+		return searchPagination(1, 25, "account_id", modelMap, model, fullname);
+	}
+	
+	public String searchPagination(int currentPage,int pageSize,String sort, ModelMap modelMap,
+			Model model, String keyword) {
+		
+		int pageSizee = pageSize;
+
+			Page<Quiz> pages = quizServiceFaculty.searchByKeyword(currentPage, pageSizee, sort, keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", pages.getTotalPages());
+			model.addAttribute("totalElements", pages.getTotalElements());
+			model.addAttribute("pageSize", pageSizee);
+			model.addAttribute("sort", sort);
+			model.addAttribute("quizs", pages.getContent());
+
+			Quiz quiz = new Quiz();		
+			modelMap.put("quiz", quiz);
+
+		return "faculty/quiz/index";
+	}
 
 }
