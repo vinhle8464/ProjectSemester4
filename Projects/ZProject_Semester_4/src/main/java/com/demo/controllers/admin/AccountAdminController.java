@@ -158,7 +158,7 @@ public class AccountAdminController implements ServletContextAware {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "accountId");
 			model.addAttribute("accounts", pages.getContent());
 
 		Account account = new Account();

@@ -239,7 +239,7 @@ public class SalaryAdminController {
 			model.addAttribute("totalPages", pages.getTotalPages());
 			model.addAttribute("totalElements", pages.getTotalElements());
 			model.addAttribute("pageSize", pageSizee);
-			model.addAttribute("sort", sort);
+			model.addAttribute("sort", "salaryId");
 			model.addAttribute("salarys", pages.getContent());
 
 			Salary salary = new Salary();

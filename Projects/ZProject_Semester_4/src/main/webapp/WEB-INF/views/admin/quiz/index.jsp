@@ -32,7 +32,7 @@
 			 });		
 		}
 		
-		$(document).ready(function(){
+		/* $(document).ready(function(){
 			$('#cbbCategory').change(function(){
 				var value = $('#cbbCategory option:selected').val();
 				if(value == 'all'){
@@ -41,7 +41,7 @@
 						url: '${pageContext.request.contextPath }/admin/ajax/findAllQuizWithCategory',
 						success: function(quizs){
 							location.reload();
-							/* var result = '';
+							var result = '';
 							for(i = 0; i < quizs.lenght; i++){
 								result += '<tr>';
 								result += '<td>' + quizs[i].quizId + '</td>';
@@ -53,7 +53,7 @@
 								result += '<td>' + quizs[i].timer + '</td>';
 								result += '</tr>';
 							}
-							$('#tableQuiz').html(result); */
+							$('#tableQuiz').html(result);
 						}
 					});
 				} else {
@@ -64,8 +64,8 @@
 							categoryId: value
 						},
 						success: function(quizs){
-							location.reload();
-							/* var result = '';
+							
+							var result = '';
 							for(i = 0; i < quizs.lenght; i++){
 								result += '<tr>';
 								result += '<td>' + quizs[i].quizId + '</td>';
@@ -77,14 +77,14 @@
 								result += '<td>' + quizs[i].timer + '</td>';
 								result += '</tr>';
 							}
-							$('#tableQuiz').html(result); */
+							$('#tableQuiz').html(result);
 						}
 						
 					});
 				}
 				
 			});
-		});
+		}); */
 	</script>
 		 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -145,10 +145,9 @@
 							
 						</div>
 						<div class="form-group col-sm-2">
-							<select class="form-control" id="cbbCategory">
-								<option value="all">All</option>
+							<select class="form-control" id="cbbCategory" onchange="location = this.value;">
 								<c:forEach var="category" items="${categories }">
-									<option value="${category.categoryId }">${category.title }</option>
+									<option value="${pageContext.request.contextPath}/admin/quiz/sortCategory?currentPage=1&pageSize=100&sort1=quiz_id&categoryId=${category.categoryId}">${category.title }</option>
 								</c:forEach>
 							 </select>
 						</div>		

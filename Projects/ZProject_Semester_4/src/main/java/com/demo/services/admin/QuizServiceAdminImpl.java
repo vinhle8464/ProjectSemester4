@@ -77,5 +77,11 @@ public class QuizServiceAdminImpl implements QuizServiceAdmin{
 		return this.quizRepositoryAdmin.searchByKeyword(keyword, pageable);
 	}
 
+	@Override
+	public Page<Quiz> sortByCategory(int currentPage, int pageSize, String sort, int categoryId) {
+		Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by(sort).descending());
+		return this.quizRepositoryAdmin.sortByCategory(categoryId, pageable);
+	}
+
 
 }
