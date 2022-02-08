@@ -56,7 +56,7 @@ public class SalaryAdminController {
 		if (salary == null) {
 			Date date1 = new Date();
 			try {
-				defaultDate = simpleDateFormat.parse("0000-01-27");
+				defaultDate = simpleDateFormat.parse("0000-01-09");
 				Calendar cal1 = Calendar.getInstance();
 				Calendar cal2 = Calendar.getInstance();
 				cal1.setTime(date1);
@@ -110,7 +110,7 @@ public class SalaryAdminController {
 			Date date2 = new Date();
 
 			try {
-				defaultDate = simpleDateFormat.parse("0000-01-27");
+				defaultDate = simpleDateFormat.parse("0000-01-09");
 				Calendar cal1 = Calendar.getInstance();
 				Calendar cal2 = Calendar.getInstance();
 				cal1.setTime(date1);
