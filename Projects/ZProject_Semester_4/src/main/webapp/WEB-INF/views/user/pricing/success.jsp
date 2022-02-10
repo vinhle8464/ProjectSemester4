@@ -19,7 +19,7 @@
 							<img class="_svg-icon" src="${pageContext.request.contextPath }/resources/user/images/logosite.png">
 							<h2 class="_success-heading">Success</h2>
 							<span class="_success-message">Purchase Completed! You should receive an email shortly.</span>
-							<a href="${pageContext.request.contextPath }/user/home/index">Back to home</a>
+							<a href="${pageContext.request.contextPath }/user/account/logout">Login Again</a>
 						</div>
 					</div>
 				</div>

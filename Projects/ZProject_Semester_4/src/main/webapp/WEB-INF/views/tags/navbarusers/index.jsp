@@ -233,7 +233,7 @@
 										<div class="col-sm-6" style="padding: 0px 35px;">
 											<h3 style="display: inline-block;">Candidate:</h3>
 											<input type="radio" value="3" name="role"
-												class="form-control"
+												class="form-control" checked
 												style="width: 50px; height: 25px; margin: 0px; padding: 0px; display: inline-block; position: absolute; bottom: 10px;" />
 										</div>
 										<div class="col-sm-6" style="padding: 0px 35px;">
@@ -363,6 +363,11 @@
 								<a href="${pageContext.request.contextPath}/user/history/index"
 									class="dropdown-item"> <!-- Message Start -->
 									<div class="media">History</div> <!-- Message End -->
+								</a>
+								<div class="dropdown-divider"></div>
+								<a href="${pageContext.request.contextPath}/user/payment/index"
+									class="dropdown-item"> <!-- Message Start -->
+									<div class="media">Payment</div> <!-- Message End -->
 								</a>
 							</ss:authorize>
 							<div class="dropdown-divider"></div>

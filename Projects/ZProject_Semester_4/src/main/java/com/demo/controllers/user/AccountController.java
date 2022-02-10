@@ -213,7 +213,9 @@ public class AccountController implements ServletContextAware {
 		accountValidator.validate(account, bindingResult);
 		HttpSession session = request.getSession();
 		if (bindingResult.hasErrors()) {
-			return "user/account/register";
+			session.setAttribute("msg", "<script>alert('Invalid!')</script>");
+			
+			return "redirect:/user/home/index";
 		}
 		if (terms) {
 			if (account.getPassword().equalsIgnoreCase(repassword)) {
@@ -237,17 +239,19 @@ public class AccountController implements ServletContextAware {
 					String hash2 = new BCryptPasswordEncoder().encode(account.getEmail());
 					sendMail(account, hash2);
 					accountService.save(account);
+					session.removeAttribute("msg");
+					
 					return "user/home/index";
 				} catch (Exception e) {
 					session.setAttribute("msg", "<script>alert('" + e.getMessage() + "')</script>");
 					return "redirect:/user/home/index";
 				}
 			} else {
-				modelMap.put("msg", "Retype Password Is Not Correct! ");
+				session.setAttribute("msg", "Retype Password Is Not Correct! ");
 				return "redirect:/user/home/index";
 			}
 		} else {
-			modelMap.put("msg", "Accept Our Term To Continue Signing Up! ");
+			session.setAttribute("msg", "Accept Our Term To Continue Signing Up! ");
 			return "redirect:/user/home/index";
 		}
 
@@ -334,7 +338,7 @@ public class AccountController implements ServletContextAware {
 							accountPack.setStatus(false);
 							accountPackService.save(accountPack);
 						} else if (accountPack.isStatus() == true) {
-							session.setAttribute("result", "<h4 style='color: #ffbc00;'>VIP</h4>");
+							session.setAttribute("result", "<h4 style='color: #ffbc00;'>PREMIUM</h4>");
 							break;
 						} else if (accountPack.isStatus() == false) {
 							session.setAttribute("result", "<h4 style='color: green;'>FREE</h4>");
@@ -406,15 +410,16 @@ public class AccountController implements ServletContextAware {
 
 	@RequestMapping(value = "forgetpassword", method = RequestMethod.POST)
 	public String forgetpassword(@RequestParam("accountname") String name, @RequestParam("email") String email,
-			@RequestParam("newpassword") String newpassword, ModelMap modelMap) {
+			@RequestParam("newpassword") String newpassword, ModelMap modelMap, HttpServletRequest request) {
 		Account account = accountService.findByUsername(name);
+		HttpSession session = request.getSession();
 		if (!account.getEmail().equalsIgnoreCase(email)) {
-			modelMap.put("msg", "Wrong Email!");
+			session.setAttribute("msg", "<script>alert('Wrong Email!')</script>");
 			return "redirect:/user/home/index";
 		} else {
 			String hash2 = new BCryptPasswordEncoder().encode(newpassword);
 			Changepasswordbymail(account, hash2);
-			modelMap.put("msg", "Pleasw Check your email!");
+			session.setAttribute("msg", "<script>alert('Please Check your email!')</script>");
 			return "redirect:/user/home/index";
 		}
 	}
@@ -422,7 +427,8 @@ public class AccountController implements ServletContextAware {
 	@RequestMapping(value = "forgetpassword", method = RequestMethod.GET)
 	public String forgetpassword(HttpServletRequest request, ModelMap modelMap) {
 		Account account = accountService.findByUsername(request.getParameter("key1"));
-		modelMap.put("msg", "Change password successfully!");
+		HttpSession session = request.getSession();
+		session.setAttribute("msg", "<script>alert('Change password successfully!')</script>");
 		account.setPassword(request.getParameter("key2"));
 		accountService.save(account);
 
