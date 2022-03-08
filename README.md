@@ -40,7 +40,7 @@ This is my Project with my team ( 3 members ). The main feature is Quiz Online, 
 
   - HTML, CSS, JS, Jquery, Ajax
 
-  - SQL server
+  - MySQL
 
 Soft ware: Spring tool suite 4, Xampp
 
