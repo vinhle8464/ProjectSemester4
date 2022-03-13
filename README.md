@@ -1,4 +1,4 @@
-# ProjectSemester4
+# QUIZ ONLINE
 
 This is my Project with my team ( 3 members ). The main feature is Quiz Online, you can do the quiz on out website and manager you infomation.
   There are 3 parts:
